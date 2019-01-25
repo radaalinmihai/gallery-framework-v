@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel='stylesheet' href='style.css' type='text/css'/>
+        <title>Register</title>
+    </head>
+    <body>
+        <form class='form-styling'>
+            <label for='username'><span>Username:</span> </label>
+                <input type='text' name='username' id='username' placeholder='Username' />
+                <label for='email'><span>Email:</span> </label>
+                <input type='email' name='email' id='email' placeholder='E-mail' />
+            <label for='password'><span>Password:</span> </label>
+                <input type='password' name='password' id='password' placeholder='Password' />
+            <button type='submit'>Register</button>
+        </form>
+    </body>
+    <script src='../socket.io/socket.io.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var socket = io();
+            var form = document.getElementsByClassName('form-styling')[0];
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+            });
+        });
+    </script>
+</html>

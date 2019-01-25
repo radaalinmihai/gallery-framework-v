@@ -9,7 +9,7 @@ body, html {
 }
 .carousel-container {
 	width: 100%;
-	isplay: -webkit-box;
+	display: -webkit-box;
   	display: -ms-flexbox;
   	display: -webkit-flex;
   	display: flex;
@@ -22,7 +22,7 @@ body, html {
   	display: -webkit-flex;
   	display: flex;
   	transform: translateX(0px);
-  	transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
 }
 .member > * {
 	width: 100%;
@@ -36,3 +36,23 @@ body, html {
 	display: flex;
 	justify-content: center;
 }
+
+
+/* De aici a scris Rada garbage css */
+
+.form-styling {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	text-align: left;
+	flex: 1;
+}
+
+span {
+	text-align: left;
+}
+
+/* Si aici si-a terminat Rada garbage css-ul */
