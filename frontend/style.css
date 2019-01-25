@@ -1,0 +1,38 @@
+body, html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+* {
+	box-sizing: border-box;
+}
+.carousel-container {
+	width: 100%;
+	isplay: -webkit-box;
+  	display: -ms-flexbox;
+  	display: -webkit-flex;
+  	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+.car-stage {
+	display: -webkit-box;
+  	display: -ms-flexbox;
+  	display: -webkit-flex;
+  	display: flex;
+  	transform: translateX(0px);
+  	transition: all 0.4s ease-in-out;
+}
+.member > * {
+	width: 100%;
+	padding: 10px;
+}
+.carousel-nav > i {
+	cursor: pointer;
+	font-size: 3em;
+}
+.carousel-nav {
+	display: flex;
+	justify-content: center;
+}
