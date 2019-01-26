@@ -1,10 +1,11 @@
 function init (containerID, params) {
+	var container = document.getElementById(containerID); // get container
+
 	switch (params.type) { // check which format is requested
 		case "carousel":
-			var container = document.getElementById(containerID); // get container
 			container.className += " carousel-container"; 
-			var stage = container.firstElementChild; // get stage
 			var members = document.getElementsByClassName("member"); // get list of elements
+			var stage = container.firstElementChild; // get stage
 			stage.className += " car-stage";
 			var containerWidth = container.offsetWidth; // width of container at time of init
 			var i;
@@ -14,7 +15,7 @@ function init (containerID, params) {
 					var itemsPerSlide = params.items;
 				}
 			}
-			else var itemsPerSlide = 3; // carousel defaults to 3 items per slide
+			else var itemsPerSlide = 3; // defaults to 3 items per slide
 
 			var memberWidth = containerWidth / itemsPerSlide;
 			for (i = 0; i < members.length; i++) {
@@ -23,11 +24,37 @@ function init (containerID, params) {
 			var stageWidth = containerWidth * (members.length / itemsPerSlide);
 			stage.style.width = stageWidth.toString() + "px";
 
+			var navigation = 0;
+
+			if (params.hasOwnProperty("nav")) {
+				if (params.nav != null && params.nav.show == true) {
+					nav(params.nav, container);
+					navigation = 1;
+				}
+			}
+
 			if (params.hasOwnProperty("transition")) {
 				if (params.transition != null) {
-					animateTransition(params.transition, stage, stageWidth, containerWidth, memberWidth, container);
+					animateTransition(params.transition, stage, stageWidth, containerWidth, memberWidth, container, navigation);
 				}
-				else animateTransition("slide", stage, stageWidth, containerWidth, memberWidth, container); // defaults to slide
+				else animateTransition("slide", stage, stageWidth, containerWidth, memberWidth, container, navigation); // defaults to slide
+			}
+
+		break;
+
+		case "grid":
+			container.className += " grid-container";
+			var members = container.children;
+
+			if (params.hasOwnProperty("itemsPerRow")) {
+				if (params.itemsPerRow != null) {
+					var perc = 100 / params.itemsPerRow;
+				}
+			}
+			else var perc = 25; // grid defaults to 4 items per row
+
+			for (var i = 0; i < members.length; i++) {
+				members[i].style.width = perc.toString() + "%";
 			}
 	}
 }
@@ -36,7 +63,27 @@ function error (missingPar) {
 	console.log("You have to add the property for " + missingPar + " in order for it to work.");
 }
 
-function animateTransition(options, stage, stageWidth, containerWidth, memberWidth, container) {
+function nav (options, container) {
+	var navContainer = document.createElement("div");
+	navContainer.className += " carousel-nav";
+	container.appendChild(navContainer);
+
+	if (options.hasOwnProperty("prev")) {
+		if (options.prev != null) {
+			let doc = new DOMParser().parseFromString(options.prev, 'text/html');
+			navContainer.appendChild(doc.body.firstChild);
+		}
+	}
+
+	if (options.hasOwnProperty("next")) {
+		if (options.next != null) {
+			let doc = new DOMParser().parseFromString(options.next, 'text/html');
+			navContainer.appendChild(doc.body.firstChild);
+		}
+	}
+}
+
+function animateTransition(options, stage, stageWidth, containerWidth, memberWidth, container, navigation) {
 	if (options.hasOwnProperty("transitionItems")) {
 		if (options.transitionItems != null) {
 			var transitionItemsNum = options.transitionItems;
@@ -61,23 +108,41 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 
 	switch (options.transitionType) {
 		case "slide":
-
-			prev.onclick = function() {
-				if (transformSize != 0) {
-					transformSize -= containerWidth;
-					stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+			if (navigation == 1) {
+				prev.onclick = function() {
+					if (transformSize != 0) {
+						transformSize -= containerWidth;
+						stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+					}
 				}
-			}
-			next.onclick = function() {
-				if (transformSize < (stageWidth - containerWidth)) {
-					transformSize += containerWidth;
-					stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+				next.onclick = function() {
+					if (transformSize < (stageWidth - containerWidth)) {
+						transformSize += containerWidth;
+						stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+					}
+				}
+
+				document.onkeydown = arrowPress;
+
+				function arrowPress(e) {
+					if (e.keyCode == '37') {
+						if (transformSize != 0) {
+							transformSize -= containerWidth;
+							stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+						}
+					}
+					if (e.keyCode == '39') {
+						if (transformSize < (stageWidth - containerWidth)) {
+							transformSize += containerWidth;
+							stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+						}
+					}
 				}
 			}
 
 			if (options.hasOwnProperty("auto")) {
 				if (options.auto != null) {
-					if (options.auto == "true") {
+					if (options.auto == true) {
 						if (options.hasOwnProperty("autoInterval")) {
 							if (options.autoInterval != null) {
 								setInterval(function() {
@@ -100,22 +165,41 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 
 		case "item":
 
-			prev.onclick = function() {
-				if (transformSize != 0) {
-					transformSize -= memberWidth * transitionItemsNum;
-					stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+			if (navigation == 1) {
+				prev.onclick = function() {
+					if (transformSize != 0) {
+						transformSize -= memberWidth * transitionItemsNum;
+						stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+					}
 				}
-			}
-			next.onclick = function() {
-				if (transformSize < (stageWidth - containerWidth)) {
-					transformSize += memberWidth * transitionItemsNum;
-					stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+				next.onclick = function() {
+					if (transformSize < (stageWidth - containerWidth)) {
+						transformSize += memberWidth * transitionItemsNum;
+						stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+					}
+				}
+
+				document.onkeydown = arrowPress;
+
+				function arrowPress(e) {
+					if (e.keyCode == '37') {
+						if (transformSize != 0) {
+							transformSize -= memberWidth * transitionItemsNum;
+							stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+						}
+					}
+					if (e.keyCode == '39') {
+						if (transformSize < (stageWidth - containerWidth)) {
+							transformSize += memberWidth * transitionItemsNum;
+							stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+						}
+					}
 				}
 			}
 
 			if (options.hasOwnProperty("auto")) {
 				if (options.auto != null) {
-					if (options.auto == "true") {
+					if (options.auto == true) {
 						if (options.hasOwnProperty("autoInterval")) {
 							if (options.autoInterval != null) {
 								setInterval(function() {
@@ -140,13 +224,7 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 	
 document.addEventListener('DOMContentLoaded', function() {
     init("carousel1", {
-    	items:4, 
-    	type:"carousel", 
-    	transition:{
-    		transitionType:"item", 
-    		auto:"true", 
-    		autoInterval:1500, 
-    		transitionItemsNum: 1
-    	}
+    	type:"grid",
+    	itemsPerRow:7
     });
 }, false);
