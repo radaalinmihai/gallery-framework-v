@@ -51,18 +51,39 @@ body, html {
 /* De aici a scris Rada garbage css */
 
 .form-styling {
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -ms-flex;
+	display: inline-block;
+	white-space: pre;
+}
+
+label {
 	display: flex;
 	align-items: center;
-	flex-direction: column;
-	text-align: left;
-	flex: 1;
+	justify-content: space-between;
 }
 
 span {
-	text-align: left;
+	padding-right: 4em;
+}
+
+form {
+	text-align: center;
+}
+
+select {
+	display: block;
+	width: 100%;
+}
+
+button {
+	display: block;
+	width: 100%;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 70%;
 }
 
 /* Si aici si-a terminat Rada garbage css-ul */

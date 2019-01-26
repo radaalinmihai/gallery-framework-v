@@ -1,18 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel='stylesheet' href='style.css' type='text/css'/>
-        <title>Album creation</title>
-    </head>
-    <body>
+<head>
+    <link rel='stylesheet' href='style.css' type='text/css' />
+    <title>Album creation</title>
+</head>
+<body>
+    <div class='container'>
         <form class='form-styling'>
-            <label for='album_name'><span>Album name: </span> </label>
-                <input type='text' name='album_name' id='album_name' placeholder='Album name' />
-                <label for='email'><span>Email:</span> </label>
-                <input type='email' name='email' id='email' placeholder='E-mail' />
-            <label for='password'><span>Password:</span> </label>
-                <input type='password' name='password' id='password' placeholder='Password' />
-            <button type='submit'>Register</button>
+            <h2>Create your album</h2>
+            <label>
+                <span>Album name:</span>
+                <input type='text' name='album_name' placeholder='Album name' />
+            </label>
+            <label>
+                <span>Items:</span>
+                <input type='number' name='items' placeholder='0' />
+            </label>
+            <label>
+                <span>Album type:</span>
+                <select>
+                    <option value='carousel'>Carousel</option>
+                </select>
+            </label>
+            <span>Transition settings</span>
+            <label>
+                <span>Type:</span>
+                <select>
+                    <option value='slide'>Slide</option>
+                </select>
+            </label>
+            <label>
+                <span>Auto:</span>
+                <select id='auto_select'>
+                    <option value=true>True</option>
+                    <option value=false>False</option>
+                </select>
+            </label>
+            <button type='submit'>Create</button>
         </form>
-    </body>
+    </div>
+    <script>
+        document.getElementById('auto_select').onchange =  function() {
+            var element_to_add = "<label>" +
+                "<span>Auto Interval:</span>" +
+                "<select id='auto_select'>" +
+                    "<option value=true>True</option>" +
+                    "<option value=false>False</option>" +
+                "</select>" +
+            "</label>";
+            if(this.value === 'true') {
+                this.parentNode.insertAdjacentHTML('afterEnd', element_to_add);
+            }
+        };
+    </script>
+</body>
 </html>
