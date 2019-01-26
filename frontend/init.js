@@ -4,9 +4,9 @@ function init (containerID, params) {
 	switch (params.type) { // check which format is requested
 		case "carousel":
 			container.className += " carousel-container"; 
-			var members = document.getElementsByClassName("member"); // get list of elements
 			var stage = container.firstElementChild; // get stage
 			stage.className += " car-stage";
+			var members = stage.children; // get list of elements
 			var containerWidth = container.offsetWidth; // width of container at time of init
 			var i;
 
@@ -21,7 +21,7 @@ function init (containerID, params) {
 			for (i = 0; i < members.length; i++) {
 				members[i].style.width = memberWidth.toString() + "px";
 			}
-			var stageWidth = containerWidth * (members.length / itemsPerSlide);
+			var stageWidth = memberWidth * members.length;
 			stage.style.width = stageWidth.toString() + "px";
 
 			var navigation = 0;
@@ -35,9 +35,9 @@ function init (containerID, params) {
 
 			if (params.hasOwnProperty("transition")) {
 				if (params.transition != null) {
-					animateTransition(params.transition, stage, stageWidth, containerWidth, memberWidth, container, navigation);
+					animateTransition(params.transition, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID);
 				}
-				else animateTransition("slide", stage, stageWidth, containerWidth, memberWidth, container, navigation); // defaults to slide
+				else animateTransition("slide", stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID); // defaults to slide
 			}
 
 		break;
@@ -83,7 +83,8 @@ function nav (options, container) {
 	}
 }
 
-function animateTransition(options, stage, stageWidth, containerWidth, memberWidth, container, navigation) {
+function animateTransition(options, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID) {
+	console.log(container.offsetWidth);
 	if (options.hasOwnProperty("transitionItems")) {
 		if (options.transitionItems != null) {
 			var transitionItemsNum = options.transitionItems;
@@ -102,8 +103,8 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 	}
 
 	stage.style.transform = "translateX(0px)";
-	var prev = document.getElementById("nav-prev");
-	var next = document.getElementById("nav-next");
+	var prev = container.children[1].children[0];
+	var next = container.children[1].children[1];
 	var transformSize = 0;
 
 	switch (options.transitionType) {
@@ -170,12 +171,14 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 					if (transformSize != 0) {
 						transformSize -= memberWidth * transitionItemsNum;
 						stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+						console.log(transformSize);
 					}
 				}
 				next.onclick = function() {
 					if (transformSize < (stageWidth - containerWidth)) {
 						transformSize += memberWidth * transitionItemsNum;
 						stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+						console.log(transformSize);
 					}
 				}
 
@@ -223,8 +226,37 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 }
 	
 document.addEventListener('DOMContentLoaded', function() {
+
     init("carousel1", {
-    	type:"grid",
-    	itemsPerRow:7
+    	type:"carousel",
+    	items:4,
+    	transition:{
+    		transitionType:"item",
+    		transitionItems:1,
+    		auto:true,
+    		autoInterval:1500
+    	},
+    	nav:{
+    		show:true,
+    		prev:"<i class='material-icons' id='nav-prev'>chevron_left</i>",
+            next:"<i class='material-icons' id='nav-next'>chevron_right</i>"
+    	}
     });
+
+    init("carousel2", {
+    	type:"carousel",
+    	items:4,
+    	transition:{
+    		transitionType:"item",
+    		transitionItems:1,
+    		auto:true,
+    		autoInterval:2000
+    	},
+    	nav:{
+    		show:true,
+    		prev:"<i class='material-icons' id='nav-prev'>chevron_left</i>",
+            next:"<i class='material-icons' id='nav-next'>chevron_right</i>"
+    	}
+    });
+
 }, false);
