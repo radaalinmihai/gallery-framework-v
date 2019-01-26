@@ -10,18 +10,21 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/frontend/'));
 
-app.get('/', (req, res) => {
+app.get('/', function(req, res) {
     res.sendFile(__dirname + '/frontend/index.html');
 });
 
-app.get('/register', (req, res) => {
-    res.sendFile(__dirname + '/frontend/register.html');
-    socket.on('connection', (socket) => {
-        console.log('a user connected');
-        // urmeaza sa fac ceva cu cacatul asta de socket.io, sa primesc raspuns live or some shit
+app.get('/create_album', function(req, res) {
+    res.sendFile(__dirname + '/frontend/create_album.html');
+    
+    socket.on('connection', function(socket) {
+        console.log('heya');
+        socket.on('create album', function(data) {
+            console.log(data);
+        });
     });
 });
 
-http.listen(3000, (req, res) => {
+http.listen(3000, function(req, res) {
     console.log('Listening on port 3000');
 });

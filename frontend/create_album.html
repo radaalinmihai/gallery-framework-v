@@ -2,12 +2,12 @@
 <html>
     <head>
         <link rel='stylesheet' href='style.css' type='text/css'/>
-        <title>Register</title>
+        <title>Album creation</title>
     </head>
     <body>
         <form class='form-styling'>
-            <label for='username'><span>Username:</span> </label>
-                <input type='text' name='username' id='username' placeholder='Username' />
+            <label for='album_name'><span>Album name: </span> </label>
+                <input type='text' name='album_name' id='album_name' placeholder='Album name' />
                 <label for='email'><span>Email:</span> </label>
                 <input type='email' name='email' id='email' placeholder='E-mail' />
             <label for='password'><span>Password:</span> </label>
@@ -23,7 +23,10 @@
 
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
+                var formData = new FormData(form);
+                console.log('ye');
 
+                socket.emit('create album', formData);
             });
         });
     </script>
