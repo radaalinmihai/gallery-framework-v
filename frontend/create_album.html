@@ -15,19 +15,4 @@
             <button type='submit'>Register</button>
         </form>
     </body>
-    <script src='../socket.io/socket.io.js'></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var socket = io();
-            var form = document.getElementsByClassName('form-styling')[0];
-
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                var formData = new FormData(form);
-                console.log('ye');
-
-                socket.emit('create album', formData);
-            });
-        });
-    </script>
 </html>

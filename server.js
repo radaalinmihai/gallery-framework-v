@@ -16,13 +16,6 @@ app.get('/', function(req, res) {
 
 app.get('/create_album', function(req, res) {
     res.sendFile(__dirname + '/frontend/create_album.html');
-    
-    socket.on('connection', function(socket) {
-        console.log('heya');
-        socket.on('create album', function(data) {
-            console.log(data);
-        });
-    });
 });
 
 http.listen(3000, function(req, res) {
