@@ -8,14 +8,50 @@ function init (containerID, params) {
 			stage.className += " car-stage";
 			var members = stage.children; // get list of elements
 			var containerWidth = container.offsetWidth; // width of container at time of init
-			var i;
+			var i, itemsPerSlide;
+
+
+			/* Handling of responsive items per slide */
+
+			var mediaQueries = [], k = 0, j, aux;
 
 			if (params.hasOwnProperty("items")) {
 				if (params.items != null) {
-					var itemsPerSlide = params.items;
+					itemsPerSlide = params.items;
 				}
 			}
-			else var itemsPerSlide = 3; // defaults to 3 items per slide
+			else if (params.hasOwnProperty("responsive")) {
+
+				var w = window.innerWidth;
+
+				for (var key in params.responsive) {
+				    mediaQueries[k] = key;
+				    mediaQueries[k] = parseInt(mediaQueries[k]);
+				    k++;
+				}
+
+				for (i = 0; i < k - 1; i++) {
+					for (j = i+1; j < k; j++)
+						if (mediaQueries[i] < mediaQueries[j]) {
+							aux = mediaQueries[i];
+							mediaQueries[i] = mediaQueries[j];
+							mediaQueries[j] = aux;
+						}
+				}
+
+				var ok = 0;
+
+				for (i = 0; i < k; i++) {
+					if (w < mediaQueries[i]){
+						itemsPerSlide = params.responsive[mediaQueries[i]].items;
+						ok = 1;
+					}
+				}
+
+				if (ok == 0) itemsPerSlide = 3;
+
+			}
+			else itemsPerSlide = 3; // defaults to 3 items per slide
 
 			var memberWidth = containerWidth / itemsPerSlide;
 			for (i = 0; i < members.length; i++) {
@@ -38,6 +74,10 @@ function init (containerID, params) {
 					animateTransition(params.transition, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID);
 				}
 				else animateTransition("slide", stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID); // defaults to slide
+			}
+
+			if (params.hasOwnProperty("fullscreen")) {
+				if (params.fullscreen.show == true) fullscreen(params.fullscreen, container, stage);
 			}
 
 		break;
@@ -87,6 +127,48 @@ function nav (options, container) {
 			navContainer.appendChild(doc.body.firstChild);
 		}
 	}
+}
+
+function fullscreen (options, container, stage) {
+	var butContainer = document.createElement("div");
+	butContainer.className += " car-full-buttons";
+	container.insertBefore(butContainer, stage);
+
+	if (options.hasOwnProperty("open")) {
+		if (options.open != null) {
+			let doc = new DOMParser().parseFromString(options.open, 'text/html');
+			butContainer.appendChild(doc.body.firstChild);
+		}
+	}
+
+	if (options.hasOwnProperty("close")) {
+		if (options.close != null) {
+			let doc = new DOMParser().parseFromString(options.close, 'text/html');
+			butContainer.appendChild(doc.body.firstChild);
+		}
+	}
+
+	var enlarge = butContainer.children[0];
+	var close = butContainer.children[1];
+
+	close.style.display = "none";
+
+	function toggleFull () {
+		console.log("clicked");
+		if (container.classList.contains("full-car")) {
+			container.classList.remove("full-car");
+			close.style.display = "none";
+			enlarge.style.display = "inline-block";
+		}
+		else {
+			container.classList.add("full-car");
+			close.style.display = "inline-block";
+			enlarge.style.display = "none";
+		}
+	}
+
+	enlarge.onclick = toggleFull;
+	close.onclick = toggleFull;
 }
 
 function animateTransition(options, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID) {
@@ -287,7 +369,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     init("carousel1", {
     	type:"carousel",
-    	items:4,
+    	responsive:{
+    		1000:{
+    			items:3
+    		},
+    		2000:{
+    			items:4
+    		},
+    		500:{
+    			items:2
+    		},
+    		200:{
+    			items:1
+    		}
+    	},
     	transition:{
     		transitionType:"item",
     		transitionItems:1,
@@ -297,6 +392,11 @@ document.addEventListener('DOMContentLoaded', function() {
     		show:true,
     		prev:"<i class='material-icons' id='nav-prev'>chevron_left</i>",
             next:"<i class='material-icons' id='nav-next'>chevron_right</i>"
+    	},
+    	fullscreen:{
+    		show:true,
+    		open:"<i class='material-icons'>fullscreen</i>",
+    		close:"<i class='material-icons'>close</i>"
     	}
     });
 
