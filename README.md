@@ -1,2 +1,2 @@
 # edociiF
-edociiF project
+A minimalistic, responsive, web-view gallery framework.
