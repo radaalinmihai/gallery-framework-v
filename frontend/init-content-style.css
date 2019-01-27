@@ -28,12 +28,20 @@ body, html {
   	display: -ms-flexbox;
   	display: -webkit-flex;
   	display: flex;
-  	transform: translateX(0px);
+  	left: 0;
+  	position: relative;
   	transition: all 0.2s ease-in-out;
 }
 .member > * {
 	width: 100%;
 	padding: 10px;
+	pointer-events: none;
+	user-drag: none; 
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-drag: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 .carousel-nav > i {
 	cursor: pointer;
@@ -46,6 +54,10 @@ body, html {
   	display: flex;
 	justify-content: center;
 }
+.active {
+	cursor: grabbing;
+	cursor: -webkit-grabbing;
+}
 
 /*--------------------------------------------------------------
 # Grid
@@ -56,4 +68,11 @@ body, html {
   	display: -webkit-flex;
   	display: flex;
   	flex-wrap: wrap;
+}
+.list-container {
+	display: flex;
+	flex-direction: column;
+}
+.list-container > * {
+	width: 100%;
 }

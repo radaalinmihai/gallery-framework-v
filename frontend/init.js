@@ -56,6 +56,12 @@ function init (containerID, params) {
 			for (var i = 0; i < members.length; i++) {
 				members[i].style.width = perc.toString() + "%";
 			}
+
+		break;
+
+		case "list":
+			container.className += " list-container";
+
 	}
 }
 
@@ -102,10 +108,20 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 		mouseover = 1;
 	}
 
-	stage.style.transform = "translateX(0px)";
+	stage.style.left = "0px";
 	var prev = container.children[1].children[0];
 	var next = container.children[1].children[1];
 	var transformSize = 0;
+
+	for (var i = 0; i < stage.children; i++) {
+		stage.children[i].ondragstart = function() {
+			return false;
+		}
+	}
+
+	function roundUp (numToRound, multiple) {
+		return multiple * Math.round(numToRound/multiple);
+	}
 
 	switch (options.transitionType) {
 		case "slide":
@@ -113,13 +129,13 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 				prev.onclick = function() {
 					if (transformSize != 0) {
 						transformSize -= containerWidth;
-						stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+						stage.style.left = "-" + transformSize.toString() + "px";
 					}
 				}
 				next.onclick = function() {
 					if (transformSize < (stageWidth - containerWidth)) {
 						transformSize += containerWidth;
-						stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+						stage.style.left = "-" + transformSize.toString() + "px";
 					}
 				}
 
@@ -129,13 +145,13 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 					if (e.keyCode == '37') {
 						if (transformSize != 0) {
 							transformSize -= containerWidth;
-							stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+							stage.style.left = "-" + transformSize.toString() + "px";
 						}
 					}
 					if (e.keyCode == '39') {
 						if (transformSize < (stageWidth - containerWidth)) {
 							transformSize += containerWidth;
-							stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+							stage.style.left = "-" + transformSize.toString() + "px";
 						}
 					}
 				}
@@ -150,7 +166,7 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 									if (mouseover == 1) {
 										if (transformSize < (stageWidth - containerWidth)) {
 											transformSize += containerWidth;
-											stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+											stage.style.left = "-" + transformSize.toString() + "px";
 										}
 									}
 								}, options.autoInterval);
@@ -162,6 +178,45 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 			}
 			else error("auto");
 
+			/* Dragging event */
+	
+			var selected = null, // Object of the element to be moved
+    		x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
+    		x_elem = 0, y_elem = 0; // Stores top, left values (edge) of the element
+		
+			// Will be called when user starts dragging an element
+			function _drag_init(elem) {
+			    // Store the object of the element which needs to be moved
+			    selected = elem;
+			    x_elem = x_pos - selected.offsetLeft;
+			}
+			
+			// Will be called when user dragging an element
+			function _move_elem(e) {
+			    x_pos = document.all ? window.event.clientX : e.pageX;
+			    y_pos = document.all ? window.event.clientY : e.pageY;
+			    if (selected !== null) {
+			        selected.style.left = (x_pos - x_elem) + 'px';
+			        transformSize = (x_pos - x_elem);
+			    }
+			}
+			
+			// Destroy the object when we are done
+			function _destroy() {
+			    selected = null;
+			    stage.style.transition = "all 0.2s ease-in-out";
+			}
+			
+			// Bind the functions...
+			stage.onmousedown = function () {
+			    _drag_init(this);
+			    stage.style.transition = "none";
+			    return false;
+			};
+			
+			document.onmousemove = _move_elem;
+			document.onmouseup = _destroy;
+
 		break;
 
 		case "item":
@@ -170,14 +225,14 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 				prev.onclick = function() {
 					if (transformSize != 0) {
 						transformSize -= memberWidth * transitionItemsNum;
-						stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+						stage.style.left = "-" + transformSize.toString() + "px";
 						console.log(transformSize);
 					}
 				}
 				next.onclick = function() {
 					if (transformSize < (stageWidth - containerWidth)) {
 						transformSize += memberWidth * transitionItemsNum;
-						stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+						stage.style.left = "-" + transformSize.toString() + "px";
 						console.log(transformSize);
 					}
 				}
@@ -188,13 +243,13 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 					if (e.keyCode == '37') {
 						if (transformSize != 0) {
 							transformSize -= memberWidth * transitionItemsNum;
-							stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+							stage.style.left = "-" + transformSize.toString() + "px";
 						}
 					}
 					if (e.keyCode == '39') {
 						if (transformSize < (stageWidth - containerWidth)) {
 							transformSize += memberWidth * transitionItemsNum;
-							stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+							stage.style.left = "-" + transformSize.toString() + "px";
 						}
 					}
 				}
@@ -209,7 +264,7 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 									if (mouseover == 1) {
 										if (transformSize < (stageWidth - containerWidth)) {
 											transformSize += memberWidth * transitionItemsNum;
-											stage.style.transform = "translateX(-" + transformSize.toString() + "px)";
+											stage.style.left = "-" + transformSize.toString() + "px";
 										}
 									}
 								}, options.autoInterval);
@@ -223,7 +278,10 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 
 		break;
 	}
+
 }
+
+/* EXEMPLE DE INITIALZIARE -- astea trebuie scoase la sfarsitul proiectului, le pastram pentru testing */
 	
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -233,7 +291,6 @@ document.addEventListener('DOMContentLoaded', function() {
     	transition:{
     		transitionType:"item",
     		transitionItems:1,
-    		auto:true,
     		autoInterval:1500
     	},
     	nav:{
@@ -243,20 +300,13 @@ document.addEventListener('DOMContentLoaded', function() {
     	}
     });
 
-    init("carousel2", {
-    	type:"carousel",
-    	items:4,
-    	transition:{
-    		transitionType:"item",
-    		transitionItems:1,
-    		auto:true,
-    		autoInterval:2000
-    	},
-    	nav:{
-    		show:true,
-    		prev:"<i class='material-icons' id='nav-prev'>chevron_left</i>",
-            next:"<i class='material-icons' id='nav-next'>chevron_right</i>"
-    	}
+    init("grid", {
+    	type: "grid",
+    	itemsPerRow: 4
+    });
+
+    init("list", {
+    	type: "list"
     });
 
 }, false);
