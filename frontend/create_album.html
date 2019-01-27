@@ -4,11 +4,11 @@
     <link rel='stylesheet' href='form.css' type='text/css' />
     <title>Album creation</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" /> 
 </head>
 <body>
     <div class='container'>
-        <form class='form-styling'>
+        <form action='' metho='post' class='form-styling'>
             <h2>Create your album</h2>
             <div id="general">
                 <label>
@@ -21,7 +21,7 @@
                 </label>
                 <label>
                     <span>Album type:</span>
-                    <select>
+                    <select name='type'>
                         <option value='carousel'>Carousel</option>
                     </select>
                 </label>
@@ -30,27 +30,24 @@
             <div id="transition">
                 <label>
                     <span>Type:</span>
-                    <select>
+                    <select name='transition_type'>
                         <option value='slide'>Slide</option>
                     </select>
                 </label>
                 <label>
                     <span>Items per transition:</span>
-                    <input type='number' name='items' placeholder='1' />
+                    <input type='number' name='transition_items' placeholder='1' />
                 </label>
                 <label>
                     <span>Auto:</span>
-                    <select id='auto_select'>
+                    <select name='auto' id='auto_select'>
                         <option value=false>False</option>
                         <option value=true>True</option>
                     </select>
                 </label>
                 <label id="auto-interval">
                     <span>Auto interval:</span>
-                    <select id='auto_select'>
-                        <option value=true>True</option>
-                        <option value=false>False</option>
-                    </select>
+                    <input type='number' name='auto_interval' />
                 </label>
             </div>
             <span>Navigation settings</span>
@@ -74,6 +71,7 @@
             <button type='submit'>Create</button>
         </form>
     </div>
+    <script src='create_album.js'></script>
     <script>
         var select = document.getElementById("auto_select");
         var interval = document.getElementById("auto-interval");
@@ -82,11 +80,11 @@
             else interval.classList.remove("auto-interval-show");
         });
 
-        select = document.getElementById("nav_select");
+        var navSelect = document.getElementById("nav_select");
         var next = document.getElementById("nav-next");
         var prev = document.getElementById("nav-prev");
-        select.addEventListener("change", function() {
-            if (select.value == "true") {
+        navSelect.addEventListener("change", function() {
+            if (navSelect.value == "true") {
                 next.className += " show-nav";
                 prev.className += " show-nav";
             }
