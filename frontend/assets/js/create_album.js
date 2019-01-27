@@ -17,7 +17,7 @@ function postReq(elementToWriteResponse, dataToSend) {
                     console.log('Service not available');
                     break;
                 default:
-                    console.log(this.responseText);
+                    console.log(JSON.parse(this.responseText));
                     break;
             }
         }

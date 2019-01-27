@@ -43,6 +43,7 @@ stage.onmousedown = function () {
     _drag_init(this);
     stage.style.transition = "none";
     return false;
+}
 
 stage.ontouchstart = function () {
 	console.log("shits touched");

@@ -12,6 +12,6 @@ var albums = new Schema({
     prev_button: { type: String },
     next_button: { type: String },
     token: { type: String }
-}, { minimize: false });
+});
 
 module.exports = {albums: mongoose.model('albums', albums, 'albums')};
