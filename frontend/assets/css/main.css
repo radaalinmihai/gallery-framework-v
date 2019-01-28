@@ -3,6 +3,7 @@ body, html {
 }
 
 body {
+  overflow: hidden;
   font-family: 'Ubuntu Mono', monospace;
   background-color: #fff;
   margin: 0;
@@ -18,33 +19,68 @@ body #bg {
   z-index: -1;
 }
 
+@media (min-width: 830px) {
+  body #bg {
+    -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 100%, 70% 100%, 0 85%, 0 34%, 0 0);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 100%, 70% 100%, 0 85%, 0 34%, 0 0);
+  }
+}
+
 body header a {
+  text-decoration: none;
   color: #fff;
   background-color: #2ECC40;
-  text-decoration: none;
-  padding: 15px;
+  padding: 5px;
   display: block;
   text-transform: uppercase;
   font-size: 2em;
 }
 
-body section#primary {
+body header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (min-width: 830px) {
+  main {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 50% auto;
+        grid-template-columns: 50% auto;
+  }
+}
+
+main section#secondary {
+  width: 80%;
+  margin: auto;
+  padding: 15px;
+}
+
+main section#primary {
   color: #fff;
   padding: 15px;
   text-align: center;
 }
 
-body section#primary h1 {
+main section#primary h1 {
   font-size: 3em;
   margin-top: 10px;
   text-transform: uppercase;
 }
 
-body section#primary p {
-  font-size: 1.5em;
+@media (min-width: 830px) {
+  main section#primary h1 {
+    font-size: 4em;
+    display: block;
+    line-height: .9em;
+  }
 }
 
-body section#primary a {
+main section#primary p {
+  font-size: 1.4em;
+}
+
+main section#primary a {
   color: #08260c;
   border-radius: 15px;
   text-decoration: none;
@@ -53,8 +89,15 @@ body section#primary a {
   background-color: #fff;
   display: block;
   text-align: center;
-  margin: 2em auto 0 auto;
+  margin: 1em auto 0 auto;
   padding: 15px;
+}
+
+@media (min-width: 830px) {
+  main section#primary a {
+    display: inline-block;
+    padding: 15px 60px;
+  }
 }
 
 #footer {
