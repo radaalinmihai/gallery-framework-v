@@ -52,6 +52,7 @@ function init (containerID, settings) {
 
 		console.log(params);
 	}
+	else params = settings;
 
 	switch (params.type) { // check which format is requested
 		case "carousel":
@@ -388,24 +389,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     init("carousel1", {
     	type:"carousel",
-    	responsive:{
-    		1000:{
-    			items:3
-    		},
-    		2000:{
-    			items:4
-    		},
-    		500:{
-    			items:2,
-    			type:"carousel",
-    			nav:{
-    				next:"<i class='material-icons' id='nav-prev'>chevron_left</i>"
-    			}
-    		},
-    		200:{
-    			items:1
-    		}
-    	},
     	transition:{
     		transitionType:"item",
     		transitionItems:3,
