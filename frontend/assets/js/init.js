@@ -1,5 +1,57 @@
-function init (containerID, params) {
+function init (containerID, settings) {
 	var container = document.getElementById(containerID); // get container
+
+	var params = {}, mediaQueries = [], k = 0, j, aux;
+
+	if (settings.hasOwnProperty("responsive")) {
+		var w = window.innerWidth;
+
+		for (var key in settings.responsive) {
+		    mediaQueries[k] = key;
+		    mediaQueries[k] = parseInt(mediaQueries[k]);
+		    k++;
+		}
+
+		for (i = 0; i < k - 1; i++) {
+			for (j = i+1; j < k; j++)
+				if (mediaQueries[i] < mediaQueries[j]) {
+					aux = mediaQueries[i];
+					mediaQueries[i] = mediaQueries[j];
+					mediaQueries[j] = aux;
+				}
+		}
+
+		var ok = 0, res = -1;
+
+		for (i = 0; i < k; i++) {
+			if (w < mediaQueries[i]) {
+				res = mediaQueries[i];
+			}
+		}
+
+		if (res != -1) {
+			for (var key in settings.responsive[res]) {
+				params[key] = settings.responsive[res][key];
+			}
+		}
+
+		for (var key in settings) {
+			if (key != "responsive") {
+				if (params.hasOwnProperty(key)) {
+					for (var opt in settings[key]) {
+						if (!(params[key].hasOwnProperty(opt))) {
+							params[key][opt] = settings[key][opt];
+						}
+					}
+				}
+				else {
+					params[key] = settings[key];
+				}
+			}
+		}
+
+		console.log(params);
+	}
 
 	switch (params.type) { // check which format is requested
 		case "carousel":
@@ -13,43 +65,10 @@ function init (containerID, params) {
 
 			/* Handling of responsive items per slide */
 
-			var mediaQueries = [], k = 0, j, aux;
-
 			if (params.hasOwnProperty("items")) {
 				if (params.items != null) {
 					itemsPerSlide = params.items;
 				}
-			}
-			else if (params.hasOwnProperty("responsive")) {
-
-				var w = window.innerWidth;
-
-				for (var key in params.responsive) {
-				    mediaQueries[k] = key;
-				    mediaQueries[k] = parseInt(mediaQueries[k]);
-				    k++;
-				}
-
-				for (i = 0; i < k - 1; i++) {
-					for (j = i+1; j < k; j++)
-						if (mediaQueries[i] < mediaQueries[j]) {
-							aux = mediaQueries[i];
-							mediaQueries[i] = mediaQueries[j];
-							mediaQueries[j] = aux;
-						}
-				}
-
-				var ok = 0;
-
-				for (i = 0; i < k; i++) {
-					if (w < mediaQueries[i]){
-						itemsPerSlide = params.responsive[mediaQueries[i]].items;
-						ok = 1;
-					}
-				}
-
-				if (ok == 0) itemsPerSlide = 3;
-
 			}
 			else itemsPerSlide = 3; // defaults to 3 items per slide
 
@@ -377,7 +396,11 @@ document.addEventListener('DOMContentLoaded', function() {
     			items:4
     		},
     		500:{
-    			items:2
+    			items:2,
+    			type:"carousel",
+    			nav:{
+    				next:"<i class='material-icons' id='nav-prev'>chevron_left</i>"
+    			}
     		},
     		200:{
     			items:1
@@ -385,7 +408,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	},
     	transition:{
     		transitionType:"item",
-    		transitionItems:1,
+    		transitionItems:3,
     		autoInterval:1500
     	},
     	nav:{
