@@ -1,4 +1,3 @@
-
 $colors: (
     primary: #2ECC40,
     primary-light: lighten(#2ECC40, 40%),
@@ -6,12 +5,25 @@ $colors: (
     secondary: #fff
 );
 
+$resolutions: (
+    desktop: 830px
+);
+
+@mixin desktop {
+    @media (min-width: map-get($resolutions, desktop)) {
+        @content;
+    }
+}
+
+
+
 //full bg
 body, html {
     height: 100%
 }
 
 body {
+    overflow: hidden;
     font-family: 'Ubuntu Mono', monospace;
     background-color: #fff;
     margin: 0;
@@ -24,29 +36,60 @@ body {
         position: absolute;
         z-index: -1;
 
+
+        @include desktop {
+            clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 100%, 70% 100%, 0 85%, 0 34%, 0 0);
+        }
+    }
+    header a {
+        text-decoration: none;
+        color: #fff;
+        background-color: map-get($colors, primary);
+        padding: 5px;
+        display: block;
+        text-transform: uppercase;
+        font-size: 2em; 
+        
+    }
+    header a:hover {
+        color: #fff;
+        text-decoration: none;
     }
 
-header a {
-    color: #fff;
-    background-color: map-get($colors, primary);
-    text-decoration: none;
-    padding: 15px;
-    display: block;
-    text-transform: uppercase;
-    font-size: 2em;
 }
+main {
+    @include desktop {
+        display: grid;
+        grid-template-columns: 50% auto;
+    }
+
+
+section#secondary{
+    width:80%;
+    margin: auto;
+    padding: 15px;
+    
+}
+
 section#primary {
     color: #fff;
     padding: 15px;
     text-align: center;
+  
 
     h1 {
         font-size: 3em;
         margin-top: 10px;
         text-transform: uppercase;
+
+        @include desktop {
+            font-size: 4em;
+            display:block;
+            line-height: .9em;
+        }
     }
     p {
-        font-size: 1.5em;
+        font-size: 1.4em;
     }
 
     a {
@@ -58,8 +101,13 @@ section#primary {
         background-color: map-get($colors, secondary);
         display: block;
         text-align: center;
-        margin: 2em auto 0 auto;
+        margin: 1em auto 0 auto;
         padding: 15px;
+
+        @include desktop {
+            display: inline-block;
+            padding: 15px 15px * 4;
+        }
     }
 }
 }
