@@ -1,0 +1,77 @@
+
+$colors: (
+    primary: #2ECC40,
+    primary-light: lighten(#2ECC40, 40%),
+    primary-dark: darken(#2ECC40, 40%),
+    secondary: #fff
+);
+
+//full bg
+body, html {
+    height: 100%
+}
+
+body {
+    font-family: 'Ubuntu Mono', monospace;
+    background-color: #fff;
+    margin: 0;
+
+    #bg {
+        clip-path: polygon(50% 0, 100% 0, 100% 59%, 100% 100%, 23% 100%, 0 73%, 0 0);
+        background-color: map-get($colors, primary);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+
+    }
+
+header a {
+    color: #fff;
+    background-color: map-get($colors, primary);
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-transform: uppercase;
+    font-size: 2em;
+}
+section#primary {
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+
+    h1 {
+        font-size: 3em;
+        margin-top: 10px;
+        text-transform: uppercase;
+    }
+    p {
+        font-size: 1.5em;
+    }
+
+    a {
+        color: map-get($colors, primary-dark);
+        border-radius: 15px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        background-color: map-get($colors, secondary);
+        display: block;
+        text-align: center;
+        margin: 2em auto 0 auto;
+        padding: 15px;
+    }
+}
+}
+
+#footer {
+    padding: 5px;
+    position: absolute;
+    margin: 0;
+    bottom: 0px;
+    right: 0px;
+    text-decoration: none;
+    color: map-get($colors, secondary);
+    text-align: right;
+
+}
