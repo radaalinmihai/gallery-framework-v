@@ -93,7 +93,6 @@ function init (containerID, settings) {
 				if (params.transition != null) {
 					animateTransition(params.transition, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID);
 				}
-				else animateTransition("slide", stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID); // defaults to slide
 			}
 
 			if (params.hasOwnProperty("fullscreen")) {
@@ -210,9 +209,11 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 		mouseover = 1;
 	}
 
+	if (options.hasOwnProperty("nav")) {
+		var prev = container.children[1].children[0];
+		var next = container.children[1].children[1];
+	}
 	stage.style.left = "0px";
-	var prev = container.children[1].children[0];
-	var next = container.children[1].children[1];
 	var transformSize = 0;
 
 	for (var i = 0; i < stage.children; i++) {
@@ -225,7 +226,12 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 		return multiple * Math.round(numToRound/multiple);
 	}
 
-	switch (options.transitionType) {
+	if (options.hasOwnProperty("transitionType")) {
+		var transitionTypePar = options.transitionType;
+	}
+	else var transitionTypePar = "slide";
+
+	switch (transitionTypePar) {
 		case "slide":
 			if (navigation == 1) {
 				prev.onclick = function() {
@@ -382,37 +388,3 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 	}
 
 }
-
-/* EXEMPLE DE INITIALZIARE -- astea trebuie scoase la sfarsitul proiectului, le pastram pentru testing */
-	
-document.addEventListener('DOMContentLoaded', function() {
-
-    init("carousel1", {
-    	type:"carousel",
-    	transition:{
-    		transitionType:"item",
-    		transitionItems:3,
-    		autoInterval:1500
-    	},
-    	nav:{
-    		show:true,
-    		prev:"<i class='material-icons' id='nav-prev'>chevron_left</i>",
-            next:"<i class='material-icons' id='nav-next'>chevron_right</i>"
-    	},
-    	fullscreen:{
-    		show:true,
-    		open:"<i class='material-icons'>fullscreen</i>",
-    		close:"<i class='material-icons'>close</i>"
-    	}
-    });
-
-    init("grid", {
-    	type: "grid",
-    	itemsPerRow: 4
-    });
-
-    init("list", {
-    	type: "list"
-    });
-
-}, false);
