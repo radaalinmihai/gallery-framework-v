@@ -10,7 +10,7 @@ body, html {
 }
 * {
 	box-sizing: border-box;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Ubuntu Mono', sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -52,9 +52,9 @@ input, select {
 	background: white;
 	border-radius: 30px;
 	padding: 50px;
-	display: flex;
-	flex-direction: column;
 	margin: 40px auto 40px auto;
+	width: 50%;
+	min-width: 600px;
 }
 label {
 	display: flex;
@@ -73,23 +73,23 @@ label span {
 	border-bottom: 1px solid #ebebeb;
 	font-weight: 400;
 }
-.form-styling #general label, .form-styling #transition label, .form-styling #navigation label {
+.form-styling #general label, .form-styling #transition label, .form-styling #navigation label, .form-styling #fullscreen label {
 	width: 50%;
 	padding: 10px;
 }
-.form-styling > div {
+.form-styling > div > div {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 }
-.form-styling > span {
+.form-styling > div > span {
 	background: white;
 	position: relative;
 	bottom: -9px;
 	left: 20px;
 	padding: 0 10px 0 10px;
 }
-#transition, #navigation {
+#transition, #navigation, #fullscreen {
 	border: 1px solid #ebebeb;
 	padding: 20px;
 	margin-bottom: 40px;
@@ -103,10 +103,10 @@ label span {
 .auto-interval-show {
 	display: flex !important;
 }
-#nav-next, #nav-prev {
+#nav-next, #nav-prev, #full-close, #full-open {
 	display: none;
 }
-.show-nav {
+.show {
 	display: flex !important;
 }
 button {
@@ -117,10 +117,47 @@ button {
 	color: white;
 	padding: 10px;
 	width: 50%;
-	margin: auto;
+	margin: 20px auto auto auto;
 	text-transform: uppercase;
 	font-size: 1em;
 }
 button:hover {
 	background: #50a840;
+}
+.new-breakpoint {
+	justify-content: space-around;
+	cursor: pointer;
+	width: 50%;
+	margin: auto;
+	border-radius: 4px;
+	background: #ebebeb;
+	padding: 7px 0 7px 0;
+}
+.new-breakpoint > * {
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+@media screen and (max-width: 650px) {
+	.form-styling {
+		width: 95%;
+		min-width: 0px;
+		padding: 30px 15px;
+		border-radius: 10px;
+	}
+	#transition, #navigation {
+		padding: 10px;
+	}
+	.form-styling #general label, .form-styling #transition label, .form-styling #navigation label, .form-styling #fullscreen label {
+		padding: 10px;
+	}
+	button {
+		width: 90%;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.form-styling #general label, .form-styling #transition label, .form-styling #navigation label, .form-styling #fullscreen label {
+		width: 100%;
+	}
 }

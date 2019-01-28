@@ -11,12 +11,26 @@ document.addEventListener('DOMContentLoaded', function() {
     var prev = document.getElementById("nav-prev");
     navSelect.addEventListener("change", function() {
         if (navSelect.value == "true") {
-            next.className += " show-nav";
-            prev.className += " show-nav";
+            next.className += " show";
+            prev.className += " show";
         }
         else {
-            next.classList.remove("show-nav");
-            prev.classList.remove("show-nav");
+            next.classList.remove("show");
+            prev.classList.remove("show");
+        }
+    });
+
+    var fullSelect = document.getElementById("fullscreen_select");
+    var next = document.getElementById("full-open");
+    var prev = document.getElementById("full-close");
+    fullSelect.addEventListener("change", function() {
+        if (fullSelect.value == "true") {
+            next.className += " show";
+            prev.className += " show";
+        }
+        else {
+            next.classList.remove("show");
+            prev.classList.remove("show");
         }
     });
 });

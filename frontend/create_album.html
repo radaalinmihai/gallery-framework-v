@@ -4,69 +4,97 @@
     <link rel='stylesheet' href='assets/css/form.css' type='text/css' />
     <title>Album creation</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" /> 
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class='container'>
-        <form action='' metho='post' class='form-styling'>
+        <form action='' method='post' class='form-styling'>
             <h2>Create your album</h2>
-            <div id="general">
-                <label>
-                    <span>Album name:</span>
-                    <input type='text' name='album_name' placeholder='Album name' />
-                </label>
-                <label>
-                    <span>Items:</span>
-                    <input type='number' name='items' placeholder='0' />
-                </label>
-                <label>
-                    <span>Album type:</span>
-                    <select name='type'>
-                        <option value='carousel'>Carousel</option>
-                    </select>
-                </label>
+            <div id="global-settings">
+                <div id="general">
+                    <label>
+                        <span>Album name:</span>
+                        <input type='text' name='album_name' placeholder='Album name' />
+                    </label>
+                    <label>
+                        <span>Items per slide:</span>
+                        <input type='number' name='items' placeholder='0' />
+                    </label>
+                    <label>
+                        <span>Album type:</span>
+                        <select name='type'>
+                            <option value='carousel'>Carousel</option>
+                        </select>
+                    </label>
+                </div>
+                <span>Transition settings</span>
+                <div id="transition">
+                    <label>
+                        <span>Type:</span>
+                        <select name='transition_type'>
+                            <option value='slide'>Slide</option>
+                        </select>
+                    </label>
+                    <label>
+                        <span>Items per transition:</span>
+                        <input type='number' name='transition_items' placeholder='1' />
+                    </label>
+                    <label>
+                        <span>Auto:</span>
+                        <select name='auto' id='auto_select'>
+                            <option value=false>False</option>
+                            <option value=true>True</option>
+                        </select>
+                    </label>
+                    <label id="auto-interval">
+                        <span>Auto interval:</span>
+                        <input type='number' name='auto_interval' />
+                    </label>
+                </div>
+                <span>Navigation settings</span>
+                <div id="navigation">
+                    <label>
+                        <span>Show nav:</span>
+                        <select id='nav_select'>
+                            <option value=false>False</option>
+                            <option value=true>True</option>
+                        </select>
+                    </label>
+                    <label id="nav-prev">
+                        <span>Prev button:</span>
+                        <input type='text' name='prev_button' placeholder='Previous button (DOM element)' />
+                    </label>
+                    <label id="nav-next">
+                        <span>Next button:</span>
+                        <input type='text' name='next_button' placeholder='Next button (DOM element)' />
+                    </label>
+                </div>
+                <span>Fullscreen settings</span>
+                <div id="fullscreen">
+                    <label>
+                        <span>Activate fullscreen:</span>
+                        <select id='fullscreen_select'>
+                            <option value=false>False</option>
+                            <option value=true>True</option>
+                        </select>
+                    </label>
+                    <label id="full-open">
+                        <span>Open button:</span>
+                        <input type='text' name='open_button' placeholder='Open button (DOM element)' />
+                    </label>
+                    <label id="full-close">
+                        <span>Close button:</span>
+                        <input type='text' name='close_button' placeholder='Close button (DOM element)' />
+                    </label>
+                </div>
             </div>
-            <span>Transition settings</span>
-            <div id="transition">
-                <label>
-                    <span>Type:</span>
-                    <select name='transition_type'>
-                        <option value='slide'>Slide</option>
-                    </select>
-                </label>
-                <label>
-                    <span>Items per transition:</span>
-                    <input type='number' name='transition_items' placeholder='1' />
-                </label>
-                <label>
-                    <span>Auto:</span>
-                    <select name='auto' id='auto_select'>
-                        <option value=false>False</option>
-                        <option value=true>True</option>
-                    </select>
-                </label>
-                <label id="auto-interval">
-                    <span>Auto interval:</span>
-                    <input type='number' name='auto_interval' />
-                </label>
-            </div>
-            <span>Navigation settings</span>
-            <div id="navigation">
-                <label>
-                    <span>Show nav:</span>
-                    <select id='nav_select'>
-                        <option value=false>False</option>
-                        <option value=true>True</option>
-                    </select>
-                </label>
-                <label id="nav-prev">
-                    <span>Prev button:</span>
-                    <input type='text' name='prev_button' placeholder='Previous button (DOM element)' />
-                </label>
-                <label id="nav-next">
-                    <span>Next button:</span>
-                    <input type='text' name='next_button' placeholder='Next button (DOM element)' />
-                </label>
+
+            <div id="responsive-settings">
+                <div class="new-breakpoint">
+                    <span>Add new breakpoint</span>
+                    <i class="material-icons">add</i>
+                </div>
             </div>
             <button type='submit'>Create</button>
         </form>
