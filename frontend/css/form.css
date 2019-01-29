@@ -104,7 +104,7 @@ label span {
 }
 button {
 	cursor: pointer;
-	border-radius: 50px;
+	border-radius: 15px;
 	border: none;
 	background: #57b846;
 	color: white;

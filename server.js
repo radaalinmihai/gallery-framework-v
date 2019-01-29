@@ -41,7 +41,11 @@ app.post('/create_album', function (req, res) {
 });
 
 app.post('/return_album', function(req, res) {
-    console.log(req.body);
+    console.log(req.body.token);
+    res.send({
+        success: true,
+        message: 'Success'
+    })
 });
 
 app.listen(3000, function () {

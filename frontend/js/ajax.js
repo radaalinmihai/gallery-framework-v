@@ -1,32 +1,43 @@
-function postReq(elementToWriteResponse, dataToSend, url) {
-    var xhr = new XMLHttpRequest();
+function ajax(url, properties) {
+    return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4) {
-            switch (xhr.status) {
-                case 400:
-                    console.log('Bad request');
-                    break;
-                case 404:
-                    console.log('File not found');
-                    break;
-                case 500:
-                    console.log('Internal server error');
-                    break;
-                case 503:
-                    console.log('Service not available');
-                    break;
-                default:
-                    console.log(JSON.parse(this.responseText));
-                    break;
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                switch (xhr.status) {
+                    case 400:
+                        reject('Bad request');
+                        break;
+                    case 404:
+                        reject('File not found');
+                        break;
+                    case 500:
+                        reject('Internal server error');
+                        break;
+                    case 503:
+                        reject('Service not available');
+                        break;
+                    default:
+                        resolve(JSON.parse(this.responseText));
+                        break;
+                }
             }
+        };
+        if(properties.hasOwnProperty('method'))
+            xhr.open(properties.method, url, true);
+        else
+            reject("Method can't be empty");
+        if(properties.hasOwnProperty('headers')) {
+            for(var key in properties.headers)
+                xhr.setRequestHeader(key, properties.headers[key]);
         }
-    };
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(dataToSend));
+        if(properties.hasOwnProperty('data') && properties.method === 'POST')
+            xhr.send(properties.data);
+        else
+            xhr.send();
+    });
 }
 
 module.exports = {
-    post: postReq
+    ajax: ajax
 };
