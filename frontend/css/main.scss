@@ -1,0 +1,129 @@
+$colors: (
+    primary: #2ECC40,
+    primary-light: lighten(#2ECC40, 40%),
+    primary-dark: darken(#2ECC40, 40%),
+    secondary: #fff
+);
+
+$resolutions: (
+    desktop: 830px
+);
+
+@mixin desktop {
+    @media (min-width: map-get($resolutions, desktop)) {
+        @content;
+    }
+}
+
+
+
+//full bg
+body, html {
+    height: 100%
+}
+
+body {
+    overflow: hidden;
+    font-family: 'Ubuntu Mono', monospace;
+    background-color: #fff;
+    margin: 0;
+
+    #bg {
+        clip-path: polygon(50% 0, 100% 0, 100% 59%, 100% 100%, 23% 100%, 0 73%, 0 0);
+        background-color: map-get($colors, primary);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+
+
+        @include desktop {
+            clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 100%, 70% 100%, 0 85%, 0 34%, 0 0);
+        }
+    }
+    header a {
+        text-decoration: none;
+        color: #fff;
+        background-color: map-get($colors, primary);
+        padding: 15px;
+        display: block;
+        text-transform: uppercase;
+        font-size: 2em; 
+    }
+    header a:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+}
+main {
+    @include desktop {
+        display: grid;
+        grid-template-columns: 50% auto;
+    }
+
+
+section#secondary{
+    width:80%;
+    margin: auto;
+    padding: 15px;
+    
+}
+
+section#primary {
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+  
+
+    h1 {
+        font-size: 3em;
+        margin-top: 10px;
+        margin-bottom: 0.5em;
+        text-transform: uppercase;
+
+        @include desktop {
+            font-size: 4em;
+            display:block;
+            line-height: .9em;
+        }
+    }
+    p {
+        font-size: 1.4em;
+        line-height: 2em;
+    }
+
+    a {
+        color: map-get($colors, primary-dark);
+        border-radius: 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        background-color: map-get($colors, secondary);
+        display: block;
+        text-align: center;
+        margin: 2em auto 0 auto;
+        padding: 15px;
+
+        @include desktop {
+            display: inline-block;
+            padding: 15px 15px * 4;
+        }
+    }
+}
+}
+
+footer { 
+.footer-container {
+
+    padding: 5px;
+    position: absolute;
+    margin: 0;
+    bottom: 0px;
+    right: 0px;
+    text-decoration: none;
+    color: map-get($colors, secondary);
+    text-align: right;
+    font-size: 1em;
+} 
+}
