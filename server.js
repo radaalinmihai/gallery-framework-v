@@ -40,6 +40,10 @@ app.post('/create_album', function (req, res) {
     });
 });
 
+app.post('/return_album', function(req, res) {
+    console.log(req.body);
+});
+
 app.listen(3000, function () {
     console.log('Listening on port 3000');
 });

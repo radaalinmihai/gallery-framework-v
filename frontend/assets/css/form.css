@@ -19,17 +19,6 @@ body, html {
 
 /* De aici a scris Rada garbage css */
 
-label {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-select {
-	display: block;
-	width: 100%;
-}
-
 button {
 	display: block;
 	width: 100%;
@@ -39,6 +28,10 @@ button {
 	display: flex;
 	height: auto;
 	margin: auto;
+}
+
+.center {
+	text-align: center;
 }
 
 /* Si aici si-a terminat Rada garbage css-ul */
@@ -62,7 +55,7 @@ label {
 	justify-content: flex-start;
 }
 label span {
-	text-aling: left;
+	text-align: left;
 	width: 100%;
 	text-transform: uppercase;
 	font-size: 0.8em;
