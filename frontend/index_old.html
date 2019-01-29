@@ -15,18 +15,18 @@
 		<div id="carousel1">
 
 			<div>
-				<div class="member"><img src="assets/1.jpg"/></div>
-				<div class="member"><img src="assets/2.jpg"/></div>
-				<div class="member"><img src="assets/3.jpg"/></div>
-				<div class="member"><img src="assets/4.jpg"/></div>
-				<div class="member"><img src="assets/5.jpg"/></div>
-				<div class="member"><img src="assets/6.jpg"/></div>
-				<div class="member"><img src="assets/1.jpg"/></div>
-				<div class="member"><img src="assets/2.jpg"/></div>
-				<div class="member"><img src="assets/3.jpg"/></div>
-				<div class="member"><img src="assets/4.jpg"/></div>
-				<div class="member"><img src="assets/5.jpg"/></div>
-				<div class="member"><img src="assets/6.jpg"/></div>
+				<div class="member"><img src="images/1.jpg"/></div>
+				<div class="member"><img src="images/2.jpg"/></div>
+				<div class="member"><img src="images/3.jpg"/></div>
+				<div class="member"><img src="images/4.jpg"/></div>
+				<div class="member"><img src="images/5.jpg"/></div>
+				<div class="member"><img src="images/6.jpg"/></div>
+				<div class="member"><img src="images/1.jpg"/></div>
+				<div class="member"><img src="images/2.jpg"/></div>
+				<div class="member"><img src="images/3.jpg"/></div>
+				<div class="member"><img src="images/4.jpg"/></div>
+				<div class="member"><img src="images/5.jpg"/></div>
+				<div class="member"><img src="images/6.jpg"/></div>
 			</div>
 			
 		</div>
@@ -35,18 +35,18 @@
 	
 		<div id="grid">
 
-			<div class="member"><img src="assets/1.jpg"/></div>
-			<div class="member"><img src="assets/2.jpg"/></div>
-			<div class="member"><img src="assets/3.jpg"/></div>
-			<div class="member"><img src="assets/4.jpg"/></div>
-			<div class="member"><img src="assets/5.jpg"/></div>
-			<div class="member"><img src="assets/6.jpg"/></div>
-			<div class="member"><img src="assets/1.jpg"/></div>
-			<div class="member"><img src="assets/2.jpg"/></div>
-			<div class="member"><img src="assets/3.jpg"/></div>
-			<div class="member"><img src="assets/4.jpg"/></div>
-			<div class="member"><img src="assets/5.jpg"/></div>
-			<div class="member"><img src="assets/6.jpg"/></div>
+			<div class="member"><img src="images/1.jpg"/></div>
+			<div class="member"><img src="images/2.jpg"/></div>
+			<div class="member"><img src="images/3.jpg"/></div>
+			<div class="member"><img src="images/4.jpg"/></div>
+			<div class="member"><img src="images/5.jpg"/></div>
+			<div class="member"><img src="images/6.jpg"/></div>
+			<div class="member"><img src="images/1.jpg"/></div>
+			<div class="member"><img src="images/2.jpg"/></div>
+			<div class="member"><img src="images/3.jpg"/></div>
+			<div class="member"><img src="images/4.jpg"/></div>
+			<div class="member"><img src="images/5.jpg"/></div>
+			<div class="member"><img src="images/6.jpg"/></div>
 
 		</div>
 
@@ -54,31 +54,57 @@
 
 		<div id="list">
 
-			<div class="member"><img src="assets/1.jpg"/></div>
-			<div class="member"><img src="assets/2.jpg"/></div>
-			<div class="member"><img src="assets/3.jpg"/></div>
-			<div class="member"><img src="assets/4.jpg"/></div>
-			<div class="member"><img src="assets/5.jpg"/></div>
-			<div class="member"><img src="assets/6.jpg"/></div>
-			<div class="member"><img src="assets/1.jpg"/></div>
-			<div class="member"><img src="assets/2.jpg"/></div>
-			<div class="member"><img src="assets/3.jpg"/></div>
-			<div class="member"><img src="assets/4.jpg"/></div>
-			<div class="member"><img src="assets/5.jpg"/></div>
-			<div class="member"><img src="assets/6.jpg"/></div>
+			<div class="member"><img src="images/1.jpg"/></div>
+			<div class="member"><img src="images/2.jpg"/></div>
+			<div class="member"><img src="images/3.jpg"/></div>
+			<div class="member"><img src="images/4.jpg"/></div>
+			<div class="member"><img src="images/5.jpg"/></div>
+			<div class="member"><img src="images/6.jpg"/></div>
+			<div class="member"><img src="images/1.jpg"/></div>
+			<div class="member"><img src="images/2.jpg"/></div>
+			<div class="member"><img src="images/3.jpg"/></div>
+			<div class="member"><img src="images/4.jpg"/></div>
+			<div class="member"><img src="images/5.jpg"/></div>
+			<div class="member"><img src="images/6.jpg"/></div>
 
 		</div>
 </body>
 <script src="js/init.js"></script> 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
-		init("carousel", {
+		init("carousel1", {
 			type:"carousel",
 			transition:{
-				auto:true,
-				autoInterval:1500
+				auto:false,
+				autoInterval:1500,
+				transitionType:"item",
+				transitionItems:1
+			},
+			// fullscreen : {
+			// 	show: true,
+			// 	open: "<i class='material-icons'>fullscreen</i>",
+			// 	close: "<i class='material-icons'>close</i>"
+			// },
+			nav : {
+				show: true,
+				prev: "<i class='material-icons'>chevron_left</i>",
+			 	next: "<i class='material-icons'>chevron_right</i>"
+			},
+			responsive : {
+				1000 : {
+					items: 1,
+					transition : {
+						transitionType:"slide"
+					}
+				}
 			}
 		});
+
+		init("grid", {
+			type:"grid",
+			itemsPerRow: 5
+		});
 	});
+
 </script>
 </html>

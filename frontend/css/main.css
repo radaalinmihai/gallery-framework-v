@@ -34,6 +34,15 @@ body header a {
   display: block;
   text-transform: uppercase;
   font-size: 2em;
+  padding-left: 3%;
+  padding-bottom: 3%;
+  padding-top: 3%;
+}
+
+@media (min-width: 830px) {
+  body header a {
+    padding: 5px;
+  }
 }
 
 body header a:hover {
@@ -47,13 +56,15 @@ body header a:hover {
     display: grid;
     -ms-grid-columns: 50% auto;
         grid-template-columns: 50% auto;
+    max-height: 100%;
   }
 }
 
 main section#secondary {
   width: 80%;
-  margin: auto;
   padding: 15px;
+  height: 80%;
+  display: none;
 }
 
 main section#primary {
@@ -71,6 +82,8 @@ main section#primary h1 {
 
 @media (min-width: 830px) {
   main section#primary h1 {
+    margin-top: 5px;
+    margin-bottom: 0.25em;
     font-size: 4em;
     display: block;
     line-height: .9em;
@@ -82,8 +95,14 @@ main section#primary p {
   line-height: 2em;
 }
 
+@media (min-width: 830px) {
+  main section#primary p {
+    margin-left: 2%;
+  }
+}
+
 main section#primary a {
-  color: #08260c;
+  color: #124f19;
   border-radius: 20px;
   text-decoration: none;
   text-transform: uppercase;
@@ -91,7 +110,7 @@ main section#primary a {
   background-color: #fff;
   display: block;
   text-align: center;
-  margin: 2em auto 0 auto;
+  margin: 0.5em auto 0 auto;
   padding: 15px;
 }
 
@@ -105,12 +124,192 @@ main section#primary a {
 footer .footer-container {
   padding: 5px;
   position: absolute;
-  margin: 0;
-  bottom: 0px;
+  margin: 1em;
+  bottom: -25px;
   right: 0px;
   text-decoration: none;
   color: #fff;
   text-align: right;
   font-size: 1em;
+}
+
+label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+select {
+  display: block;
+  width: 100%;
+}
+
+button {
+  display: block;
+  width: 100%;
+}
+
+/* Si aici si-a terminat Rada garbage css-ul */
+input, select {
+  width: 100%;
+  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid #ebebeb;
+}
+
+.form-styling {
+  background: #a8ebaf;
+  border-radius: 25px;
+  padding: 25px;
+  margin: 0.2em auto 4em auto;
+  width: 50%;
+  min-width: 500px;
+  height: 50%;
+  overflow-y: auto;
+}
+
+label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+label span {
+  text-align: left;
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+
+.form-styling > h2 {
+  margin: 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ebebeb;
+  font-weight: 400;
+}
+
+.form-styling #general label, .form-styling #transition label, .form-styling #navigation label, .form-styling #fullscreen label {
+  width: 50%;
+  padding: 10px;
+}
+
+.form-styling > div > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.form-styling > div > span {
+  background: white;
+  position: relative;
+  bottom: -9px;
+  left: 20px;
+  padding: 0 10px 0 10px;
+}
+
+#transition, #navigation, #fullscreen {
+  border: 1px solid #ebebeb;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+#general {
+  margin-bottom: 20px;
+}
+
+#auto-interval {
+  display: none;
+}
+
+.auto-interval-show {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+#nav-next, #nav-prev, #full-close, #full-open {
+  display: none;
+}
+
+.show {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 50px;
+  border: none;
+  background: #57b846;
+  color: white;
+  padding: 10px;
+  width: 50%;
+  margin: 20px auto auto auto;
+  text-transform: uppercase;
+  font-size: 1em;
+}
+
+button:hover {
+  background: #50a840;
+}
+
+.new-breakpoint {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  cursor: pointer;
+  width: 50%;
+  margin: auto;
+  border-radius: 4px;
+  background: #ebebeb;
+  padding: 7px 0 7px 0;
+}
+
+.new-breakpoint > * {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+@media screen and (max-width: 650px) {
+  .form-styling {
+    width: 95%;
+    min-width: 0px;
+    padding: 30px 15px;
+    border-radius: 10px;
+  }
+  #transition, #navigation {
+    padding: 10px;
+  }
+  .form-styling #general label, .form-styling #transition label, .form-styling #navigation label, .form-styling #fullscreen label {
+    padding: 10px;
+  }
+  button {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .form-styling #general label, .form-styling #transition label, .form-styling #navigation label, .form-styling #fullscreen label {
+    width: 100%;
+  }
 }
 /*# sourceMappingURL=main.css.map */
