@@ -173,7 +173,6 @@ function fullscreen (options, container, stage) {
 	close.style.display = "none";
 
 	function toggleFull () {
-		console.log("clicked");
 		if (container.classList.contains("full-car")) {
 			container.classList.remove("full-car");
 			close.style.display = "none";
@@ -191,7 +190,6 @@ function fullscreen (options, container, stage) {
 }
 
 function animateTransition(options, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID) {
-	console.log(container.offsetWidth);
 	if (options.hasOwnProperty("transitionItems")) {
 		if (options.transitionItems != null) {
 			var transitionItemsNum = options.transitionItems;
@@ -209,10 +207,11 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 		mouseover = 1;
 	}
 
-	if (options.hasOwnProperty("nav")) {
+	if (navigation) {
 		var prev = container.children[1].children[0];
 		var next = container.children[1].children[1];
 	}
+
 	stage.style.left = "0px";
 	var transformSize = 0;
 
@@ -233,7 +232,7 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 
 	switch (transitionTypePar) {
 		case "slide":
-			if (navigation == 1) {
+			if (navigation) {
 				prev.onclick = function() {
 					if (transformSize != 0) {
 						transformSize -= containerWidth;
@@ -257,7 +256,11 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 						}
 					}
 					if (e.keyCode == '39') {
-						if (transformSize < (stageWidth - containerWidth)) {
+						if (transformSize > (stageWidth - containerWidth * 2) && transformSize < (stageWidth - containerWidth)) {
+							transformSize += stageWidth - containerWidth - transformSize;
+							stage.style.left = "-" + transformSize.toString() + "px";
+						}
+						else if (transformSize < (stageWidth - containerWidth)) {
 							transformSize += containerWidth;
 							stage.style.left = "-" + transformSize.toString() + "px";
 						}
@@ -272,7 +275,11 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 							if (options.autoInterval != null) {
 								setInterval(function() {
 									if (mouseover == 1) {
-										if (transformSize < (stageWidth - containerWidth)) {
+										if (transformSize > (stageWidth - containerWidth * 2) && transformSize < (stageWidth - containerWidth)) {
+											transformSize += stageWidth - containerWidth - transformSize;
+											stage.style.left = "-" + transformSize.toString() + "px";
+										}
+										else if (transformSize < (stageWidth - containerWidth)) {
 											transformSize += containerWidth;
 											stage.style.left = "-" + transformSize.toString() + "px";
 										}
@@ -286,12 +293,12 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 			}
 			else error("auto");
 
-			/* Dragging event */
+			/* Dragging event -- work in progress*/
 	
 			var selected = null, // Object of the element to be moved
-    		x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
-    		x_elem = 0, y_elem = 0; // Stores top, left values (edge) of the element
-		
+			   x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
+			   x_elem = 0, y_elem = 0, initial; // Stores top, left values (edge) of the element
+			
 			// Will be called when user starts dragging an element
 			function _drag_init(elem) {
 			    // Store the object of the element which needs to be moved
@@ -302,46 +309,131 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 			// Will be called when user dragging an element
 			function _move_elem(e) {
 			    x_pos = document.all ? window.event.clientX : e.pageX;
-			    y_pos = document.all ? window.event.clientY : e.pageY;
 			    if (selected !== null) {
-			        selected.style.left = (x_pos - x_elem) + 'px';
-			        transformSize = (x_pos - x_elem);
+			    	if (transformSize < (stageWidth - containerWidth)) {
+			        	selected.style.left = "-" + ((x_pos - x_elem) * -1) + 'px';
+			        	transformSize = (x_pos - x_elem) * -1;
+			    	}
+			    	else if (x_pos > initial) {
+			    		selected.style.left = "-" + ((x_pos - x_elem) * -1) + 'px';
+			        	transformSize = (x_pos - x_elem) * -1;
+			    	}
 			    }
 			}
 			
 			// Destroy the object when we are done
-			function _destroy() {
+			function slide_destroy() {
 			    selected = null;
 			    stage.style.transition = "all 0.2s ease-in-out";
+			    stage.style.cursor = "default";
+			    if (transformSize < (stageWidth - containerWidth)) {
+			    	transformSize = roundUp(transformSize, memberWidth);
+			    	stage.style.left = "-" + transformSize.toString() + "px";
+			    	console.log(transformSize);
+			    	console.log(stageWidth);
+			    	console.log(stageWidth - containerWidth);
+				}
 			}
 			
 			// Bind the functions...
-			stage.onmousedown = function () {
+			stage.onmousedown = function (e) {
 			    _drag_init(this);
 			    stage.style.transition = "none";
+			    initial = document.all ? window.event.clientX : e.pageX;
+			    stage.style.cursor = "grab";
 			    return false;
-			};
+			}
 			
-			document.onmousemove = _move_elem;
-			document.onmouseup = _destroy;
+			stage.onmousemove = _move_elem;
+			stage.onmouseup = slide_destroy;
+			stage.onmouseleave = slide_destroy;
+
+			// Swipe event
+
+			function swipedetect(el){
+			  
+			    var touchsurface = el,
+			    swipedir,
+			    startX,
+			    startY,
+			    distX,
+			    distY,
+			    threshold = 150, //required min distance traveled to be considered swipe
+			    restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+			    allowedTime = 300, // maximum time allowed to travel that distance
+			    elapsedTime,
+			    startTime;
+			  
+			    touchsurface.addEventListener('touchstart', function(e){
+			        var touchobj = e.changedTouches[0]
+			        swipedir = 'none'
+			        dist = 0
+			        startX = touchobj.pageX
+			        startY = touchobj.pageY
+			        startTime = new Date().getTime() // record time when finger first makes contact with surface
+			        e.preventDefault()
+			    }, false)
+			  
+			    touchsurface.addEventListener('touchmove', function(e){
+			        e.preventDefault() // prevent scrolling when inside DIV
+			    }, false)
+			  
+			    touchsurface.addEventListener('touchend', function(e){
+			        var touchobj = e.changedTouches[0]
+			        distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
+			        distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
+			        elapsedTime = new Date().getTime() - startTime // get time elapsed
+			        if (elapsedTime <= allowedTime){ // first condition for awipe met
+			            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe me
+			                if (distX < 0) {
+			                	if (transformSize > (stageWidth - containerWidth * 2) && transformSize < (stageWidth - containerWidth)) {
+									transformSize += stageWidth - containerWidth - transformSize;
+									stage.style.left = "-" + transformSize.toString() + "px";
+								}
+								else if (transformSize < (stageWidth - containerWidth)) {
+									transformSize += containerWidth;
+									stage.style.left = "-" + transformSize.toString() + "px";
+								}
+			                }
+			                else {
+			                	if (transformSize != 0) {
+									transformSize -= containerWidth;
+									stage.style.left = "-" + transformSize.toString() + "px";
+								}
+			                }
+			            }
+			            else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+			                swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+			            }
+			        }
+			        e.preventDefault();
+			    }, false)
+			}
+			  
+			//USAGE:
+			
+			swipedetect(stage);
+
 
 		break;
 
 		case "item":
 
-			if (navigation == 1) {
+			if (navigation) {
 				prev.onclick = function() {
 					if (transformSize != 0) {
 						transformSize -= memberWidth * transitionItemsNum;
 						stage.style.left = "-" + transformSize.toString() + "px";
-						console.log(transformSize);
 					}
 				}
 				next.onclick = function() {
-					if (transformSize < (stageWidth - containerWidth)) {
+					if (transformSize > (stageWidth - containerWidth * 2) && transformSize < (stageWidth - containerWidth)) {
+						transformSize += stageWidth - containerWidth - transformSize;
+						stage.style.left = "-" + transformSize.toString() + "px";
+					}
+					else if (transformSize < (stageWidth - containerWidth)) {
 						transformSize += memberWidth * transitionItemsNum;
 						stage.style.left = "-" + transformSize.toString() + "px";
-						console.log(transformSize);
 					}
 				}
 
@@ -355,7 +447,11 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 						}
 					}
 					if (e.keyCode == '39') {
-						if (transformSize < (stageWidth - containerWidth)) {
+						if (transformSize > (stageWidth - containerWidth * 2) && transformSize < (stageWidth - containerWidth)) {
+							transformSize += stageWidth - containerWidth - transformSize;
+							stage.style.left = "-" + transformSize.toString() + "px";
+						}
+						else if (transformSize < (stageWidth - containerWidth)) {
 							transformSize += memberWidth * transitionItemsNum;
 							stage.style.left = "-" + transformSize.toString() + "px";
 						}
@@ -370,7 +466,11 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 							if (options.autoInterval != null) {
 								setInterval(function() {
 									if (mouseover == 1) {
-										if (transformSize < (stageWidth - containerWidth)) {
+										if (transformSize > (stageWidth - containerWidth * 2) && transformSize < (stageWidth - containerWidth)) {
+											transformSize += stageWidth - containerWidth - transformSize;
+											stage.style.left = "-" + transformSize.toString() + "px";
+										}
+										else if (transformSize < (stageWidth - containerWidth)) {
 											transformSize += memberWidth * transitionItemsNum;
 											stage.style.left = "-" + transformSize.toString() + "px";
 										}
@@ -383,6 +483,126 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 				}
 			}
 			else error("auto");
+
+			/* Dragging event -- work in progress*/
+	
+			var selected = null, // Object of the element to be moved
+			   x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
+			   x_elem = 0, y_elem = 0, initial; // Stores top, left values (edge) of the element
+			
+			// Will be called when user starts dragging an element
+			function _drag_init(elem) {
+			    // Store the object of the element which needs to be moved
+			    selected = elem;
+			    x_elem = x_pos - selected.offsetLeft;
+			}
+			
+			// Will be called when user dragging an element
+			function _move_elem(e) {
+			    x_pos = document.all ? window.event.clientX : e.pageX;
+			    if (selected !== null) {
+			    	if (transformSize < (stageWidth - containerWidth)) {
+			        	selected.style.left = "-" + ((x_pos - x_elem) * -1) + 'px';
+			        	transformSize = (x_pos - x_elem) * -1;
+			    	}
+			    	else if (x_pos > initial) {
+			    		selected.style.left = "-" + ((x_pos - x_elem) * -1) + 'px';
+			        	transformSize = (x_pos - x_elem) * -1;
+			    	}
+			    }
+			}
+			
+			// Destroy the object when we are done
+			function _destroy() {
+			    selected = null;
+			    stage.style.transition = "all 0.2s ease-in-out";
+			    stage.style.cursor = "default";
+			    if (transformSize < (stageWidth - containerWidth)) {
+			    	transformSize = roundUp(transformSize, memberWidth);
+			    	stage.style.left = "-" + transformSize.toString() + "px";
+				}
+			}
+			
+			// Bind the functions...
+			stage.onmousedown = function (e) {
+			    _drag_init(this);
+			    stage.style.transition = "none";
+			    initial = document.all ? window.event.clientX : e.pageX;
+			    stage.style.cursor = "grab";
+			    return false;
+			}
+			
+			stage.onmousemove = _move_elem;
+			stage.onmouseup = _destroy;
+			stage.onmouseleave = _destroy;
+
+
+			// Swipe event
+
+			function swipedetect(el){
+			  
+			    var touchsurface = el,
+			    swipedir,
+			    startX,
+			    startY,
+			    distX,
+			    distY,
+			    threshold = 150, //required min distance traveled to be considered swipe
+			    restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+			    allowedTime = 300, // maximum time allowed to travel that distance
+			    elapsedTime,
+			    startTime;
+			  
+			    touchsurface.addEventListener('touchstart', function(e){
+			        var touchobj = e.changedTouches[0]
+			        swipedir = 'none'
+			        dist = 0
+			        startX = touchobj.pageX
+			        startY = touchobj.pageY
+			        startTime = new Date().getTime() // record time when finger first makes contact with surface
+			        e.preventDefault()
+			    }, false)
+			  
+			    touchsurface.addEventListener('touchmove', function(e){
+			        e.preventDefault() // prevent scrolling when inside DIV
+			    }, false)
+			  
+			    touchsurface.addEventListener('touchend', function(e){
+			        var touchobj = e.changedTouches[0]
+			        distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
+			        distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
+			        elapsedTime = new Date().getTime() - startTime // get time elapsed
+			        if (elapsedTime <= allowedTime){ // first condition for awipe met
+			            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe me
+			                if (distX < 0) {
+			                	if (transformSize > (stageWidth - containerWidth * 2) && transformSize < (stageWidth - containerWidth)) {
+									transformSize += stageWidth - containerWidth - transformSize;
+									stage.style.left = "-" + transformSize.toString() + "px";
+								}
+								else if (transformSize < (stageWidth - containerWidth)) {
+									transformSize += memberWidth * transitionItemsNum;
+									stage.style.left = "-" + transformSize.toString() + "px";
+								}
+			                }
+			                else {
+			                	if (transformSize != 0) {
+									transformSize -= memberWidth * transitionItemsNum;
+									stage.style.left = "-" + transformSize.toString() + "px";
+								}
+			                }
+			            }
+			            else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+			                swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+			            }
+			        }
+			        e.preventDefault();
+			    }, false)
+			}
+			  
+			//USAGE:
+			
+			swipedetect(stage);
+
 
 		break;
 	}
