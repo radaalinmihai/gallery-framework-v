@@ -1,10 +1,10 @@
 var m = require('./ajax.js'),
     utility = require('./utility_functions.js');
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementsByClassName('form-styling')[0].querySelector('form');
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
         e.preventDefault();
 
         var formToken = utility.formToJSON(this.elements);
@@ -14,10 +14,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Content-Type': 'application/json'
             },
             data: JSON.stringify(formToken)
-        }).then(function(res) {
-            console.log(res);
-        }).catch(function(err) {
-            if(err) console.warn(err);
-        });
+        })
+            .then(function (res) {
+                if(res.success) {
+                    console.log(res.data)
+                }
+            })
+            .catch(function (err) {
+                if (err) console.warn(err);
+            });
     });
 });

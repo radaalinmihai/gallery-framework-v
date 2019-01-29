@@ -41,11 +41,16 @@ app.post('/create_album', function (req, res) {
 });
 
 app.post('/return_album', function(req, res) {
-    console.log(req.body.token);
-    res.send({
-        success: true,
-        message: 'Success'
-    })
+    models.albums.findOne({token: req.body.token}, function(err, result) {
+        if(err) return res.send({
+            success: false,
+            message: err
+        });
+        res.send({
+            success: true,
+            data: result
+        });
+    });
 });
 
 app.listen(3000, function () {

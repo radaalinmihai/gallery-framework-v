@@ -1,8 +1,8 @@
 var m = require('./ajax.js');
 var utility = require('./utility_functions.js');
 
-document.addEventListener('DOMContentLoaded', function (e) {
-    e.preventDefault();
+
+document.addEventListener('DOMContentLoaded', function(e) {
     var form = document.getElementsByClassName('form-styling')[0];
     form.addEventListener('submit', function (e) {
         e.preventDefault();
