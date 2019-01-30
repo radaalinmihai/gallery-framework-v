@@ -46,6 +46,13 @@ app.post('/return_album', function(req, res) {
             success: false,
             message: err
         });
+        console.log(result)
+        if(result == null) {
+            return res.send({
+                success: false,
+                message: 'No token found'
+            });
+        }
         res.send({
             success: true,
             data: result

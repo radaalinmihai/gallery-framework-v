@@ -1,10 +1,10 @@
 function ajax(url, properties) {
     return new Promise(function(resolve, reject) {
-        var xhr = new XMLHttpRequest();
+        var majax = new XMLHttpRequest();
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                switch (xhr.status) {
+        majax.onreadystatechange = function () {
+            if (majax.readyState == 4) {
+                switch (majax.status) {
                     case 400:
                         reject('Bad request');
                         break;
@@ -24,17 +24,17 @@ function ajax(url, properties) {
             }
         };
         if(properties.hasOwnProperty('method'))
-            xhr.open(properties.method, url, true);
+            majax.open(properties.method, url, true);
         else
             reject("Method can't be empty");
         if(properties.hasOwnProperty('headers')) {
             for(var key in properties.headers)
-                xhr.setRequestHeader(key, properties.headers[key]);
+                majax.setRequestHeader(key, properties.headers[key]);
         }
-        if(properties.hasOwnProperty('data') && properties.method === 'POST')
-            xhr.send(properties.data);
+        if(properties.hasOwnProperty('data') && properties.method.toUpperCase() === 'POST')
+            majax.send(properties.data);
         else
-            xhr.send();
+            majax.send();
     });
 }
 

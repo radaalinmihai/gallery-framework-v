@@ -1,11 +1,11 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 function ajax(url, properties) {
     return new Promise(function(resolve, reject) {
-        var xhr = new XMLHttpRequest();
+        var majax = new XMLHttpRequest();
 
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                switch (xhr.status) {
+        majax.onreadystatechange = function () {
+            if (majax.readyState == 4) {
+                switch (majax.status) {
                     case 400:
                         reject('Bad request');
                         break;
@@ -25,17 +25,17 @@ function ajax(url, properties) {
             }
         };
         if(properties.hasOwnProperty('method'))
-            xhr.open(properties.method, url, true);
+            majax.open(properties.method, url, true);
         else
             reject("Method can't be empty");
         if(properties.hasOwnProperty('headers')) {
             for(var key in properties.headers)
-                xhr.setRequestHeader(key, properties.headers[key]);
+                majax.setRequestHeader(key, properties.headers[key]);
         }
-        if(properties.hasOwnProperty('data') && properties.method === 'POST')
-            xhr.send(properties.data);
+        if(properties.hasOwnProperty('data') && properties.method.toUpperCase() === 'POST')
+            majax.send(properties.data);
         else
-            xhr.send();
+            majax.send();
     });
 }
 

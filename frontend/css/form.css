@@ -34,6 +34,14 @@ button {
 	text-align: center;
 }
 
+.albums_show {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	margin: 0 auto;
+}
+
 /* Si aici si-a terminat Rada garbage css-ul */
 input, select {
 	width: 100%;

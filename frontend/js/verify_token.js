@@ -2,7 +2,8 @@ var m = require('./ajax.js'),
     utility = require('./utility_functions.js');
 
 document.addEventListener('DOMContentLoaded', function () {
-    var form = document.getElementsByClassName('form-styling')[0].querySelector('form');
+    var form = document.getElementsByClassName('form-styling')[0].querySelector('form'),
+        album_shows = document.getElementsByClassName('albums_show')[0];
 
     form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -16,8 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
             data: JSON.stringify(formToken)
         })
             .then(function (res) {
-                if(res.success) {
-                    console.log(res.data)
+                if(res.success === true) {
+                    album_shows.style.display = 'flex';
+                    album_shows.innerHTML = res.data.album_name;
                 }
             })
             .catch(function (err) {
