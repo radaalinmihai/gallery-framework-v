@@ -69,15 +69,19 @@
 
 		</div>
 </body>
+<script src="js/carousel-dependencies/responsive.js"></script> 
+<script src="js/carousel-dependencies/buttons.js"></script> 
+<script src="js/carousel-dependencies/transitions.js"></script> 
+<script src="js/carousel-dependencies/gestures.js"></script> 
 <script src="js/init.js"></script> 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		init("carousel1", {
 			type:"carousel",
 			transition:{
-				auto:false,
+				auto:true,
 				autoInterval:1500,
-				transitionType:"item",
+				transitionType:"slide",
 				transitionItems:1
 			},
 			// fullscreen : {
@@ -92,7 +96,7 @@
 			},
 			responsive : {
 				1000 : {
-					items: 1,
+					items: 2,
 					transition : {
 						transitionType:"slide"
 					}

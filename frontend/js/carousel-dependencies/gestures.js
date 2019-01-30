@@ -40,38 +40,38 @@ function addSwipe (type, el, stageWidth, containerWidth, memberWidth, transition
                 switch (type) {
                     case "item" :
                         if (distX < 0) {
-                                if (parseInt(stage.style.left) * -1 > (stageWidth - containerWidth * 2) && parseInt(stage.style.left) * -1 < (stageWidth - containerWidth)) {
-                                    var newSize = parseInt(stage.style.left) * -1 + (stageWidth - containerWidth - parseInt(stage.style.left) * -1);
-                                    stage.style.left = "-" + newSize.toString() + "px";
+                                if (parseInt(el.style.left) * -1 > (stageWidth - containerWidth * 2) && parseInt(el.style.left) * -1 < (stageWidth - containerWidth)) {
+                                    var newSize = parseInt(el.style.left) * -1 + (stageWidth - containerWidth - parseInt(el.style.left) * -1);
+                                    el.style.left = "-" + newSize.toString() + "px";
                                 }
-                                else if (parseInt(stage.style.left) * -1 < (stageWidth - containerWidth)) {
-                                    var newSize = parseInt(stage.style.left) * -1 + (memberWidth * transitionItemsNum);
-                                    stage.style.left = "-" + newSize.toString() + "px";
+                                else if (parseInt(el.style.left) * -1 < (stageWidth - containerWidth)) {
+                                    var newSize = parseInt(el.style.left) * -1 + (memberWidth * transitionItemsNum);
+                                    el.style.left = "-" + newSize.toString() + "px";
                                 }
                             }
                             else {
-                                if (parseInt(stage.style.left) * -1 != 0) {
-                                    var newSize = parseInt(stage.style.left) * -1 - (memberWidth * transitionItemsNum);
-                                    stage.style.left = "-" + newSize.toString() + "px";
+                                if (parseInt(el.style.left) * -1 != 0) {
+                                    var newSize = parseInt(el.style.left) * -1 - (memberWidth * transitionItemsNum);
+                                    el.style.left = "-" + newSize.toString() + "px";
                                 }
                             }
                     break;
 
                     case "slide" :
                         if (distX < 0) {
-                            if (parseInt(stage.style.left) * -1 > (stageWidth - containerWidth * 2) && parseInt(stage.style.left) * -1 < (stageWidth - containerWidth)) {
-                                var newSize = parseInt(stage.style.left) * -1 + (stageWidth - containerWidth - parseInt(stage.style.left) * -1);
-                                stage.style.left = "-" + newSize.toString() + "px";
+                            if (parseInt(el.style.left) * -1 > (stageWidth - containerWidth * 2) && parseInt(el.style.left) * -1 < (stageWidth - containerWidth)) {
+                                var newSize = parseInt(el.style.left) * -1 + (stageWidth - containerWidth - parseInt(el.style.left) * -1);
+                                el.style.left = "-" + newSize.toString() + "px";
                             }
-                            else if (parseInt(stage.style.left) * -1 < (stageWidth - containerWidth)) {
-                                var newSize = parseInt(stage.style.left) * -1 + containerWidth;
-                                stage.style.left = "-" + newSize.toString() + "px";
+                            else if (parseInt(el.style.left) * -1 < (stageWidth - containerWidth)) {
+                                var newSize = parseInt(el.style.left) * -1 + containerWidth;
+                                el.style.left = "-" + newSize.toString() + "px";
                             }
                         }
                         else {
-                            if (parseInt(stage.style.left) * -1 != 0) {
-                                var newSize = parseInt(stage.style.left) * -1 + containerWidth;
-                                stage.style.left = "-" + newSize.toString() + "px";
+                            if (parseInt(el.style.left) * -1 != 0) {
+                                var newSize = parseInt(el.style.left) * -1 + containerWidth;
+                                el.style.left = "-" + newSize.toString() + "px";
                             }
                         }
                 }
