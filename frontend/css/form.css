@@ -36,10 +36,9 @@ button {
 
 .albums_show {
 	display: none;
-	justify-content: center;
-	align-items: center;
 	width: 80%;
 	margin: 0 auto;
+	flex-direction: column;
 }
 
 /* Si aici si-a terminat Rada garbage css-ul */

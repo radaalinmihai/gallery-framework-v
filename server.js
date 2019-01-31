@@ -46,7 +46,7 @@ app.post('/return_album', function(req, res) {
             success: false,
             message: err
         });
-        console.log(result)
+        console.log(result);
         if(result == null) {
             return res.send({
                 success: false,
