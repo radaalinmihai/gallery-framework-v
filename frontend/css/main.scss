@@ -1,283 +1,158 @@
-$colors: (
-    primary: #2ECC40,
-    primary-light: lighten(#2ECC40,30%),
-    primary-dark: darken(#2ECC40, 30%),
-    secondary: #fff
-);
-
-$resolutions: (
-    desktop: 830px
-);
-
-@mixin desktop {
-    @media (min-width: map-get($resolutions, desktop)) {
-        @content;
-    }
-}
-
-
-
-//full bg
-body, html {
-    height: 100%
-}
+$primary: #30CBEB;
 
 body {
-    overflow: hidden;
-    font-family: 'Ubuntu Mono', monospace;
-    background-color: map-get($colors, secondary);
     margin: 0;
-
-    #bg {
-        clip-path: polygon(50% 0, 100% 0, 100% 59%, 100% 100%, 23% 100%, 0 73%, 0 0);
-        background-color: map-get($colors, primary);
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: -1;
-
-
-        @include desktop {
-            clip-path: polygon(30% 0%, 70% 0%, 100% 0, 100% 100%, 70% 100%, 0 85%, 0 34%, 0 0);
-        }
-    }
-    header a {
-        @include desktop {
-            padding: 5px;
-        }
-
-        text-decoration: none;
-        color: map-get($colors, secondary);
-        background-color: map-get($colors, primary);
-        padding: 15px;
-        display: block;
-        text-transform: uppercase;
-        font-size: 2em; 
-        padding-left: 3%;
-        padding-bottom: 3%;
-        padding-top: 3%;
-    }
-    header a:hover {
-        color: map-get($colors, secondary);
-        text-decoration: none;
-    }
-
-}
-main {
-    @include desktop {
-        display: grid;
-        grid-template-columns: 50% auto;
-        max-height: 100%;
-    }
-
-
-section#secondary{
-    width:80%;
-    padding: 15px;
-    height: 80%;
-    display: none;
+    font-family: 'Ubuntu Mono', monospace, sans-serif;
 }
 
-section#primary {
-    color: map-get($colors, secondary);
-    padding: 15px;
-    text-align: center;
-  
-
-    h1 {
-        font-size: 3em;
-        margin-top: 10px;
-        margin-bottom: 0.5em;
-        text-transform: uppercase;
-
-        @include desktop {
-            margin-top: 5px;
-            margin-bottom: 0.25em;
-            font-size: 4em;
-            display:block;
-            line-height: .9em;
-        }
-    }
-    p {
-        @include desktop {
-        margin-left: 2%
-        }
-        font-size: 1.4em;
-        line-height: 2em;
-    }
-
-    a {
-        color: map-get($colors, primary-dark);
-        border-radius: 20px;
-        text-decoration: none;
-        text-transform: uppercase;
-        font-weight: bold;
-        background-color: map-get($colors, secondary);
-        display: block;
-        text-align: center;
-        margin: 0.5em auto 0 auto;
-        padding: 15px;
-
-        @include desktop {
-            display: inline-block;
-            padding: 15px 15px * 4;
-        }
-    }
-}
-}
-
-footer { 
-.footer-container {
-
-    padding: 5px;
-    position: absolute;
-    margin: 1em;
-    bottom: -25px;
-    right: 0px;
-    text-decoration: none;
-    color: map-get($colors, secondary);
-    text-align: right;
+p {
     font-size: 1em;
-} 
 }
 
-label {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
-select {
-	display: block;
-	width: 100%;
+.container {
+    text-align: center;
+    padding: .4em 1.2em;
 }
 
-button {
-	display: block;
-	width: 100%;
+.logo {
+    width: 130px;
+}
+
+.hide-mobile {
+display: none;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu{
+    width: 20px;
+    margin-top: 100%;
+}
+
+h1 {
+    margin-top: 15%;
+    margin-bottom:5%;
+    text-transform: uppercase;
+    line-height: 1em;
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    font-size: 1em;
+    padding-top: 10px;
+}
+
+h1, .subtitle {
+    position: relative;
+    z-index: 3;
+}
+
+.blue-container {
+    width: 100%;
+    background: $primary;
+    color: #fff;
+    margin-top: 5%;
+    padding: 2em 0 2em;
+    border-top-left-radius: 40px;
+
+    & ul li {
+        margin-bottom: 1em;
+    }
+
+    & img {
+        width: 20%;
+        margin-bottom: 1em;
+    }
+
+    & ul li p {
+        padding: 0 .5em;
+    }
+
+    &ul li:nth-child(3) img {
+        width: 8%;
+    }
+
 }
 
 
+.footer_button_mobile {
+    background: #fff;
+    width: calc(100% -2em);
+    display: block;
+    color: $primary;
+    border-radius: 15px;
+    padding: .6em;
+    text-decoration: none;
+    font-size: 1.5em;
+    position: relative;
+    z-index: 4;
+}
 
-/* Si aici si-a terminat Rada garbage css-ul */
-input, select {
-	width: 100%;
-	border-radius: 4px;
-	padding: 10px;
-	border: 1px solid #ebebeb;
+.footer-container {
+    width: 100%;
+    color: black;
 }
-.form-styling {
-	background: map-get($colors, primary-light );
-	border-radius: 25px;
-	padding: 25px;
-	margin: 0.2em auto 4em auto;
-	width: 50%;
-    min-width: 500px;
-    height: 50%;
-    overflow-y: auto;
-}
-label {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-    span {
-	    text-align: left;
-	    width: 100%;
-	    text-transform: uppercase;
-	    font-size: 0.8em;
+
+.footer-links  {
+    margin: 0 auto;
+    & li {
+        display: inline-block;
+    & a {
+        font-size: 0.8em;
+        color: #9d9d9d;
+        text-decoration: none;
     }
 }
-.form-styling > h2 {
-	margin: 0;
-	margin-bottom: 20px;
-	border-bottom: 1px solid #ebebeb;
-	font-weight: 400;
-}
-.form-styling #general label, .form-styling #transition label, .form-styling #navigation label, .form-styling #fullscreen label {
-	width: 50%;
-	padding: 10px;
-}
-.form-styling > div > div {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-}
-.form-styling > div > span {
-	background: white;
-	position: relative;
-	bottom: -9px;
-	left: 20px;
-	padding: 0 10px 0 10px;
-}
-#transition, #navigation, #fullscreen {
-	border: 1px solid #ebebeb;
-	padding: 20px;
-	margin-bottom: 40px;
-}
-#general {
-	margin-bottom: 20px;
-}
-#auto-interval {
-	display: none;
-}
-.auto-interval-show {
-	display: flex !important;
-}
-#nav-next, #nav-prev, #full-close, #full-open {
-	display: none;
-}
-.show {
-	display: flex !important;
-}
-button {
-	cursor: pointer;
-	border-radius: 50px;
-	border: none;
-	background: #57b846;
-	color: white;
-	padding: 10px;
-	width: 50%;
-	margin: 20px auto auto auto;
-	text-transform: uppercase;
-	font-size: 1em;
-}
-button:hover {
-	background: #50a840;
-}
-.new-breakpoint {
-	justify-content: space-around;
-	cursor: pointer;
-	width: 50%;
-	margin: auto;
-	border-radius: 4px;
-	background: #ebebeb;
-	padding: 7px 0 7px 0;
-}
-.new-breakpoint > * {
-	margin-top: auto;
-	margin-bottom: auto;
 }
 
-@media screen and (max-width: 650px) {
-	.form-styling {
-		width: 95%;
-		min-width: 0px;
-		padding: 30px 15px;
-		border-radius: 10px;
-	}
-	#transition, #navigation {
-		padding: 10px;
-	}
-	.form-styling #general label, .form-styling #transition label, .form-styling #navigation label, .form-styling #fullscreen label {
-		padding: 10px;
-	}
-	button {
-		width: 90%;
-	}
+p.project-name {
+    margin-top: 1em;
+    margin-bottom: 0.3em;
 }
 
-@media screen and (max-width: 420px) {
-	.form-styling #general label, .form-styling #transition label, .form-styling #navigation label, .form-styling #fullscreen label {
-		width: 100%;
-	}
+nav ul {
+    position: fixed;
+    width: 60%;
+    top: 0;
+    right: 0;
+    text-align: left;
+    background: rgb(89, 96, 100);
+    height: 100%;
+    z-index: 7;
+    padding-top: 3em;
+
+    & li a {
+        color: #fff;
+        text-decoration: none;
+        display: block;
+        height: 100%;
+        padding: 0.4em 2em;
+        background-color: rgb(89, 96, 100);
+    }
+
+    & li a:hover {
+        background-color: rgb(162, 170, 175);
+        color: #fff;
+    }
 }
+
+.exit-btn {
+    margin-bottom: 1em;
+    margin-top: -1.3em;
+    text-align: right;
+    padding: 0 1.4em;
+    & img {
+        width: 15px;
+        cursor: pointer;
+    }
+}
+

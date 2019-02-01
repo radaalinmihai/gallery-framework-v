@@ -5,143 +5,89 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portofolio</title>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
     crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
+
 </head>
 
 <body>
-  <header>
-    <a href="#">Portofolio</a>
-  </header>
-  <div id="bg"></div>
-  <main>
-    <section id="primary">
+
+  <div class="container">
+    <header>
+      <img src="images/logo.svg" alt="portofolio logo" class="logo">
+      <nav>
+        <a href="#" class="hide-desktop">
+          <img src="images/menu.svg" alt="toggle menu" class="menu" id="menu">
+        </a>
+
+        <ul class="show-desktop hide-mobile" id="nav">
+          <li id="exit" class="exit-btn hide-desktop"><img src="images/exit.svg" alt="menu exit"></li>
+          <li><a href="#">home</a></li>
+          <li><a href="#">services</a></li>
+          <li><a href="#">about us</a></li>
+          <li><a href="#">contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+
+
+    <section>
       <h1>Your personal gallery</h1>
-      <p>Create for your gallery or your presentation, as your heart desire.</p>
-      <a id="secondary-button-toggle" href="#" onclick="showSecondarySection();">Try it now!</a>
+      <p class="subtitle">Create for your gallery or your presentation, as your heart desire.</p>
     </section>
-    <section id="secondary">
-      <form action='' method='post' class='form-styling'>
-        <h2>Create your album</h2>
-        <div id="global-settings">
-          <div id="general">
-            <label>
-              <span>Album name:</span>
-              <input type='text' name='album_name' placeholder='Album name' />
-            </label>
-            <label>
-              <span>Items per slide:</span>
-              <input type='number' name='items' placeholder='0' />
-            </label>
-            <label>
-              <span>Album type:</span>
-              <select name='type'>
-                <option value='carousel'>Carousel</option>
-              </select>
-            </label>
-          </div>
-          <span>Transition settings</span>
-          <div id="transition">
-            <label>
-              <span>Type:</span>
-              <select name='transition_type'>
-                <option value='slide'>Slide</option>
-              </select>
-            </label>
-            <label>
-              <span>Items per transition:</span>
-              <input type='number' name='transition_items' placeholder='1' />
-            </label>
-            <label>
-              <span>Auto:</span>
-              <select name='auto' id='auto_select'>
-                <option value=false>False</option>
-                <option value=true>True</option>
-              </select>
-            </label>
-            <label id="auto-interval">
-              <span>Auto interval:</span>
-              <input type='number' name='auto_interval' />
-            </label>
-          </div>
-          <span>Navigation settings</span>
-          <div id="navigation">
-            <label>
-              <span>Show nav:</span>
-              <select id='nav_select'>
-                <option value=false>False</option>
-                <option value=true>True</option>
-              </select>
-            </label>
-            <label id="nav-prev">
-              <span>Prev button:</span>
-              <input type='text' name='prev_button' placeholder='Previous button (DOM element)' />
-            </label>
-            <label id="nav-next">
-              <span>Next button:</span>
-              <input type='text' name='next_button' placeholder='Next button (DOM element)' />
-            </label>
-          </div>
-          <span>Fullscreen settings</span>
-          <div id="fullscreen">
-            <label>
-              <span>Activate fullscreen:</span>
-              <select id='fullscreen_select'>
-                <option value=false>False</option>
-                <option value=true>True</option>
-              </select>
-            </label>
-            <label id="full-open">
-              <span>Open button:</span>
-              <input type='text' name='open_button' placeholder='Open button (DOM element)' />
-            </label>
-            <label id="full-close">
-              <span>Close button:</span>
-              <input type='text' name='close_button' placeholder='Close button (DOM element)' />
-            </label>
-          </div>
-        </div>
+  </div>
 
-        <div id="responsive-settings">
-          <div class="new-breakpoint">
-            <span>Add new breakpoint</span>
-            <i class="material-icons">add</i>
-          </div>
-        </div>
-        <button type='submit'>Create</button>
-      </form>
-    </section>
-  </main>
+  <div class="blue-container">
+    <div class="container">
+      <ul>
+        <li>
+          <img src="images/icon1.svg" alt="icon1">
+          <p>Pick up more than 10 images for your desired gallery.</p>
+        </li>
+        <li>
+          <img src="images/icon2.svg" alt="icon1">
+          <p>Choose the way the world interacts with your album by choosing various settings and templates you can
+            apply.</p>
+        </li>
+      </ul>
+    </div>
 
+
+    <div class="container">
+
+      <a href="#" class="footer_button_mobile">Get Started</a>
+    </div>
+  </div>
   <footer>
     <div class="footer-container">
-      <p>edociiF 2</p>
+      <div class="container">
+        <p class="project-name">Edociif 2 - Fiicode 2019</p>
+        <ul class="footer-links">
+          <li><a href="#">Fiicode</a></li>
+          <li><a href="#">Shaggy</a></li>
+        </ul>
+      </div>
     </div>
   </footer>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-    crossorigin="anonymous"></script>
-  <script src='js/create_album.js'></script>
-  <script src='js/form.js'></script>
-
   <script>
-    function showSecondarySection() {
-      var x = document.getElementById("secondary");
-      if (x.style.display === "block") {
-        x.style.display = "none";
-      } else {
-        x.style.display = "block";
-      }
-    }
+    var menu = document.getElementById('menu');
+    var nav = document.getElementById('nav');
+    var exit = document.getElementById('exit');
+
+    menu.addEventListener('click', function (e) {
+      nav.classList.toggle('hide-mobile');
+      e.preventDefault();
+    });
+
+    exit.addEventListener('click', function (e) {
+      nav.classList.add('hide-mobile');
+      e.preventDefault();
+    });
   </script>
+
 </body>
-
-
-
 </html>

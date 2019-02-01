@@ -1,0 +1,25 @@
+
+body {
+    margin: 0;
+    font-family: 'Ubuntu Mono', monospace, sans-serif;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap-reverse;
+    margin: auto;
+    text-align: center;
+    & h1 {
+        font-size: 6em;
+    }
+    & p {
+        font-size: 1.2em;
+    }
+    & img {
+        width: 80%;
+    }
+}
+
