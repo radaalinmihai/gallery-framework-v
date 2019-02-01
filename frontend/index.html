@@ -1,73 +1,93 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-	<title>Playground</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portofolio</title>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="css/main.css">
 
-	<link rel="stylesheet" type="text/css" href="init-content-style.css">
-	<script src="init.js"></script> 
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
 
-		<h2>Carousel:</h2>
-	
-		<div id="carousel1">
+  <div class="container">
+    <header>
+      <img src="images/logo.svg" alt="portofolio logo" class="logo">
+      <nav>
+        <a href="#" class="hide-desktop">
+          <img src="images/menu.svg" alt="toggle menu" class="menu" id="menu">
+        </a>
 
-			<div>
-				<div class="member"><p>Suck a dick</p></div>
-				<div class="member"><p>Suck a dick</p></div>
-				<div class="member"><p>Suck a dick</p></div>
-				<div class="member"><p>Suck a dick</p></div>
-				<div class="member"><p>Suck a dick</p></div>
-				<div class="member"><p>Suck a dick</p></div>
-				<div class="member"><p>Suck a dick</p></div>
-				<div class="member"><p>Suck a dick</p></div>
-				<div class="member"><p>Suck a dick</p></div>
-				<div class="member"><p>Suck a dick</p></div>
-				<div class="member"><p>Suck a dick</p></div>
-				<div class="member"><p>Suck a dick</p></div>
-			</div>
-			
-		</div>
+        <ul class="show-desktop hide-mobile" id="nav">
+          <li id="exit" class="exit-btn hide-desktop"><img src="images/exit.svg" alt="menu exit"></li>
+          <li><a href="#">home</a></li>
+          <li><a href="#">services</a></li>
+          <li><a href="#">about us</a></li>
+          <li><a href="#">contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-		<h2>Grid:</h2>
-	
-		<div id="grid">
 
-			<div class="member"><img src="assets/1.jpg"/></div>
-			<div class="member"><img src="assets/2.jpg"/></div>
-			<div class="member"><img src="assets/3.jpg"/></div>
-			<div class="member"><img src="assets/4.jpg"/></div>
-			<div class="member"><img src="assets/5.jpg"/></div>
-			<div class="member"><img src="assets/6.jpg"/></div>
-			<div class="member"><img src="assets/1.jpg"/></div>
-			<div class="member"><img src="assets/2.jpg"/></div>
-			<div class="member"><img src="assets/3.jpg"/></div>
-			<div class="member"><img src="assets/4.jpg"/></div>
-			<div class="member"><img src="assets/5.jpg"/></div>
-			<div class="member"><img src="assets/6.jpg"/></div>
 
-		</div>
+    <section>
+      <h1>Your personal gallery</h1>
+      <p class="subtitle">Create for your gallery or your presentation, as your heart desire.</p>
+    </section>
+  </div>
 
-		<h2>Lista:</h2>
+  <div class="blue-container">
+    <div class="container">
+      <ul>
+        <li>
+          <img src="images/icon1.svg" alt="icon1">
+          <p>Pick up more than 10 images for your desired gallery.</p>
+        </li>
+        <li>
+          <img src="images/icon2.svg" alt="icon1">
+          <p>Choose the way the world interacts with your album by choosing various settings and templates you can
+            apply.</p>
+        </li>
+      </ul>
+    </div>
 
-		<div id="list">
 
-			<div class="member"><img src="assets/1.jpg"/></div>
-			<div class="member"><img src="assets/2.jpg"/></div>
-			<div class="member"><img src="assets/3.jpg"/></div>
-			<div class="member"><img src="assets/4.jpg"/></div>
-			<div class="member"><img src="assets/5.jpg"/></div>
-			<div class="member"><img src="assets/6.jpg"/></div>
-			<div class="member"><img src="assets/1.jpg"/></div>
-			<div class="member"><img src="assets/2.jpg"/></div>
-			<div class="member"><img src="assets/3.jpg"/></div>
-			<div class="member"><img src="assets/4.jpg"/></div>
-			<div class="member"><img src="assets/5.jpg"/></div>
-			<div class="member"><img src="assets/6.jpg"/></div>
+    <div class="container">
 
-		</div>
+      <a href="#" class="footer_button_mobile">Get Started</a>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-container">
+      <div class="container">
+        <p class="project-name">Edociif 2 - Fiicode 2019</p>
+        <ul class="footer-links">
+          <li><a href="#">Fiicode</a></li>
+          <li><a href="#">Shaggy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    var menu = document.getElementById('menu');
+    var nav = document.getElementById('nav');
+    var exit = document.getElementById('exit');
+
+    menu.addEventListener('click', function (e) {
+      nav.classList.toggle('hide-mobile');
+      e.preventDefault();
+    });
+
+    exit.addEventListener('click', function (e) {
+      nav.classList.add('hide-mobile');
+      e.preventDefault();
+    });
+  </script>
+
 </body>
 </html>
