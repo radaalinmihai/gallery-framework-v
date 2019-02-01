@@ -5,7 +5,7 @@ function sortQueries (settings) {
 
 	for (var key in settings.responsive) {
 	    mediaQueries[k] = key;
-	    mediaQueries[k] = parseInt(mediaQueries[k]);
+	    mediaQueries[k] = parseFloat(mediaQueries[k]);
 	    k++;
 	}
 

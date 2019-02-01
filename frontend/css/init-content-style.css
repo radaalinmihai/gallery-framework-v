@@ -22,6 +22,8 @@ body, html {
   	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+	justify-content: center;
+	position: relative;
 }
 .car-stage {
 	display: -webkit-box;
@@ -34,7 +36,6 @@ body, html {
 }
 .member > * {
 	width: 100%;
-	padding: 10px;
 	pointer-events: none;
 	user-select: none;
 	-moz-user-select: none;
@@ -42,16 +43,29 @@ body, html {
 	-webkit-user-select: none;
 	-ms-user-select: none;
 }
-.carousel-nav > i {
-	cursor: pointer;
-	font-size: 3em;
+.carousel-container:hover .next, .carousel-container:hover .prev {
+	visibility: visible;
+	transition: all 2s ease-in-out;
 }
-.carousel-nav {
-	display: -webkit-box;
-  	display: -ms-flexbox;
-  	display: -webkit-flex;
-  	display: flex;
+.next, .prev {
+	visibility: hidden;
+	cursor: pointer;
+	position: absolute;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 	justify-content: center;
+	transition: all 0.2s ease-in-out;
+}
+.next i, .prev i {
+	font-size: 3em;
+	color: white;
+}
+.prev {
+	left: 0;
+}
+.next {
+	right: 0;
 }
 .active {
 	cursor: grabbing;

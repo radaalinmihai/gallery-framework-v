@@ -1,26 +1,30 @@
 function nav (options, container) {
-	var navContainer = document.createElement("div");
-	navContainer.add("carousel-nav");
-	container.appendChild(navContainer);
 
 	if (options.hasOwnProperty("prev")) {
 		if (options.prev != null) {
+			var cont = document.createElement("div");
+			cont.classList.add("prev");
 			let doc = new DOMParser().parseFromString(options.prev, 'text/html');
-			navContainer.appendChild(doc.body.firstChild);
+			cont.appendChild(doc.body.firstChild);
+			container.appendChild(cont);
 		}
 	}
 
 	if (options.hasOwnProperty("next")) {
 		if (options.next != null) {
+			var cont = document.createElement("div");
+			cont.classList.add("next");
 			let doc = new DOMParser().parseFromString(options.next, 'text/html');
-			navContainer.appendChild(doc.body.firstChild);
+			cont.appendChild(doc.body.firstChild);
+			container.appendChild(cont);
 		}
 	}
+
 }
 
 function fullscreen (options, container, stage) {
 	var butContainer = document.createElement("div");
-	butContainer.add("car-full-buttons");
+	butContainer.classList.add("car-full-buttons");
 	container.insertBefore(butContainer, stage);
 
 	if (options.hasOwnProperty("open")) {

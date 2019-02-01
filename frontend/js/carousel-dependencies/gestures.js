@@ -40,18 +40,18 @@ function addSwipe (type, el, stageWidth, containerWidth, memberWidth, transition
                 switch (type) {
                     case "item" :
                         if (distX < 0) {
-                                if (parseInt(el.style.left) * -1 > (stageWidth - containerWidth * 2) && parseInt(el.style.left) * -1 < (stageWidth - containerWidth)) {
-                                    var newSize = parseInt(el.style.left) * -1 + (stageWidth - containerWidth - parseInt(el.style.left) * -1);
+                                if (parseFloat(el.style.left) * -1 > (stageWidth - containerWidth * 2) && parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
+                                    var newSize = parseFloat(el.style.left) * -1 + (stageWidth - containerWidth - parseFloat(el.style.left) * -1);
                                     el.style.left = "-" + newSize.toString() + "px";
                                 }
-                                else if (parseInt(el.style.left) * -1 < (stageWidth - containerWidth)) {
-                                    var newSize = parseInt(el.style.left) * -1 + (memberWidth * transitionItemsNum);
+                                else if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
+                                    var newSize = parseFloat(el.style.left) * -1 + (memberWidth * transitionItemsNum);
                                     el.style.left = "-" + newSize.toString() + "px";
                                 }
                             }
                             else {
-                                if (parseInt(el.style.left) * -1 != 0) {
-                                    var newSize = parseInt(el.style.left) * -1 - (memberWidth * transitionItemsNum);
+                                if (parseFloat(el.style.left) * -1 != 0) {
+                                    var newSize = parseFloat(el.style.left) * -1 - (memberWidth * transitionItemsNum);
                                     el.style.left = "-" + newSize.toString() + "px";
                                 }
                             }
@@ -59,18 +59,18 @@ function addSwipe (type, el, stageWidth, containerWidth, memberWidth, transition
 
                     case "slide" :
                         if (distX < 0) {
-                            if (parseInt(el.style.left) * -1 > (stageWidth - containerWidth * 2) && parseInt(el.style.left) * -1 < (stageWidth - containerWidth)) {
-                                var newSize = parseInt(el.style.left) * -1 + (stageWidth - containerWidth - parseInt(el.style.left) * -1);
+                            if (parseFloat(el.style.left) * -1 > (stageWidth - containerWidth * 2) && parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
+                                var newSize = parseFloat(el.style.left) * -1 + (stageWidth - containerWidth - parseFloat(el.style.left) * -1);
                                 el.style.left = "-" + newSize.toString() + "px";
                             }
-                            else if (parseInt(el.style.left) * -1 < (stageWidth - containerWidth)) {
-                                var newSize = parseInt(el.style.left) * -1 + containerWidth;
+                            else if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
+                                var newSize = parseFloat(el.style.left) * -1 + containerWidth;
                                 el.style.left = "-" + newSize.toString() + "px";
                             }
                         }
                         else {
-                            if (parseInt(el.style.left) * -1 != 0) {
-                                var newSize = parseInt(el.style.left) * -1 + containerWidth;
+                            if (parseFloat(el.style.left) * -1 != 0) {
+                                var newSize = parseFloat(el.style.left) * -1 + containerWidth;
                                 el.style.left = "-" + newSize.toString() + "px";
                             }
                         }
@@ -85,7 +85,7 @@ function addSwipe (type, el, stageWidth, containerWidth, memberWidth, transition
 
 }
 
-function addDrag (el, stageWidth, containerWidth, memberWidth) {
+function addDrag (el, stageWidth, containerWidth, memberWidth, loop) {
     
     var selected = null, // Object of the element to be moved
        x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
@@ -102,7 +102,19 @@ function addDrag (el, stageWidth, containerWidth, memberWidth) {
     function _move_elem(e) {
         x_pos = document.all ? window.event.clientX : e.pageX;
         if (selected !== null) {
-            if (parseInt(el.style.left) * -1 < (stageWidth - containerWidth)) {
+            if (loop) {
+                if (x_pos < initial && parseFloat(el.style.left) * -1 < (stageWidth - containerWidth * 2)) {
+                    el.style.left = "-" + ((x_pos - x_elem) * -1) + 'px';
+                    console.log(parseFloat(stage.style.left));
+                    console.log(stageWidth - containerWidth * 2);
+                }
+                else if (x_pos > initial && parseFloat(el.style.left) * -1 > containerWidth) {
+                    el.style.left = "-" + ((x_pos - x_elem) * -1) + 'px';
+                    console.log(parseFloat(stage.style.left));
+                    console.log(stageWidth - containerWidth * 2);
+                }
+            }
+            else if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
                 el.style.left = "-" + ((x_pos - x_elem) * -1) + 'px';
             }
             else if (x_pos > initial) {
@@ -116,8 +128,8 @@ function addDrag (el, stageWidth, containerWidth, memberWidth) {
         selected = null;
         el.style.transition = "all 0.2s ease-in-out";
         el.style.cursor = "default";
-        if (parseInt(el.style.left) * -1 < (stageWidth - containerWidth)) {
-            el.style.left = "-" + roundUp(parseInt(el.style.left) * -1, memberWidth).toString() + "px";
+        if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
+            el.style.left = "-" + roundUp(parseFloat(el.style.left) * -1, memberWidth).toString() + "px";
         }
     }
     

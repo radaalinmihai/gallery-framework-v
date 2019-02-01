@@ -1,4 +1,4 @@
-function init (containerID, settings) {
+function portofolio (containerID, settings) {
 	var container = document.getElementById(containerID); // get container
 
 	var params = {}, mediaQueries = [], k = 0, j, aux;
@@ -19,7 +19,7 @@ function init (containerID, settings) {
 
 			// Give appropriate classes to both containers			
 			stage.classList.add("car-stage");
-			container.classList.add("carousel-container"); 
+			container.classList.add("carousel-container");
 
 
 			// Checking how many items per slide and assigning appropriate individual widths
@@ -34,6 +34,23 @@ function init (containerID, settings) {
 			for (i = 0; i < members.length; i++) {
 				members[i].style.width = memberWidth.toString() + "px";
 			}
+
+			// Clone items for loop
+			if (settings.transition.loop) {
+				var k = 0;
+				for (i = 0; i < itemsPerSlide; i++) {
+					var frontClone = members[k].cloneNode([true]);
+					var backClone = members[members.length - k - 1].cloneNode([true]);
+					frontClone.classList.add("clone");
+					backClone.classList.add("clone");
+					k += 2;
+					
+					stage.appendChild(frontClone);
+
+					stage.insertBefore(backClone, members[0]);
+				}
+			}
+
 			var stageWidth = memberWidth * members.length;
 			stage.style.width = stageWidth.toString() + "px";
 
@@ -52,7 +69,6 @@ function init (containerID, settings) {
 			// Calling transition function to make carousel transitions and gestures work
 			if (params.hasOwnProperty("transition")) {
 				if (params.transition != null) {
-					console.log("got here");
 					animateTransition(params.transition, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID);
 				}
 			}
@@ -106,12 +122,13 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 		mouseover = 1;
 	}
 
-	if (navigation) {
-		var prev = container.children[1].children[0];
-		var next = container.children[1].children[1];
+	if (options.loop == true) {
+		stage.style.left = "-" + containerWidth + "px";
 	}
-
-	stage.style.left = "0px";
+	else {
+		stage.style.left = "0px";
+	}
+	
 
 	if (options.hasOwnProperty("transitionType")) {
 		var transitionTypePar = options.transitionType;
@@ -119,19 +136,22 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 	else var transitionTypePar = "slide";
 
 	if (navigation) {
+		var prev = container.children[1];
+		var next = container.children[2];
+
 		prev.onclick = function() {
-			moveDown(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum);
+			moveDown(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, options.loop);
 		}
 		next.onclick = function() {
-			moveUp(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum);
+			moveUp(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, options.loop);
 		}
 		document.onkeydown = arrowPress;
 		function arrowPress(e) {
 			if (e.keyCode == '37') {
-				moveDown(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum);
+				moveDown(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, options.loop);
 			}
 			if (e.keyCode == '39') {
-				moveUp(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum);
+				moveUp(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, options.loop);
 			}
 		}
 	}
@@ -143,7 +163,7 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 					if (options.autoInterval != null) {
 						setInterval(function() {
 							if (mouseover == 1) {
-								moveUp(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum);
+								moveUp(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, options.loop);
 							}
 						}, options.autoInterval);
 					}
@@ -153,6 +173,6 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 		}
 	}
 
-	addDrag(stage, stageWidth, containerWidth, memberWidth);
-	addSwipe("item", stage, stageWidth, containerWidth, memberWidth, transitionItemsNum);
+	addDrag(stage, stageWidth, containerWidth, memberWidth, options.loop);
+	addSwipe("item", stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, options.loop);
 }

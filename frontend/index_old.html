@@ -76,13 +76,15 @@
 <script src="js/init.js"></script> 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
-		init("carousel1", {
+		portofolio("carousel1", {
 			type:"carousel",
+			items:5,
 			transition:{
 				auto:true,
 				autoInterval:1500,
-				transitionType:"slide",
-				transitionItems:1
+				transitionType:"item",
+				transitionItems:3,
+				loop:true
 			},
 			// fullscreen : {
 			// 	show: true,
@@ -93,18 +95,18 @@
 				show: true,
 				prev: "<i class='material-icons'>chevron_left</i>",
 			 	next: "<i class='material-icons'>chevron_right</i>"
-			},
-			responsive : {
-				1000 : {
-					items: 2,
-					transition : {
-						transitionType:"slide"
-					}
-				}
 			}
+			// responsive : {
+			// 	1000 : {
+			// 		items: 2,
+			// 		transition : {
+			// 			transitionType:"slide"
+			// 		}
+			// 	}
+			// }
 		});
 
-		init("grid", {
+		portofolio("grid", {
 			type:"grid",
 			itemsPerRow: 5
 		});
