@@ -33,6 +33,9 @@ function portofolio (containerID, settings) {
 			var memberWidth = containerWidth / itemsPerSlide;
 			for (i = 0; i < members.length; i++) {
 				members[i].style.width = memberWidth.toString() + "px";
+				if (params.gestures) {
+					members[i].classList.add("no-drag");
+				}
 			}
 
 			// Clone items for loop
@@ -69,7 +72,7 @@ function portofolio (containerID, settings) {
 			// Calling transition function to make carousel transitions and gestures work
 			if (params.hasOwnProperty("transition")) {
 				if (params.transition != null) {
-					animateTransition(params.transition, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID);
+					animateTransition(params.transition, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID, params.gestures);
 				}
 			}
 
@@ -104,7 +107,7 @@ function portofolio (containerID, settings) {
 	}
 }
 
-function animateTransition(options, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID) {
+function animateTransition(options, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID, gestures) {
 	if (options.hasOwnProperty("transitionItems")) {
 		if (options.transitionItems != null) {
 			var transitionItemsNum = options.transitionItems;
@@ -173,6 +176,8 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 		}
 	}
 
-	addDrag(stage, stageWidth, containerWidth, memberWidth, options.loop);
-	addSwipe("item", stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, options.loop);
+	if (gestures) {
+		addDrag(stage, stageWidth, containerWidth, memberWidth, options.loop);
+		addSwipe("item", stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, options.loop);
+	}
 }

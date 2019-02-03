@@ -2,11 +2,16 @@
 # Normalize
 --------------------------------------------------------------*/
 body, html {
-	width: 100%;
-	height: 100%;
 	margin: 0;
 	padding: 0;
-	background: #eee;
+	background: #e8e8e8;
+	 background: linear-gradient(to right top, #42b7f5, #00caf9, #00dbf0, #00e9da, #42f5bd);
+	background-repeat: no-repeat;
+}
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 * {
 	box-sizing: border-box;
@@ -17,147 +22,263 @@ body, html {
 # Form
 --------------------------------------------------------------*/
 
-/* De aici a scris Rada garbage css */
-
-button {
-	display: block;
-	width: 100%;
-}
-
 .container {
-	display: flex;
-	height: auto;
-	margin: auto;
-}
-
-.center {
-	text-align: center;
-}
-
-.albums_show {
-	display: none;
-	width: 80%;
-	margin: 0 auto;
-	flex-direction: column;
-}
-
-/* Si aici si-a terminat Rada garbage css-ul */
-input, select {
-	width: 100%;
-	border-radius: 4px;
-	padding: 10px;
-	border: 1px solid #ebebeb;
-}
-.form-styling {
 	background: white;
-	border-radius: 30px;
+	border-radius: 4px;
 	padding: 50px;
 	margin: 40px auto 40px auto;
 	width: 50%;
 	min-width: 600px;
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	height: 500px;
 }
-label {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
+#carousel {
+	justify-content: space-between;
+	padding-bottom: 70px;
 }
-label span {
-	text-align: left;
-	width: 100%;
-	text-transform: uppercase;
-	font-size: 0.8em;
-}
-.form-styling > h2 {
+.container > h2 {
 	margin: 0;
 	margin-bottom: 20px;
 	border-bottom: 1px solid #ebebeb;
 	font-weight: 400;
 }
-.form-styling #general label, .form-styling #transition label, .form-styling #navigation label, .form-styling #fullscreen label {
-	width: 50%;
-	padding: 10px;
-}
-.form-styling > div > div {
+.form-styling {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	height: 100%;
 }
-.form-styling > div > span {
-	background: white;
+.nav-container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 40px;
+}
+.nav-container > div {
 	position: relative;
-	bottom: -9px;
-	left: 20px;
-	padding: 0 10px 0 10px;
+	visibility: visible;
 }
-#transition, #navigation, #fullscreen {
-	border: 1px solid #ebebeb;
-	padding: 20px;
-	margin-bottom: 40px;
+.nav-container > div > i {
+	color: black;
+	font-size: 2.5em;
 }
-#general {
-	margin-bottom: 20px;
-}
-#auto-interval {
-	display: none;
-}
-.auto-interval-show {
-	display: flex !important;
-}
-#nav-next, #nav-prev, #full-close, #full-open {
-	display: none;
-}
-.show {
-	display: flex !important;
-}
-button {
-	cursor: pointer;
-	border-radius: 15px;
+.car-stage input, .car-stage select {
 	border: none;
-	background: #57b846;
-	color: white;
-	padding: 10px;
-	width: 50%;
-	margin: 20px auto auto auto;
+	border-bottom: 4px solid #eee;
+	padding: 15px 20px;
+	width: 100%;
+	transition: border-color 0.3s ease;
+}
+.car-stage input:focus {
+	border-color: black;
+}
+.car-stage > #general {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.car-stage > div {
+	display: flex;
+	flex-direction: column;
+}
+.car-stage > div > .fields {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.car-stage > div > span {
+	color: grey;
+	margin-bottom: 10px;
+}
+.car-stage > div label {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+.car-stage > div label span {
 	text-transform: uppercase;
-	font-size: 1em;
+	font-size: 0.9em;
 }
-button:hover {
-	background: #50a840;
+#general label:first-child {
+	width: 100%;
 }
-.new-breakpoint {
-	justify-content: space-around;
+#general label, .car-stage > div > .fields label {
+	width: 45%;
+	padding: 10px;
+}
+.car-stage > #navigation #nav-prev, .car-stage > #navigation #nav-next, .car-stage > #transition #auto-interval, .car-stage > #fullscreen #full-close, .car-stage > #fullscreen #full-open {
+	display: none;
+}
+.select-container {
+	display: flex;
+	flex-direction: column;
+	height: 47.6px;
+	overflow: hidden;
+	position: relative;
+	transition: all 0.1s ease;
+	position: absolute;
+	top: 27px;
+	width: 95%;
+	z-index: 1;
+}
+select {
+	display: none;
+}
+.select-container > span {
+	display: flex;
+	justify-content: space-between;
 	cursor: pointer;
-	width: 50%;
+	height: 47.6px;
+	min-height: 47.6px;
+	border-bottom: 4px solid #eee;
+	background-position: center;
+  	transition: background 0.4s;
+  	padding-left: 10px;
+}
+.select-container > span:hover {
+	background: #fff radial-gradient(circle, transparent 1%, #fff 1%) center/15000%;
+}
+.select-container > span:active {
+	background-color: #d9d9d9;
+  	background-size: 100%;
+  	transition: background 0s;
+}
+.select-container > span > * {
+	margin: auto 0 auto 0;
+}
+.options-container > * {
+	height: 47.6px;
+	display: flex;
+	cursor: pointer;
+}
+.options-container > div > p {
+	width: 90%;
+	text-align: left;
 	margin: auto;
+}
+.options-container > *:hover {
+	background: #d9d9d9;
+	transition: all 0.2s ease;
+}
+.options-container > * p {
+	margin: auto 0 auto 0;
+}
+.options-container div:not(:last-child) {
+	border-bottom:1px solid #d9d9d9;
+}
+.options-container {
+	position: absolute;
+	top: 47.6px;
+	width: 100%;
+	background: #eee;
+}
+#carousel {
+	min-width: 100%;
+}
+.select-container > span i {
+	transition: all 0.1s ease;
+}
+.select-container > span .rotated {
+	transform: rotate(180deg);
+}
+.show > span {
+	border-color: black;
+}
+.insert-breakpoint input {
+	border: none;
+}
+.insert-breakpoint {
+	border-bottom: 4px solid #eee;
+	display: flex;
+}
+.insert-breakpoint i {
+	margin: auto;
+	cursor: pointer;
+}
+#responsive-settings {
+	overflow-y: scroll;
+	max-height: 100%;
+	height: 300px;
+}
+.new-breakpoint #transition, .new-breakpoint #navigation, .new-breakpoint #fullscreen {
+	display: flex;
+	flex-direction: column;
+	margin-top: 40px;
+}
+.new-breakpoint #transition > span , .new-breakpoint #navigation > span , .new-breakpoint #fullscreen > span {
+	display: none;
+}
+.new-breakpoint > div:not(:first-child) {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.new-breakpoint > div label {
+	height: 47.6px;
+	width: 100%;
+	margin-top: 20px;
+}
+.new-breakpoint > div {
+	padding: 10px;
+}
+#add-more {
+	width: 30%;
+	margin: auto;
+    margin-top: auto;
+	text-align: center;
+	margin-top: 20px;
+	cursor: pointer;
+	background: #eee;
 	border-radius: 4px;
-	background: #ebebeb;
-	padding: 7px 0 7px 0;
+	padding: 10px;
+	color: black;
+	background-position: center;
+  	transition: background 0.4s;
 }
-.new-breakpoint > * {
-	margin-top: auto;
-	margin-bottom: auto;
+#add-more:hover {
+	background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
 }
-
-@media screen and (max-width: 650px) {
-	.form-styling {
-		width: 95%;
-		min-width: 0px;
-		padding: 30px 15px;
-		border-radius: 10px;
-	}
-	#transition, #navigation {
-		padding: 10px;
-	}
-	.form-styling #general label, .form-styling #transition label, .form-styling #navigation label, .form-styling #fullscreen label {
-		padding: 10px;
-	}
-	button {
-		width: 90%;
-	}
+#add-more:active {
+	background-color: #d9d9d9;
+  	background-size: 100%;
+  	transition: background 0s;
 }
-
-@media screen and (max-width: 400px) {
-	.form-styling #general label, .form-styling #transition label, .form-styling #navigation label, .form-styling #fullscreen label {
-		width: 100%;
-	}
+#resources {
+	height: 280px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+#resources > div {
+	display: flex;
+	justify-content: space-between;
+}
+#resources > div > * {
+	margin: auto;
+}
+#resources > div i {
+	margin-left: -60px;
+	cursor: pointer;
+}
+#resources > div input {
+	margin-left: 0;
+}
+#final {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+#final button {
+	width: 200px;
+	background: transparent;
+	border-radius: 50px;
+	border: 1px solid black;
+	padding: 15px 10px;
+	cursor: pointer;
+}
+#final > * {
+	margin: auto;
+}
+#final span {
+	height: 0.8px;
+	width: 150px;
+	background: black;
 }
