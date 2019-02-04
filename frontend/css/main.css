@@ -5,6 +5,7 @@ body {
 
 p {
   font-size: 1em;
+  letter-spacing: 1px;
 }
 
 ul {
@@ -20,6 +21,7 @@ ul {
 
 .logo {
   width: 130px;
+  z-index: 8;
 }
 
 .hide-mobile {
@@ -36,12 +38,11 @@ header {
 }
 
 .menu {
-  width: 20px;
   margin-top: 100%;
 }
 
 h1 {
-  margin-top: 15%;
+  margin-top: 5%;
   margin-bottom: 5%;
   text-transform: uppercase;
   line-height: 1em;
@@ -62,8 +63,8 @@ h1, .subtitle {
   width: 100%;
   background: #30CBEB;
   color: #fff;
-  margin-top: 5%;
-  padding: 2em 0 2em;
+  margin-top: 3%;
+  padding: 1.4em 0 1.4em;
   border-top-left-radius: 40px;
 }
 
@@ -90,7 +91,7 @@ h1, .subtitle {
   display: block;
   color: #30CBEB;
   border-radius: 15px;
-  padding: .6em;
+  padding: .4em;
   text-decoration: none;
   font-size: 1.5em;
   position: relative;
@@ -117,29 +118,29 @@ h1, .subtitle {
 }
 
 p.project-name {
-  margin-top: 1em;
-  margin-bottom: 0.3em;
+  font-size: 0.8em;
+  margin: 0.2em;
 }
 
 nav ul {
   position: fixed;
-  width: 60%;
+  width: 100%;
   top: 0;
   right: 0;
   text-align: left;
-  background: #596064;
+  background: #c0c6c9;
   height: 100%;
   z-index: 7;
   padding-top: 3em;
 }
 
 nav ul li a {
-  color: #fff;
+  color: #555555;
   text-decoration: none;
   display: block;
   height: 100%;
   padding: 0.4em 2em;
-  background-color: #596064;
+  background-color: #c0c6c9;
 }
 
 nav ul li a:hover {
@@ -155,7 +156,6 @@ nav ul li a:hover {
 }
 
 .exit-btn img {
-  width: 15px;
   cursor: pointer;
 }
 /*# sourceMappingURL=main.css.map */
