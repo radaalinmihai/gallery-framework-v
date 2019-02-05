@@ -1,6 +1,7 @@
 function portofolio (containerID, settings) {
 	var container = document.getElementById(containerID); // get container
 
+	// Sort responsive settings from highest to lowest so that they're applied accordingly
 	var params = {}, mediaQueries = [], k = 0, j, aux;
 
 	if (settings.hasOwnProperty("responsive")) {
@@ -13,7 +14,7 @@ function portofolio (containerID, settings) {
 
 			var stage = container.firstElementChild, // get stage (second container)
 						members = stage.children, // get list of elements
-						containerWidth = container.offsetWidth, // width of container at time of init
+						containerWidth = container.offsetWidth, // width of container at time of init (for assigning appropriate responsive widths to elements)
 						i, itemsPerSlide;
 
 
@@ -80,6 +81,23 @@ function portofolio (containerID, settings) {
 			// Creating fullscreen buttons and allowing fullscreen functionality
 			if (params.hasOwnProperty("fullscreen")) {
 				if (params.fullscreen.show == true) fullscreen(params.fullscreen, container, stage);
+			}
+
+			// Calling speech to text function
+			if (params.hasOwnProperty("speech") && params.speech == true) {
+				if (params.transition.hasOwnProperty("transitionType")) {
+					var transitionTypePar = params.transition.transitionType;
+				}
+				else var transitionTypePar = "slide";
+
+				if (params.transition.hasOwnProperty("transitionItems")) {
+					if (params.transition.transitionItems != null) {
+						var transitionItemsNum = params.transition.transitionItems;
+					}
+				}
+				else var transitionItemsNum = 1; // carousel defaults to 1 item per transition
+
+				speechRec(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, params.transition.loop);
 			}
 
 		break;

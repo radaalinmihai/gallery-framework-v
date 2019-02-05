@@ -70,6 +70,7 @@
 		</div>
 </body>
 <script src="js/carousel-dependencies/responsive.js"></script> 
+<script src="js/carousel-dependencies/speech.js"></script> 
 <script src="js/carousel-dependencies/buttons.js"></script> 
 <script src="js/carousel-dependencies/transitions.js"></script> 
 <script src="js/carousel-dependencies/gestures.js"></script> 
@@ -78,12 +79,13 @@
 	document.addEventListener('DOMContentLoaded', function() {
 		portofolio("carousel1", {
 			type:"carousel",
-			items:5,
+			items:3,
+			speech:true,
 			transition:{
-				auto:true,
+				auto:false,
 				autoInterval:1500,
 				transitionType:"item",
-				transitionItems:3,
+				transitionItems:1,
 				loop:true
 			},
 			// fullscreen : {

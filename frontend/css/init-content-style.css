@@ -35,6 +35,10 @@ body, html {
   	position: relative;
   	transition: all 0.2s ease;
 }
+.member > * {
+	width: 100%;
+	height: auto;
+}
 .no-drag {
 	width: 100%;
 	pointer-events: none;
