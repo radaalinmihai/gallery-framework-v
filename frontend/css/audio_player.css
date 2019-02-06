@@ -3,13 +3,32 @@ html, body {
     height: 100%;
     margin: 0;
 }
+
+.audio_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.next_song i,
+.previous_song i {
+    font-size: 3rem !important;
+}
+
+.next_song,
+.previous_song {
+    margin: 0;
+    padding: 0;
+}
+
 .player {
     display: flex;
     width: 40%;
     margin: 0 auto;
     align-items: center;
-    transition: all 1s ease-in-out;
 }
+
+/* Play/resume buttons */
 
 button {
     background-color: transparent;
@@ -24,9 +43,10 @@ button i {
     display: none;
 }
 
+/* Progress bar */
+
 .progress {
     width: 100%;
-    height: 100%;
     background-color: rgb(201, 201, 201);
     border-radius: 30px;
     overflow: hidden;
@@ -38,8 +58,13 @@ button i {
     background-color:rgb(85, 85, 85);
 }
 
+/* Volume controls styling */
+
 .volume {
     -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
     max-width: 0;
     height: 10px;
     background-color: rgb(85, 85, 85);
@@ -57,12 +82,13 @@ button i {
     width: 0;
 }
 
-.volume::-moz-slider-thumb {
-    -webkit-appearance: none;
+.volume::-moz-range-thumb {
+    -moz-appearance: none;
     appearance: none;
     height: 20px;
     background-color: black;
     border-radius: 50%;
+    border: 0;
     width: 0;
 }
 
@@ -73,6 +99,10 @@ button i {
     background-color: black;
     border-radius: 50%;
     width: 0;
+}
+
+.song_name {
+    font-family: 'Ubuntu Mono', sans-serif;
 }
 
 .volume_button {
@@ -98,4 +128,15 @@ button i {
 
 .volume_controls:hover > .volume::-webkit-slider-thumb {
     width: 20px;
+}
+
+.volume_controls:hover > .volume::-moz-range-thumb {
+    width: 20px;
+    border: initial;
+}
+
+/* Progress bar on hover animation */
+
+.progress:hover > .current_progress {
+    background-color: rgb(58, 58, 58);
 }

@@ -1,59 +1,114 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var audio_source = document.getElementsByClassName('audio_source')[0],
+document.addEventListener('DOMContentLoaded', function () {
+    var audio_source = document.createElement('audio'),
         play_button = document.getElementsByClassName('play_button')[0],
         resume_button = document.getElementsByClassName('resume_button')[0],
         current_progress = document.getElementsByClassName('current_progress')[0],
         progress = document.getElementsByClassName('progress')[0],
         player = document.getElementsByClassName('player')[0],
         volume = document.getElementsByClassName('volume')[0],
-        volume_button = document.getElementsByClassName('volume_button')[0];
+        next_song = document.getElementsByClassName('next_song')[0],
+        prev_song = document.getElementsByClassName('previous_song')[0],
+        volume_button = document.getElementsByClassName('volume_button')[0],
+        song_name_div = document.getElementsByClassName('song_name')[0],
+        index_songs = 0;
+
+    var audio_playlist = ['apologize.mp3', 'ceva.mp3'];
+    audio_source.src = audio_playlist[index_songs];
+    audio_source.load();
+    song_name_div.innerHTML = '<strong>Song name: </strong>' + audio_playlist[index_songs];
 
     progress.style.height = player.offsetHeight + 'px';
     volume.value = audio_source.volume;
 
-    play_button.onclick = function() {
+    play_button.onclick = function () {
         audio_source.play();
     };
 
-    resume_button.onclick = function() {
+    resume_button.onclick = function () {
         audio_source.pause();
     };
 
-    volume.oninput = function() {
+    volume.oninput = function () {
         audio_source.volume = volume.value;
     };
 
-    volume_button.onclick = function() {
+    volume_button.onclick = function () {
         audio_source.muted = !audio_source.muted;
     };
 
-    audio_source.addEventListener('timeupdate', function() {
+    progress.onclick = function (e) {
+        var x = e.offsetX / this.offsetWidth;
+        audio_source.currentTime = Math.abs(audio_source.duration * x);
+    };
+
+    audio_source.addEventListener('timeupdate', function () {
         var currentTime = this.currentTime,
             duration = this.duration;
+
         current_progress.style.width = Math.abs((100 / duration) * currentTime) + "%";
     });
 
-    audio_source.addEventListener('pause', function() {
+    audio_source.addEventListener('pause', function () {
         resume_button.style.display = 'none';
         play_button.style.display = 'inline-block';
     });
 
-    audio_source.addEventListener('volumechange', function() {
+    audio_source.addEventListener('volumechange', function () {
         volume.value = this.volume;
-        if(this.volume == 0 || audio_source.muted == true) {
+        if (this.volume == 0 || audio_source.muted == true) {
             volume_button.querySelector('i').innerText = 'volume_off';
+            volume.value = 0;
         } else {
             volume_button.querySelector('i').innerText = 'volume_up';
         }
     });
 
-    audio_source.addEventListener('play', function() {
+    audio_source.addEventListener('play', function () {
         resume_button.style.display = 'inline-block';
         play_button.style.display = 'none';
     });
 
-    audio_source.addEventListener('ended', function() {
+    audio_source.addEventListener('ended', function () {
         resume_button.style.display = 'none';
         play_button.style.display = 'inline-block';
     });
+
+    next_song.addEventListener('click', function() {
+        skip(true, false);
+    });
+
+    prev_song.addEventListener('click', function() {
+        skip(false, true);
+    });
+
+    function skip(next, prev) {
+        if(next) {
+            if(index_songs < audio_playlist.length - 1)
+                index_songs++;
+            else
+                index_songs = 0;
+        } else if(prev) {
+            if(index_songs > 0)
+                index_songs--;
+            else
+                index_songs = audio_playlist.length - 1;
+        }
+        changeSource(audio_playlist[index_songs]);
+        song_name_div.innerHTML = '<strong>Song name: </strong>' + audio_playlist[index_songs];
+        console.log(index_songs);
+    }
+
+    function resetAudio() {
+        resume_button.style.display = 'none';
+        play_button.style.display = 'inline-block';
+        if(audio_source.currentTime > 0)
+            audio_source.currentTime = 0;
+    }
+
+    function changeSource(src) {
+        resetAudio();
+        audio_source.src = src;
+        audio_source.load();
+        audio_source.play();
+    }
 });

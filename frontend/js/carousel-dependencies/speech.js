@@ -11,11 +11,11 @@ function speechRec (type, stage, stageWidth, containerWidth, memberWidth, transi
 		
 		if (stopped == 0) {
 			if (transcript != prevTranscript) {
-				if (transcript == "următor" || transcript == "Următor") {
+				if (transcript == "înainte" || transcript == "Înainte") {
 					moveUp(type, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, loop);
 					stopped = 1;
 				}
-				else if (transcript == "anterior" || transcript == "Anterior") {
+				else if (transcript == "înapoi" || transcript == "Înapoi") {
 					moveDown(type, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, loop);
 					stopped = 1;
 				}
