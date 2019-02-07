@@ -12,10 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
         song_name_div = document.getElementsByClassName('song_name')[0],
         index_songs = 0;
 
+    if(navigator.userAgent.indexOf('Edge') >= 0)
+        progress.style.borderRadius = 0;
+
     var audio_playlist = ['apologize.mp3', 'ceva.mp3'];
     audio_source.src = audio_playlist[index_songs];
     audio_source.load();
-    song_name_div.innerHTML = '<strong>Song name: </strong>' + audio_playlist[index_songs];
+    song_name_div.innerHTML = '<strong>Current song: </strong>' + audio_playlist[index_songs];
 
     progress.style.height = player.offsetHeight + 'px';
     volume.value = audio_source.volume;
@@ -71,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
     audio_source.addEventListener('ended', function () {
         resume_button.style.display = 'none';
         play_button.style.display = 'inline-block';
+        skip(true, false);
     });
 
     next_song.addEventListener('click', function() {
@@ -94,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 index_songs = audio_playlist.length - 1;
         }
         changeSource(audio_playlist[index_songs]);
-        song_name_div.innerHTML = '<strong>Song name: </strong>' + audio_playlist[index_songs];
+        song_name_div.innerHTML = '<strong>Current song: </strong>' + audio_playlist[index_songs];
         console.log(index_songs);
     }
 

@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 html, body {
     width: 100%;
     height: 100%;
@@ -15,6 +19,10 @@ html, body {
     font-size: 3rem !important;
 }
 
+i {
+    cursor: pointer;
+}
+
 .next_song,
 .previous_song {
     margin: 0;
@@ -23,7 +31,7 @@ html, body {
 
 .player {
     display: flex;
-    width: 40%;
+    width: 100%;
     margin: 0 auto;
     align-items: center;
 }
@@ -48,6 +56,8 @@ button i {
 .progress {
     width: 100%;
     background-color: rgb(201, 201, 201);
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
     border-radius: 30px;
     overflow: hidden;
 }
@@ -139,4 +149,16 @@ button i {
 
 .progress:hover > .current_progress {
     background-color: rgb(58, 58, 58);
+}
+
+@media screen and (max-width: 1000px) {
+    .player {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .player {
+        width: 100%;
+    }
 }
