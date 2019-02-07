@@ -52,23 +52,13 @@
 
 		<h2>Lista:</h2>
 
-		<div id="list">
+		<div id="audio">
 
-			<div class="member"><img src="images/1.jpg"/></div>
-			<div class="member"><img src="images/2.jpg"/></div>
-			<div class="member"><img src="images/3.jpg"/></div>
-			<div class="member"><img src="images/4.jpg"/></div>
-			<div class="member"><img src="images/5.jpg"/></div>
-			<div class="member"><img src="images/6.jpg"/></div>
-			<div class="member"><img src="images/1.jpg"/></div>
-			<div class="member"><img src="images/2.jpg"/></div>
-			<div class="member"><img src="images/3.jpg"/></div>
-			<div class="member"><img src="images/4.jpg"/></div>
-			<div class="member"><img src="images/5.jpg"/></div>
-			<div class="member"><img src="images/6.jpg"/></div>
+			
 
 		</div>
 </body>
+<script src="js/carousel-dependencies/audio.js"></script> 
 <script src="js/carousel-dependencies/responsive.js"></script> 
 <script src="js/carousel-dependencies/speech.js"></script> 
 <script src="js/carousel-dependencies/buttons.js"></script> 
@@ -77,6 +67,17 @@
 <script src="js/init.js"></script> 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
+
+		portofolio("grid", {
+			type:"grid",
+			itemsPerRow: 5
+		});
+
+		portofolio("audio", {
+			type:"audio"
+		});
+
+
 		portofolio("carousel1", {
 			type:"carousel",
 			items:3,
@@ -106,11 +107,6 @@
 			// 		}
 			// 	}
 			// }
-		});
-
-		portofolio("grid", {
-			type:"grid",
-			itemsPerRow: 5
 		});
 	});
 </script>
