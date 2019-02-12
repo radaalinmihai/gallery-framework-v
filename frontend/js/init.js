@@ -34,7 +34,7 @@ function portofolio (containerID, settings) {
 			var memberWidth = containerWidth / itemsPerSlide;
 			for (i = 0; i < members.length; i++) {
 				members[i].style.width = memberWidth.toString() + "px";
-				if (params.gestures) {
+				if (params.transition.gestures) {
 					members[i].classList.add("no-drag");
 				}
 			}
@@ -73,7 +73,7 @@ function portofolio (containerID, settings) {
 			// Calling transition function to make carousel transitions and gestures work
 			if (params.hasOwnProperty("transition")) {
 				if (params.transition != null) {
-					animateTransition(params.transition, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID, params.gestures);
+					animateTransition(params.transition, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID, params.transition.gestures);
 				}
 			}
 
@@ -157,6 +157,7 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 	}
 	else {
 		stage.style.left = "0px";
+		stage.nextSibling.nextSibling.children[0].style.visibility = "hidden";
 	}
 	
 

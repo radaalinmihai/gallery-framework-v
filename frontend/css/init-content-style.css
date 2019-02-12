@@ -48,12 +48,7 @@ body, html {
 	-webkit-user-select: none;
 	-ms-user-select: none;
 }
-.carousel-container:hover .next, .carousel-container:hover .prev {
-	visibility: visible;
-	transition: all 2s ease-in-out;
-}
 .next, .prev {
-	visibility: hidden;
 	cursor: pointer;
 	position: absolute;
 	height: 100%;
@@ -133,6 +128,10 @@ body, html {
     font-size: 3rem !important;
 }
 
+.audio_wrapper i {
+    cursor: pointer;
+}
+
 .next_song,
 .previous_song {
     margin: 0;
@@ -148,12 +147,12 @@ body, html {
 
 /* Play/resume buttons */
 
-.player button {
+.audio_wrapper button {
     background-color: transparent;
     border: 0;
 }
 
-.player button i {
+.audio_wrapper button i {
     font-size: 4rem !important;
 }
 
@@ -166,6 +165,8 @@ body, html {
 .progress {
     width: 100%;
     background-color: rgb(201, 201, 201);
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
     border-radius: 30px;
     overflow: hidden;
 }
@@ -257,4 +258,16 @@ body, html {
 
 .progress:hover > .current_progress {
     background-color: rgb(58, 58, 58);
+}
+
+@media screen and (max-width: 1000px) {
+    .player {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .player {
+        width: 100%;
+    }
 }

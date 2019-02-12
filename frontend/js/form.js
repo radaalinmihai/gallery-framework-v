@@ -1,20 +1,82 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // // Copy for responsive
+    // Copy for responsive
 
-    // var div = document.createElement("div");
-    // var c = document.getElementById("itemsper").cloneNode([true]);
-    // var l = document.getElementById("itemspertrans").cloneNode([true]);
-    // var o = document.getElementById("autoselect").cloneNode([true]);
-    // var n = document.getElementById("navselect").cloneNode([true]);
-    // var e = document.getElementById("fullscreenselect").cloneNode([true]);
-    // div.appendChild(c);
-    // div.appendChild(l);
-    // div.appendChild(o);
-    // div.appendChild(n);
-    // div.appendChild(e);
+    function createBreakpoint () {
+        var div = document.createElement("div");
+        var c = document.getElementById("itemsper").cloneNode([true]);
+        var l = document.getElementById("itemspertrans").cloneNode([true]);
+        var o = document.getElementById("autoselect").cloneNode([true]);
+        var n = document.getElementById("navselect").cloneNode([true]);
+        var e = document.getElementById("fullscreenselect").cloneNode([true]);
+        div.appendChild(c);
+        div.appendChild(l);
+        div.appendChild(o);
+        div.appendChild(n);
+        div.appendChild(e);
 
-    // document.getElementsByClassName("new-breakpoint")[0].appendChild(div);
+        var div = document.createElement("div");
+        var c = document.getElementById("itemsper").cloneNode([true]);
+        var l = document.getElementById("itemspertrans").cloneNode([true]);
+        var o = document.getElementById("autoselect").cloneNode([true]);
+        var n = document.getElementById("navselect").cloneNode([true]);
+        var e = document.getElementById("fullscreenselect").cloneNode([true]);
+        div.appendChild(c);
+        div.appendChild(l);
+        div.appendChild(o);
+        div.appendChild(n);
+        div.appendChild(e);
+        
+        
+        div.classList.add("hidden");
+
+        return div;
+    }
+
+    document.getElementsByClassName("new-breakpoint")[0].appendChild(createBreakpoint());
+
+    function openBreakpoint (ele) {
+        ele.onclick = function() {
+            var sets = ele.parentNode.nextSibling.nextSibling;
+            if (sets.classList.contains("hidden")) {
+                sets.style.display = "flex";
+                sets.classList.remove("hidden");
+            }
+            else {
+                sets.style.display = "none";
+                sets.classList.add("hidden");
+            }
+        }
+    }
+
+    function keyStrokes (ele) {
+        var created, removed = 0;
+        ele.onkeyup = function() {
+            console.log(ele.value.length);
+            if (ele.value.length == 0) {
+                if (removed == 0) {
+                    ele.parentNode.parentNode.parentNode.lastChild.remove();
+                    removed = 1;
+                }
+                created = 0;
+            }
+            else {
+                if (created != 1) {
+                    var clone = ele.parentNode.parentNode.cloneNode([true]);
+                    clone.children[0].children[0].value = "";
+                    ele.parentNode.parentNode.parentNode.appendChild(clone);
+                    keyStrokes(clone.children[0].children[0]);
+                    openBreakpoint(clone.children[0].children[1]);
+                    created = 1;
+                    removed = 0;
+                }
+            }
+        }
+    }
+
+    keyStrokes(document.querySelector(".insert-breakpoint input"));
+
+    openBreakpoint(document.querySelector(".insert-breakpoint i"));
 
     // Add more links
 
@@ -105,7 +167,6 @@ document.addEventListener('DOMContentLoaded', function() {
     portofolio("carousel", {
         type: "carousel",
         items: 1,
-        gestures:false,
         transition : {
             transitionType:"slide"
         },
