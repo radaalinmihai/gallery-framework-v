@@ -36,16 +36,16 @@ function moveUp (type, stage, stageWidth, containerWidth, memberWidth, transitio
 				stage.style.left = "-" + newSize.toString() + "px";
 			}
 
-			if (!loop) {
-				if (parseFloat(stage.style.left) * -1 >= stageWidth - containerWidth) {
-					stage.nextSibling.nextSibling.children[1].style.visibility = "hidden";
-					stage.nextSibling.nextSibling.children[1].children[0].style.visibility = "hidden";
-				}
-				else {
-					stage.nextSibling.nextSibling.children[0].style.visibility = "visible";
-					stage.nextSibling.nextSibling.children[0].children[0].style.visibility = "visible";
-				}
-			}
+			// if (!loop) {
+			// 	if (parseFloat(stage.style.left) * -1 >= stageWidth - containerWidth) {
+			// 		stage.nextSibling.nextSibling.children[1].style.visibility = "hidden";
+			// 		stage.nextSibling.nextSibling.children[1].children[0].style.visibility = "hidden";
+			// 	}
+			// 	else {
+			// 		stage.nextSibling.nextSibling.children[0].style.visibility = "visible";
+			// 		stage.nextSibling.nextSibling.children[0].children[0].style.visibility = "visible";
+			// 	}
+			// }
 
 		break;
 
@@ -106,16 +106,16 @@ function moveUp (type, stage, stageWidth, containerWidth, memberWidth, transitio
 				stage.style.left = "-" + newSize.toString() + "px";
 			}
 
-			if (!loop) {
-				if (parseFloat(stage.style.left) * -1 >= stageWidth - containerWidth) {
-					stage.nextSibling.nextSibling.children[1].style.visibility = "hidden";
-					stage.nextSibling.nextSibling.children[1].children[0].style.visibility = "hidden";
-				}
-				else {
-					stage.nextSibling.nextSibling.children[0].style.visibility = "visible";
-					stage.nextSibling.nextSibling.children[0].children[0].style.visibility = "visible";
-				}
-			}
+			// if (!loop) {
+			// 	if (parseFloat(stage.style.left) * -1 >= stageWidth - containerWidth) {
+			// 		stage.nextSibling.nextSibling.children[1].style.visibility = "hidden";
+			// 		stage.nextSibling.nextSibling.children[1].children[0].style.visibility = "hidden";
+			// 	}
+			// 	else {
+			// 		stage.nextSibling.nextSibling.children[0].style.visibility = "visible";
+			// 		stage.nextSibling.nextSibling.children[0].children[0].style.visibility = "visible";
+			// 	}
+			// }
 
 	}
 
@@ -148,21 +148,24 @@ function moveDown (type, stage, stageWidth, containerWidth, memberWidth, transit
 					}, 220);
 				}
 			}
+			else if (parseFloat(stage.style.left) * -1 > 0 && parseFloat(stage.style.left) * -1 < containerWidth) {
+				stage.style.left = "0px";
+			}
 			else if (parseFloat(stage.style.left) != 0) {
 				var newSize = parseFloat(stage.style.left) + containerWidth;
 				stage.style.left = newSize.toString() + "px";
 			}
 
-			if (!loop) {
-				if (parseFloat(stage.style.left) * -1 == 0) {
-					stage.nextSibling.nextSibling.children[0].style.visibility = "hidden";
-					stage.nextSibling.nextSibling.children[0].children[0].style.visibility = "hidden";
-				}
-				else {
-					stage.nextSibling.nextSibling.children[1].style.visibility = "visible";
-					stage.nextSibling.nextSibling.children[1].children[0].style.visibility = "visible";
-				}
-			}
+			// if (!loop) {
+			// 	if (parseFloat(stage.style.left) * -1 == 0) {
+			// 		stage.nextSibling.nextSibling.children[0].style.visibility = "hidden";
+			// 		stage.nextSibling.nextSibling.children[0].children[0].style.visibility = "hidden";
+			// 	}
+			// 	else {
+			// 		stage.nextSibling.nextSibling.children[1].style.visibility = "visible";
+			// 		stage.nextSibling.nextSibling.children[1].children[0].style.visibility = "visible";
+			// 	}
+			// }
 
 		break;
 
@@ -206,21 +209,24 @@ function moveDown (type, stage, stageWidth, containerWidth, memberWidth, transit
 					}, 220);
 				}
 			}
+			else if (parseFloat(stage.style.left) * -1 > 0 && parseFloat(stage.style.left) < memberWidth * transitionItemsNum && loop != true) {
+				stage.style.left = "0px";
+			}
 			else if (parseInt(stage.style.left) != 0) {
 				var newSize = parseFloat(stage.style.left) + memberWidth * transitionItemsNum;
 				stage.style.left = newSize.toString() + "px";
 			}
 
-			if (!loop) {
-				if (parseFloat(stage.style.left) * -1 == 0) {
-					stage.nextSibling.nextSibling.children[0].style.visibility = "hidden";
-					stage.nextSibling.nextSibling.children[0].children[0].style.visibility = "hidden";
-				}
-				else {
-					stage.nextSibling.nextSibling.children[1].style.visibility = "visible";
-					stage.nextSibling.nextSibling.children[0].children[0].style.visibility = "visible";
-				}
-			}
+			// if (!loop) {
+			// 	if (parseFloat(stage.style.left) * -1 == 0) {
+			// 		stage.nextSibling.nextSibling.children[0].style.visibility = "hidden";
+			// 		stage.nextSibling.nextSibling.children[0].children[0].style.visibility = "hidden";
+			// 	}
+			// 	else {
+			// 		stage.nextSibling.nextSibling.children[1].style.visibility = "visible";
+			// 		stage.nextSibling.nextSibling.children[0].children[0].style.visibility = "visible";
+			// 	}
+			// }
 
 	}
 }
