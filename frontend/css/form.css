@@ -7,6 +7,7 @@ body, html {
 	background: #e8e8e8;
 	 background: linear-gradient(to right top, #42b7f5, #00caf9, #00dbf0, #00e9da, #42f5bd);
 	background-repeat: no-repeat;
+	overflow: auto;
 }
 body {
 	display: flex;
@@ -204,16 +205,37 @@ select {
 	flex-direction: column;
 	margin-top: 40px;
 }
+.new-breakpoint {
+	width: 95% !important;
+	margin: 0 auto 0 auto;
+}
 .new-breakpoint #transition > span , .new-breakpoint #navigation > span , .new-breakpoint #fullscreen > span {
 	display: none;
 }
 .new-breakpoint > div:not(:first-child) {
-	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	border: 1px solid #eee;
+	display: none;
+}
+.new-breakpoint .select-container {
+	width: 100%;
+	top: 17.2px;
+}
+#transition .fields #autoselect {
+	height: 90px;
+}
+.new-breakpoint #autoselect {
+	z-index: 4;
+}
+.new-breakpoint #navselect {
+	z-index: 3;
+}
+.new-breakpoint #fullscreenselect {
+	z-index: 2;
 }
 .new-breakpoint > div label {
-	height: 47.6px;
+	height: 64.8px;
 	width: 100%;
 	margin-top: 20px;
 }
@@ -281,4 +303,42 @@ select {
 	height: 0.8px;
 	width: 150px;
 	background: black;
+}
+
+@media screen and (max-width: 900px) {
+	.container {
+		width: 90%;
+		min-width: 95%;
+		height: auto;
+		padding: 30px 20px;
+		overflow: initial;
+		margin-top: 150px;
+	}
+	.container > h2 {
+		font-size: 1.2em;
+	}
+	label {
+		width: 100% !important;
+		min-height: 84.88px;
+	}
+	.fields {
+		overflow-y: auto;
+		min-height:100%;
+	}
+	.nav-container {
+		margin-top: 20px;
+	}
+	.car-stage > div {
+		min-height: 100%;
+	}
+	#add-more {
+		width: 50%;
+	}
+	#resources, #responsive-settings {
+		max-height: 100%;
+		overflow-y: auto;
+	}
+	#responsive-settings .insert-breakpoint input {
+		padding: 10px;
+	}
 }

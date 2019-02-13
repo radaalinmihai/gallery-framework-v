@@ -1,8 +1,18 @@
-function speechRec (type, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, loop) {
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function speechRec (type, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, loop, lang) {
 	window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 	var recognition = new SpeechRecognition();
-	recognition.lang = 'ro';
+	if (lang.hasOwnProperty("code")) {
+		recognition.lang = lang.code;
+	}
+	else {
+		recognition.lang = "en-US";
+	}
+
 	recognition.interimResults = true;
 	var transcript = "", stopped = 0, prevTranscript = "";
 
@@ -11,11 +21,11 @@ function speechRec (type, stage, stageWidth, containerWidth, memberWidth, transi
 		
 		if (stopped == 0) {
 			if (transcript != prevTranscript) {
-				if (transcript == "înainte" || transcript == "Înainte") {
+				if (transcript == lang.next.toLowerCase() || transcript == capitalize(lang.next)) {
 					moveUp(type, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, loop);
 					stopped = 1;
 				}
-				else if (transcript == "înapoi" || transcript == "Înapoi") {
+				else if (transcript == lang.prev.toLowerCase() || transcript == capitalize(lang.prev)) {
 					moveDown(type, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, loop);
 					stopped = 1;
 				}
