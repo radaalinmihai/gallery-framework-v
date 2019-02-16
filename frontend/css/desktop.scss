@@ -1,0 +1,172 @@
+* {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu Mono', monospace, sans-serif;
+    //border: dotted;
+    border-width: 0.3px;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+$bgc: #333131;
+$bg: #1E1E1E;
+$text: #BBB9B9;
+
+.container-top {
+    height: 10%;
+}
+
+.container {
+    height: 85%;
+}
+
+header {
+    height: 100%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $bg;
+    padding: 1em 1em;
+    .logo {
+        height: 150px;
+        width: 250px;
+    }
+    nav ul {
+        list-style-type: none;
+        font-style: none;
+        display: flex;
+            li{
+                margin: 0em 1em 0 1em;
+                font-size: 1.1rem;
+                a {
+                    color: $text;
+                    text-decoration: none;
+                }
+            }
+            margin-right: 30px;
+    }
+
+
+}
+
+
+.container-body {
+    height: 100%;
+    position: relative;
+    text-align: center;
+    display: flex;
+    align-content: flex-start;
+    aside {
+        height: 100%;
+        order: 1;
+     ul {
+         height: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: space-around;
+         //padding-top: 2em;
+     }
+        background-color: $bgc;
+        color: $text;
+        flex-basis: 16%;
+        li {
+            padding-left: 1.5em;
+            
+        }
+    }
+  
+}
+
+.container-items-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    }
+    h1 {
+        font-size: 1.3rem;
+        display: inline-block;
+    }
+
+    img {
+        width: 150px;
+        border-radius: 40%;
+    }
+    p {
+        font-family: 'Ubuntu', monospace, sans-serif;
+        text-align: right;
+        padding-top: 0.4em;
+        padding-right: 1.3em;
+        letter-spacing: 0.3px;
+        font-size: 0.9rem;
+    }   
+
+.aside-right {
+    height: auto;
+    width: 100%;
+    order: 2;
+    flex-basis: 84%;
+    //padding-top: 800px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("/frontend/images/pep.jpg") ;
+}
+
+.container-ocapacity {
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);   
+}
+
+footer {
+    //display: flex;
+    height: 5%;
+    background: $bg;
+    width: 100%;
+    
+    p {
+        font-size: 0.9rem;
+        color: $text;
+        margin: 1em 0 1em 0;
+        text-align: center; 
+        a {
+            text-emphasis: none;
+            text-decoration: none;
+            font-size: 1rem;
+            color: rgb(48, 88, 134);
+        }
+    }
+    
+}
+
+.menu {
+    visibility: hidden;
+}
+
+.hide-desktop {
+    visibility: hidden;
+}
+
+
+@media only screen and (max-width: 600px) {
+   
+.aside-right {
+        visibility: hidden;
+}
+    
+aside {
+        visibility: hidden;
+}   
+
+.logo {
+    width: 250px;
+    z-index: 8;
+}
+
+container-body {
+    overflow: auto;
+}
+}

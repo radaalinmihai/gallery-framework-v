@@ -1,8 +1,10 @@
 
+@media only screen and (max-width: 600px) {
 
 
-$primary: #30CBEB;
 
+//$primary: #30CBEB;
+$primary: #1E1E1E;
 
 body {
     margin: 0;
@@ -46,10 +48,11 @@ header {
 
 h1 {
     margin-top: 5%;
-    margin-bottom:5%;
+    margin-bottom:3%;
     text-transform: uppercase;
     line-height: 1em;
     letter-spacing: 1px;
+    font-size: 3.4rem;
 }
 
 .subtitle {
@@ -65,7 +68,7 @@ h1, .subtitle {
 .blue-container {
     width: 100%;
     background: $primary;
-    color: #fff;
+    color: #BBB9B9;
     margin-top: 3%;
     padding: 1.4em 0 1.4em;
     border-top-left-radius: 40px;
@@ -161,3 +164,4 @@ nav ul {
     }
 }
 
+}
