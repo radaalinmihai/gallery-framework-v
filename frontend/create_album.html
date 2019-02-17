@@ -5,7 +5,7 @@
     <link rel='stylesheet' href='css/init-content-style.css' type='text/css' />
     <title>Album creation</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono|Ubuntu" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
@@ -14,7 +14,42 @@
         <form action='' method='post' class='form-styling'>
             <div id="carousel">
                 <div>
-                    <div id="general" class="member">
+                    <div id="pick" class="member actives">
+                        <span>Pick an album type</span>
+                        <div id="album-options">
+                            <div id="carousel-opt">
+                                <i class="material-icons">view_carousel</i>
+                                <span>Carousel</span>
+                            </div>
+                            <div id="grid-opt">
+                                <i class="material-icons">grid_on</i>
+                                <span>Grid</span>
+                            </div>
+                            <div id="audio-opt">
+                                <i class="material-icons">play_circle_outline</i>
+                                <span>Audio player</span>
+                            </div>
+                            <div id="list-opt">
+                                <i class="material-icons">list</i>
+                                <span>List</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid slides -->
+                    <div id="general" class="member grid-member">
+                        <label>
+                            <span>Album name:</span>
+                            <input type='text' name='album_name' placeholder='Album name' />
+                        </label>
+                        <label id="itemsper">
+                            <span>Items per row:</span>
+                            <input type='number' name='items' placeholder='0' />
+                        </label>
+                    </div>
+
+                    <!-- Carousel slides -->
+                    <div id="general" class="member car-member">
                         <label>
                             <span>Album name:</span>
                             <input type='text' name='album_name' placeholder='Album name' />
@@ -23,14 +58,8 @@
                             <span>Items per slide:</span>
                             <input type='number' name='items' placeholder='0' />
                         </label>
-                        <label>
-                            <span>Album type:</span>
-                            <select name='type'>
-                                <option value='carousel'>Carousel</option>
-                            </select>
-                        </label>
                     </div>
-                    <div id="transition" class="member">
+                    <div id="transition" class="member car-member">
                         <span>Transition settings</span>
                         <div class="fields">
                             <label>
@@ -63,7 +92,7 @@
                             </label>
                         </div>
                     </div>
-                    <div id="navigation" class="member">
+                    <div id="navigation" class="member car-member">
                         <span>Navigation settings</span>
                         <div class="fields">
                             <label id="navselect">
@@ -83,7 +112,7 @@
                             </label>
                         </div>
                     </div>
-                    <div id="fullscreen" class="member">
+                    <div id="fullscreen" class="member car-member">
                         <span>Fullscreen settings</span>
                         <div class="fields">
                             <label id="fullscreenselect">
@@ -103,8 +132,20 @@
                             </label>
                         </div>
                     </div>
+
+                    <!-- General slides -->
                     <div id="resources" class="member">
                         <span>Links to your files</span>
+                        <div id="resource-select">
+                            <label id="contenttype">
+                                <span>Content type:</span>
+                                <select id='content_select'>
+                                    <option value=false>Images</option>
+                                    <option value=true>Video</option>
+                                    <option value=true>Other</option>
+                                </select>
+                            </label>
+                        </div>
                         <div><input type='text' name='file-link' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
                         <div><input type='text' name='file-link' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
                         <div><input type='text' name='file-link' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>

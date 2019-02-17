@@ -128,6 +128,78 @@ function portofolio (containerID, settings) {
 				members[i].style.width = perc.toString() + "%";
 			}
 
+			var carContainer = document.createElement("div");
+			var stage = document.createElement("div");
+
+			carContainer.setAttribute("id", "photo-carousel-1");
+			carContainer.classList.add("full-car");
+			// carContainer.style.display = "none";
+			carContainer.style.visibility = "hidden";
+			carContainer.style.zIndex = "10000000";
+			carContainer.appendChild(stage);
+
+			for (i = 0; i < members.length; i++) {
+				var member = document.createElement("div");
+				var img = document.createElement("img");
+				img.setAttribute("src", members[i].children[0].getAttribute("src"));
+				member.appendChild(img);
+				member.classList.add("member");
+				member.classList.add("img-member");
+				stage.appendChild(member);
+			}
+
+			container.appendChild(carContainer);
+
+			portofolio("photo-carousel-1", {
+				type:"carousel",
+				items:1,
+				transition:{
+					transitionType:"slide"
+				},
+				nav : {
+					show: true,
+					prev: "<i class='material-icons'>chevron_left</i>",
+				 	next: "<i class='material-icons'>chevron_right</i>"
+				}
+			});
+
+			var stageWidth = carContainer.offsetWidth;
+
+			var i = document.createElement("i");
+			var closeDiv = document.createElement("div");
+			
+			i.setAttribute("class", "material-icons");
+			i.innerText = "close";
+			closeDiv.setAttribute("class", "close-fullscreen-grid");
+
+			closeDiv.appendChild(i);
+
+			carContainer.insertBefore(closeDiv, carContainer.childNodes[0]);
+
+			closeDiv.addEventListener("click", function() {
+				this.parentNode.style.display = "none";
+			});
+
+			function getIndex(ele) {
+				var k = 0;
+
+				while (ele.parentNode.children[k] != ele) k++;
+
+				return k;
+			}
+
+			function addEvent(ele) {
+				ele.onclick = function () {
+					this.parentNode.lastChild.childNodes[1].style.left = "-" + stageWidth * getIndex(ele) + "px";
+					this.parentNode.lastChild.style.visibility = "visible";
+					this.parentNode.lastChild.style.display = "flex";
+				}
+			}
+
+			for (var i = 0; i < members.length - 1; i++) {
+				addEvent(members[i]);
+			}
+
 		break;
 
 		case "list":
