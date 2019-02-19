@@ -24,20 +24,44 @@ app.get('/', function (req, res) {
 });
 
 app.post('/create_album', function (req, res) {
-    var data = req.body;
+    var data = req.body,
+        duplicates = false;
     data.token = random12chars();
 
-    var album_model = new models.albums(data);
+    if(data.images) {
+        for(var i = 0; i < data.images.length; i++) {
+            if(data.images[i] == data.images[i + 1] && data.images[i + 1] !== undefined)
+                duplicates = true;
+        }
 
-    album_model.save(function (err) {
-        if (err) return console.warn(err);
-        console.log(data);
+        if(duplicates == false) {
+            var data_model = new models.albums(data);
+
+            data_model.save(function(err) {
+                if(err && err.name == 'ValidatorError')
+                    res.send({
+                        success: false,
+                        message: 'No empty fields!'
+                    });
+                else
+                    res.send({
+                        success: true,
+                        message: 'Album created succesfuly! Here is the token ' + data.token,
+                        token: data.token
+                    });
+            });
+        } else {
+            res.send({
+                success: false,
+                message: 'Duplicates found!'
+            });
+        }
+    } else {
         res.send({
-            success: true,
-            message: 'Album created! Here is the token key: ' + data.token,
-            token: data.token
+            success: false,
+            message: 'No images were sent'
         });
-    });
+    }
 });
 
 app.post('/return_album', function(req, res) {
@@ -60,6 +84,6 @@ app.post('/return_album', function(req, res) {
     });
 });
 
-app.listen(4000, function () {
-    console.log('Listening on port 4000');
+app.listen(3000, function () {
+    console.log('Listening on port 3000');
 });
