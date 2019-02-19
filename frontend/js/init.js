@@ -126,6 +126,135 @@ function portofolio (containerID, settings) {
 
 			for (var i = 0; i < members.length; i++) {
 				members[i].style.width = perc.toString() + "%";
+				members[i].classList.add("vid-grid-member");
+			}
+
+			if (params.hasOwnProperty("fullscreen") && params.fullscreen == true) {
+
+				var carContainer = document.createElement("div");
+				var stage = document.createElement("div");
+				var slideIndex = 0;
+	
+				carContainer.setAttribute("id", "photo-carousel-1");
+				carContainer.classList.add("full-car");
+				carContainer.style.visibility = "hidden";
+				carContainer.style.zIndex = "10000000";
+				carContainer.appendChild(stage);
+
+				if (params.format == "video") {
+
+					for (i = 0; i < members.length; i++) {
+
+						var member = document.createElement("div");
+						var video = document.createElement("video");
+						var source = document.createElement("source");
+						video.setAttribute("controls", "");
+						source.setAttribute("src", members[i].children[0].children[0].getAttribute("src"));
+						video.appendChild(source);
+						member.appendChild(video);
+						member.classList.add("vid-member");
+						member.classList.add("member");
+						stage.appendChild(member);
+
+						var cover = document.createElement("div");
+						var ico = document.createElement("i");
+
+						ico.setAttribute("class", "material-icons");
+						ico.innerText = "play_circle_outline";
+						cover.setAttribute("class", "video-grid-cover");
+
+						cover.appendChild(ico);
+						members[i].appendChild(cover);
+
+					}
+
+				}
+				else {
+
+					for (i = 0; i < members.length; i++) {
+						var member = document.createElement("div");
+						var img = document.createElement("img");
+						img.setAttribute("src", members[i].children[0].getAttribute("src"));
+						member.appendChild(img);
+						member.classList.add("member");
+						member.classList.add("img-member");
+						stage.appendChild(member);
+					}
+
+				}
+	
+				container.appendChild(carContainer);
+	
+				portofolio("photo-carousel-1", {
+					type:"carousel",
+					items:1,
+					transition:{
+						transitionType:"slide"
+					},
+					nav : {
+						show: true,
+						prev: "<i class='material-icons'>chevron_left</i>",
+					 	next: "<i class='material-icons'>chevron_right</i>"
+					}
+				});
+	
+				var stageWidth = carContainer.offsetWidth;
+	
+				var i = document.createElement("i");
+				var closeDiv = document.createElement("div");
+				
+				i.setAttribute("class", "material-icons");
+				i.innerText = "close";
+				closeDiv.setAttribute("class", "close-fullscreen-grid");
+	
+				closeDiv.appendChild(i);
+	
+				carContainer.insertBefore(closeDiv, carContainer.childNodes[0]);
+	
+				closeDiv.addEventListener("click", function() {
+					this.parentNode.style.display = "none";
+				});
+	
+				function getIndex(ele) {
+					var k = 0;
+	
+					while (ele.parentNode.children[k] != ele) k++;
+	
+					return k;
+				}
+	
+				function addEvent(ele) {
+					ele.onclick = function () {
+						this.parentNode.lastChild.childNodes[1].style.transition = "none";
+						this.parentNode.lastChild.childNodes[1].style.left = "-" + stageWidth * getIndex(ele) + "px";
+						slideIndex = getIndex(ele) - 1;
+						this.parentNode.lastChild.style.visibility = "visible";
+						this.parentNode.lastChild.style.display = "flex";
+						setTimeout(function() {
+							ele.parentNode.lastChild.childNodes[1].style.transition = "all 0.2s ease";
+						}, 100);
+					}
+				}
+	
+				for (var i = 0; i < members.length - 1; i++) {
+					addEvent(members[i]);
+				}
+
+				if (params.format == "video") {
+					var next = carContainer.children[3];
+					var prev = carContainer.children[2];
+
+					next.addEventListener("click", function() {
+						slideIndex++;
+						carContainer.children[1].children[slideIndex].children[0].pause();
+					});
+
+					prev.addEventListener("click", function() {
+						slideIndex--;
+						carContainer.children[1].children[slideIndex + 2].children[0].pause();
+					});
+				}
+
 			}
 
 		break;

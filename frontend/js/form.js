@@ -14,18 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         div.appendChild(o);
         div.appendChild(n);
         div.appendChild(e);
-
-        var div = document.createElement("div");
-        var c = document.getElementById("itemsper").cloneNode([true]);
-        var l = document.getElementById("itemspertrans").cloneNode([true]);
-        var o = document.getElementById("autoselect").cloneNode([true]);
-        var n = document.getElementById("navselect").cloneNode([true]);
-        var e = document.getElementById("fullscreenselect").cloneNode([true]);
-        div.appendChild(c);
-        div.appendChild(l);
-        div.appendChild(o);
-        div.appendChild(n);
-        div.appendChild(e);
         
         
         div.classList.add("hidden");
@@ -77,6 +65,89 @@ document.addEventListener('DOMContentLoaded', function() {
     keyStrokes(document.querySelector(".insert-breakpoint input"));
 
     openBreakpoint(document.querySelector(".insert-breakpoint i"));
+
+    // Choose album type
+
+    function hide (className) {
+        var els = document.getElementsByClassName(className);
+
+        for (var i = 0; i < els.length; i++) {
+            els[i].style.display = "none";
+        }
+    }
+
+    function show (className) {
+        var els = document.getElementsByClassName(className);
+
+        for (var i = 0; i < els.length; i++) {
+            els[i].style.display = "flex";
+        }
+    }
+
+    function hideMembers (type) {
+        switch (type) {
+            case "carousel":
+
+                hide("grid-member");
+
+                show("car-member");
+                document.getElementById("responsive-settings").style.display = "flex";
+
+            break;
+
+            case "grid":
+
+                hide("car-member");
+
+                show("grid-member");
+                document.getElementById("responsive-settings").style.display = "flex";
+
+            break;
+
+            case "audio":
+
+                hide("car-member");
+                hide("grid-member");
+                document.getElementById("responsive-settings").style.display = "none";
+
+            break;
+
+            case "list":
+
+                hide("car-member");
+                hide("grid-member");
+                document.getElementById("responsive-settings").style.display = "flex";
+
+            break;
+        }
+
+        document.getElementsByClassName("nav-container")[0].style.display = "flex";
+        var width = parseFloat(document.getElementsByClassName("car-stage")[0].children[0].style.width);
+        document.getElementsByClassName("car-stage")[0].style.left = "-" + width + "px";
+        while (document.getElementsByClassName("actives")[0].nextElementSibling.style.display == "none") {
+            document.getElementsByClassName("actives")[0].nextElementSibling.classList.add("actives");
+            document.getElementsByClassName("actives")[0].classList.remove("actives");
+        }
+        document.getElementsByClassName("actives")[0].nextElementSibling.classList.add("actives");
+        document.getElementsByClassName("actives")[0].classList.remove("actives");
+        document.querySelector(".nav-container .prev").children[0].style.display = "flex";
+    }
+
+    document.getElementById("carousel-opt").onclick = function () {
+        hideMembers("carousel");
+    }
+
+    document.getElementById("grid-opt").onclick = function () {
+        hideMembers("grid");
+    }
+
+    document.getElementById("list-opt").onclick = function () {
+        hideMembers("list");
+    }
+
+    document.getElementById("audio-opt").onclick = function () {
+        hideMembers("audio");
+    }
 
     // Add more links
 
@@ -188,6 +259,38 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("carousel").appendChild(container);
     container.appendChild(prev);
     container.appendChild(next);
+
+    next.children[0].onclick = function() {
+        while (document.getElementsByClassName("actives")[0].nextElementSibling.style.display == "none") {
+            document.getElementsByClassName("actives")[0].nextElementSibling.classList.add("actives");
+            document.getElementsByClassName("actives")[0].classList.remove("actives");
+        }
+        document.getElementsByClassName("actives")[0].nextElementSibling.classList.add("actives");
+        document.getElementsByClassName("actives")[0].classList.remove("actives");
+
+        if (document.getElementById("final").classList.contains("actives")) {
+            this.style.display = "none";
+        }
+        else {
+            document.querySelector(".nav-container .prev").children[0].style.display = "flex";
+        }
+    }
+
+    prev.children[0].onclick = function() {
+        while (document.getElementsByClassName("actives")[0].previousElementSibling.style.display == "none") {
+            document.getElementsByClassName("actives")[0].previousElementSibling.classList.add("actives");
+            document.getElementsByClassName("actives")[1].classList.remove("actives");
+        }
+        document.getElementsByClassName("actives")[0].previousElementSibling.classList.add("actives");
+        document.getElementsByClassName("actives")[1].classList.remove("actives");
+
+        if (document.getElementById("pick").classList.contains("actives")) {
+            this.style.display = "none";
+        }
+        else {
+            document.querySelector(".nav-container .next").children[0].style.display = "flex";
+        }
+    }
 
 
     // Toggle fields for specific options
