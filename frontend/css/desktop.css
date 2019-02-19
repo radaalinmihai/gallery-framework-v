@@ -17,7 +17,7 @@ body {
 }
 
 .container {
-  height: 85%;
+  height: 84%;
 }
 
 header {
@@ -32,12 +32,12 @@ header {
       -ms-flex-align: center;
           align-items: center;
   background-color: #1E1E1E;
-  padding: 1em 1em;
+  padding: 0em 1em;
 }
 
 header .logo {
-  height: 150px;
-  width: 250px;
+  height: 120px;
+  width: 240px;
 }
 
 header nav ul {
@@ -109,23 +109,15 @@ header nav ul li a {
       justify-content: space-around;
 }
 
-h1 {
+.container-items-list h1 {
+  color: #c7c5c5;
   font-size: 1.3rem;
   display: inline-block;
 }
 
-img {
+.container-items-list img {
   width: 150px;
   border-radius: 40%;
-}
-
-p {
-  font-family: 'Ubuntu', monospace, sans-serif;
-  text-align: right;
-  padding-top: 0.4em;
-  padding-right: 1.3em;
-  letter-spacing: 0.3px;
-  font-size: 0.9rem;
 }
 
 .aside-right {
@@ -148,24 +140,25 @@ p {
 }
 
 footer {
-  height: 5%;
+  height: 6%;
   background: #1E1E1E;
   width: 100%;
 }
 
-footer p {
+.footerp {
+  height: 100%;
   font-size: 0.9rem;
   color: #BBB9B9;
-  margin: 1em 0 1em 0;
+  margin: 1.5em 0 1.5em 0;
   text-align: center;
 }
 
-footer p a {
+.footerp a {
   -webkit-text-emphasis: none;
           text-emphasis: none;
   text-decoration: none;
   font-size: 1rem;
-  color: #305886;
+  color: #92b3d8;
 }
 
 .menu {
@@ -186,9 +179,6 @@ footer p a {
   .logo {
     width: 250px;
     z-index: 8;
-  }
-  container-body {
-    overflow: auto;
   }
 }
 /*# sourceMappingURL=desktop.css.map */
