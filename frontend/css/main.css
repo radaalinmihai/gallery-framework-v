@@ -1,161 +1,138 @@
-body {
-  margin: 0;
-  font-family: 'Ubuntu Mono', monospace, sans-serif;
-}
-
-p {
-  font-size: 1em;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  text-align: center;
-  padding: .4em 1.2em;
-}
-
-.logo {
-  width: 130px;
-}
-
-.hide-mobile {
-  display: none;
-}
-
-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.menu {
-  width: 20px;
-  margin-top: 100%;
-}
-
-h1 {
-  margin-top: 15%;
-  margin-bottom: 5%;
-  text-transform: uppercase;
-  line-height: 1em;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-size: 1em;
-  padding-top: 10px;
-}
-
-h1, .subtitle {
-  position: relative;
-  z-index: 3;
-}
-
-.blue-container {
-  width: 100%;
-  background: #30CBEB;
-  color: #fff;
-  margin-top: 5%;
-  padding: 2em 0 2em;
-  border-top-left-radius: 40px;
-}
-
-.blue-container ul li {
-  margin-bottom: 1em;
-}
-
-.blue-container img {
-  width: 20%;
-  margin-bottom: 1em;
-}
-
-.blue-container ul li p {
-  padding: 0 .5em;
-}
-
-.blue-containerul li:nth-child(3) img {
-  width: 8%;
-}
-
-.footer_button_mobile {
-  background: #fff;
-  width: calc(100% -2em);
-  display: block;
-  color: #30CBEB;
-  border-radius: 15px;
-  padding: .6em;
-  text-decoration: none;
-  font-size: 1.5em;
-  position: relative;
-  z-index: 4;
-}
-
-.footer-container {
-  width: 100%;
-  color: black;
-}
-
-.footer-links {
-  margin: 0 auto;
-}
-
-.footer-links li {
-  display: inline-block;
-}
-
-.footer-links li a {
-  font-size: 0.8em;
-  color: #9d9d9d;
-  text-decoration: none;
-}
-
-p.project-name {
-  margin-top: 1em;
-  margin-bottom: 0.3em;
-}
-
-nav ul {
-  position: fixed;
-  width: 60%;
-  top: 0;
-  right: 0;
-  text-align: left;
-  background: #596064;
-  height: 100%;
-  z-index: 7;
-  padding-top: 3em;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-  height: 100%;
-  padding: 0.4em 2em;
-  background-color: #596064;
-}
-
-nav ul li a:hover {
-  background-color: #a2aaaf;
-  color: #fff;
-}
-
-.exit-btn {
-  margin-bottom: 1em;
-  margin-top: -1.3em;
-  text-align: right;
-  padding: 0 1.4em;
-}
-
-.exit-btn img {
-  width: 15px;
-  cursor: pointer;
+@media only screen and (max-width: 600px) {
+  body {
+    margin: 0;
+    font-family: 'Ubuntu Mono', monospace, sans-serif;
+  }
+  p {
+    font-size: 1em;
+    letter-spacing: 1px;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    text-align: center;
+    padding: .4em 1.2em;
+  }
+  .logo {
+    width: 130px;
+    z-index: 8;
+  }
+  .hide-mobile {
+    display: none;
+  }
+  header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .menu {
+    margin-top: 100%;
+  }
+  h1 {
+    margin-top: 5%;
+    margin-bottom: 3%;
+    text-transform: uppercase;
+    line-height: 1em;
+    letter-spacing: 1px;
+    font-size: 3.4rem;
+  }
+  .subtitle {
+    font-size: 1em;
+    padding-top: 10px;
+  }
+  h1, .subtitle {
+    position: relative;
+    z-index: 3;
+  }
+  .blue-container {
+    width: 100%;
+    background: #1E1E1E;
+    color: #BBB9B9;
+    margin-top: 3%;
+    padding: 1.4em 0 1.4em;
+    border-top-left-radius: 40px;
+  }
+  .blue-container ul li {
+    margin-bottom: 1em;
+  }
+  .blue-container img {
+    width: 20%;
+    margin-bottom: 1em;
+  }
+  .blue-container ul li p {
+    padding: 0 .5em;
+  }
+  .blue-containerul li:nth-child(3) img {
+    width: 8%;
+  }
+  .footer_button_mobile {
+    background: #fff;
+    width: calc(100% -2em);
+    display: block;
+    color: #1E1E1E;
+    border-radius: 15px;
+    padding: .4em;
+    text-decoration: none;
+    font-size: 1.5em;
+    position: relative;
+    z-index: 4;
+  }
+  .footer-container {
+    width: 100%;
+    color: black;
+  }
+  .footer-links {
+    margin: 0 auto;
+  }
+  .footer-links li {
+    display: inline-block;
+  }
+  .footer-links li a {
+    font-size: 0.8em;
+    color: #9d9d9d;
+    text-decoration: none;
+  }
+  p.project-name {
+    font-size: 0.8em;
+    margin: 0.2em;
+  }
+  nav ul {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    text-align: left;
+    background: #c0c6c9;
+    height: 100%;
+    z-index: 7;
+    padding-top: 3em;
+  }
+  nav ul li a {
+    color: #555555;
+    text-decoration: none;
+    display: block;
+    height: 100%;
+    padding: 0.4em 2em;
+    background-color: #c0c6c9;
+  }
+  nav ul li a:hover {
+    background-color: #a2aaaf;
+    color: #fff;
+  }
+  .exit-btn {
+    margin-bottom: 1em;
+    margin-top: -1.3em;
+    text-align: right;
+    padding: 0 1.4em;
+  }
+  .exit-btn img {
+    cursor: pointer;
+  }
 }
 /*# sourceMappingURL=main.css.map */

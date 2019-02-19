@@ -2,92 +2,114 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portofolio</title>
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="css/main.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio</title>
+    <!--- additions -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="css/desktop.css">
 </head>
 
+
+
 <body>
+    <!-- header container -->
+    <div class="container-top">
+        <header>
+            <img src="images/logod.svg" alt="portofolio logo" class="logo">
+            <nav>
+                <!-- main nav, not visible on mobile rn -->
+                <a href="#" class="hide-desktop">
+                    <img src="images/menu.svg" alt="toggle menu" class="menu" id="menu">
+                </a>
+                <ul class="show-desktop hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop"><img src="images/exit.svg" alt="menu exit"></li>
+                    <li><a href="#">home</a></li>
+                    <li><a href="#">create</a></li>
+                    <li><a href="#">contact</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
 
-  <div class="container">
-    <header>
-      <img src="images/logo.svg" alt="portofolio logo" class="logo">
-      <nav>
-        <a href="#" class="hide-desktop">
-          <img src="images/menu.svg" alt="toggle menu" class="menu" id="menu">
-        </a>
-
-        <ul class="show-desktop hide-mobile" id="nav">
-          <li id="exit" class="exit-btn hide-desktop"><img src="images/exit.svg" alt="menu exit"></li>
-          <li><a href="#">home</a></li>
-          <li><a href="#">services</a></li>
-          <li><a href="#">about us</a></li>
-          <li><a href="#">contact</a></li>
-        </ul>
-      </nav>
-    </header>
-
-
-
-    <section>
-      <h1>Your personal gallery</h1>
-      <p class="subtitle">Create for your gallery or your presentation, as your heart desire.</p>
-    </section>
-  </div>
-
-  <div class="blue-container">
+    <!-- body container -->
     <div class="container">
-      <ul>
-        <li>
-          <img src="images/icon1.svg" alt="icon1">
-          <p>Pick up more than 10 images for your desired gallery.</p>
-        </li>
-        <li>
-          <img src="images/icon2.svg" alt="icon1">
-          <p>Choose the way the world interacts with your album by choosing various settings and templates you can
-            apply.</p>
-        </li>
-      </ul>
+        <div class="container-body">
+
+
+            <aside>
+
+                <ul class="show-desktop hide-mobile" id="nav">
+                    <li>
+
+                        <div class="container-items-list">
+                            <img src="images/r1.png">
+                            <h1> Mihai </h1>
+                        </div>
+                        <p class="container-p">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
+                            lorem ipsum loratum ciocolatumshaggy
+                        </p>
+                    </li>
+                    <li>
+                        <div class="container-items-list">
+                            <img src="images/a1.jpg">
+                            <h1> Flavius </h1>
+                        </div>
+                        <p class="container-p">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
+                            lorem ipsum loratum ciocolatumshaggy
+                        </p>
+                    </li>
+                    <li>
+                        <div class="container-items-list">
+                            <img src="images/i2.png">
+                            <h1> Ivanoviciki </h1>
+                        </div>
+                        <p class="container-p">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
+                            lorem ipsum loratum ciocolatumshaggy
+                        </p>
+                    </li>
+
+
+                </ul>
+            </aside>
+            <div class="aside-right">
+                <div class="container-ocapacity"> <!-- shading effect on right container -->
+                </div>
+            </div>
+        </div>
     </div>
 
 
-    <div class="container">
-
-      <a href="#" class="footer_button_mobile">Get Started</a>
-    </div>
-  </div>
-  <footer>
-    <div class="footer-container">
-      <div class="container">
-        <p class="project-name">Edociif 2 - Fiicode 2019</p>
-        <ul class="footer-links">
-          <li><a href="#">Fiicode</a></li>
-          <li><a href="#">Shaggy</a></li>
+    <footer>
+        <!--- 
+        <div class="container"></div>
+        <ul class="footer-items">
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
         </ul>
-      </div>
-    </div>
-  </footer>
+        </div>
+        --->
+        <p class="footerp">Powered by edociiF2 for <a href="#">Fiicode 2019</a></p>
+    </footer>
 
-  <script>
-    var menu = document.getElementById('menu');
-    var nav = document.getElementById('nav');
-    var exit = document.getElementById('exit');
 
-    menu.addEventListener('click', function (e) {
-      nav.classList.toggle('hide-mobile');
-      e.preventDefault();
-    });
 
-    exit.addEventListener('click', function (e) {
-      nav.classList.add('hide-mobile');
-      e.preventDefault();
-    });
-  </script>
 
+       
+    <script src="js/main.js"></script>  <!-- additionals animations, styling, etcetera -->
 </body>
+
 </html>

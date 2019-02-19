@@ -16,12 +16,15 @@ body, html {
 --------------------------------------------------------------*/
 .carousel-container {
 	width: 100%;
+	min-width: 100%;
 	display: -webkit-box;
   	display: -ms-flexbox;
   	display: -webkit-flex;
   	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+	justify-content: center;
+	position: relative;
 }
 .car-stage {
 	display: -webkit-box;
@@ -30,11 +33,14 @@ body, html {
   	display: flex;
   	left: 0;
   	position: relative;
-  	transition: all 0.2s ease-in-out;
+  	transition: all 0.2s ease;
 }
 .member > * {
 	width: 100%;
-	padding: 10px;
+	height: auto;
+}
+.no-drag {
+	width: 100%;
 	pointer-events: none;
 	user-select: none;
 	-moz-user-select: none;
@@ -42,23 +48,31 @@ body, html {
 	-webkit-user-select: none;
 	-ms-user-select: none;
 }
-.carousel-nav > i {
+.next, .prev {
 	cursor: pointer;
-	font-size: 3em;
-}
-.carousel-nav {
-	display: -webkit-box;
-  	display: -ms-flexbox;
-  	display: -webkit-flex;
-  	display: flex;
+	position: absolute;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 	justify-content: center;
+	transition: all 0.2s ease-in-out;
+}
+.next i, .prev i {
+	font-size: 3em;
+	color: white;
+}
+.prev {
+	left: 0;
+}
+.next {
+	right: 0;
 }
 .active {
 	cursor: grabbing;
 	cursor: -webkit-grabbing;
 }
 .full-car {
-	position: absolute;
+	position: fixed;
 	background: rgba(0, 0, 0, 0.9);
 	top: 0;
 	left: 0;
@@ -77,6 +91,12 @@ body, html {
 .car-full-buttons {
 	display: flex;
 	justify-content: flex-end;
+    position: absolute;
+    top: 10px;
+    z-index: 10;
+    right: 10px;
+    color: white;
+    font-size: 0.8em;
 }
 .car-full-buttons > i {
 	font-size: 3em;
@@ -92,10 +112,218 @@ body, html {
   	display: flex;
   	flex-wrap: wrap;
 }
+.grid-container > * {
+    cursor: pointer;
+}
+.grid-container img {
+    padding: 20px;
+}
+.img-member {
+    display: flex;
+}
+.img-member > img {
+    width: auto;
+    height: auto;
+    margin: auto;
+}
 .list-container {
 	display: flex;
 	flex-direction: column;
 }
 .list-container > * {
 	width: 100%;
+}
+.grid-container > div:last-child {
+    cursor: default;
+}
+.close-fullscreen-grid {
+    display: flex;
+    justify-content: flex-end;
+    z-index: 20;
+}
+.close-fullscreen-grid i {
+    margin: 15px;
+    font-size: 2em;
+    cursor: pointer;
+}
+.vid-member {
+    display: flex;
+}
+.vid-member > video {
+    width: 50%;
+    margin: auto;
+}
+.vid-grid-member {
+    position: relative;
+}
+.video-grid-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+}
+.video-grid-cover i {
+    margin: auto;
+    color: white;
+    font-size: 3em;
+}
+
+/*--------------------------------------------------------------
+# Audio
+--------------------------------------------------------------*/
+.audio_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.next_song i,
+.previous_song i {
+    font-size: 3rem !important;
+}
+
+.audio_wrapper i {
+    cursor: pointer;
+}
+
+.next_song,
+.previous_song {
+    margin: 0;
+    padding: 0;
+}
+
+.player {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+}
+
+/* Play/resume buttons */
+
+.audio_wrapper button {
+    background-color: transparent;
+    border: 0;
+}
+
+.audio_wrapper button i {
+    font-size: 4rem !important;
+}
+
+.resume_button {
+    display: none;
+}
+
+/* Progress bar */
+
+.progress {
+    width: 100%;
+    background-color: rgb(201, 201, 201);
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.current_progress {
+    height: 100%;
+    width: 0;
+    background-color:rgb(85, 85, 85);
+}
+
+/* Volume controls styling */
+
+.volume {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    max-width: 0;
+    height: 10px;
+    background-color: rgb(85, 85, 85);
+    outline: 0;
+    border-radius: 30px;
+    transition: all 0.5s ease-in-out;
+}
+
+.volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 20px;
+    background-color: black;
+    border-radius: 50%;
+    width: 0;
+}
+
+.volume::-moz-range-thumb {
+    -moz-appearance: none;
+    appearance: none;
+    height: 20px;
+    background-color: black;
+    border-radius: 50%;
+    border: 0;
+    width: 0;
+}
+
+.volume::-ms-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 20px;
+    background-color: black;
+    border-radius: 50%;
+    width: 0;
+}
+
+.song_name {
+    font-family: 'Ubuntu Mono', sans-serif;
+}
+
+.volume_button {
+    cursor: pointer;
+    outline: 0;
+}
+
+.volume_button i {
+    font-size: 2.3rem !important;
+}
+
+.volume_controls {
+    display: flex;
+    align-items: center;
+    width: auto;
+}
+
+/* Volume controls hover animation */
+
+.volume_controls:hover > .volume {
+    max-width: 150px;
+}
+
+.volume_controls:hover > .volume::-webkit-slider-thumb {
+    width: 20px;
+}
+
+.volume_controls:hover > .volume::-moz-range-thumb {
+    width: 20px;
+    border: initial;
+}
+
+/* Progress bar on hover animation */
+
+.progress:hover > .current_progress {
+    background-color: rgb(58, 58, 58);
+}
+
+@media screen and (max-width: 1000px) {
+    .player {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 860px) {
+    .player {
+        width: 100%;
+    }
 }

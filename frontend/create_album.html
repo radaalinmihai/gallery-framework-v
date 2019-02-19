@@ -2,104 +2,181 @@
 <html>
 <head>
     <link rel='stylesheet' href='css/form.css' type='text/css' />
+    <link rel='stylesheet' href='css/init-content-style.css' type='text/css' />
     <title>Album creation</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono|Ubuntu" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class='container'>
+        <h2>Create your album</h2>
         <form action='' method='post' class='form-styling'>
-            <h2>Create your album</h2>
-            <div id="global-settings">
-                <div id="general">
-                    <label>
-                        <span>Album name:</span>
-                        <input type='text' name='album_name' placeholder='Album name' />
-                    </label>
-                    <label>
-                        <span>Items per slide:</span>
-                        <input type='number' name='items' placeholder='0' />
-                    </label>
-                    <label>
-                        <span>Album type:</span>
-                        <select name='type'>
-                            <option value='carousel'>Carousel</option>
-                        </select>
-                    </label>
-                </div>
-                <span>Transition settings</span>
-                <div id="transition">
-                    <label>
-                        <span>Type:</span>
-                        <select name='transition_type'>
-                            <option value='slide'>Slide</option>
-                        </select>
-                    </label>
-                    <label>
-                        <span>Items per transition:</span>
-                        <input type='number' name='transition_items' placeholder='1' />
-                    </label>
-                    <label>
-                        <span>Auto:</span>
-                        <select name='auto' id='auto_select'>
-                            <option value=false>False</option>
-                            <option value=true>True</option>
-                        </select>
-                    </label>
-                    <label id="auto-interval">
-                        <span>Auto interval:</span>
-                        <input type='number' name='auto_interval' />
-                    </label>
-                </div>
-                <span>Navigation settings</span>
-                <div id="navigation">
-                    <label>
-                        <span>Show nav:</span>
-                        <select id='nav_select'>
-                            <option value=false>False</option>
-                            <option value=true>True</option>
-                        </select>
-                    </label>
-                    <label id="nav-prev">
-                        <span>Prev button:</span>
-                        <input type='text' name='prev_button' placeholder='Previous button (DOM element)' />
-                    </label>
-                    <label id="nav-next">
-                        <span>Next button:</span>
-                        <input type='text' name='next_button' placeholder='Next button (DOM element)' />
-                    </label>
-                </div>
-                <span>Fullscreen settings</span>
-                <div id="fullscreen">
-                    <label>
-                        <span>Activate fullscreen:</span>
-                        <select id='fullscreen_select'>
-                            <option value=false>False</option>
-                            <option value=true>True</option>
-                        </select>
-                    </label>
-                    <label id="full-open">
-                        <span>Open button:</span>
-                        <input type='text' name='open_button' placeholder='Open button (DOM element)' />
-                    </label>
-                    <label id="full-close">
-                        <span>Close button:</span>
-                        <input type='text' name='close_button' placeholder='Close button (DOM element)' />
-                    </label>
-                </div>
-            </div>
+            <div id="carousel">
+                <div>
+                    <div id="pick" class="member actives">
+                        <span>Pick an album type</span>
+                        <div id="album-options">
+                            <div id="carousel-opt">
+                                <i class="material-icons">view_carousel</i>
+                                <span>Carousel</span>
+                            </div>
+                            <div id="grid-opt">
+                                <i class="material-icons">grid_on</i>
+                                <span>Grid</span>
+                            </div>
+                            <div id="audio-opt">
+                                <i class="material-icons">play_circle_outline</i>
+                                <span>Audio player</span>
+                            </div>
+                            <div id="list-opt">
+                                <i class="material-icons">list</i>
+                                <span>List</span>
+                            </div>
+                        </div>
+                    </div>
 
-            <div id="responsive-settings">
-                <div class="new-breakpoint">
-                    <span>Add new breakpoint</span>
-                    <i class="material-icons">add</i>
+                    <!-- Grid slides -->
+                    <div id="general" class="member grid-member">
+                        <label>
+                            <span>Album name:</span>
+                            <input type='text' name='album_name' placeholder='Album name' />
+                        </label>
+                        <label id="itemsper">
+                            <span>Items per row:</span>
+                            <input type='number' name='items' placeholder='0' />
+                        </label>
+                    </div>
+
+                    <!-- Carousel slides -->
+                    <div id="general" class="member car-member">
+                        <label>
+                            <span>Album name:</span>
+                            <input type='text' name='album_name' placeholder='Album name' />
+                        </label>
+                        <label id="itemsper">
+                            <span>Items per slide:</span>
+                            <input type='number' name='items' placeholder='0' />
+                        </label>
+                    </div>
+                    <div id="transition" class="member car-member">
+                        <span>Transition settings</span>
+                        <div class="fields">
+                            <label>
+                                <span>Type:</span>
+                                <select name='transition_type'>
+                                    <option value='slide'>Slide</option>
+                                </select>
+                            </label>
+                            <label id="itemspertrans">
+                                <span>Items per transition:</span>
+                                <input type='number' name='transition_items' placeholder='1' />
+                            </label>
+                            <label id="autoselect">
+                                <span>Auto:</span>
+                                <select name='auto' id='auto_select'>
+                                    <option value=false>False</option>
+                                    <option value=true>True</option>
+                                </select>
+                            </label>
+                            <label id="gestures">
+                                <span>Gestures:</span>
+                                <select name='gestures' id='gestures_selct'>
+                                    <option value=false>False</option>
+                                    <option value=true>True</option>
+                                </select>
+                            </label>
+                            <label id="auto-interval">
+                                <span>Auto interval:</span>
+                                <input type='number' name='auto_interval' />
+                            </label>
+                        </div>
+                    </div>
+                    <div id="navigation" class="member car-member">
+                        <span>Navigation settings</span>
+                        <div class="fields">
+                            <label id="navselect">
+                                <span>Show nav:</span>
+                                <select id='nav_select'>
+                                    <option value=false>False</option>
+                                    <option value=true>True</option>
+                                </select>
+                            </label>
+                            <label id="nav-prev">
+                                <span>Prev button:</span>
+                                <input type='text' name='prev_button' placeholder='Previous button (DOM element)' />
+                            </label>
+                            <label id="nav-next">
+                                <span>Next button:</span>
+                                <input type='text' name='next_button' placeholder='Next button (DOM element)' />
+                            </label>
+                        </div>
+                    </div>
+                    <div id="fullscreen" class="member car-member">
+                        <span>Fullscreen settings</span>
+                        <div class="fields">
+                            <label id="fullscreenselect">
+                                <span>Activate fullscreen:</span>
+                                <select id='fullscreen_select'>
+                                    <option value=false>False</option>
+                                    <option value=true>True</option>
+                                </select>
+                            </label>
+                            <label id="full-open">
+                                <span>Open button:</span>
+                                <input type='text' name='open_button' placeholder='Open button (DOM element)' />
+                            </label>
+                            <label id="full-close">
+                                <span>Close button:</span>
+                                <input type='text' name='close_button' placeholder='Close button (DOM element)' />
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- General slides -->
+                    <div id="resources" class="member">
+                        <span>Links to your files</span>
+                        <div id="resource-select">
+                            <label id="contenttype">
+                                <span>Content type:</span>
+                                <select id='content_select'>
+                                    <option value=false>Images</option>
+                                    <option value=true>Video</option>
+                                    <option value=true>Other</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div><input type='text' name='file-link' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                        <div><input type='text' name='file-link' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                        <div><input type='text' name='file-link' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                        <span id="add-more">Add more</span>
+                    </div>
+                    <div id="responsive-settings" class="member">
+                        <span>Responsive settings</span>
+                        <div class="new-breakpoint">
+                            <div class="insert-breakpoint">
+                                <input type='text' name='new-breakpoint' placeholder='Width in pixels' />
+                                <i class="material-icons">add</i>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="final" class="member">
+                        <button type='submit'>Save gallery</button>
+                        <span></span>
+                        <button type='submit'>Generate JSON</button>
+                    </div>
                 </div>
             </div>
-            <button type='submit'>Create</button>
         </form>
     </div>
     <script src='js/form.js'></script>
+
+    <script src="js/carousel-dependencies/buttons.js"></script>
+    <script src="js/carousel-dependencies/responsive.js"></script>
+    <script src="js/carousel-dependencies/transitions.js"></script>
+    <script src="js/carousel-dependencies/gestures.js"></script>
+    <script src="js/init.js"></script>
+
     <script src='bundle_create.js'></script>
 </body>
 </html>
