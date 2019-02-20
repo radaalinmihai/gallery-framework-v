@@ -111,12 +111,28 @@ body, html {
   	display: -webkit-flex;
   	display: flex;
   	flex-wrap: wrap;
+    position: relative;
 }
 .grid-container > * {
     cursor: pointer;
+    z-index: 3;
+}
+.grid-container > .member {
+    position: initial;
 }
 .grid-container img {
-    padding: 20px;
+    padding: 10px;
+}
+.grid-container > .transitioning {
+    z-index: 4;
+    -webkit-transform: scale(0.9);
+        -ms-transform: scale(0.9);
+            transform: scale(0.9);
+    transition: transform 0.3s ease;
+    position: absolute;
+}
+.adjusting {
+    cursor: e-resize;
 }
 .img-member {
     display: flex;
@@ -152,9 +168,6 @@ body, html {
 .vid-member > video {
     width: 50%;
     margin: auto;
-}
-.vid-grid-member {
-    position: relative;
 }
 .video-grid-cover {
     position: absolute;
