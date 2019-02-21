@@ -38,12 +38,12 @@ app.post('/create_album', function (req, res) {
             var data_model = new models.albums(data);
 
             data_model.save(function(err) {
-                if(err && err.name == 'ValidatorError')
-                    res.send({
+                if(err && err.name == 'ValidationError') {
+                    return res.send({
                         success: false,
-                        message: 'No empty fields!'
+                        message: 'All fields with an *(asterisk) must be completed/filled!'
                     });
-                else
+                }  
                     res.send({
                         success: true,
                         message: 'Album created succesfuly! Here is the token ' + data.token,
@@ -70,13 +70,14 @@ app.post('/return_album', function(req, res) {
             success: false,
             message: err
         });
-        console.log(result);
+
         if(result == null) {
             return res.send({
                 success: false,
                 message: 'No token found'
             });
         }
+        
         res.send({
             success: true,
             data: result
