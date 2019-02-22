@@ -48,23 +48,27 @@ function isValid(element) {
 };
 
 function formToJSON(elements) {
+    var images = [];
     return [].reduce.call(elements, function(data, element) {
-        if(isValid(element))
+        if(isValid(element) && element.name !== 'images')
             data[element.name] = parseInt(element.value) ? parseInt(element.value) : element.value.toString();
+        else if(isValid(element) && element.name == 'images') {
+            images.push(element.value);
+            data[element.name] = images;
+        }
         return data;
     }, {});
 };
 
 module.exports = {
-    formToJSON: formToJSON,
-    isValid: isValid
+    formToJSON: formToJSON
 }
 },{}],3:[function(require,module,exports){
 var m = require('./ajax.js'),
     utility = require('./utility_functions.js');
 
 document.addEventListener('DOMContentLoaded', function () {
-    var form = document.getElementsByClassName('form-styling')[0].querySelector('form'),
+    var form = document.getElementsByClassName('form-styling')[0],
         album_shows = document.getElementsByClassName('albums_show')[0];
 
     form.addEventListener('submit', function (e) {

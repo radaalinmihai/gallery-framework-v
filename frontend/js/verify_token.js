@@ -2,7 +2,7 @@ var m = require('./ajax.js'),
     utility = require('./utility_functions.js');
 
 document.addEventListener('DOMContentLoaded', function () {
-    var form = document.getElementsByClassName('form-styling')[0].querySelector('form'),
+    var form = document.getElementsByClassName('form-styling')[0],
         album_shows = document.getElementsByClassName('albums_show')[0];
 
     form.addEventListener('submit', function (e) {
