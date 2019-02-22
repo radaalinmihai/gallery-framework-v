@@ -236,9 +236,9 @@ function portofolio (containerID, settings) {
 					}
 				}
 	
-				for (var i = 0; i < members.length - 1; i++) {
-					addEvent(members[i]);
-				}
+				// for (var i = 0; i < members.length - 1; i++) {
+				// 	addEvent(members[i]);
+				// }
 
 				if (params.format == "video") {
 					var next = carContainer.children[3];
@@ -254,6 +254,130 @@ function portofolio (containerID, settings) {
 						carContainer.children[1].children[slideIndex + 2].children[0].pause();
 					});
 				}
+
+
+				// DRAG & DROP
+
+				var selected = null, // Object of the element to be moved
+				    x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
+				    x_elem = 0, y_elem = 0, // Stores top, left values (edge) of the element
+				    destNext, initNext, placeholder, correctOne, pastOne = -1;
+
+				function findCorrectOne() {
+
+					pastOne = -1;
+
+					for (i = 0; i < members.length - 1; i++) {
+
+						if (members[i] != selected) {
+
+							x_dest = members[i].offsetLeft;
+				    		y_dest = members[i].offsetTop;
+	
+				    		x_pos = selected.offsetLeft;
+				    		y_pos = selected.offsetTop;
+	
+				    		if (pastOne == -1) {
+				    			pastOne = Math.abs(x_pos - x_dest) + Math.abs(y_pos - y_dest);
+				    			if (correctOne != null) correctOne.style.border = "none";
+				    			correctOne = members[i];
+				    			correctOne.style.border = "2px solid black";
+				    			destNext = members[i].nextElementSibling;
+				    		}
+				    		else if (Math.abs(x_pos - x_dest) + Math.abs(y_pos - y_dest) < pastOne) {
+				    			pastOne = Math.abs(x_pos - x_dest) + Math.abs(y_pos - y_dest);
+				    			correctOne.style.border = "none";
+				    			correctOne = members[i];
+				    			correctOne.style.border = "2px solid black";
+				    			destNext = members[i].nextElementSibling;
+				    		}
+
+						}
+
+					}
+					
+				}
+				
+				// Will be called when user starts dragging an element
+				function _drag_init(elem) {
+				    // Store the object of the element which needs to be moved
+				    selected = elem;
+				    x_elem = x_pos - selected.offsetLeft;
+				    y_elem = y_pos - selected.offsetTop;
+				}
+				
+				// Will be called when user dragging an element
+				function _move_elem(e) {
+				    x_pos = document.all ? window.event.clientX : e.pageX;
+				    y_pos = document.all ? window.event.clientY : e.pageY;
+				    if (selected !== null) {
+				        selected.style.left = (x_pos - x_elem) + 'px';
+				        selected.style.top = (y_pos - y_elem) + 'px';
+
+				        findCorrectOne();
+				    }
+				}
+				
+				// Destroy the object when we are done
+				function _destroy() {
+
+					findCorrectOne();
+
+					if (correctOne != placeholder) {
+						container.removeChild(placeholder);
+						container.insertBefore(correctOne, initNext);
+						selected.classList.remove("transitioning");
+						container.insertBefore(selected, destNext);
+						correctOne.style.border = "none";
+					}
+					else {
+						container.removeChild(placeholder);
+						selected.classList.remove("transitioning");
+						correctOne.style.border = "none";
+					}
+
+					selected = null;
+	
+				}
+
+				for (i = 0; i < members.length - 1; i++) {
+					// Bind the functions...
+					members[i].onmousedown = function () {
+					    _drag_init(this);
+					    this.classList.add("transitioning");
+					    placeholder = document.createElement("div");
+					    placeholder.style.width = this.style.width;
+					    container.insertBefore(placeholder, this.nextElementSibling);
+					    selected.style.left = (x_pos - x_elem) + 'px';
+				        selected.style.top = (y_pos - y_elem) + 'px';
+				        initNext = placeholder.nextElementSibling;
+					    return false;
+					};
+				}
+				
+				document.onmousemove = _move_elem;
+				document.onmouseup = _destroy;
+
+
+				// ADJUST MEMBERS
+
+				function adjustEvents (ele) {
+					ele.addEventListener = ("mouseover", function(e) {
+						if (e.target != e.currentTarget) {
+							this.classList.remove("adjusting");
+						}
+						else {
+							this.classList.add("adjusting");
+						}
+					});
+
+					ele.addEventListener("mouseout", function(e) {
+						if (e.target != e.currentTarget) return 1;
+						this.classList.remove("adjusting");
+					});
+				}
+
+				for (i = 0; i < members.length - 1; i++) adjustEvents(members[i]);
 
 			}
 
