@@ -114,8 +114,9 @@ function portofolio (containerID, settings) {
 		break;
 
 		case "grid":
+
 			container.classList.add("grid-container");
-			var members = container.children;
+			var members = container.children, genHeight;
 
 			if (params.hasOwnProperty("itemsPerRow")) {
 				if (params.itemsPerRow != null) {
@@ -125,259 +126,21 @@ function portofolio (containerID, settings) {
 			else var perc = 25; // grid defaults to 4 items per row
 
 			for (var i = 0; i < members.length; i++) {
+				if (i == 0 || (i + 1) % params.itemsPerRow == 1) {
+					genHeight = window.getComputedStyle(members[i].children[0]).getPropertyValue("height");
+				}
 				members[i].style.width = perc.toString() + "%";
+				members[i].style.height = genHeight;
 				members[i].classList.add("vid-grid-member");
 			}
 
 			if (params.hasOwnProperty("fullscreen") && params.fullscreen == true) {
 
-				var carContainer = document.createElement("div");
-				var stage = document.createElement("div");
-				var slideIndex = 0;
-	
-				carContainer.setAttribute("id", "photo-carousel-1");
-				carContainer.classList.add("full-car");
-				carContainer.style.visibility = "hidden";
-				carContainer.style.zIndex = "10000000";
-				carContainer.appendChild(stage);
+				// fullscreenGrid(container, params);
 
-				if (params.format == "video") {
+				dragNDrop(container, params);
 
-					for (i = 0; i < members.length; i++) {
-
-						var member = document.createElement("div");
-						var video = document.createElement("video");
-						var source = document.createElement("source");
-						video.setAttribute("controls", "");
-						source.setAttribute("src", members[i].children[0].children[0].getAttribute("src"));
-						video.appendChild(source);
-						member.appendChild(video);
-						member.classList.add("vid-member");
-						member.classList.add("member");
-						stage.appendChild(member);
-
-						var cover = document.createElement("div");
-						var ico = document.createElement("i");
-
-						ico.setAttribute("class", "material-icons");
-						ico.innerText = "play_circle_outline";
-						cover.setAttribute("class", "video-grid-cover");
-
-						cover.appendChild(ico);
-						members[i].appendChild(cover);
-
-					}
-
-				}
-				else {
-
-					for (i = 0; i < members.length; i++) {
-						var member = document.createElement("div");
-						var img = document.createElement("img");
-						img.setAttribute("src", members[i].children[0].getAttribute("src"));
-						member.appendChild(img);
-						member.classList.add("member");
-						member.classList.add("img-member");
-						stage.appendChild(member);
-					}
-
-				}
-	
-				container.appendChild(carContainer);
-	
-				portofolio("photo-carousel-1", {
-					type:"carousel",
-					items:1,
-					transition:{
-						transitionType:"slide"
-					},
-					nav : {
-						show: true,
-						prev: "<i class='material-icons'>chevron_left</i>",
-					 	next: "<i class='material-icons'>chevron_right</i>"
-					}
-				});
-	
-				var stageWidth = carContainer.offsetWidth;
-	
-				var i = document.createElement("i");
-				var closeDiv = document.createElement("div");
-				
-				i.setAttribute("class", "material-icons");
-				i.innerText = "close";
-				closeDiv.setAttribute("class", "close-fullscreen-grid");
-	
-				closeDiv.appendChild(i);
-	
-				carContainer.insertBefore(closeDiv, carContainer.childNodes[0]);
-	
-				closeDiv.addEventListener("click", function() {
-					this.parentNode.style.display = "none";
-				});
-	
-				function getIndex(ele) {
-					var k = 0;
-	
-					while (ele.parentNode.children[k] != ele) k++;
-	
-					return k;
-				}
-	
-				function addEvent(ele) {
-					ele.onclick = function () {
-						this.parentNode.lastChild.childNodes[1].style.transition = "none";
-						this.parentNode.lastChild.childNodes[1].style.left = "-" + stageWidth * getIndex(ele) + "px";
-						slideIndex = getIndex(ele) - 1;
-						this.parentNode.lastChild.style.visibility = "visible";
-						this.parentNode.lastChild.style.display = "flex";
-						setTimeout(function() {
-							ele.parentNode.lastChild.childNodes[1].style.transition = "all 0.2s ease";
-						}, 100);
-					}
-				}
-	
-				// for (var i = 0; i < members.length - 1; i++) {
-				// 	addEvent(members[i]);
-				// }
-
-				if (params.format == "video") {
-					var next = carContainer.children[3];
-					var prev = carContainer.children[2];
-
-					next.addEventListener("click", function() {
-						slideIndex++;
-						carContainer.children[1].children[slideIndex].children[0].pause();
-					});
-
-					prev.addEventListener("click", function() {
-						slideIndex--;
-						carContainer.children[1].children[slideIndex + 2].children[0].pause();
-					});
-				}
-
-
-				// DRAG & DROP
-
-				var selected = null, // Object of the element to be moved
-				    x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
-				    x_elem = 0, y_elem = 0, // Stores top, left values (edge) of the element
-				    destNext, initNext, placeholder, correctOne, pastOne = -1;
-
-				function findCorrectOne() {
-
-					pastOne = -1;
-
-					for (i = 0; i < members.length - 1; i++) {
-
-						if (members[i] != selected) {
-
-							x_dest = members[i].offsetLeft;
-				    		y_dest = members[i].offsetTop;
-	
-				    		x_pos = selected.offsetLeft;
-				    		y_pos = selected.offsetTop;
-	
-				    		if (pastOne == -1) {
-				    			pastOne = Math.abs(x_pos - x_dest) + Math.abs(y_pos - y_dest);
-				    			if (correctOne != null) correctOne.style.border = "none";
-				    			correctOne = members[i];
-				    			correctOne.style.border = "2px solid black";
-				    			destNext = members[i].nextElementSibling;
-				    		}
-				    		else if (Math.abs(x_pos - x_dest) + Math.abs(y_pos - y_dest) < pastOne) {
-				    			pastOne = Math.abs(x_pos - x_dest) + Math.abs(y_pos - y_dest);
-				    			correctOne.style.border = "none";
-				    			correctOne = members[i];
-				    			correctOne.style.border = "2px solid black";
-				    			destNext = members[i].nextElementSibling;
-				    		}
-
-						}
-
-					}
-					
-				}
-				
-				// Will be called when user starts dragging an element
-				function _drag_init(elem) {
-				    // Store the object of the element which needs to be moved
-				    selected = elem;
-				    x_elem = x_pos - selected.offsetLeft;
-				    y_elem = y_pos - selected.offsetTop;
-				}
-				
-				// Will be called when user dragging an element
-				function _move_elem(e) {
-				    x_pos = document.all ? window.event.clientX : e.pageX;
-				    y_pos = document.all ? window.event.clientY : e.pageY;
-				    if (selected !== null) {
-				        selected.style.left = (x_pos - x_elem) + 'px';
-				        selected.style.top = (y_pos - y_elem) + 'px';
-
-				        findCorrectOne();
-				    }
-				}
-				
-				// Destroy the object when we are done
-				function _destroy() {
-
-					findCorrectOne();
-
-					if (correctOne != placeholder) {
-						container.removeChild(placeholder);
-						container.insertBefore(correctOne, initNext);
-						selected.classList.remove("transitioning");
-						container.insertBefore(selected, destNext);
-						correctOne.style.border = "none";
-					}
-					else {
-						container.removeChild(placeholder);
-						selected.classList.remove("transitioning");
-						correctOne.style.border = "none";
-					}
-
-					selected = null;
-	
-				}
-
-				for (i = 0; i < members.length - 1; i++) {
-					// Bind the functions...
-					members[i].onmousedown = function () {
-					    _drag_init(this);
-					    this.classList.add("transitioning");
-					    placeholder = document.createElement("div");
-					    placeholder.style.width = this.style.width;
-					    container.insertBefore(placeholder, this.nextElementSibling);
-					    selected.style.left = (x_pos - x_elem) + 'px';
-				        selected.style.top = (y_pos - y_elem) + 'px';
-				        initNext = placeholder.nextElementSibling;
-					    return false;
-					};
-				}
-				
-				document.onmousemove = _move_elem;
-				document.onmouseup = _destroy;
-
-
-				// ADJUST MEMBERS
-
-				function adjustEvents (ele) {
-					ele.addEventListener = ("mouseover", function(e) {
-						if (e.target != e.currentTarget) {
-							this.classList.remove("adjusting");
-						}
-						else {
-							this.classList.add("adjusting");
-						}
-					});
-
-					ele.addEventListener("mouseout", function(e) {
-						if (e.target != e.currentTarget) return 1;
-						this.classList.remove("adjusting");
-					});
-				}
-
-				for (i = 0; i < members.length - 1; i++) adjustEvents(members[i]);
+				adjustSize(container, params);
 
 			}
 

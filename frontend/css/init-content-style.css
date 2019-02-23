@@ -114,14 +114,16 @@ body, html {
     position: relative;
 }
 .grid-container > * {
-    cursor: pointer;
     z-index: 3;
 }
 .grid-container > .member {
-    position: initial;
+    position: relative;
 }
 .grid-container img {
     padding: 10px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 .grid-container > .transitioning {
     z-index: 4;
@@ -182,7 +184,14 @@ body, html {
     color: white;
     font-size: 3em;
 }
-
+.resize-gutter {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: -4px;
+    width: 8px;
+    cursor: ew-resize;
+}
 /*--------------------------------------------------------------
 # Audio
 --------------------------------------------------------------*/

@@ -105,13 +105,9 @@ function addDrag (el, stageWidth, containerWidth, memberWidth, loop) {
             if (loop) {
                 if (x_pos < initial && parseFloat(el.style.left) * -1 < (stageWidth - containerWidth * 2)) {
                     el.style.left = "-" + ((x_pos - x_elem) * -1) + 'px';
-                    console.log(parseFloat(stage.style.left));
-                    console.log(stageWidth - containerWidth * 2);
                 }
                 else if (x_pos > initial && parseFloat(el.style.left) * -1 > containerWidth) {
                     el.style.left = "-" + ((x_pos - x_elem) * -1) + 'px';
-                    console.log(parseFloat(stage.style.left));
-                    console.log(stageWidth - containerWidth * 2);
                 }
             }
             else if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {

@@ -81,13 +81,14 @@
 		</div>
 		
 </body>
-<script src="js/carousel-dependencies/audio.js"></script> 
-<script src="js/carousel-dependencies/responsive.js"></script> 
-<script src="js/carousel-dependencies/speech.js"></script> 
-<script src="js/carousel-dependencies/buttons.js"></script> 
-<script src="js/carousel-dependencies/transitions.js"></script> 
-<script src="js/carousel-dependencies/gestures.js"></script> 
-<script src="js/pdf/pdf.js"></script>
+<script src="js/init-dependencies/audio.js"></script> 
+<script src="js/init-dependencies/responsive.js"></script> 
+<script src="js/init-dependencies/speech.js"></script> 
+<script src="js/init-dependencies/buttons.js"></script> 
+<script src="js/init-dependencies/transitions.js"></script> 
+<script src="js/init-dependencies/gestures.js"></script> 
+<script src="js/init-dependencies/fullscreen-grid.js"></script> 
+<script src="js/extensions/adjust.js"></script> 
 <script src="js/init.js"></script> 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
@@ -108,28 +109,28 @@
 			items:3,
 			speech:false,
 			transition:{
-				auto:false,
-				autoInterval:1500,
-				transitionType:"item",
-				transitionItems:2,
-				loop:true,
-				gestures:true
-			},
-			fullscreen : {
-				show: true,
-				open: "<i class='material-icons'>fullscreen</i>",
-				close: "<i class='material-icons'>close</i>"
-			},
-			nav : {
-				show: true,
-				prev: "<i class='material-icons'>chevron_left</i>",
-			 	next: "<i class='material-icons'>chevron_right</i>"
-			},
-			lang : {
-				next: "Next",
-				prev: "Back",
-				code: "en-US"
+				auto:true,
+				autoInterval:1500
+				// transitionType:"item",
+				// transitionItems:2,
+				// loop:true,
+				// gestures:true
 			}
+			// fullscreen : {
+			// 	show: true,
+			// 	open: "<i class='material-icons'>fullscreen</i>",
+			// 	close: "<i class='material-icons'>close</i>"
+			// },
+			// nav : {
+			// 	show: true,
+			// 	prev: "<i class='material-icons'>chevron_left</i>",
+			//  	next: "<i class='material-icons'>chevron_right</i>"
+			// },
+			// lang : {
+			// 	next: "Next",
+			// 	prev: "Back",
+			// 	code: "en-US"
+			// }
 			// responsive : {
 			// 	1000 : {
 			// 		items: 2,
