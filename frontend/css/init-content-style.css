@@ -58,14 +58,17 @@ body, html {
 	transition: all 0.2s ease-in-out;
 }
 .next i, .prev i {
-	font-size: 3em;
+	font-size: 2em;
 	color: white;
+    font-style: normal;
 }
 .prev {
 	left: 0;
+    padding-left: 10px;
 }
 .next {
 	right: 0;
+    padding-right: 10px;
 }
 .active {
 	cursor: grabbing;
@@ -100,6 +103,7 @@ body, html {
 }
 .car-full-buttons > i {
 	font-size: 3em;
+    font-style: normal;
 }
 
 /*--------------------------------------------------------------

@@ -18,16 +18,23 @@ function portofolio (containerID, settings) {
 						i, itemsPerSlide;
 
 
+			if (params.transition == null) {
+				params.transition = {
+					loop : true,
+					gestures : true,
+					auto : false
+				}
+			}
+
+
 			// Give appropriate classes to both containers			
 			stage.classList.add("car-stage");
 			container.classList.add("carousel-container");
 
 
 			// Checking how many items per slide and assigning appropriate individual widths
-			if (params.hasOwnProperty("items")) {
-				if (params.items != null) {
-					itemsPerSlide = params.items;
-				}
+			if (params.hasOwnProperty("items") && params.items != null) {
+				itemsPerSlide = params.items;
 			}
 			else itemsPerSlide = 3; // defaults to 3 items per slide
 
@@ -40,7 +47,7 @@ function portofolio (containerID, settings) {
 			}
 
 			// Clone items for loop
-			if (settings.transition.loop) {
+			if (params.transition.loop) {
 				var k = 0;
 				for (i = 0; i < itemsPerSlide; i++) {
 					var frontClone = members[k].cloneNode([true]);
@@ -203,6 +210,7 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 		next.onclick = function() {
 			moveUp(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, options.loop);
 		}
+		
 		document.onkeydown = arrowPress;
 		function arrowPress(e) {
 			if (e.keyCode == '37') {
@@ -214,20 +222,16 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 		}
 	}
 
-	if (options.hasOwnProperty("auto")) {
-		if (options.auto != null) {
-			if (options.auto == true) {
-				if (options.hasOwnProperty("autoInterval")) {
-					if (options.autoInterval != null) {
-						setInterval(function() {
-							if (mouseover == 1) {
-								moveUp(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, options.loop);
-							}
-						}, options.autoInterval);
-					}
-				}
-				else error("autoInterval");
+	if (options.hasOwnProperty("auto") && options.auto != null) {
+		if (options.auto) {
+			if (options.hasOwnProperty("autoInterval") == false || options.autoInterval == null) {
+				options.autoInterval = 1500; // Interval defaults to 1.5 seconds
 			}
+			setInterval(function() {
+				if (mouseover == 1) {
+					moveUp(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, options.loop);
+				}
+			}, options.autoInterval);
 		}
 	}
 

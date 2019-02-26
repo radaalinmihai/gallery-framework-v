@@ -108,37 +108,25 @@
 			type:"carousel",
 			items:3,
 			speech:false,
-			transition:{
-				auto:true,
-				autoInterval:1500
-				// transitionType:"item",
-				// transitionItems:2,
-				// loop:true,
-				// gestures:true
+			fullscreen : {
+				show: true
+			},
+			nav : {
+				show: true
+			},
+			lang : {
+				next: "Next",
+				prev: "Back",
+				code: "en-US"
+			},
+			responsive : {
+				1000 : {
+					items: 2,
+					transition : {
+						transitionType:"slide"
+					}
+				}
 			}
-			// fullscreen : {
-			// 	show: true,
-			// 	open: "<i class='material-icons'>fullscreen</i>",
-			// 	close: "<i class='material-icons'>close</i>"
-			// },
-			// nav : {
-			// 	show: true,
-			// 	prev: "<i class='material-icons'>chevron_left</i>",
-			//  	next: "<i class='material-icons'>chevron_right</i>"
-			// },
-			// lang : {
-			// 	next: "Next",
-			// 	prev: "Back",
-			// 	code: "en-US"
-			// }
-			// responsive : {
-			// 	1000 : {
-			// 		items: 2,
-			// 		transition : {
-			// 			transitionType:"slide"
-			// 		}
-			// 	}
-			// }
 		});
 	});
 	
