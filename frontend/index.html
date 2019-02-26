@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="css/desktop.css">
 </head>
 
-
+<link rel="icon" type="image/png" href="/images/favicon.ico" />
 
 <body>
     <!-- header container -->
     <div class="container-top">
         <header>
-            <img src="images/logod.svg" alt="portofolio logo" class="logo">
+            <img src="/images/logod.svg" alt="portofolio logo" class="logo">
             <nav>
                 <!-- main nav, not visible on mobile rn -->
                 <a href="#" class="hide-desktop">
@@ -27,6 +27,7 @@
                     <li><a href="#">home</a></li>
                     <li><a href="#">create</a></li>
                     <li><a href="#">contact</a></li>
+                    <li><input type="text" name="token" placeholder="insert token" class="token-input"></li>
                 </ul>
             </nav>
         </header>
@@ -43,29 +44,29 @@
                     <li>
 
                         <div class="container-items-list">
-                            <img src="images/r1.png">
+                            <img alt="" src="images/r1.png">
                             <h1> Mihai </h1>
                         </div>
                         <p class="container-p">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
-                            lorem ipsum loratum ciocolatumshaggy
+                            lorem ipsum loratum ciocolatumshaggy van dame van wane
                         </p>
                     </li>
                     <li>
                         <div class="container-items-list">
-                            <img src="images/a1.jpg">
+                            <img alt="" src="images/a1.jpg">
                             <h1> Flavius </h1>
                         </div>
                         <p class="container-p">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
-                            lorem ipsum loratum ciocolatumshaggy
+                            lorem ipsum loratum ciocolatumshaggy van dame van wane
                         </p>
                     </li>
                     <li>
                         <div class="container-items-list">
-                            <img src="images/i2.png">
-                            <h1> Ivanoviciki </h1>
+                            <img alt="" src="images/i2.png">
+                            <h1> Ionut </h1>
                         </div>
                         <p class="container-p">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
-                            lorem ipsum loratum ciocolatumshaggy
+                            lorem ipsum loratum ciocolatumshaggy van dame van wane
                         </p>
                     </li>
 
@@ -73,7 +74,12 @@
                 </ul>
             </aside>
             <div class="aside-right">
-                <div class="container-ocapacity"> <!-- shading effect on right container -->
+      
+                           
+                    <h1 class="main-title">Create and inspire others</h1>
+                    <p class="main-subtitle">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
+                            lorem ipsum loratum ciocolatumshaggy van dame van wane</p>
+                            <button class="main-button">Get started</button>
                 </div>
             </div>
         </div>
@@ -102,14 +108,23 @@
         </ul>
         </div>
         --->
-        <p class="footerp">Powered by edociiF2 for <a href="#">Fiicode 2019</a></p>
+        <p class="footerp">Powered by edociiF 2 for <a href="#">Fiicode 2019</a></p>
     </footer>
 
 
 
 
-       
-    <script src="js/main.js"></script>  <!-- additionals animations, styling, etcetera -->
+
+    <script src="js/main.js"></script> <!-- additionals animations, styling, etcetera -->
+    <script>  
+            init("aside-right", {
+                type : "carousel",
+                nav:{
+                    show:true
+                }
+            });
+            </script>
+            <script src="js/form.js"></script> <!-- additionals animations, styling, etcetera -->
 </body>
 
 </html>

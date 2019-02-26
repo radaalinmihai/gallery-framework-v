@@ -66,8 +66,6 @@ header nav ul li a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-line-pack: start;
-      align-content: flex-start;
 }
 
 .container-body aside {
@@ -98,6 +96,31 @@ header nav ul li a {
   padding-left: 1.5em;
 }
 
+.token-input {
+  background-color: #333131;
+  border: 0;
+  text-align: center;
+  color: #BBB9B9;
+  width: 120px;
+  height: 15px;
+}
+
+.token-input::-webkit-input-placeholder {
+  color: #c7c5c5;
+}
+
+.token-input:-ms-input-placeholder {
+  color: #c7c5c5;
+}
+
+.token-input::-ms-input-placeholder {
+  color: #c7c5c5;
+}
+
+.token-input::placeholder {
+  color: #c7c5c5;
+}
+
 .container-items-list {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -110,18 +133,31 @@ header nav ul li a {
 }
 
 .container-items-list h1 {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
   color: #c7c5c5;
   font-size: 1.3rem;
   display: inline-block;
 }
 
 .container-items-list img {
-  width: 150px;
+  margin-bottom: 0.5em;
+  min-width: 45%;
+  width: 45%;
+  min-height: 45%;
+  height: 45%;
   border-radius: 40%;
 }
 
+.container-p {
+  margin-right: 0.5em;
+  text-align: right;
+}
+
 .aside-right {
-  height: auto;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  height: 100%;
   width: 100%;
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
@@ -131,12 +167,48 @@ header nav ul li a {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/frontend/images/pep.jpg");
+  background-image: url("/images/pep.jpg");
 }
 
 .container-ocapacity {
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.main-title {
+  color: white;
+  margin: 8em 0 0.5em 0;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.main-subtitle {
+  text-align: center;
+  margin: 0 auto;
+  max-width: 50ch;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.main-button {
+  font-family: 'Ubuntu', sans-serif;
+  margin: 1em 0 2em 0;
+  background-color: #fff;
+  border-radius: 25px;
+  border: none;
+  color: black;
+  padding: 15px 60px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 footer {
