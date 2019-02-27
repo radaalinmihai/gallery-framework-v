@@ -61,7 +61,14 @@ var albums = new Schema({
             type: String
         }
     },
-    responsive: { type: Array },
+    responsive: [{
+        new_breakpoint: { type: String },
+        items_per_row: { type: Number },
+        items_per_trans: { type: Number },
+        auto_responsive: { type: Boolean },
+        nav_select: { type: Boolean },
+        fullscreen_responsive: { type: Boolean }
+    }],
     images: {
         type: Array,
         required: true

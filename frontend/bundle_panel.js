@@ -68,7 +68,7 @@ var m = require('./ajax.js'),
     utility = require('./utility_functions.js');
 
 document.addEventListener('DOMContentLoaded', function () {
-    var form = document.getElementsByClassName('form-styling')[0],
+    var form = document.getElementById('token_album_form'),
         album_shows = document.getElementsByClassName('albums_show')[0];
 
     form.addEventListener('submit', function (e) {
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
             data: JSON.stringify(formToken)
         })
             .then(function (res) {
-                if(res.success === true) {
+                if(res.success) {
                     var album = res.data;
                     album_shows.style.display = 'flex';
                     album_shows.innerHTML = '<h1>' + album.album_name + '</h1>' +
@@ -105,6 +105,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             auto: album.auto
                         }
                     });
+                } else {
+                    console.log(res.message);
                 }
             })
             .catch(function (err) {

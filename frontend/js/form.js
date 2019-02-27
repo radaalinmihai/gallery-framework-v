@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
         var o = document.getElementById("autoselect").cloneNode([true]);
         var n = document.getElementById("navselect").cloneNode([true]);
         var e = document.getElementById("fullscreenselect").cloneNode([true]);
+        c.childNodes[3].setAttribute('name', 'items_per_row');
+        l.childNodes[3].setAttribute('name', 'items_per_trans');
+        o.childNodes[3].setAttribute('name', 'auto_responsive');
+        n.childNodes[3].setAttribute('name', 'nav_select');
+        e.childNodes[3].setAttribute('name', 'fullscreen_responsive');
         div.appendChild(c);
         div.appendChild(l);
         div.appendChild(o);
