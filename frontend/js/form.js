@@ -89,9 +89,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    var input_type = document.getElementById('pick').querySelector('input[name="type"]');
+
     function hideMembers (type) {
         switch (type) {
             case "carousel":
+                input_type.value = 'carousel';
 
                 hide("grid-member");
 
@@ -102,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             case "grid":
 
+                input_type.value = 'grid';
                 hide("car-member");
 
                 show("grid-member");
@@ -111,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             case "audio":
 
+                input_type.value = 'audio';
                 hide("car-member");
                 hide("grid-member");
                 document.getElementById("responsive-settings").style.display = "none";
@@ -119,6 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             case "list":
 
+                input_type.value = 'list';
                 hide("car-member");
                 hide("grid-member");
                 document.getElementById("responsive-settings").style.display = "flex";

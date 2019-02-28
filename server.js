@@ -39,6 +39,7 @@ app.post('/create_album', function (req, res) {
 
             data_model.save(function(err) {
                 if(err && err.name == 'ValidationError') {
+                    console.log(err);
                     return res.send({
                         success: false,
                         message: 'All fields with an *(asterisk) must be completed/filled!'

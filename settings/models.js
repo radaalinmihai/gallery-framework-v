@@ -15,8 +15,8 @@ var albums = new Schema({
         type: Number,
         required: true
     },
-    transition: {
-        transitionType: {
+    transition: [{
+        transition_type: {
             type: String,
             required: true
         },
@@ -24,11 +24,11 @@ var albums = new Schema({
             type: Boolean,
             required: true
         },
-        autoInterval: {
+        auto_interval: {
             type: Number
         },
-    },
-    nav: {
+    }],
+    nav: [{
         show: {
             type: Boolean
         },
@@ -38,8 +38,8 @@ var albums = new Schema({
         next: {
             type: String
         }
-    },
-    fullscreen: {
+    }],
+    fullscreen: [{
         show: {
             type: Boolean
         },
@@ -49,8 +49,8 @@ var albums = new Schema({
         close: {
             type: String
         }
-    },
-    lang: {
+    }],
+    lang: [{
         next: {
             type: String
         },
@@ -60,7 +60,7 @@ var albums = new Schema({
         lang: {
             type: String
         }
-    },
+    }],
     responsive: [{
         new_breakpoint: { type: String },
         items_per_row: { type: Number },
@@ -74,8 +74,7 @@ var albums = new Schema({
         required: true
     },
     token: {
-        type: String,
-        required: true
+        type: String
     }
 });
 
