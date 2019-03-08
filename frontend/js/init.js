@@ -2,7 +2,7 @@ function portofolio (containerID, settings) {
 	var container = document.getElementById(containerID); // get container
 
 	// Sort responsive settings from highest to lowest so that they're applied accordingly
-	var params = {}, mediaQueries = [], k = 0, j, aux;
+	var params = {}, mediaQueries = [], k = 0, j;
 
 	if (settings.hasOwnProperty("responsive")) {
 		params = sortQueries(settings);

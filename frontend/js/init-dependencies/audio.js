@@ -39,10 +39,47 @@ function audioPlayer (songs) {
         audio_source.muted = !audio_source.muted;
     };
 
+    /* DRAGGING PROGRESS BAR */
+
+    var selected = null, // Object of the element to be moved
+    x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
+    x_elem = 0, y_elem = 0; // Stores top, left values (edge) of the element
+
+    // Will be called when user starts dragging an element
+    function _drag_init(elem) {
+        // Store the object of the element which needs to be moved
+        selected = elem;
+    }
+    
+    // Will be called when user dragging an element
+    function _move_elem(e) {
+        x_pos = document.all ? window.event.clientX : e.pageX;
+        if (selected !== null) {
+            var x = e.offsetX / selected.offsetWidth;
+            audio_source.currentTime = Math.abs(audio_source.duration * x);
+            console.log(Math.abs(audio_source.duration * x));
+        }
+    }
+    
+    // Destroy the object when we are done
+    function _destroy() {
+        selected = null;
+    }
+    
+    document.onmousemove = _move_elem;
+    document.onmouseup = _destroy;
+
     progress.onclick = function (e) {
         var x = e.offsetX / this.offsetWidth;
         audio_source.currentTime = Math.abs(audio_source.duration * x);
+        console.log(Math.abs(audio_source.duration * x));
     };
+
+    progress.onmousedown = function() {
+        _drag_init(this);
+    }
+
+    /* END OF DRAGGING */
 
     audio_source.addEventListener('timeupdate', function () {
         var currentTime = this.currentTime,

@@ -162,13 +162,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add more links
 
-    var clone = document.querySelector("#resources div").cloneNode([true]);
+    var clone = document.querySelector("#resources .url-input").cloneNode([true]);
 
     function readd() {
         var close = document.getElementsByClassName("remove-resource");
         for (var i = 0; i < close.length; i++) {
             close[i].onclick = function() {
-                clone = document.querySelector("#resources div").cloneNode([true]);
+                clone = document.querySelector("#resources .url-input").cloneNode([true]);
                 this.parentNode.remove();
             }
         }
@@ -176,8 +176,8 @@ document.addEventListener('DOMContentLoaded', function() {
     readd();
 
     document.getElementById("add-more").onclick = function() {
-        document.getElementById("resources").insertBefore(clone, this);
-        clone = document.querySelector("#resources div").cloneNode([true]);
+        console.log(document.getElementById("resources").insertBefore(clone, this));
+        clone = document.querySelector("#resources .url-input").cloneNode([true]);
         readd();
     }
 
@@ -245,19 +245,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-
-    portofolio("carousel", {
-        type: "carousel",
-        items: 1,
-        transition : {
-            transitionType:"slide"
-        },
-        nav : {
-            show: true,
-            prev: "<i class='material-icons'>chevron_left</i>",
-            next: "<i class='material-icons'>chevron_right</i>"
-        }
-    });
 
     // Wrap navigation buttons
 
@@ -348,6 +335,17 @@ document.addEventListener('DOMContentLoaded', function() {
             open.style.display = "none";
             close.style.display = "none"; 
         }
+    }
+
+    var mainButton = document.getElementsByClassName("main-button")[0], aside = document.getElementById("aside-right-welcome"), car = document.getElementsByClassName("form-styling")[0];
+
+    mainButton.onclick = function () {
+
+        var height = aside.offsetHeight;
+
+        aside.style.transform = "translateY(-" + height + "px)";
+        car.style.transform = "translateY(-" + height + "px)";
+        
     }
 
 });

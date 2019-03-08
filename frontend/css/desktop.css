@@ -47,10 +47,11 @@ header nav ul {
   display: -ms-flexbox;
   display: flex;
   margin-right: 30px;
+  height: 100%;
 }
 
 header nav ul li {
-  margin: 0em 1em 0 1em;
+  margin: auto 1em;
   font-size: 1.1rem;
 }
 
@@ -170,6 +171,11 @@ header nav ul li a {
   background-image: url("/images/pep.jpg");
 }
 
+#aside-right-welcome {
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
 .container-ocapacity {
   height: 100%;
   display: -webkit-box;
@@ -211,6 +217,10 @@ header nav ul li a {
   font-weight: bold;
 }
 
+.main-button:hover {
+  background: #eee;
+}
+
 footer {
   height: 6%;
   background: #1E1E1E;
@@ -239,6 +249,7 @@ footer {
 
 .hide-desktop {
   visibility: hidden;
+  display: none;
 }
 
 @media only screen and (max-width: 600px) {

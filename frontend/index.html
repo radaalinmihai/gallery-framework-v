@@ -8,6 +8,9 @@
     <!--- additions -->
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
     <link rel="stylesheet" href="css/desktop.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/portofolio.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <link rel="icon" type="image/png" href="/images/favicon.ico" />
@@ -74,13 +77,170 @@
                 </ul>
             </aside>
             <div class="aside-right">
-      
-                           
-                    <h1 class="main-title">Create and inspire others</h1>
-                    <p class="main-subtitle">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
-                            lorem ipsum loratum ciocolatumshaggy van dame van wane</p>
-                            <button class="main-button">Get started</button>
-                </div>
+                    
+                    <div id="aside-right-welcome">
+                        <h1 class="main-title">Create and inspire others</h1>
+                        <p class="main-subtitle">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire lorem ipsum loratum ciocolatumshaggy van dame van wane</p>
+                        <button class="main-button">Get started</button>
+                    </div>
+
+                    <form action='' method='post' class='form-styling'>
+                        <div id="carousel">
+                            <div>
+                                <div id="pick" class="member actives">
+                                    <span>Pick an album type</span>
+                                    <div id="album-options">
+                                        <div id="carousel-opt">
+                                            <i class="material-icons">view_carousel</i>
+                                            <span>Carousel</span>
+                                        </div>
+                                        <div id="grid-opt">
+                                            <i class="material-icons">grid_on</i>
+                                            <span>Grid</span>
+                                        </div>
+                                        <div id="audio-opt">
+                                            <i class="material-icons">play_circle_outline</i>
+                                            <span>Audio player</span>
+                                        </div>
+                                        <div id="list-opt">
+                                            <i class="material-icons">list</i>
+                                            <span>List</span>
+                                        </div>
+                                    </div>
+                                    <input type='hidden' name='type' />
+                                </div>
+            
+                                <!-- Grid slides -->
+                                <div id="general" class="member grid-member">
+                                    <label>
+                                        <span>Album name:</span>
+                                        <input type='text' name='album_name' placeholder='Album name' />
+                                    </label>
+                                    <label id="itemsper">
+                                        <span>Items per row:</span>
+                                        <input type='number' name='items' placeholder='0' />
+                                    </label>
+                                </div>
+            
+                                <!-- Carousel slides -->
+                                <div id="general" class="member car-member">
+                                    <label>
+                                        <span>Album name:</span>
+                                        <input type='text' name='album_name' placeholder='Album name' />
+                                    </label>
+                                    <label id="itemsper">
+                                        <span>Items per slide:</span>
+                                        <input type='number' name='items' placeholder='0' />
+                                    </label>
+                                </div>
+                                <div id="transition" class="member car-member">
+                                    <span>Transition settings</span>
+                                    <div class="fields">
+                                        <label>
+                                            <span>Type:</span>
+                                            <select name='transition_type'>
+                                                <option value='slide'>Slide</option>
+                                            </select>
+                                        </label>
+                                        <label id="itemspertrans">
+                                            <span>Items per transition:</span>
+                                            <input type='number' name='transition_items' placeholder='1' />
+                                        </label>
+                                        <label id="autoselect">
+                                            <span>Auto:</span>
+                                            <select name='auto' id='auto_select'>
+                                                <option value=false>False</option>
+                                                <option value=true>True</option>
+                                            </select>
+                                        </label>
+                                        <label id="gestures">
+                                            <span>Gestures:</span>
+                                            <select name='gestures' id='gestures_selct'>
+                                                <option value=false>False</option>
+                                                <option value=true>True</option>
+                                            </select>
+                                        </label>
+                                        <label id="auto-interval">
+                                            <span>Auto interval:</span>
+                                            <input type='number' name='auto_interval' />
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="navigation" class="member car-member">
+                                    <span>Navigation settings</span>
+                                    <div class="fields">
+                                        <label id="navselect">
+                                            <span>Show nav:</span>
+                                            <select id='nav_select'>
+                                                <option value=false>False</option>
+                                                <option value=true>True</option>
+                                            </select>
+                                        </label>
+                                        <label id="nav-prev">
+                                            <span>Prev button:</span>
+                                            <input type='text' name='prev_button' placeholder='Previous button (DOM element)' />
+                                        </label>
+                                        <label id="nav-next">
+                                            <span>Next button:</span>
+                                            <input type='text' name='next_button' placeholder='Next button (DOM element)' />
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="fullscreen" class="member car-member">
+                                    <span>Fullscreen settings</span>
+                                    <div class="fields">
+                                        <label id="fullscreenselect">
+                                            <span>Activate fullscreen:</span>
+                                            <select id='fullscreen_select'>
+                                                <option value=false>False</option>
+                                                <option value=true>True</option>
+                                            </select>
+                                        </label>
+                                        <label id="full-open">
+                                            <span>Open button:</span>
+                                            <input type='text' name='open_button' placeholder='Open button (DOM element)' />
+                                        </label>
+                                        <label id="full-close">
+                                            <span>Close button:</span>
+                                            <input type='text' name='close_button' placeholder='Close button (DOM element)' />
+                                        </label>
+                                    </div>
+                                </div>
+            
+                                <!-- General slides -->
+                                <div id="resources" class="member">
+                                    <label id="contenttype">
+                                        <span>Content type:</span>
+                                        <select id='fullscreen_select'>
+                                            <option value=image/video>Image/Video</option>
+                                            <option value=audio>Audio</option>
+                                        </select>
+                                    </label>
+                                    <span>Links to your files</span>
+                                    <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                    <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                    <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                    <span id="add-more">Add more</span>
+                                </div>
+                                <div id="responsive-settings" class="member">
+                                    <span>Responsive settings</span>
+                                    <div class="new-breakpoint">
+                                        <div class="insert-breakpoint">
+                                            <input type='text' name='new_breakpoint' placeholder='Width in pixels' />
+                                            <i class="material-icons">add</i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="final" class="member">
+                                    <button id='save' type='submit'>Save gallery</button>
+                                    <span></span>
+                                    <button id='generate' type='submit'>Generate JSON</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+            </div>
             </div>
         </div>
     </div>
@@ -116,15 +276,32 @@
 
 
     <script src="js/main.js"></script> <!-- additionals animations, styling, etcetera -->
-    <script>  
-            init("aside-right", {
-                type : "carousel",
-                nav:{
-                    show:true
+    <script src="js/init-dependencies/audio.js"></script> 
+    <script src="js/init-dependencies/responsive.js"></script> 
+    <script src="js/init-dependencies/speech.js"></script> 
+    <script src="js/init-dependencies/buttons.js"></script> 
+    <script src="js/init-dependencies/transitions.js"></script> 
+    <script src="js/init-dependencies/gestures.js"></script> 
+    <script src="js/init-dependencies/fullscreen-grid.js"></script> 
+    <script src="js/extensions/adjust.js"></script> 
+    <script src="js/init.js"></script> 
+    <script>
+
+            portofolio("carousel", {
+                type: "carousel",
+                items: 1,
+                transition : {
+                    transitionType:"slide"
+                },
+                nav : {
+                    show: true,
+                    prev: "<i class='material-icons'>chevron_left</i>",
+                    next: "<i class='material-icons'>chevron_right</i>"
                 }
             });
-            </script>
-            <script src="js/form.js"></script> <!-- additionals animations, styling, etcetera -->
+
+    </script>
+    <script src="js/form.js"></script> <!-- additionals animations, styling, etcetera -->
 </body>
 
 </html>

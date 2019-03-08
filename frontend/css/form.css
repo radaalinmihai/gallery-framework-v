@@ -1,42 +1,9 @@
 /*--------------------------------------------------------------
-# Normalize
---------------------------------------------------------------*/
-body, html {
-	margin: 0;
-	padding: 0;
-	background: #e8e8e8;
-	 background: linear-gradient(to right top, #42b7f5, #00caf9, #00dbf0, #00e9da, #42f5bd);
-	background-repeat: no-repeat;
-	overflow: auto;
-}
-body {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-* {
-	box-sizing: border-box;
-	font-family: 'Ubuntu', sans-serif;
-}
-
-/*--------------------------------------------------------------
 # Form
 --------------------------------------------------------------*/
 
-.container {
-	background: white;
-	border-radius: 4px;
-	padding: 50px;
-	margin: 40px auto 40px auto;
-	width: 50%;
-	min-width: 600px;
-	box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-	overflow: hidden;
-	height: 500px;
-}
 #carousel {
 	justify-content: space-between;
-	padding-bottom: 70px;
 }
 .container > h2 {
 	margin: 0;
@@ -47,18 +14,20 @@ body {
 .form-styling {
 	display: flex;
 	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	transition: transform 0.3s ease;
 }
 .nav-container {
 	display: none;
 	justify-content: space-between;
-	margin-top: 40px;
+	margin-bottom: 50px;
 }
 .nav-container > div {
 	position: relative;
 	visibility: visible;
 }
 .nav-container > div > i {
-	color: black;
+	color: white;
 	font-size: 2.5em;
 }
 input, select {
@@ -67,6 +36,12 @@ input, select {
 	padding: 15px 20px;
 	width: 100%;
 	transition: border-color 0.3s ease;
+}
+.prev {
+	padding-left: 30px !important;
+}
+.next {
+	padding-right: 30px !important;
 }
 input:focus {
 	border-color: black;
@@ -80,16 +55,19 @@ input:focus {
 .car-stage > div {
 	display: flex;
 	flex-direction: column;
+	padding: 60px;
 }
 .car-stage > div > .fields {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	height: 90%;
 }
 .car-stage > div > span {
 	color: grey;
 	margin-bottom: 10px;
 	font-family: 'Ubuntu Mono', sans-serif;
+	height: 10%;
 }
 .car-stage > div label {
 	display: flex;
@@ -99,6 +77,8 @@ input:focus {
 .car-stage > div label span {
 	text-transform: uppercase;
 	font-size: 0.85em;
+	color: white;
+	text-align: left;
 }
 #general label:first-child {
 	width: 100%;
@@ -202,6 +182,9 @@ select {
 	max-height: 100%;
 	height: 300px;
 }
+.car-stage {
+	height: 100%;
+}
 .new-breakpoint #transition, .new-breakpoint #navigation, .new-breakpoint #fullscreen {
 	display: flex;
 	flex-direction: column;
@@ -267,13 +250,13 @@ select {
   	transition: background 0s;
 }
 #resources {
-	height: 280px;
-	overflow-y: scroll;
+	overflow-y: auto;
 	overflow-x: hidden;
 }
 #resources > div {
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: 20px;
 }
 #resources > div > * {
 	margin: auto;
