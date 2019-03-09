@@ -43,16 +43,15 @@ module.exports = {
     ajax: ajax
 };
 },{}],2:[function(require,module,exports){
-var m = require('./ajax.js');
-var utility = require('./utility_functions.js');
-
 document.addEventListener('DOMContentLoaded', function() {
+    var m = require('./ajax.js');
+    var utility = require('./utility_functions.js');
+    
     var form = document.getElementsByClassName('form-styling')[0];
     form.addEventListener('submit', function (e) {
         e.preventDefault();
-        var data = utility.formToJSON(this.elements);
-        console.log(data);
-        m.ajax('http://localhost:3000/create_album', {
+        var data = utility.formToJSON(this);
+        /*m.ajax('http://localhost:3000/create_album', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -64,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(function (err) {
                 if (err) console.warn(err);
-            });
+            });*/
     });
 });
 },{"./ajax.js":1,"./utility_functions.js":3}],3:[function(require,module,exports){
@@ -72,17 +71,44 @@ function isValid(element) {
     return element.name && element.value;
 };
 
-function formToJSON(elements) {
-    var images = [];
-    return [].reduce.call(elements, function(data, element) {
-        if(isValid(element) && element.name !== 'images')
-            data[element.name] = parseInt(element.value) ? parseInt(element.value) : element.value.toString();
-        else if(isValid(element) && element.name == 'images') {
-            images.push(element.value);
-            data[element.name] = images;
+function formToJSON(form) {
+    var form = form.elements;
+    var data = {};
+    var transition = {};
+    var nav = {};
+    var fullscreen = {};
+    var responsive = {};
+
+    for(var i in form) {
+        var item = form.item(i);
+        if(isValid(item)) {
+            console.log(item.parentNode.parentNode.parentNode.id, item.name);
+            switch(item.parentNode.parentNode.parentNode.id) {
+                case 'transition':
+                    transition[item.name] = item.value;
+                    break;
+                case 'navigation':
+                    nav[item.name] = item.value;
+                    break;
+                case 'fullscreen':
+                    fullscreen[item.name] = item.value;
+                    break;
+                case 'responsive':
+                    responsive[item.name] = item.value;
+                    break;
+                default:
+                    data[item.name] = item.value;
+                    break;
+            }
         }
-        return data;
-    }, {});
+    }
+
+    data['transition'] = transition;
+    data['nav'] = nav;
+    data['fullscreen'] = fullscreen;
+    data['responsive'] = responsive;
+
+    console.log(data);
 };
 
 module.exports = {

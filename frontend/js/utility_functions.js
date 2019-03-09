@@ -2,17 +2,44 @@ function isValid(element) {
     return element.name && element.value;
 };
 
-function formToJSON(elements) {
-    var images = [];
-    return [].reduce.call(elements, function(data, element) {
-        if(isValid(element) && element.name !== 'images')
-            data[element.name] = parseInt(element.value) ? parseInt(element.value) : element.value.toString();
-        else if(isValid(element) && element.name == 'images') {
-            images.push(element.value);
-            data[element.name] = images;
+function formToJSON(form) {
+    var form = form.elements;
+    var data = {};
+    var transition = {};
+    var nav = {};
+    var fullscreen = {};
+    var responsive = {};
+
+    for(var i in form) {
+        var item = form.item(i);
+        if(isValid(item)) {
+            console.log(item.parentNode.parentNode.parentNode.id, item.name);
+            switch(item.parentNode.parentNode.parentNode.id) {
+                case 'transition':
+                    transition[item.name] = item.value;
+                    break;
+                case 'navigation':
+                    nav[item.name] = item.value;
+                    break;
+                case 'fullscreen':
+                    fullscreen[item.name] = item.value;
+                    break;
+                case 'responsive':
+                    responsive[item.name] = item.value;
+                    break;
+                default:
+                    data[item.name] = item.value;
+                    break;
+            }
         }
-        return data;
-    }, {});
+    }
+
+    data['transition'] = transition;
+    data['nav'] = nav;
+    data['fullscreen'] = fullscreen;
+    data['responsive'] = responsive;
+
+    console.log(data);
 };
 
 module.exports = {
