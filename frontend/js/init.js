@@ -137,7 +137,6 @@ function portofolio (containerID, settings) {
 					genHeight = window.getComputedStyle(members[i].children[0]).getPropertyValue("height");
 				}
 				members[i].style.width = perc.toString() + "%";
-				members[i].style.height = genHeight;
 				members[i].classList.add("vid-grid-member");
 			}
 

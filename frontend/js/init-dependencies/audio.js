@@ -66,8 +66,8 @@ function audioPlayer (songs) {
         selected = null;
     }
     
-    document.onmousemove = _move_elem;
-    document.onmouseup = _destroy;
+    progress.onmousemove = _move_elem;
+    progress.onmouseup = _destroy;
 
     progress.onclick = function (e) {
         var x = e.offsetX / this.offsetWidth;

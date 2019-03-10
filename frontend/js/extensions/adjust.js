@@ -22,7 +22,7 @@ function dragNDrop (container, params) {
 
 		pastOne = -1;
 
-		for (i = 0; i < members.length - 1; i++) {
+		for (i = 0; i < members.length; i++) {
 
 			if (members[i] != selected) {
 
@@ -96,7 +96,6 @@ function dragNDrop (container, params) {
 
 			// Check which elements to adjust based on difference in size between elements
 			if (destPerc < origPerc) {
-				console.log("Destination was smaller than origin");
 				if (correctOne.previousElementSibling == null || (getIndex(correctOne.previousElementSibling) + 1) % params.itemsPerRow == 0) {
 					correctOne.nextElementSibling.style.width = (parseFloat(correctOne.nextElementSibling.style.width) + diff) + "%";
 				}
@@ -119,18 +118,19 @@ function dragNDrop (container, params) {
 				}
 			}
 			else {
-				console.log("Origin was smaller than destination");
+				console.log("line 121");
 				if (correctOne.previousElementSibling == null || (getIndex(correctOne.previousElementSibling) + 1) % params.itemsPerRow == 0) {
 					correctOne.nextElementSibling.style.width = (parseFloat(correctOne.nextElementSibling.style.width) - diff) + "%";
 				}
-				else if (getIndex(correctOne.nextElementSibling) % params.itemsPerRow == 0 || correctOne.nextElementSibling == null) {
+				else if (correctOne.nextElementSibling == null || getIndex(correctOne.nextElementSibling) % params.itemsPerRow == 0) {
 					correctOne.previousElementSibling.style.width = (parseFloat(correctOne.previousElementSibling.style.width) - diff) + "%";
 				}
 				else {
 					correctOne.nextElementSibling.style.width = (parseFloat(correctOne.nextElementSibling.style.width) - diff / 2) + "%";
 					correctOne.previousElementSibling.style.width = (parseFloat(correctOne.previousElementSibling.style.width) - diff / 2) + "%";
 				}
-				if (getIndex(selected.nextElementSibling) % params.itemsPerRow == 0 || selected.nextElementSibling == null) {
+				console.log("line 131");
+				if (selected.nextElementSibling == null || getIndex(selected.nextElementSibling) % params.itemsPerRow == 0) {
 					selected.previousElementSibling.style.width = (parseFloat(selected.previousElementSibling.style.width) + diff) + "%";
 				}
 				else if (selected.previousElementSibling == null || (getIndex(selected.previousElementSibling) + 1) % params.itemsPerRow == 0) {
@@ -140,6 +140,34 @@ function dragNDrop (container, params) {
 					selected.nextElementSibling.style.width = (parseFloat(selected.nextElementSibling.style.width) + diff / 2) + "%";
 					selected.previousElementSibling.style.width = (parseFloat(selected.previousElementSibling.style.width) + diff / 2) + "%";
 				}
+			}
+
+
+			// Remove or add resize gutters
+
+			if (selected.lastChild.classList != null) {
+
+				var origin = selected.lastChild.classList.contains("resize-gutter");
+
+			}
+			else var origin = false;
+			
+			if (correctOne.lastChild.classList != null) {
+
+				var destination = correctOne.lastChild.classList.contains("resize-gutter");
+
+			}
+			else var destination = false;
+
+			if (origin == 0 && destination == 1) {
+
+				selected.insertBefore(correctOne.lastChild, null);
+
+			}
+			else if (origin == 1 && destination == 0) {
+
+				correctOne.insertBefore(selected.lastChild, null);
+				
 			}
 
 		}
@@ -157,7 +185,7 @@ function dragNDrop (container, params) {
 
 	}
 
-	for (i = 0; i < members.length - 1; i++) {
+	for (i = 0; i < members.length; i++) {
 
 		// Bind the functions...
 		members[i].onmousedown = function (e) {

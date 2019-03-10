@@ -77,7 +77,7 @@ header nav ul li a {
   background-color: #333131;
   color: #BBB9B9;
   -ms-flex-preferred-size: 16%;
-      flex-basis: 16%;
+      flex-basis: 14%;
 }
 
 .container-body aside ul {
@@ -91,10 +91,6 @@ header nav ul li a {
           flex-direction: column;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-}
-
-.container-body aside li {
-  padding-left: 1.5em;
 }
 
 .token-input {
@@ -126,6 +122,7 @@ header nav ul li a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -147,12 +144,39 @@ header nav ul li a {
   width: 45%;
   min-height: 45%;
   height: 45%;
-  border-radius: 40%;
+  border-radius: 50%;
 }
 
 .container-p {
   margin-right: 0.5em;
   text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  border-top: 1px solid #585656;
+  width: 140px;
+  margin: 10px auto 0 auto;
+  max-width: 60%;
+}
+
+.container-p a {
+  margin-right: 10px;
+  margin-left: 10px;
+  color: #8f8e8e;
+}
+
+.gitlab:hover {
+  color: #e24329;
+}
+
+.facebook:hover {
+  color: #3B5998;
+}
+
+.instagram:hover {
+  color: #c13584;
 }
 
 .aside-right {
@@ -164,7 +188,7 @@ header nav ul li a {
       -ms-flex-order: 2;
           order: 2;
   -ms-flex-preferred-size: 84%;
-      flex-basis: 84%;
+      flex-basis: 86%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -225,14 +249,14 @@ footer {
   height: 6%;
   background: #1E1E1E;
   width: 100%;
+  display: flex;
 }
 
 .footerp {
-  height: 100%;
   font-size: 0.9rem;
   color: #BBB9B9;
-  margin: 1.5em 0 1.5em 0;
   text-align: center;
+  margin: auto;
 }
 
 .footerp a {
@@ -253,15 +277,144 @@ footer {
 }
 
 @media only screen and (max-width: 600px) {
-  .aside-right {
-    visibility: hidden;
-  }
-  aside {
-    visibility: hidden;
-  }
   .logo {
     width: 250px;
     z-index: 8;
+  }
+
+  .container-body {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+
+  #aside-right-welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #aside-right-welcome h1 {
+    margin: 0;
+  }
+
+  .aside-right {
+    flex-basis: initial;
+    height: 400px;
+  }
+
+  .container-body > aside {
+    flex-basis: initial;
+  }
+
+  .container {
+    overflow-y: auto;
+  }
+
+  aside #nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+  }
+
+  aside #nav li {
+    width: 50%;
+    margin-top: 30px;
+  }
+
+  .container-p {
+    max-width: 80%;
+  }
+
+  .container-items-list img {
+    max-width: 60%;
+    width: 60%;
+    max-height: 60%;
+    height: 60%;
+  }
+
+  .container-items-list h1 {
+    font-size: 1rem;
+  }
+
+  nav .hide-desktop {
+    display: flex;
+    visibility: visible;
+    margin-right: 10px;
+  }
+
+  nav #nav {
+    position: fixed;
+    height: 100%;
+    top: 0;
+    right: 0;
+    width: 250px;
+    background: #333131;
+    z-index: 1000;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transform: translateX(250px);
+    transition: all 0.4s ease;
+  }
+
+  .open-menu {
+    transform: translateX(0px) !important;
+  }
+
+  header .logo {
+    width: 60%;
+    height: auto;
+  }
+
+  nav > .hide-desktop i {
+    color: white;
+    font-size: 1.7em;
+  }
+
+  header nav ul li {
+    margin: 0 auto 0 auto;
+    width: 85%;
+    padding: 10px;
+  }
+
+  header nav ul li a {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  header nav ul li:not(:last-child) {
+    border-bottom: 1px solid #2a2929;
+  }
+
+  header nav ul li:last-child {
+    margin-top: 30px;
+    width: 90% !important;
+  }
+
+  header nav ul li:last-child input {
+    text-align: left;
+    width: 100%;
+    padding: 15px;
+    background: #2a2929;
+    border-radius: 5px;
+    height: 100%;
+  }
+
+  .exit-btn {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .exit-btn:hover {
+    cursor: pointer;
+  }
+
+  .exit-btn i {
+    font-size: 1.5em;
+    color: #8f8e8e;
   }
 }
 /*# sourceMappingURL=desktop.css.map */

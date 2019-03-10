@@ -14,12 +14,11 @@ document.addEventListener('DOMContentLoaded', function() {
         o.childNodes[3].setAttribute('name', 'auto_responsive');
         n.childNodes[3].setAttribute('name', 'nav_select');
         e.childNodes[3].setAttribute('name', 'fullscreen_responsive');
-        div.appendChild(c);
-        div.appendChild(l);
         div.appendChild(o);
         div.appendChild(n);
         div.appendChild(e);
-        
+        div.appendChild(c);
+        div.appendChild(l);
         
         div.classList.add("hidden");
 
@@ -242,6 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.parentNode.classList.add("show");
                 this.parentNode.style.height = 47.6 + this.nextSibling.children.length * 47.6 + "px";
                 this.children[1].classList.add("rotated");
+                console.log(this.parentNode.style.height);
             }
         }
     }

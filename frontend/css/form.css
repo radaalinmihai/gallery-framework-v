@@ -38,10 +38,10 @@ input, select {
 	transition: border-color 0.3s ease;
 }
 .prev {
-	padding-left: 30px !important;
+	padding-left: 15px !important;
 }
 .next {
-	padding-right: 30px !important;
+	padding-right: 15px !important;
 }
 input:focus {
 	border-color: black;
@@ -176,11 +176,11 @@ select {
 .insert-breakpoint i {
 	margin: auto;
 	cursor: pointer;
+	margin-left: -40px;
 }
 #responsive-settings {
 	overflow-y: auto;
 	max-height: 100%;
-	height: 300px;
 }
 .car-stage {
 	height: 100%;
@@ -200,8 +200,11 @@ select {
 .new-breakpoint > div:not(:first-child) {
 	flex-wrap: wrap;
 	justify-content: space-between;
+	padding: 40px;
 	border: 1px solid #eee;
 	display: none;
+	overflow-y: auto;
+	max-height: 80%;
 }
 .new-breakpoint .select-container {
 	width: 100%;
@@ -209,6 +212,7 @@ select {
 }
 #transition .fields #autoselect {
 	height: 90px;
+	overflow: visible;
 }
 .new-breakpoint #autoselect {
 	z-index: 4;
@@ -221,8 +225,9 @@ select {
 }
 .new-breakpoint > div label {
 	height: 64.8px;
-	width: 100%;
+	width: 45%;
 	margin-top: 20px;
+	overflow: visible;
 }
 .new-breakpoint > div {
 	padding: 10px;
@@ -273,11 +278,12 @@ select {
 	flex-direction: column;
 	justify-content: space-around;
 }
-button {
+#final button {
 	width: 200px;
 	background: transparent;
 	border-radius: 50px;
-	border: 1px solid black;
+	border: 1px solid white;
+	color: white;
 	padding: 15px 10px;
 	cursor: pointer;
 }
@@ -287,7 +293,7 @@ button {
 #final span {
 	height: 0.8px;
 	width: 150px;
-	background: black;
+	background: white;
 }
 #album-options {
 	display: flex;
@@ -337,17 +343,6 @@ button {
 }
 
 @media screen and (max-width: 900px) {
-	.container {
-		width: 90%;
-		min-width: 95%;
-		height: auto;
-		padding: 30px 20px;
-		overflow: initial;
-		margin-top: 150px;
-	}
-	.container > h2 {
-		font-size: 1.2em;
-	}
 	label {
 		width: 100% !important;
 		min-height: 84.88px;

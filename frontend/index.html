@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/form.css">
     <link rel="stylesheet" href="css/portofolio.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 
 <link rel="icon" type="image/png" href="/images/favicon.ico" />
@@ -22,11 +23,11 @@
             <img src="/images/logod.svg" alt="portofolio logo" class="logo">
             <nav>
                 <!-- main nav, not visible on mobile rn -->
-                <a href="#" class="hide-desktop">
-                    <img src="images/menu.svg" alt="toggle menu" class="menu" id="menu">
+                <a href="javascript:void(0);" class="hide-desktop" id="open-burger">
+                    <i class="fas fa-bars"></i>
                 </a>
-                <ul class="show-desktop hide-mobile" id="nav">
-                    <li id="exit" class="exit-btn hide-desktop"><img src="images/exit.svg" alt="menu exit"></li>
+                <ul class="hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop"><i class="fas fa-sign-out-alt"></i></li>
                     <li><a href="#">home</a></li>
                     <li><a href="#">create</a></li>
                     <li><a href="#">contact</a></li>
@@ -47,11 +48,13 @@
                     <li>
 
                         <div class="container-items-list">
-                            <img alt="" src="images/r1.png">
+                            <img alt="" src="images/r1.jpg">
                             <h1> Mihai </h1>
                         </div>
-                        <p class="container-p">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
-                            lorem ipsum loratum ciocolatumshaggy van dame van wane
+                        <p class="container-p">
+                            <a href="https://www.instagram.com/mihai_alin796/" class="instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/mihai.alin.796" class="facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="https://gitlab.com/DontStealMyCodePls" class="gitlab"><i class="fab fa-gitlab"></i></a>
                         </p>
                     </li>
                     <li>
@@ -59,17 +62,21 @@
                             <img alt="" src="images/a1.jpg">
                             <h1> Flavius </h1>
                         </div>
-                        <p class="container-p">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
-                            lorem ipsum loratum ciocolatumshaggy van dame van wane
+                        <p class="container-p">
+                            <a href="https://www.instagram.com/aflandrei/" class="instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/aflaviusandrei" class="facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="https://gitlab.com/aflandrei" class="gitlab"><i class="fab fa-gitlab"></i></a>
                         </p>
                     </li>
                     <li>
                         <div class="container-items-list">
-                            <img alt="" src="images/i2.png">
+                            <img alt="" src="images/i2.jpg">
                             <h1> Ionut </h1>
                         </div>
-                        <p class="container-p">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
-                            lorem ipsum loratum ciocolatumshaggy van dame van wane
+                        <p class="container-p">
+                            <a href="https://www.instagram.com/_istancescu/" class="instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/istancescu" class="facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="https://gitlab.com/reversio" class="gitlab"><i class="fab fa-gitlab"></i></a>
                         </p>
                     </li>
 
