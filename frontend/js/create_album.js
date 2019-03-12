@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
         var data = utility.formToJSON(this);
-        /*m.ajax('http://localhost:3000/create_album', {
+        console.log(data);
+        m.ajax('http://localhost:3000/create_album', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -18,6 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(function (err) {
                 if (err) console.warn(err);
-            });*/
+            });
     });
 });

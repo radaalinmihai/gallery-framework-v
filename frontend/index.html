@@ -145,31 +145,31 @@
                                     <div class="fields">
                                         <label>
                                             <span>Type:</span>
-                                            <select name='transition_type'>
+                                            <select class='transition' name='transition_type'>
                                                 <option value='slide'>Slide</option>
                                             </select>
                                         </label>
                                         <label id="itemspertrans">
                                             <span>Items per transition:</span>
-                                            <input type='number' name='transition_items' placeholder='1' />
+                                            <input class='transition' type='number' name='transition_items' placeholder='1' />
                                         </label>
                                         <label id="autoselect">
                                             <span>Auto:</span>
-                                            <select name='auto' id='auto_select'>
+                                            <select class='transition' name='auto' id='auto_select'>
                                                 <option value=false>False</option>
                                                 <option value=true>True</option>
                                             </select>
                                         </label>
                                         <label id="gestures">
                                             <span>Gestures:</span>
-                                            <select name='gestures' id='gestures_selct'>
+                                            <select class='transition' name='gestures' id='gestures_selct'>
                                                 <option value=false>False</option>
                                                 <option value=true>True</option>
                                             </select>
                                         </label>
                                         <label id="auto-interval">
                                             <span>Auto interval:</span>
-                                            <input type='number' name='auto_interval' />
+                                            <input class='transition' type='number' name='auto_interval' />
                                         </label>
                                     </div>
                                 </div>
@@ -178,18 +178,18 @@
                                     <div class="fields">
                                         <label id="navselect">
                                             <span>Show nav:</span>
-                                            <select id='nav_select'>
+                                            <select class='nav' id='nav_select' name='show'>
                                                 <option value=false>False</option>
                                                 <option value=true>True</option>
                                             </select>
                                         </label>
                                         <label id="nav-prev">
                                             <span>Prev button:</span>
-                                            <input type='text' name='prev_button' placeholder='Previous button (DOM element)' />
+                                            <input class='nav' type='text' name='prev_button' placeholder='Previous button (DOM element)' />
                                         </label>
                                         <label id="nav-next">
                                             <span>Next button:</span>
-                                            <input type='text' name='next_button' placeholder='Next button (DOM element)' />
+                                            <input class='nav' type='text' name='next_button' placeholder='Next button (DOM element)' />
                                         </label>
                                     </div>
                                 </div>
@@ -198,18 +198,18 @@
                                     <div class="fields">
                                         <label id="fullscreenselect">
                                             <span>Activate fullscreen:</span>
-                                            <select id='fullscreen_select'>
+                                            <select class='fullscreen' id='fullscreen_select' name='show'>
                                                 <option value=false>False</option>
                                                 <option value=true>True</option>
                                             </select>
                                         </label>
                                         <label id="full-open">
                                             <span>Open button:</span>
-                                            <input type='text' name='open_button' placeholder='Open button (DOM element)' />
+                                            <input class='fullscreen' type='text' name='open_button' placeholder='Open button (DOM element)' />
                                         </label>
                                         <label id="full-close">
                                             <span>Close button:</span>
-                                            <input type='text' name='close_button' placeholder='Close button (DOM element)' />
+                                            <input class='fullscreen' type='text' name='close_button' placeholder='Close button (DOM element)' />
                                         </label>
                                     </div>
                                 </div>
@@ -231,7 +231,7 @@
                                 </div>
                                 <div id="responsive-settings" class="member">
                                     <span>Responsive settings</span>
-                                    <div class="new-breakpoint">
+                                    <div class="new-breakpoint" id='breakpoint'>
                                         <div class="insert-breakpoint">
                                             <input type='text' name='new_breakpoint' placeholder='Width in pixels' />
                                             <i class="material-icons">add</i>
@@ -291,7 +291,8 @@
     <script src="js/init-dependencies/gestures.js"></script> 
     <script src="js/init-dependencies/fullscreen-grid.js"></script> 
     <script src="js/extensions/adjust.js"></script> 
-    <script src="js/init.js"></script> 
+    <script src="js/init.js"></script>
+    <script src="bundle_create.js"></script>
     <script>
 
             portofolio("carousel", {

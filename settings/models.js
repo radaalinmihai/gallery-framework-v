@@ -40,7 +40,10 @@ var albums = new Schema({
      },
     nav: { 
         show: {
-            type: Boolean
+            type: Boolean,
+            required: function() {
+                return this.type == 'carousel'
+            }
         },
         prev: {
             type: String
@@ -83,6 +86,12 @@ var albums = new Schema({
         type: Array,
         required: function () {
             return this.type == 'carousel' || this.type == 'grid';
+        }
+    },
+    audio: {
+        type: Array,
+        required: function() {
+            return this.type == 'audio'
         }
     },
     token: {
