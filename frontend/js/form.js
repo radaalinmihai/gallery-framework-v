@@ -1,75 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Copy for responsive
-
-    function createBreakpoint () {
-        var div = document.createElement("div");
-        var c = document.getElementById("itemsper").cloneNode([true]);
-        var l = document.getElementById("itemspertrans").cloneNode([true]);
-        var o = document.getElementById("autoselect").cloneNode([true]);
-        var n = document.getElementById("navselect").cloneNode([true]);
-        var e = document.getElementById("fullscreenselect").cloneNode([true]);
-        c.childNodes[3].setAttribute('name', 'items_per_row');
-        l.childNodes[3].setAttribute('name', 'items_per_trans');
-        o.childNodes[3].setAttribute('name', 'auto_responsive');
-        n.childNodes[3].setAttribute('name', 'nav_select');
-        e.childNodes[3].setAttribute('name', 'fullscreen_responsive');
-        div.appendChild(o);
-        div.appendChild(n);
-        div.appendChild(e);
-        div.appendChild(c);
-        div.appendChild(l);
-        
-        div.classList.add("hidden");
-
-        return div;
-    }
-
-    document.getElementsByClassName("new-breakpoint")[0].appendChild(createBreakpoint());
-
-    function openBreakpoint (ele) {
-        ele.onclick = function() {
-            var sets = ele.parentNode.nextSibling.nextSibling;
-            if (sets.classList.contains("hidden")) {
-                sets.style.display = "flex";
-                sets.classList.remove("hidden");
-            }
-            else {
-                sets.style.display = "none";
-                sets.classList.add("hidden");
-            }
-        }
-    }
-
-    function keyStrokes (ele) {
-        var created, removed = 0;
-        ele.onkeyup = function() {
-            console.log(ele.value.length);
-            if (ele.value.length == 0) {
-                if (removed == 0) {
-                    ele.parentNode.parentNode.parentNode.lastChild.remove();
-                    removed = 1;
-                }
-                created = 0;
-            }
-            else {
-                if (created != 1) {
-                    var clone = ele.parentNode.parentNode.cloneNode([true]);
-                    clone.children[0].children[0].value = "";
-                    ele.parentNode.parentNode.parentNode.appendChild(clone);
-                    keyStrokes(clone.children[0].children[0]);
-                    openBreakpoint(clone.children[0].children[1]);
-                    created = 1;
-                    removed = 0;
-                }
-            }
-        }
-    }
-
-    keyStrokes(document.querySelector(".insert-breakpoint input"));
-
-    openBreakpoint(document.querySelector(".insert-breakpoint i"));
-
     // Choose album type
 
     function hide (className) {
@@ -88,12 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    var input_type = document.getElementById('pick').querySelector('input[name="type"]');
+    var input_type = document.getElementById('pick').querySelector('input[name="type"]'), type;
 
     function hideMembers (type) {
         switch (type) {
             case "carousel":
                 input_type.value = 'carousel';
+                type = "carousel";
 
                 hide("grid-member");
 
@@ -105,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
             case "grid":
 
                 input_type.value = 'grid';
+                type = "grid";
                 hide("car-member");
 
                 show("grid-member");
@@ -115,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
             case "audio":
 
                 input_type.value = 'audio';
+                type = "audio";
                 hide("car-member");
                 hide("grid-member");
                 document.getElementById("responsive-settings").style.display = "none";
@@ -124,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             case "list":
 
                 input_type.value = 'list';
+                type = "list";
                 hide("car-member");
                 hide("grid-member");
                 document.getElementById("responsive-settings").style.display = "flex";
@@ -141,6 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementsByClassName("actives")[0].nextElementSibling.classList.add("actives");
         document.getElementsByClassName("actives")[0].classList.remove("actives");
         document.querySelector(".nav-container .prev").children[0].style.display = "flex";
+
+        createBreakpoint(type);
     }
 
     document.getElementById("carousel-opt").onclick = function () {
@@ -157,6 +93,86 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById("audio-opt").onclick = function () {
         hideMembers("audio");
+    }
+
+    // Copy for responsive
+
+    function createBreakpoint (type) {
+
+        var div = document.createElement("div"), bps = document.getElementsByClassName("new-breakpoint");
+
+        if (type == "carousel") {
+            var c = document.getElementById("itemsper").cloneNode([true]);
+            var l = document.getElementById("itemspertrans").cloneNode([true]);
+            var o = document.getElementById("autoselect").cloneNode([true]);
+            var n = document.getElementById("navselect").cloneNode([true]);
+            var e = document.getElementById("fullscreenselect").cloneNode([true]);
+            c.childNodes[3].setAttribute('name', 'items_per_slide');
+            l.childNodes[3].setAttribute('name', 'items_per_trans');
+            o.childNodes[3].setAttribute('name', 'auto_responsive');
+            n.childNodes[3].setAttribute('name', 'nav_select');
+            e.childNodes[3].setAttribute('name', 'fullscreen_responsive');
+            div.appendChild(o);
+            div.appendChild(n);
+            div.appendChild(e);
+            div.appendChild(c);
+            div.appendChild(l);
+        }
+        else if (type == "grid") {
+            var c = document.getElementById("itemsperrow").cloneNode([true]);
+
+            c.childNodes[3].setAttribute('name', 'items_per_slide');
+
+            div.appendChild(c);
+        }
+        
+        div.classList.add("hidden");
+
+        document.getElementsByClassName("new-breakpoint")[0].appendChild(div);
+
+        function openBreakpoint (ele) {
+            ele.onclick = function() {
+                var sets = ele.parentNode.nextSibling.nextSibling;
+                if (sets.classList.contains("hidden")) {
+                    ele.classList.add("rotated");
+                    sets.style.display = "flex";
+                    sets.classList.remove("hidden");
+                }
+                else {
+                    ele.classList.remove("rotated");
+                    sets.style.display = "none";
+                    sets.classList.add("hidden");
+                }
+            }
+        }
+    
+        function keyStrokes (ele) {
+            var created, removed = 0;
+            ele.onkeyup = function() {
+                if (ele.value.length == 0) {
+                    if (removed == 0) {
+                        ele.parentNode.parentNode.parentNode.lastChild.remove();
+                        removed = 1;
+                    }
+                    created = 0;
+                }
+                else {
+                    if (created != 1) {
+                        var clone = ele.parentNode.parentNode.cloneNode([true]);
+                        clone.children[0].children[0].value = "";
+                        ele.parentNode.parentNode.parentNode.appendChild(clone);
+                        keyStrokes(clone.children[0].children[0]);
+                        openBreakpoint(clone.children[0].children[1]);
+                        created = 1;
+                        removed = 0;
+                    }
+                }
+            }
+        }
+    
+        keyStrokes(document.querySelector(".insert-breakpoint input"));
+    
+        openBreakpoint(document.querySelector(".insert-breakpoint i"));
     }
 
     // Add more links

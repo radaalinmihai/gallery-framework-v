@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio</title>
+    <!--- additions -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="css/desktop.css">
+    <link rel="stylesheet" href="css/documentation.css">
+    <link rel="stylesheet" href="css/portofolio.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<link rel="icon" type="image/png" href="/images/favicon.ico" />
+
+<body>
+    <!-- header container -->
+    <div class="container-top">
+        <header>
+            <img src="/images/logod.svg" alt="portofolio logo" class="logo">
+            <nav>
+                <!-- main nav, not visible on mobile rn -->
+                <a href="javascript:void(0);" class="hide-desktop" id="open-burger">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <ul class="hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop"><i class="fas fa-sign-out-alt"></i></li>
+                    <li><a href="#">home</a></li>
+                    <li><a href="#">documentation</a></li>
+                    <li><a href="#">contact</a></li>
+                    <li><input type="text" name="token" placeholder="insert token" class="token-input"></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <!-- body container -->
+    <div class="container">
+        <div class="container-body">
+
+            <aside>
+
+                <ul>
+                    <li>Getting started</li>
+                    <li><a href="javascript:void(0);" class="doc-links" class="selected-link">Welcome</a></li>
+                    <li><a href="javascript:void(0);" class="doc-links">Set up</a></li>
+                    <li><a href="javascript:void(0);" class="doc-links">FAQ</a></li>
+                </ul>
+
+                <ul>
+                    <li>Display types</li>
+                    <li><a href="javascript:void(0);" class="doc-links">Carousel</a></li>
+                    <li><a href="javascript:void(0);" class="doc-links">Grid</a></li>
+                    <li><a href="javascript:void(0);" class="doc-links">Audio player</a></li>
+                    <li><a href="javascript:void(0);" class="doc-links">List</a></li>
+                </ul>
+
+            </aside>
+            <div class="aside_right">
+
+                <div class="doc-sections selected-doc" id="welcome">
+                    <h1>Welcome</h1>
+                    <p>Portofolio is a lightweight, responsive, highly-customizable content display framework and tool that makes it easier for you to get your content out there in a way that's accessible and beautiful.</p>
+                    <h3>Prerequisites</h3>
+                    <p>In order for Portofolio to work on your project, you'll need to include the following two CSS and JS files in your project:</p>
+                    <a href="/css/portofolio.css" class="download" download>
+                        <p href="">portofolio.css</p>
+                        <i class="material-icons">save_alt</i>
+                    </a>
+
+                    <a href="js/init.js" class="download" download>
+                        <p>init.js</p>
+                        <i class="material-icons">save_alt</i>
+                    </a>
+                </div>
+
+                <div class="doc-sections" id="setup">
+                    <h1>Set up</h1>
+                    <p>There are two main ways of creating an album and displaying it on your project. While both involve writing code, both are very straightforward and easy to follow.</p>
+
+                    <h3>Create album through the form</h3>
+                    <p>
+                </div>
+
+                <div class="doc-sections" id="faq">
+                    <h1>FAQ</h1>
+                </div>
+
+                <div class="doc-sections" id="carousel">
+                    <h1>Carousel</h1>
+                </div>
+
+                <div class="doc-sections" id="grid">
+                    <h1>Grid</h1>
+                </div>
+
+                <div class="doc-sections" id="audioplayer">
+                    <h1>Audio player</h1>
+                </div>
+
+                <div class="doc-sections" id="list">
+                    <h1>List</h1>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <!--- 
+        <div class="container"></div>
+        <ul class="footer-items">
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+        </ul>
+        </div>
+        --->
+        <p class="footerp">Powered by edociiF 2 for <a href="#">Fiicode 2019</a></p>
+    </footer>
+
+
+
+
+
+    <script src="js/main.js"></script> <!-- additionals animations, styling, etcetera -->
+    <script src="js/init-dependencies/audio.js"></script> 
+    <script src="js/init-dependencies/responsive.js"></script> 
+    <script src="js/init-dependencies/speech.js"></script> 
+    <script src="js/init-dependencies/buttons.js"></script> 
+    <script src="js/init-dependencies/transitions.js"></script> 
+    <script src="js/init-dependencies/gestures.js"></script> 
+    <script src="js/init-dependencies/fullscreen-grid.js"></script> 
+    <script src="js/extensions/adjust.js"></script> 
+    <script src="js/init.js"></script> 
+    <script src="js/documentation.js"></script> 
+</body>
+
+</html>
