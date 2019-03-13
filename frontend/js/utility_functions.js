@@ -2,21 +2,6 @@ function isValid(element) {
     return element.name && element.value;
 };
 
-
-/*
-
-
-data = {
-    nume: valoare,
-    type: valoare,
-    transition: {
-        transition_type: valoare
-    }
-}
-
-
-*/
-
 function formToJSON(form) {
     var form = form.elements;
     var data = {};
@@ -58,18 +43,34 @@ function formToJSON(form) {
                         break;
                 }
             } else if (form[0].value == 'grid') {
-
+                switch(item.name) {
+                    case 'itemsPerRow':
+                        data[item.name] = item.value;
+                        break;
+                    case 'fullscreen':
+                        data[item.name] = item.value;
+                        break;
+                    case 'format':
+                        data[item.name] = item.value;
+                        break;
+                    case 'images':
+                        if(!('images' in data))
+                            data[item.name] = [];
+                        data[item.name].push(item.value);
+                        break;
+                }
             } else if (form[0].value == 'audio') {
-
-            } else {
-
+                if(isValid(item))
+                    if(item.name == 'images') {
+                        if(!('audio' in data))
+                            data.audio = [];
+                        data.audio.push(item.value);
+                    }
             }
         }
     }
-
-    return data;
+    if(typeof data['album_name'] == 'undefined')
+        return false;
+    else
+        return data;
 };
-
-module.exports = {
-    formToJSON: formToJSON
-}

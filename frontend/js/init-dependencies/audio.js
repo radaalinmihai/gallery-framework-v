@@ -136,7 +136,6 @@ function audioPlayer (songs) {
         }
         changeSource(audio_playlist[index_songs]);
         song_name_div.innerHTML = '<strong>Current song: </strong>' + audio_playlist[index_songs];
-        console.log(index_songs);
     }
 
     function resetAudio() {

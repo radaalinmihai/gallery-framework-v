@@ -1,6 +1,3 @@
-var m = require('./ajax.js'),
-    utility = require('./utility_functions.js');
-
 document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('token_album_form'),
         album_shows = document.getElementsByClassName('albums_show')[0];
@@ -8,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        var formToken = utility.formToJSON(this.elements);
-        m.ajax('http://localhost:3000/return_album', {
+        var formToken = formToJSON(this.elements);
+        ajax('http://localhost:3000/return_album', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
