@@ -13,7 +13,9 @@ var albums = new Schema({
     },
     items: {
         type: Number,
-        required: true
+        required: function() {
+            return this.type == 'carousel' || this.type == 'grid';
+        }
     },
     transition: {
         transition_type: {
@@ -92,12 +94,6 @@ var albums = new Schema({
         type: Array,
         required: function () {
             return this.type == 'audio';
-        }
-    },
-    itemsPerRow: {
-        type: Number,
-        required: function () {
-            return this.type == 'grid';
         }
     },
     token: {

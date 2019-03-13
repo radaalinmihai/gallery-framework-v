@@ -44,19 +44,22 @@ function formToJSON(form) {
                 }
             } else if (form[0].value == 'grid') {
                 switch(item.name) {
-                    case 'itemsPerRow':
+                    case 'items':
                         data[item.name] = item.value;
                         break;
-                    case 'fullscreen':
+                    case 'fullscreen_grid':
                         data[item.name] = item.value;
                         break;
-                    case 'format':
+                    case 'format_grid':
                         data[item.name] = item.value;
                         break;
                     case 'images':
                         if(!('images' in data))
                             data[item.name] = [];
                         data[item.name].push(item.value);
+                        break;
+                    case 'album_name':
+                        data[item.name] = item.value;
                         break;
                 }
             } else if (form[0].value == 'audio') {
@@ -69,6 +72,7 @@ function formToJSON(form) {
             }
         }
     }
+    console.log(data);
     if(typeof data['album_name'] == 'undefined')
         return false;
     else
