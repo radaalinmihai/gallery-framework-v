@@ -38,25 +38,25 @@ function ajax(url, properties) {
     });
 }
 
-m.ajax("localhost:3000/return_album", {
-    method: 'GET',
-    headers: {
-       'Content-Type': 'application/json'
-    },
-    data: {
-       name1: 'value1',
-       name2: 'value2',
-       nameN: 'valueN'
-    }
-})
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    if(error) {
-       // do something
-    }
-  });
+// ajax("localhost:3000/return_album", {
+//     method: 'GET',
+//     headers: {
+//        'Content-Type': 'application/json'
+//     },
+//     data: {
+//        name1: 'value1',
+//        name2: 'value2',
+//        nameN: 'valueN'
+//     }
+// })
+//   .then(function(response) {
+//     console.log(response);
+//   })
+//   .catch(function(error) {
+//     if(error) {
+//        // do something
+//     }
+//   });
 
 
 function portofolio (containerID, settings) {
