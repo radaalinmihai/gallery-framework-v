@@ -25,6 +25,24 @@ function portofolio (containerID, settings) {
 	// Sort responsive settings from highest to lowest so that they're applied accordingly
 	var params = {}, mediaQueries = [], k = 0, j;
 
+    window.onresize = function(event) {
+        if (settings.type == "carousel" || settings.type == "grid") {
+            if (settings.type == "carousel") {
+
+                if (settings.fullscreen.show == true) {
+                    container.removeChild(container.children[0]);
+                }
+
+                if (settings.nav.show == true) {
+                    container.removeChild(container.children[1]);
+                    container.removeChild(container.children[1]);
+                }
+            }
+
+            portofolio(containerID, settings);
+        }
+    };
+
 	if (settings.hasOwnProperty("responsive")) {
 		params = sortQueries(settings);
 	}

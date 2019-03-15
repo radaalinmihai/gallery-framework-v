@@ -25,6 +25,7 @@ body, html {
 	overflow: hidden;
 	justify-content: center;
 	position: relative;
+    z-index: 10000000000;
 }
 .car-stage {
 	display: -webkit-box;

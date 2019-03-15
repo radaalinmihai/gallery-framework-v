@@ -1,6 +1,9 @@
 a {
-	color: white;
-	text-decoration: none;
+	color: cornflowerblue;
+	text-decoration: underline;
+}
+a, span {
+	font-family: 'Ubuntu', sans-serif;
 }
 a:hover {
 	text-decoration: none;
@@ -73,8 +76,9 @@ aside ul {
 .selected-doc {
 	display: flex !important;
 	flex-direction: column;
+	overflow-y: auto;
 }
-.selected-doc > *:not(:first-child) {
+.selected-doc > *:not(:first-child), .inner-wrapper > *:not(:first-child) {
 	padding-left: 20px;
 	padding-right: 20px;
 	font-family: 'Ubuntu', sans-serif;
@@ -99,7 +103,82 @@ p {
 	padding-left: 0 !important;
 	display: flex;
 	justify-content: space-between;
+	text-underline: none;
+	color: white;
+}
+.markdown {
+	background: #333131;
+	border: 1px solid black;
+	padding: 10px;
+	margin: 20px;
+	border-radius: 4px;
 }
 .download i {
 	margin: auto 0 auto 0;
+}
+.options-list {
+	list-style: disc;
+	overflow: visible;
+	margin-left: 15px;
+}
+.options-list > * {
+	font-family: 'Ubuntu', sans-serif;
+}
+.options-list li {
+	overflow: visible;
+	font-weight: bold;
+}
+.doc-sections > h2 {
+	font-weight: lighter;
+	margin-top: 20px;
+}
+.doc-sections > * {
+	height: auto;
+}
+.inner-wrapper {
+	height: auto;
+	overflow: auto;
+}
+.inner-wrapper > h2 {
+	margin-top: 20px;
+}
+.params {
+	display: flex;
+	flex-direction: column;
+	border-bottom: 1px solid #333131;
+	padding-left: 15px;
+	padding-bottom: 10px;
+	margin-top: 15px;
+}
+.value-type, .value-default {
+	display: flex;
+	margin-top: 10px;
+}
+.value-type > *, .value-default > * {
+	margin: auto 0;
+}
+.mini-markdown {
+	font-family: 'Ubuntu Mono', monospace, sans-serif;
+	background: #333131;
+	padding: 3px 6px;
+	border-radius: 3px;
+	margin-left: 10px;
+}
+.params > span {
+	font-size: 1.2em;
+}
+.params-container {
+	margin: 0 20px 0 20px;
+	padding: 20px;
+	border: 1px solid #333131;
+}
+.inner-wrapper p {
+	font-family: 'Ubuntu', sans-serif;
+}
+.set-title {
+	margin-left: 40px;
+	padding: 10px;
+	display: inline-block;
+	margin-bottom: -23px;
+	background: #454343;
 }

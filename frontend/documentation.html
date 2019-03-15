@@ -75,6 +75,11 @@
                         <p>init.js</p>
                         <i class="material-icons">save_alt</i>
                     </a>
+
+                    <div class="markdown">
+                        <pre>&lt;link rel="stylesheet" href="portofolio/portofolio.js"&gt;</pre>
+                        <pre>&lt;script src="portofolio/init.js"&gt;</pre>
+                    </div>
                 </div>
 
                 <div class="doc-sections" id="setup">
@@ -82,7 +87,12 @@
                     <p>There are two main ways of creating an album and displaying it on your project. While both involve writing code, both are very straightforward and easy to follow.</p>
 
                     <h3>Create album through the form</h3>
-                    <p>
+                    <p>You can use the intuitive album creation form on our <a href="/">front page</a>. After naming your album, customizing it and linking to your materials in the order that you want (pictures, gifs, videos, audio files) you have two options:</p>
+                    <ul class="options-list">
+                        <li>Save the album to our database</li>
+                        <p>You can choose to save the album to our database and keep it for later use. The album configuration (transition, navigation, fullscreen settings, etc.) will be saved, as well as its name and the media materials in the appropriate order.</p>
+                        <p>You'll be given a token that will allow you to call the album on any page you want via JavaScript with little hassle.</p>
+                    </ul>
                 </div>
 
                 <div class="doc-sections" id="faq">
@@ -90,7 +100,104 @@
                 </div>
 
                 <div class="doc-sections" id="carousel">
-                    <h1>Carousel</h1>
+                    <div class="inner-wrapper">
+                        <h1>Carousel</h1>
+
+                        <h2>Mark-up</h2>
+
+                        <div class="markdown">
+                            <pre>&lt;div id="album"&gt;</pre>
+                            <pre>   &lt;div&gt;</pre>
+                            <pre>       &lt;div&gt;&lt;img src="1.jpg"/&gt;&lt;/div&gt;</pre>
+                            <pre>       &lt;div&gt;&lt;img src="2.jpg"/&gt;&lt;/div&gt;</pre>
+                            <pre>       &lt;div&gt;&lt;img src="3.jpg"/&gt;&lt;/div&gt;</pre>
+                            <pre>   &lt;/div&gt;</pre>
+                            <pre>&lt;/div&gt;</pre>
+                        </div>
+
+                        <h2>Initializing</h2>
+
+                        <div class="markdown">
+                            <pre>portofolio("album", {</pre>
+                            <pre>   type : "carousel"</pre>
+                            <pre>});</pre>
+                        </div>
+
+                        <h2>Configuration options</h2>
+
+                        <p>The carousel can be configured and customized in a number of different ways, all of which have defaults and are optional.</p>
+
+
+                        <h3 class="set-title">General settings</h3>
+
+                        <div class="params-container">
+                            <div class="params">
+                                <span>items</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Number</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">3</span>
+                                </div>
+
+                                <p class="param-desc"><i>The number of items per each slide.</i></p>
+                            </div>
+                        </div>
+
+                        <h3 class="set-title">Transition settings</h3>
+
+                        <div class="params-container">
+                            <div class="params">
+                                <span>transitionType</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">string</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">"slide"</span>
+                                </div>
+
+                                <p class="param-desc"><i>Choose whether you want the entire slide to shift ("slide") or only a specific amount of items ("item").</i></p>
+                            </div>
+                            <div class="params">
+                                <span>transitionItems</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Number</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">1</span>
+                                </div>
+
+                                <p class="param-desc"><i>The amount of items to me moved, in case you choose the "item" transition type.</i></p>
+                            </div>
+                            <div class="params">
+                                <span>auto</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Bool</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">false</span>
+                                </div>
+
+                                <p class="param-desc"><i>Choose whether you want the carousel to move automatically in intervals.</i></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="doc-sections" id="grid">
