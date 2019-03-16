@@ -181,11 +181,11 @@ function portofolio (containerID, settings) {
 
 			if (params.hasOwnProperty("fullscreen") && params.fullscreen == true) {
 
-				// fullscreenGrid(container, params);
+				fullscreenGrid(container, params);
 
-				dragNDrop(container, params);
-
-				adjustSize(container, params);
+				// dragNDrop(container, params);
+				//
+				// adjustSize(container, params);
 
 			}
 
@@ -201,7 +201,7 @@ function portofolio (containerID, settings) {
 			var audioHTML = "<div class='audio_wrapper'><p class='song_name'></p><div class='player'><button class='play_button'><i class='material-icons'>play_circle_outline</i></button><button class='resume_button'><i class='material-icons'>pause_circle_outline</i></button><button class='previous_song'><i class='material-icons'>skip_previous</i></button><button class='next_song'><i class='material-icons'>skip_next</i></button><div class='progress'><div class='current_progress'></div></div><div class='volume_controls'><input class='volume' type='range' min='0' max='1' step='any'><button class='volume_button'><i class='material-icons'>volume_up</i></button></div></div></div>";
 			let doc = new DOMParser().parseFromString(audioHTML, 'text/html');
 			container.appendChild(doc.body.firstChild);
-			audioPlayer(['apologize.mp3', 'ceva.mp3']);
+			audioPlayer(params.songs);
 
 	}
 }

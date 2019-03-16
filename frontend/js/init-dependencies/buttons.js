@@ -2,9 +2,8 @@ function nav (options, container) {
 
 	if (options.hasOwnProperty("prev") == false || options.prev == null || options.hasOwnProperty("next") == false || options.next == null) {
 
-		options.prev = "<i>❮</i>";
-		options.next = "<i>❯</i>";
-
+		options.prev = "<i class='material-icons'>navigate_before</i>";
+		options.next = "<i class='material-icons'>navigate_next</i>";
 	}
 
 	var cont = document.createElement("div");
@@ -27,8 +26,8 @@ function fullscreen (options, container, stage) {
     container.insertBefore(butContainer, stage);
 
     if (options.hasOwnProperty("open") == false || options.open == null || options.hasOwnProperty("close") == false || options.close == null) {
-        options.open = "<i>↗</i>";
-        options.close = "<i>✖</i>";
+        options.open = "<i class='material-icons'>fullscreen</i>";
+        options.close = "<i class='material-icons'>close</i>";
     }
 
     var doc = new DOMParser().parseFromString(options.open, 'text/html');
