@@ -1,22 +1,22 @@
-/*ajax("localhost:3000/return_album", {
-    method: 'POST',
-    headers: {
-       'Content-Type': 'application/json'
-    },
-    data: {
-       name1: 'value1',
-       name2: 'value2',
-       nameN: 'valueN'
-    }
-})
-  .then(function(response) {
-    console.log(response);
-  })
-  .catch(function(error) {
-    if(error) {
-       // do something
-    }
-  });*/
+window.onload = function() {
+    ajax("http://localhost:3000/return_album", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify({
+            token: 'FU1ytyOBekVb'
+        })
+    })
+        .then(function(response) {
+            console.log(response);
+        })
+        .catch(function(error) {
+            if(error) {
+                console.log(error);
+            }
+        });
+}
 
 
 function portofolio (containerID, settings) {
@@ -29,14 +29,15 @@ function portofolio (containerID, settings) {
         if (settings.type == "carousel" || settings.type == "grid") {
             if (settings.type == "carousel") {
 
-                if (settings.fullscreen.show == true) {
+                if (settings.hasOwnProperty("fullscreen") && settings.fullscreen.show == true) {
                     container.removeChild(container.children[0]);
                 }
 
-                if (settings.nav.show == true) {
+                if (settings.hasOwnProperty("nav") && settings.nav.show == true) {
                     container.removeChild(container.children[1]);
                     container.removeChild(container.children[1]);
                 }
+
             }
 
             portofolio(containerID, settings);

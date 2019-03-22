@@ -158,6 +158,9 @@ body, html {
     width: auto;
     height: auto;
     margin: auto;
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
+    transition: all 0.4s ease;
 }
 .list-container {
 	display: flex;
@@ -206,6 +209,10 @@ body, html {
     right: -4px;
     width: 8px;
     cursor: ew-resize;
+}
+.zooming-img {
+    cursor: -webkit-zoom-out !important;
+    cursor: zoom-out !important;
 }
 /*--------------------------------------------------------------
 # Audio

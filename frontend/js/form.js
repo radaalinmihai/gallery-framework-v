@@ -2,98 +2,47 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Choose album type
 
-    function hide (className) {
-        var els = document.getElementsByClassName(className);
-
-        for (var i = 0; i < els.length; i++) {
-            els[i].style.display = "none";
-        }
-    }
-
-    function show (className) {
-        var els = document.getElementsByClassName(className);
-
-        for (var i = 0; i < els.length; i++) {
-            els[i].style.display = "flex";
-        }
-    }
-
-    var input_type = document.getElementById('pick').querySelector('input[name="type"]'), type;
-
-    function hideMembers (type) {
+    function slideOut (type) {
         switch (type) {
-            case "carousel":
-                input_type.value = 'carousel';
-                type = "carousel";
+            case "carousel-opt" :
+                document.getElementById("carousel-creation-form").classList.remove("album-forms-hidden");
+                break;
 
-                hide("grid-member");
+            case "audio-opt" :
+                document.getElementById("audio-creation-form").classList.remove("album-forms-hidden");
+                break;
 
-                show("car-member");
-                document.getElementById("responsive-settings").style.display = "flex";
+            case "grid-opt" :
+                document.getElementById("grid-creation-form").classList.remove("album-forms-hidden");
+                break;
 
-            break;
+            case "list-opt" :
+                document.getElementById("list-creation-form").classList.remove("album-forms-hidden");
 
-            case "grid":
-
-                input_type.value = 'grid';
-                type = "grid";
-                hide("car-member");
-
-                show("grid-member");
-                document.getElementById("responsive-settings").style.display = "flex";
-
-            break;
-
-            case "audio":
-
-                input_type.value = 'audio';
-                type = "audio";
-                hide("car-member");
-                hide("grid-member");
-                document.getElementById("responsive-settings").style.display = "none";
-
-            break;
-
-            case "list":
-
-                input_type.value = 'list';
-                type = "list";
-                hide("car-member");
-                hide("grid-member");
-                document.getElementById("responsive-settings").style.display = "flex";
-
-            break;
         }
 
-        document.getElementsByClassName("nav-container")[0].style.display = "flex";
-        var width = parseFloat(document.getElementsByClassName("car-stage")[0].children[0].style.width);
-        document.getElementsByClassName("car-stage")[0].style.left = "-" + width + "px";
-        while (document.getElementsByClassName("actives")[0].nextElementSibling.style.display == "none") {
-            document.getElementsByClassName("actives")[0].nextElementSibling.classList.add("actives");
-            document.getElementsByClassName("actives")[0].classList.remove("actives");
-        }
-        document.getElementsByClassName("actives")[0].nextElementSibling.classList.add("actives");
-        document.getElementsByClassName("actives")[0].classList.remove("actives");
-        document.querySelector(".nav-container .prev").children[0].style.display = "flex";
 
-        createBreakpoint(type);
+        var asideRight = document.getElementById("aside-right-welcome"),
+            pick = document.getElementById("pick-type-container"),
+            carousels = document.getElementById("creation-carousels");
+
+        var height = asideRight.offsetHeight;
+
+
+        asideRight.style.transform = "translateY(-" + height * 2 + "px)";
+        pick.style.transform = "translateY(-" + height * 2 + "px)";
+        carousels.style.transform = "translateY(-" + height * 2 + "px)";
     }
 
-    document.getElementById("carousel-opt").onclick = function () {
-        hideMembers("carousel");
+    function selectType (ele) {
+        ele.addEventListener("click", function () {
+            slideOut(ele.getAttribute("id"));
+        });
     }
 
-    document.getElementById("grid-opt").onclick = function () {
-        hideMembers("grid");
-    }
+    var options = document.getElementById("album-options").children;
 
-    document.getElementById("list-opt").onclick = function () {
-        hideMembers("list");
-    }
-
-    document.getElementById("audio-opt").onclick = function () {
-        hideMembers("audio");
-    }
+    for (var i = 0; i < options.length; i++) selectType(options[i]);
 
     // Copy for responsive
 
@@ -125,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             div.appendChild(c);
         }
-        
+
         div.classList.add("hidden");
 
         document.getElementsByClassName("new-breakpoint")[0].appendChild(div);
@@ -145,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
-    
+
         function keyStrokes (ele) {
             var created, removed = 0;
             ele.onkeyup = function() {
@@ -191,7 +140,6 @@ document.addEventListener('DOMContentLoaded', function() {
     readd();
 
     document.getElementById("add-more").onclick = function() {
-        console.log(document.getElementById("resources").insertBefore(clone, this));
         clone = document.querySelector("#resources .url-input").cloneNode([true]);
         readd();
     }
@@ -257,61 +205,66 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.parentNode.classList.add("show");
                 this.parentNode.style.height = 47.6 + this.nextSibling.children.length * 47.6 + "px";
                 this.children[1].classList.add("rotated");
-                console.log(this.parentNode.style.height);
             }
         }
     }
 
     // Wrap navigation buttons
 
-    var next = document.getElementsByClassName("next")[0];
-    var prev = document.getElementsByClassName("prev")[0];
+    function wrapNav() {
 
-    var container = document.createElement("div");
-    container.classList.add("nav-container");
+        var next = document.getElementsByClassName("next")[0];
+        var prev = document.getElementsByClassName("prev")[0];
 
-    document.getElementById("carousel").appendChild(container);
-    container.appendChild(prev);
-    container.appendChild(next);
+        var container = document.createElement("div");
+        container.classList.add("nav-container");
 
-    next.children[0].onclick = function() {
-        while (document.getElementsByClassName("actives")[0].nextElementSibling.style.display == "none") {
+        document.getElementById("carousel").appendChild(container);
+        container.appendChild(prev);
+        container.appendChild(next);
+
+        next.children[0].onclick = function() {
+            while (document.getElementsByClassName("actives")[0].nextElementSibling.style.display == "none") {
+                document.getElementsByClassName("actives")[0].nextElementSibling.classList.add("actives");
+                document.getElementsByClassName("actives")[0].classList.remove("actives");
+            }
             document.getElementsByClassName("actives")[0].nextElementSibling.classList.add("actives");
             document.getElementsByClassName("actives")[0].classList.remove("actives");
-        }
-        document.getElementsByClassName("actives")[0].nextElementSibling.classList.add("actives");
-        document.getElementsByClassName("actives")[0].classList.remove("actives");
 
-        if (document.getElementById("final").classList.contains("actives")) {
-            this.style.display = "none";
+            if (document.getElementById("final").classList.contains("actives")) {
+                this.style.display = "none";
+            }
+            else {
+                document.querySelector(".nav-container .prev").children[0].style.display = "flex";
+            }
         }
-        else {
-            document.querySelector(".nav-container .prev").children[0].style.display = "flex";
-        }
-    }
 
-    prev.children[0].onclick = function() {
-        while (document.getElementsByClassName("actives")[0].previousElementSibling.style.display == "none") {
+        prev.children[0].onclick = function() {
+            while (document.getElementsByClassName("actives")[0].previousElementSibling.style.display == "none") {
+                document.getElementsByClassName("actives")[0].previousElementSibling.classList.add("actives");
+                document.getElementsByClassName("actives")[1].classList.remove("actives");
+            }
             document.getElementsByClassName("actives")[0].previousElementSibling.classList.add("actives");
             document.getElementsByClassName("actives")[1].classList.remove("actives");
-        }
-        document.getElementsByClassName("actives")[0].previousElementSibling.classList.add("actives");
-        document.getElementsByClassName("actives")[1].classList.remove("actives");
 
-        if (document.getElementById("pick").classList.contains("actives")) {
-            this.style.display = "none";
+            if (document.getElementById("pick").classList.contains("actives")) {
+                this.style.display = "none";
+            }
+            else {
+                document.querySelector(".nav-container .next").children[0].style.display = "flex";
+            }
         }
-        else {
-            document.querySelector(".nav-container .next").children[0].style.display = "flex";
-        }
+
     }
+
+    // wrapNav();
 
 
     // Toggle fields for specific options
 
-    var showNav = document.querySelector(".car-stage > #navigation > div  label:first-child select");
-    var next = document.querySelector(".car-stage > #navigation #nav-next");
-    var prev = document.querySelector(".car-stage > #navigation #nav-prev");
+    var showNav = document.getElementById("nav_select");
+    var next = document.getElementById("nav-prev");
+    var prev = document.getElementById("nav-next");
 
     showNav.onchange = function() {
         if (showNav.value == "true") {
@@ -320,14 +273,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         else {
             prev.style.display = "none";
-            next.style.display = "none"; 
+            next.style.display = "none";
         }
     }
 
 
     var auto = document.querySelector(".car-stage > #transition > div  label:nth-child(3) select");
     var autoInterval = document.querySelector(".car-stage > #transition #auto-interval");
-    
+
     auto.onchange = function() {
         if (auto.value == "true") {
             autoInterval.style.display = "flex";
@@ -349,18 +302,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         else {
             open.style.display = "none";
-            close.style.display = "none"; 
+            close.style.display = "none";
         }
     }
 
-    var mainButton = document.getElementsByClassName("main-button")[0], aside = document.getElementById("aside-right-welcome"), car = document.getElementsByClassName("form-styling")[0];
+    var mainButton = document.getElementsByClassName("main-button")[0],
+        aside = document.getElementsByClassName("aside-right")[0],
+        asideRight = document.getElementById("aside-right-welcome"),
+        pick = document.getElementById("pick-type-container"),
+        carousels = document.getElementById("creation-carousels");
 
     mainButton.onclick = function () {
 
-        var height = aside.offsetHeight;
+        var height = asideRight.offsetHeight;
 
-        aside.style.transform = "translateY(-" + height + "px)";
-        car.style.transform = "translateY(-" + height + "px)";
+        asideRight.style.transform = "translateY(-" + height + "px)";
+        pick.style.transform = "translateY(-" + height + "px)";
+        carousels.style.transform = "translateY(-" + height + "px)";
         
     }
 

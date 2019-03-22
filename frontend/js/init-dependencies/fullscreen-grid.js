@@ -152,4 +152,72 @@ function fullscreenGrid (container, params) {
 
 	}
 
+	// Zoomable
+
+    var selected = null, // Object of the element to be moved
+        x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
+        x_elem = 0, y_elem = 0; // Stores top, left values (edge) of the element
+
+	// Will be called when user starts dragging an element
+    function _drag_init(elem) {
+        // Store the object of the element which needs to be moved
+        selected = elem;
+        x_elem = x_pos - selected.offsetLeft;
+        y_elem = y_pos - selected.offsetTop;
+    }
+
+	// Will be called when user dragging an element
+    function _move_elem(e) {
+        y_pos = document.all ? window.event.clientY : e.pageY;
+        if (selected !== null) {
+            selected.style.transform = "translateY(" + (y_pos - y_elem) + 'px) scale(3)';
+        }
+    }
+
+	// Destroy the object when we are done
+    function _destroy() {
+        selected = null;
+    }
+
+    function zoomInit (ele) {
+    	ele.addEventListener("click", function() {
+    		if (this.classList.contains("zooming-img")) {
+    			this.classList.remove("zooming-img");
+    			this.style.transform = "none";
+    			_destroy();
+			}
+			else {
+                this.classList.add("zooming-img");
+                this.style.transform = "scale(3)";
+                _drag_init(this);
+            }
+		});
+	}
+
+    document.onmousemove = _move_elem;
+
+	if (params.hasOwnProperty("format") && params.format == "image") {
+		var carMembers = container.lastChild.children[1].children;
+
+		for (i = 0; i < carMembers.length; i++) {
+			zoomInit(carMembers[i].children[0]);
+		}
+	}
+
+	var closeFull = container.lastChild.children[0];
+	var nextBut = container.lastChild.children[3];
+	var prevBut = container.lastChild.children[2];
+
+	function removeZoom (ele) {
+		ele.addEventListener("click", function() {
+            selected.classList.remove("zooming-img");
+            selected.style.transform = "none";
+            _destroy();
+		});
+	}
+
+	removeZoom(closeFull);
+	removeZoom(nextBut);
+	removeZoom(prevBut);
+
 }

@@ -85,65 +85,47 @@
             </aside>
             <div class="aside-right">
                     
-                    <div id="aside-right-welcome">
-                        <h1 class="main-title">Create and inspire others</h1>
-                        <p class="main-subtitle">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire lorem ipsum loratum ciocolatumshaggy van dame van wane</p>
-                        <button class="main-button">Get started</button>
+                <div id="aside-right-welcome">
+
+1                   <h1 class="main-title">Create and inspire others</h1>
+                    <p class="main-subtitle">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire lorem ipsum loratum ciocolatumshaggy van dame van wane</p>
+                    <button class="main-button">Get started</button>
+
+                </div>
+
+                <div id="pick-type-container">
+
+                    <div id="pick" class="member actives">
+                        <span>Pick an album type</span>
+                        <div id="album-options">
+                            <div id="carousel-opt">
+                                <i class="material-icons">view_carousel</i>
+                                <span>Carousel</span>
+                            </div>
+                            <div id="grid-opt">
+                                <i class="material-icons">grid_on</i>
+                                <span>Grid</span>
+                            </div>
+                            <div id="audio-opt">
+                                <i class="material-icons">play_circle_outline</i>
+                                <span>Audio player</span>
+                            </div>
+                            <div id="list-opt">
+                                <i class="material-icons">list</i>
+                                <span>List</span>
+                            </div>
+                        </div>
+                        <input type='hidden' name='type' />
                     </div>
 
-                    <form action='' method='post' class='form-styling'>
-                        <div id="carousel">
+                </div>
+
+                <div id="creation-carousels">
+
+                    <form action='' method='post' class='album-forms' id="carousel-creation-form">
+                        <div id="carousel-creation" class="carousels">
                             <div>
-                                <div id="pick" class="member actives">
-                                    <span>Pick an album type</span>
-                                    <div id="album-options">
-                                        <div id="carousel-opt">
-                                            <i class="material-icons">view_carousel</i>
-                                            <span>Carousel</span>
-                                        </div>
-                                        <div id="grid-opt">
-                                            <i class="material-icons">grid_on</i>
-                                            <span>Grid</span>
-                                        </div>
-                                        <div id="audio-opt">
-                                            <i class="material-icons">play_circle_outline</i>
-                                            <span>Audio player</span>
-                                        </div>
-                                        <div id="list-opt">
-                                            <i class="material-icons">list</i>
-                                            <span>List</span>
-                                        </div>
-                                    </div>
-                                    <input type='hidden' name='type' />
-                                </div>
-            
-                                <!-- Grid slides -->
-                                <div id="general" class="member grid-member">
-                                    <label>
-                                        <span>Album name:</span>
-                                        <input type='text' name='album_name' placeholder='Album name' />
-                                    </label>
-                                    <label id="itemsperrow">
-                                        <span>Items per row:</span>
-                                        <input type='number' name='items' placeholder='0' />
-                                    </label>
-                                    <label id="fullscreen_grid">
-                                        <span>Fullscreen:</span>
-                                        <select name='fullscreen_grid' id='fullscreen_grid_select'>
-                                            <option value=false>False</option>
-                                            <option value=true>True</option>
-                                        </select>
-                                    </label>
-                                    <label id="format_grid">
-                                        <span>Format:</span>
-                                        <select  name='format_grid' id='format_grid_select'>
-                                            <option value=false>Image</option>
-                                            <option value=true>Video</option>
-                                        </select>
-                                    </label>
-                                </div>
-            
-                                <!-- Carousel slides -->
+
                                 <div id="general" class="member car-member">
                                     <label>
                                         <span>Album name:</span>
@@ -227,8 +209,7 @@
                                         </label>
                                     </div>
                                 </div>
-            
-                                <!-- General slides -->
+
                                 <div id="resources" class="member">
                                     <label id="contenttype">
                                         <span>Content type:</span>
@@ -257,11 +238,134 @@
                                     <span></span>
                                     <button id='generate' type='submit'>Generate JSON</button>
                                 </div>
+
                             </div>
                         </div>
                     </form>
 
-            </div>
+                    <form action='' method='post' class='album-forms' id="grid-creation-form">
+                        <div id="grid-creation" class="carousels">
+                            <div>
+
+                                <div id="general" class="member grid-member">
+                                    <label>
+                                        <span>Album name:</span>
+                                        <input type='text' name='album_name' placeholder='Album name' />
+                                    </label>
+                                    <label id="itemsperrow">
+                                        <span>Items per row:</span>
+                                        <input type='number' name='items' placeholder='0' />
+                                    </label>
+                                    <label id="fullscreen_grid">
+                                        <span>Fullscreen:</span>
+                                        <select name='fullscreen_grid' id='fullscreen_grid_select'>
+                                            <option value=false>False</option>
+                                            <option value=true>True</option>
+                                        </select>
+                                    </label>
+                                    <label id="format_grid">
+                                        <span>Format:</span>
+                                        <select  name='format_grid' id='format_grid_select'>
+                                            <option value=false>Image</option>
+                                            <option value=true>Video</option>
+                                        </select>
+                                    </label>
+                                </div>
+
+                                <div id="responsive-settings" class="member">
+                                    <span>Responsive settings</span>
+                                    <div class="new-breakpoint" id='breakpoint'>
+                                        <div class="insert-breakpoint">
+                                            <input type='text' name='new_breakpoint' placeholder='Width in pixels' />
+                                            <i class="material-icons">keyboard_arrow_down</i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="resources" class="member">
+                                    <label id="contenttype">
+                                        <span>Content type:</span>
+                                        <select id='fullscreen_select'>
+                                            <option value=image/video>Image/Video</option>
+                                            <option value=audio>Audio</option>
+                                        </select>
+                                    </label>
+                                    <span>Links to your files</span>
+                                    <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                    <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                    <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                    <span id="add-more">Add more</span>
+                                </div>
+
+                                <div id="final" class="member">
+                                    <button id='save' type='submit'>Save gallery</button>
+                                    <span></span>
+                                    <button id='generate' type='submit'>Generate JSON</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <form action='' method='post' class='album-forms' id="audio-creation-form">
+                        <div id="audio-creation" class="carousels">
+                            <div>
+                                <div id="resources" class="member">
+                                    <label id="contenttype">
+                                        <span>Content type:</span>
+                                        <select id='fullscreen_select'>
+                                            <option value=image/video>Image/Video</option>
+                                            <option value=audio>Audio</option>
+                                        </select>
+                                    </label>
+                                    <span>Links to your files</span>
+                                    <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                    <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                    <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                    <span id="add-more">Add more</span>
+                                </div>
+
+                                <div id="final" class="member">
+                                    <button id='save' type='submit'>Save gallery</button>
+                                    <span></span>
+                                    <button id='generate' type='submit'>Generate JSON</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <form action='' method='post' class='album-forms' id="list-creation-form">
+                        <div id="list-creation" class="carousels">
+                            <div>
+
+                                <div id="resources" class="member">
+                                    <label id="contenttype">
+                                        <span>Content type:</span>
+                                        <select id='fullscreen_select'>
+                                            <option value=image/video>Image/Video</option>
+                                            <option value=audio>Audio</option>
+                                        </select>
+                                    </label>
+                                    <span>Links to your files</span>
+                                    <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                    <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                    <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                    <span id="add-more">Add more</span>
+                                </div>
+
+                                <div id="final" class="member">
+                                    <button id='save' type='submit'>Save gallery</button>
+                                    <span></span>
+                                    <button id='generate' type='submit'>Generate JSON</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
             </div>
         </div>
     </div>
@@ -313,7 +417,7 @@
     <script src="./js/create_album.js"></script>
     <script>
 
-            portofolio("carousel", {
+            portofolio("grid-creation", {
                 type: "carousel",
                 items: 1,
                 transition : {
@@ -325,6 +429,51 @@
                     next: "<i class='material-icons'>chevron_right</i>"
                 }
             });
+
+            portofolio("carousel-creation", {
+                type: "carousel",
+                items: 1,
+                transition : {
+                    transitionType:"slide"
+                },
+                nav : {
+                    show: true,
+                    prev: "<i class='material-icons'>chevron_left</i>",
+                    next: "<i class='material-icons'>chevron_right</i>"
+                }
+            });
+
+            portofolio("audio-creation", {
+                type: "carousel",
+                items: 1,
+                transition : {
+                    transitionType:"slide"
+                },
+                nav : {
+                    show: true,
+                    prev: "<i class='material-icons'>chevron_left</i>",
+                    next: "<i class='material-icons'>chevron_right</i>"
+                }
+            });
+
+            portofolio("list-creation", {
+                type: "carousel",
+                items: 1,
+                transition : {
+                    transitionType:"slide"
+                },
+                nav : {
+                    show: true,
+                    prev: "<i class='material-icons'>chevron_left</i>",
+                    next: "<i class='material-icons'>chevron_right</i>"
+                }
+            });
+
+            var forms = document.getElementsByClassName("album-forms");
+
+            for (var i = 0; i < forms.length; i++) {
+                forms[i].classList.add("album-forms-hidden");
+            }
 
     </script>
     <script src="js/form.js"></script> <!-- additionals animations, styling, etcetera -->
