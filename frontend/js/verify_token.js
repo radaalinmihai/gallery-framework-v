@@ -5,43 +5,23 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        var formToken = formToJSON(this.elements);
+        var tokenInput = this.elements[0].value;
+        console.log(tokenInput);
+        
         ajax('http://localhost:3000/return_album', {
-            method: 'POST',
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: JSON.stringify(formToken)
-        })
-            .then(function (res) {
-                if(res.success) {
-                    var album = res.data;
-                    album_shows.style.display = 'flex';
-                    album_shows.innerHTML = '<h1>' + album.album_name + '</h1>' +
-                        '<div id="carousel1">'+
-                        '<div>' +
-                        '</div>' +
-                        '</div>';
-                    var carousel_kid = document.getElementById('carousel1').children[0];
-                    for(var i = 0; i < album.images.length; i++) {
-                        carousel_kid.innerHTML = carousel_kid.innerHTML + '<div class="member">' +
-                            '<img src="' + album.images[i] + '" /></div>';
-                    }
-                    init('carousel1', {
-                        type: album.type,
-                        items: album.items,
-                        transition: {
-                            transitionType: album.transition_type,
-                            transitionItems: album.transition_items,
-                            auto: album.auto
-                        }
-                    });
-                } else {
-                    console.log(res.message);
-                }
+            data: JSON.stringify({
+                token: tokenInput
             })
-            .catch(function (err) {
-                if (err) console.warn(err);
-            });
+        })
+        .then(function(res) {
+            console.log(res);
+        })
+        .catch(function(err) {
+            console.warn(err);
+        });
     });
 });

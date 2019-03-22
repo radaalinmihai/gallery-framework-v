@@ -35,7 +35,7 @@ app.post('/create_album', function (req, res) {
             var url = new URL(data.images[i]);
             if (url.toString().indexOf('https') == 0)
                 client = https;
-            
+
             client.get(data.images[i], function (response) {
                 response.on('data', function (chunk) {
                     var imgType = imageType(chunk).mime;
@@ -110,6 +110,11 @@ app.post('/return_album', function (req, res) {
             data: result
         });
     });
+});
+
+app.get('/album', function (req, res) {
+    var token = req.query.token;
+    console.log(token);
 });
 
 app.listen(3000, function () {
