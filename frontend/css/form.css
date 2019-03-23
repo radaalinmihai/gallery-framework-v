@@ -19,6 +19,19 @@
 	transition: transform 0.3s ease;
 	background: rgba(0,0,0,0.7);
 }
+#pick {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+#pick > span {
+	margin-bottom: 40px;
+	color: white;
+}
+#pick > * {
+	margin: 0 auto 0 auto;
+}
 .album-forms {
 	height: 100%;
 }
@@ -138,6 +151,7 @@ select {
 }
 .select-container > span:hover {
 	background: #fff radial-gradient(circle, transparent 1%, #fff 1%) center/15000%;
+	color: black;
 }
 .select-container > span:active {
 	background-color: #d9d9d9;
@@ -189,13 +203,19 @@ select {
 	border: none;
 }
 .insert-breakpoint {
-	border-bottom: 4px solid #eee;
 	display: flex;
 }
 .insert-breakpoint i {
 	margin: auto;
 	cursor: pointer;
 	margin-left: -40px;
+}
+.open-breakpoint {
+	display: block !important;
+}
+.breakpoints-container {
+	height: 80% !important;
+	overflow: auto;
 }
 #responsive-settings {
 	overflow-y: auto;
@@ -210,8 +230,8 @@ select {
 	margin-top: 40px;
 }
 .new-breakpoint {
-	width: 95% !important;
-	margin: 0 auto 0 auto;
+	width: 90% !important;
+	margin: 10px auto 10px auto;
 }
 .new-breakpoint #transition > span , .new-breakpoint #navigation > span , .new-breakpoint #fullscreen > span {
 	display: none;
@@ -248,10 +268,7 @@ select {
 	margin-top: 20px;
 	overflow: visible;
 }
-.new-breakpoint > div {
-	padding: 10px;
-}
-#add-more {
+.add-more, .add-more-breaks {
 	width: 30%;
 	margin: auto;
     margin-top: auto;
@@ -265,31 +282,32 @@ select {
 	background-position: center;
   	transition: background 0.4s;
 }
-#add-more:hover {
+.add-more:hover, .add-more-breaks:hover {
 	background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
 }
-#add-more:active {
+.add-more:active, .add-more-breaks:active {
 	background-color: #d9d9d9;
   	background-size: 100%;
   	transition: background 0s;
 }
-#resources {
-	overflow-y: auto;
-	overflow-x: hidden;
+.links-container {
+	overflow: auto;
+	height: 80%;
 }
-#resources > div {
+.links-container > div {
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 20px;
+	margin: 0 auto 20px auto;
+	width: 90%;
 }
-#resources > div > * {
+.links-container > div > * {
 	margin: auto;
 }
-#resources > div i {
+.links-container > div i {
 	margin-left: -60px;
 	cursor: pointer;
 }
-#resources > div input {
+.links-container > div input {
 	margin-left: 0;
 }
 #final {
@@ -318,7 +336,6 @@ select {
 	display: flex;
 	flex-wrap: wrap;
 	width: 75%;
-	margin: auto;
 	justify-content: space-around;
 }
 #album-options > div {

@@ -1,7 +1,5 @@
 function nav (options, container) {
 
-    console.log("added nav buttons");
-
 	if (options.hasOwnProperty("prev") == false || options.prev == null || options.hasOwnProperty("next") == false || options.next == null) {
 
 		options.prev = "<i class='material-icons'>navigate_before</i>";

@@ -1,22 +1,22 @@
-window.onload = function() {
-    ajax("http://localhost:3000/return_album", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        data: JSON.stringify({
-            token: 'FU1ytyOBekVb'
-        })
-    })
-        .then(function(response) {
-            console.log(response);
-        })
-        .catch(function(error) {
-            if(error) {
-                console.log(error);
-            }
-        });
-}
+// window.onload = function() {
+//     ajax("http://localhost:3000/return_album", {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         data: JSON.stringify({
+//             token: 'FU1ytyOBekVb'
+//         })
+//     })
+//         .then(function(response) {
+//             console.log(response);
+//         })
+//         .catch(function(error) {
+//             if(error) {
+//                 console.log(error);
+//             }
+//         });
+// }
 
 
 function portofolio (containerID, settings) {

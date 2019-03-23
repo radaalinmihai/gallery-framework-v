@@ -1,11 +1,63 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Generate responsive settings
+
+    var inputs = [], inputsBU = [], typeChosen = "none", breakpointindex;
+
+    function generateResponsiveInputs() {
+        if (typeChosen == "carousel") {
+            inputs[inputs.length] = document.getElementById("itemsper").cloneNode([true]);
+            inputs[inputs.length] = document.getElementById("autoselect").cloneNode([true]);
+            inputs[inputs.length] = document.getElementById("navselect").cloneNode([true]);
+            inputs[inputs.length] = document.getElementById("fullscreenselect").cloneNode([true]);
+        }
+        else if (typeChosen == "grid") {
+            inputs[inputs.length] = document.getElementById("itemsperrow").cloneNode([true]);
+            inputs[inputs.length] = document.getElementById("fullscreen_grid").cloneNode([true]);
+        }
+
+        var div = document.createElement("div");
+
+        if (typeChosen == "grid") breakpointindex = 1;
+        else if (typeChosen == "carousel") breakpointindex = 0;
+
+        for (var i = 0; i < inputs.length; i++) {
+            div.appendChild(inputs[i]);
+        }
+
+        document.getElementsByClassName("new-breakpoint")[breakpointindex].appendChild(div);
+
+        prettySelects();
+
+        function openBreakpoints (ele) {
+            ele.addEventListener("click", function() {
+                this.parentNode.nextElementSibling.classList.toggle("open-breakpoint");
+            });
+        }
+
+        openBreakpoints(document.getElementsByClassName("new-breakpoint")[breakpointindex].children[0].children[1]);
+
+        var button = document.getElementsByClassName("new-breakpoint")[breakpointindex].nextElementSibling, copyForResponsive;
+
+        button.addEventListener("click", function () {
+            copyForResponsive = this.previousElementSibling.cloneNode([true]);
+            this.parentNode.insertBefore(copyForResponsive, this);
+            openBreakpoints(copyForResponsive.children[0].children[1]);
+            var selects = document.getElementsByClassName("select-container");
+
+            for (var i = 0; i < selects.length; i++) readdSelectEvents(selects[i]);
+            copyForResponsive = this.previousElementSibling.cloneNode([true]);
+        });
+
+    }
+
     // Choose album type
 
     function slideOut (type) {
         switch (type) {
             case "carousel-opt" :
                 document.getElementById("carousel-creation-form").classList.remove("album-forms-hidden");
+                typeChosen = "carousel";
                 break;
 
             case "audio-opt" :
@@ -14,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             case "grid-opt" :
                 document.getElementById("grid-creation-form").classList.remove("album-forms-hidden");
+                typeChosen = "grid";
                 break;
 
             case "list-opt" :
@@ -32,6 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
         asideRight.style.transform = "translateY(-" + height * 2 + "px)";
         pick.style.transform = "translateY(-" + height * 2 + "px)";
         carousels.style.transform = "translateY(-" + height * 2 + "px)";
+
+        generateResponsiveInputs();
     }
 
     function selectType (ele) {
@@ -126,76 +181,117 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add more links
 
-    var clone = document.querySelector("#resources .url-input").cloneNode([true]);
+    var clone;
 
     function readd() {
         var close = document.getElementsByClassName("remove-resource");
         for (var i = 0; i < close.length; i++) {
             close[i].onclick = function() {
-                clone = document.querySelector("#resources .url-input").cloneNode([true]);
+                clone = this.parentNode.cloneNode([true]);
                 this.parentNode.remove();
+                console.log(clone);
             }
         }
     }
     readd();
 
-    document.getElementById("add-more").onclick = function() {
-        clone = document.querySelector("#resources .url-input").cloneNode([true]);
-        readd();
+    function appEvent (ele) {
+
+        ele.addEventListener("click", function() {
+
+            if (clone == null) clone = ele.previousElementSibling.cloneNode([true]);
+            ele.parentNode.insertBefore(clone, ele);
+            console.log(clone);
+            clone = ele.previousElementSibling.cloneNode([true]);
+            readd();
+
+        });
+
+    }
+
+    var readds = document.getElementsByClassName("add-more");
+
+    for (i = 0; i < readds.length; i++) {
+        appEvent(readds[i]);
     }
 
     // Generate pretty selects
 
-    var selects = document.getElementsByTagName("select");
+    function prettySelects() {
 
-    for (var i = 0; i < selects.length; i++) {
+        var selects = document.getElementsByTagName("select");
 
-        var selectContainer = document.createElement("div");
-        selectContainer.classList.add("select-container");
+        for (var i = 0; i < selects.length; i++) {
 
-        var optContainer = document.createElement("div");
-        optContainer.classList.add("options-container");
+            var selectContainer = document.createElement("div");
+            selectContainer.classList.add("select-container");
 
-        var icon = document.createElement("i");
-        icon.classList.add("material-icons");
-        icon.innerText = "keyboard_arrow_down";
+            var optContainer = document.createElement("div");
+            optContainer.classList.add("options-container");
 
-        var title = document.createElement("span");
+            var icon = document.createElement("i");
+            icon.classList.add("material-icons");
+            icon.innerText = "keyboard_arrow_down";
 
-        var p = document.createElement("p");
-        p.innerText = selects[i].children[0].innerText;
+            var title = document.createElement("span");
 
-        title.appendChild(p);
-        title.appendChild(icon);
-        selectContainer.appendChild(title);
-
-        for (var j = 0; j < selects[i].children.length; j++) {
-            var div = document.createElement("div");
             var p = document.createElement("p");
-            p.innerText = selects[i].children[j].innerText;
-            div.appendChild(p);
-            optContainer.appendChild(div);
-            div.onclick = function () {
-                var actSelect = this.parentNode.parentNode.previousSibling.previousSibling;
-                this.parentNode.previousSibling.children[0].innerText = this.innerText;
-                actSelect.value = this.innerText.toLowerCase();
-                actSelect.dispatchEvent(new Event('change'));
-                this.parentNode.parentNode.classList.remove("show");
-                this.parentNode.parentNode.style.height = "47.6px";
-                this.parentNode.parentNode.children[0].children[1].classList.remove("rotated");
+            p.innerText = selects[i].children[0].innerText;
+
+            title.appendChild(p);
+            title.appendChild(icon);
+            selectContainer.appendChild(title);
+
+            for (var j = 0; j < selects[i].children.length; j++) {
+                var div = document.createElement("div");
+                var p = document.createElement("p");
+                p.innerText = selects[i].children[j].innerText;
+                div.appendChild(p);
+                optContainer.appendChild(div);
+                div.onclick = function () {
+                    var actSelect = this.parentNode.parentNode.previousSibling.previousSibling;
+                    this.parentNode.previousSibling.children[0].innerText = this.innerText;
+                    actSelect.value = this.innerText.toLowerCase();
+                    actSelect.dispatchEvent(new Event('change'));
+                    this.parentNode.parentNode.classList.remove("show");
+                    this.parentNode.parentNode.style.height = "47.6px";
+                    this.parentNode.parentNode.children[0].children[1].classList.remove("rotated");
+                }
+            }
+
+            selectContainer.appendChild(optContainer);
+            selects[i].parentNode.appendChild(selectContainer);
+
+            selectContainer.onmouseleave = function() {
+                this.classList.remove("show");
+                this.style.height = "47.6px";
+                this.children[0].children[1].classList.remove("rotated");
+            }
+
+            title.onclick = function () {
+                if (this.parentNode.classList.contains("show")) {
+                    this.parentNode.classList.remove("show");
+                    this.parentNode.style.height = "47.6px";
+                    this.children[1].classList.remove("rotated");
+                }
+                else {
+                    this.parentNode.classList.add("show");
+                    this.parentNode.style.height = 47.6 + this.nextSibling.children.length * 47.6 + "px";
+                    this.children[1].classList.add("rotated");
+                }
             }
         }
 
-        selectContainer.appendChild(optContainer);
-        selects[i].parentNode.appendChild(selectContainer);
+    }
 
-        selectContainer.onmouseleave = function() {
+    function readdSelectEvents (ele) {
+        ele.onmouseleave = function() {
             this.classList.remove("show");
             this.style.height = "47.6px";
             this.children[0].children[1].classList.remove("rotated");
         }
 
-        title.onclick = function () {
+        ele.children[0].onclick = function () {
             if (this.parentNode.classList.contains("show")) {
                 this.parentNode.classList.remove("show");
                 this.parentNode.style.height = "47.6px";
