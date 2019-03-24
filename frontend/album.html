@@ -5,4 +5,33 @@
             Album
         </title>
     </head>
+    <body>
+        <div id='carousel'></div>
+    </body>
+    <script src='./js/utility_functions.js'></script>
+    <script src='./js/ajax.js'></script>
+    <script src='./js/init.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var url = window.location.href;
+            var token = urlParamsParser(url);
+            console.log(token);
+
+            ajax('http://localhost:3000/return_album', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify(token)
+            })
+            .then(function(res) {
+                if(res.success) {
+                    console.log(res.data);
+                }
+            })
+            .catch(function(err) {
+                console.warn(err);
+            });
+        });
+    </script>
 </html>

@@ -1,23 +1,35 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     var form = document.getElementsByClassName('form-styling')[0];
-//     form.addEventListener('submit', function (e) {
-//         e.preventDefault();
-//         var data = formToJSON(this);
-//         if(data != false) {
-//             ajax('http://localhost:3000/create_album', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/json'
-//                 },
-//                 data: JSON.stringify(data)
-//             })
-//                 .then(function (res) {
-//                     console.log(res);
-//                 })
-//                 .catch(function (err) {
-//                     if (err) console.warn(err);
-//                 });
-//         } else
-//             alert('FBI!!!');
-//     });
-// });
+function create_album(e) {
+    e.preventDefault();
+    var form = formToJSON(this);
+    var error = 0;
+    console.log(form);
+
+    if (typeof form.album_name == "undefined")
+        alert('Give a name to that album!');
+    else if (form.images) {
+        if (form.images.length < 0) {
+            alert('Give us some images!');
+            error = 1;
+        }
+    } else if (form.audio) {
+        if (form.audio.length < 0) {
+            alert('Give us some songs!');
+            error = 1;
+        }
+    }
+
+    if(error == 0)
+        ajax('http://localhost:3000/create_album', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(form)
+        })
+            .then(function (res) {
+                console.log(res);
+            })
+            .catch(function (err) {
+                console.warn(err);
+            });
+}

@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Generate responsive settings
 
-    var inputs = [], inputsBU = [], typeChosen = "none", breakpointindex;
+    var inputs = [], inputsBU = [], typeChosen = "none", breakpointindex, inputType = document.querySelector('input[name="type"]');
 
     function generateResponsiveInputs() {
         if (typeChosen == "carousel") {
@@ -58,20 +58,27 @@ document.addEventListener('DOMContentLoaded', function() {
             case "carousel-opt" :
                 document.getElementById("carousel-creation-form").classList.remove("album-forms-hidden");
                 typeChosen = "carousel";
+                inputType.value = typeChosen;
+                document.getElementsByClassName('album-forms')[0].addEventListener('submit', create_album);
                 break;
 
             case "audio-opt" :
                 document.getElementById("audio-creation-form").classList.remove("album-forms-hidden");
+                typeChosen = 'audio';
+                inputType.value = typeChosen;
+                document.getElementsByClassName('album-forms')[2].addEventListener('submit', create_album);
                 break;
 
             case "grid-opt" :
                 document.getElementById("grid-creation-form").classList.remove("album-forms-hidden");
                 typeChosen = "grid";
+                inputType.value = typeChosen;
+                document.getElementsByClassName('album-forms')[0].addEventListener('submit', create_album);
                 break;
 
             case "list-opt" :
                 document.getElementById("list-creation-form").classList.remove("album-forms-hidden");
-
+                break;
         }
 
 
