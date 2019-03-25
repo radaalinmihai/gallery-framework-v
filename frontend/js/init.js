@@ -1,29 +1,39 @@
-// window.onload = function() {
-//     ajax("http://localhost:3000/return_album", {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         data: JSON.stringify({
-//             token: 'FU1ytyOBekVb'
-//         })
-//     })
-//         .then(function(response) {
-//             console.log(response);
-//         })
-//         .catch(function(error) {
-//             if(error) {
-//                 console.log(error);
-//             }
-//         });
-// }
-
-
 function portofolio (containerID, settings) {
 	var container = document.getElementById(containerID); // get container
 
 	// Sort responsive settings from highest to lowest so that they're applied accordingly
-	var params = {}, mediaQueries = [], k = 0, j;
+	var params = {}, mediaQueries = [], k = 0, j, tokenGenerated, materials;
+
+	if (settings.hasOwnProperty("token") && settings.token != null) {
+            ajax("http://localhost:3000/return_album", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify({
+                    token: settings.token
+                })
+            })
+                .then(function(response) {
+                    tokenGenerated = 1;
+                    params = response.data;
+                    materials = response.data.images;
+                    executeSwitch();
+                })
+                .catch(function(error) {
+                    if(error) {
+                        console.log(error);
+                    }
+        });
+	}
+	else {
+        if (settings.hasOwnProperty("responsive")) {
+            params = sortQueries(settings);
+        }
+        else params = settings;
+
+        executeSwitch();
+	}
 
     window.onresize = function(event) {
         if (settings.type == "carousel" || settings.type == "grid") {
@@ -44,159 +54,176 @@ function portofolio (containerID, settings) {
         }
     };
 
-	if (settings.hasOwnProperty("responsive")) {
-		params = sortQueries(settings);
-	}
-	else params = settings;
+	function executeSwitch() {
 
-	switch (params.type) { // check which format is requested
-		case "carousel":
+        switch (params.type) { // check which format is requested
+            case "carousel":
 
-			var stage = container.firstElementChild, // get stage (second container)
-						members = stage.children, // get list of elements
-						containerWidth = container.offsetWidth, // width of container at time of init (for assigning appropriate responsive widths to elements)
-						i, itemsPerSlide;
+                if (tokenGenerated) {
 
+                    var div = document.createElement("div");
 
-			if (params.transition == null) {
-				params.transition = {
-					loop : true,
-					gestures : true,
-					auto : false
-				}
-			}
+                    for (var i = 0; i < materials.length; i++) {
+                        var kidDiv = document.createElement("div");
+                        var img = document.createElement("img");
 
+                        kidDiv.setAttribute("class", "member");
+                        img.setAttribute("src", materials[i]);
 
-			// Give appropriate classes to both containers			
-			stage.classList.add("car-stage");
-			container.classList.add("carousel-container");
+                        kidDiv.appendChild(img);
+                        div.appendChild(kidDiv);
+                    }
 
+                    container.appendChild(div);
 
-			// Checking how many items per slide and assigning appropriate individual widths
-			if (params.hasOwnProperty("items") && params.items != null) {
-				itemsPerSlide = params.items;
-			}
-			else itemsPerSlide = 3; // defaults to 3 items per slide
+                }
 
-			var memberWidth = containerWidth / itemsPerSlide;
-			for (i = 0; i < members.length; i++) {
-				members[i].style.width = memberWidth.toString() + "px";
-				if (params.transition.gestures) {
-					members[i].classList.add("no-drag");
-				}
-			}
-
-			// Clone items for loop
-			if (params.transition.loop && members[0].classList.contains("clone") == false) {
-				var k = 0;
-				for (i = 0; i < itemsPerSlide; i++) {
-					var frontClone = members[k].cloneNode([true]);
-					var backClone = members[members.length - k - 1].cloneNode([true]);
-					frontClone.classList.add("clone");
-					backClone.classList.add("clone");
-					k += 2;
-
-					stage.appendChild(frontClone);
-
-					stage.insertBefore(backClone, members[0]);
-				}
-			}
-
-			var stageWidth = memberWidth * members.length;
-			stage.style.width = stageWidth.toString() + "px";
+                var stage = container.firstElementChild, // get stage (second container)
+                    members = stage.children, // get list of elements
+                    containerWidth = container.offsetWidth, // width of container at time of init (for assigning appropriate responsive widths to elements)
+                    i, itemsPerSlide;
 
 
-			// Generating navigation buttons
-			var navigation = 0;
-
-			if (params.hasOwnProperty("nav")) {
-				if (params.nav != null && params.nav.show == true) {
-					nav(params.nav, container);
-					navigation = 1;
-				}
-			}
+                if (params.transition == null) {
+                    params.transition = {
+                        loop : true,
+                        gestures : true,
+                        auto : false
+                    }
+                }
 
 
-			// Calling transition function to make carousel transitions and gestures work
-			if (params.hasOwnProperty("transition")) {
-				if (params.transition != null) {
-					animateTransition(params.transition, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID, params.transition.gestures);
-				}
-			}
+                // Give appropriate classes to both containers
+                stage.classList.add("car-stage");
+                container.classList.add("carousel-container");
+
+                // Checking how many items per slide and assigning appropriate individual widths
+                if (params.hasOwnProperty("items") && params.items != null) {
+                    itemsPerSlide = params.items;
+                }
+                else itemsPerSlide = 3; // defaults to 3 items per slide
+
+                var memberWidth = containerWidth / itemsPerSlide;
+                for (i = 0; i < members.length; i++) {
+                    members[i].style.width = memberWidth.toString() + "px";
+                    if (params.transition.gestures) {
+                        members[i].classList.add("no-drag");
+                    }
+                }
+
+                // Clone items for loop
+                if (params.transition.loop && members[0].classList.contains("clone") == false) {
+                    var k = 0;
+                    for (i = 0; i < itemsPerSlide; i++) {
+                        var frontClone = members[k].cloneNode([true]);
+                        var backClone = members[members.length - k - 1].cloneNode([true]);
+                        frontClone.classList.add("clone");
+                        backClone.classList.add("clone");
+                        k += 2;
+
+                        stage.appendChild(frontClone);
+
+                        stage.insertBefore(backClone, members[0]);
+                    }
+                }
+
+                var stageWidth = memberWidth * members.length;
+                stage.style.width = stageWidth.toString() + "px";
 
 
-			// Creating fullscreen buttons and allowing fullscreen functionality
-			if (params.hasOwnProperty("fullscreen")) {
-				if (params.fullscreen.show == true) fullscreen(params.fullscreen, container, stage);
-			}
+                // Generating navigation buttons
+                var navigation = 0;
 
-			// Calling speech to text function
-			if (params.hasOwnProperty("speech") && params.speech == true) {
-				if (params.hasOwnProperty("lang")) {
-					var lang = params.lang;
-				}
-				else {
-					var lang = {
-						next:"Next",
-						prev:"Back",
-						code:"en-US"
-					}
-				}
+                if (params.hasOwnProperty("nav")) {
+                    if (params.nav != null && params.nav.show == true) {
+                        nav(params.nav, container);
+                        navigation = 1;
+                    }
+                }
 
-				if (params.transition.hasOwnProperty("transitionType")) {
-					var transitionTypePar = params.transition.transitionType;
-				}
-				else var transitionTypePar = "slide";
 
-				if (params.transition.hasOwnProperty("transitionItems")) {
-					if (params.transition.transitionItems != null) {
-						var transitionItemsNum = params.transition.transitionItems;
-					}
-				}
-				else var transitionItemsNum = 1; // carousel defaults to 1 item per transition
+                // Calling transition function to make carousel transitions and gestures work
+                if (params.hasOwnProperty("transition")) {
+                    if (params.transition != null) {
+                        animateTransition(params.transition, stage, stageWidth, containerWidth, memberWidth, container, navigation, containerID, params.transition.gestures);
+                    }
+                }
 
-				speechRec(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, params.transition.loop, lang);
-			}
 
-		break;
+                // Creating fullscreen buttons and allowing fullscreen functionality
+                if (params.hasOwnProperty("fullscreen")) {
+                    if (params.fullscreen.show == true) fullscreen(params.fullscreen, container, stage);
+                }
 
-		case "grid":
+                // Calling speech to text function
+                if (params.hasOwnProperty("speech") && params.speech == true) {
+                    if (params.hasOwnProperty("lang")) {
+                        var lang = params.lang;
+                    }
+                    else {
+                        var lang = {
+                            next:"Next",
+                            prev:"Back",
+                            code:"en-US"
+                        }
+                    }
 
-			container.classList.add("grid-container");
-			var members = container.children, genHeight;
+                    if (params.transition.hasOwnProperty("transitionType")) {
+                        var transitionTypePar = params.transition.transitionType;
+                    }
+                    else var transitionTypePar = "slide";
 
-			if (params.hasOwnProperty("itemsPerRow")) {
-				if (params.itemsPerRow != null) {
-					var perc = 100 / params.itemsPerRow;
-				}
-			}
-			else var perc = 25; // grid defaults to 4 items per row
+                    if (params.transition.hasOwnProperty("transitionItems")) {
+                        if (params.transition.transitionItems != null) {
+                            var transitionItemsNum = params.transition.transitionItems;
+                        }
+                    }
+                    else var transitionItemsNum = 1; // carousel defaults to 1 item per transition
 
-			for (var i = 0; i < members.length; i++) {
-				if (i == 0 || (i + 1) % params.itemsPerRow == 1) {
-					genHeight = window.getComputedStyle(members[i].children[0]).getPropertyValue("height");
-				}
-				members[i].style.width = perc.toString() + "%";
-				members[i].classList.add("vid-grid-member");
-			}
+                    speechRec(transitionTypePar, stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, params.transition.loop, lang);
+                }
 
-			if (params.hasOwnProperty("fullscreen") && params.fullscreen == true) fullscreenGrid(container, params);
-			if (params.hasOwnProperty("swap") && params.swap == true) dragNDrop(container, params);
-			if (params.hasOwnProperty("resize") && params.resize == true) adjustSize(container, params);
+                break;
 
-		break;
+            case "grid":
 
-		case "list":
-			container.classList.add("list-container");
+                container.classList.add("grid-container");
+                var members = container.children, genHeight;
 
-		break;
+                if (params.hasOwnProperty("itemsPerRow")) {
+                    if (params.itemsPerRow != null) {
+                        var perc = 100 / params.itemsPerRow;
+                    }
+                }
+                else var perc = 25; // grid defaults to 4 items per row
 
-		case "audio":
+                for (var i = 0; i < members.length; i++) {
+                    if (i == 0 || (i + 1) % params.itemsPerRow == 1) {
+                        genHeight = window.getComputedStyle(members[i].children[0]).getPropertyValue("height");
+                    }
+                    members[i].style.width = perc.toString() + "%";
+                    members[i].classList.add("vid-grid-member");
+                }
 
-			var audioHTML = "<div class='audio_wrapper'><p class='song_name'></p><div class='player'><button class='play_button'><i class='material-icons'>play_circle_outline</i></button><button class='resume_button'><i class='material-icons'>pause_circle_outline</i></button><button class='previous_song'><i class='material-icons'>skip_previous</i></button><button class='next_song'><i class='material-icons'>skip_next</i></button><div class='progress'><div class='current_progress'></div></div><div class='volume_controls'><input class='volume' type='range' min='0' max='1' step='any'><button class='volume_button'><i class='material-icons'>volume_up</i></button></div></div></div>";
-			let doc = new DOMParser().parseFromString(audioHTML, 'text/html');
-			container.appendChild(doc.body.firstChild);
-			audioPlayer(params.songs);
+                if (params.hasOwnProperty("fullscreen") && params.fullscreen == true) fullscreenGrid(container, params);
+                if (params.hasOwnProperty("swap") && params.swap == true) dragNDrop(container, params);
+                if (params.hasOwnProperty("resize") && params.resize == true) adjustSize(container, params);
+
+                break;
+
+            case "list":
+                container.classList.add("list-container");
+
+                break;
+
+            case "audio":
+
+                var audioHTML = "<div class='audio_wrapper'><p class='song_name'></p><div class='player'><button class='play_button'><i class='material-icons'>play_circle_outline</i></button><button class='resume_button'><i class='material-icons'>pause_circle_outline</i></button><button class='previous_song'><i class='material-icons'>skip_previous</i></button><button class='next_song'><i class='material-icons'>skip_next</i></button><div class='progress'><div class='current_progress'></div></div><div class='volume_controls'><input class='volume' type='range' min='0' max='1' step='any'><button class='volume_button'><i class='material-icons'>volume_up</i></button></div></div></div>";
+                let doc = new DOMParser().parseFromString(audioHTML, 'text/html');
+                container.appendChild(doc.body.firstChild);
+                audioPlayer(params.songs);
+
+        }
 
 	}
 }

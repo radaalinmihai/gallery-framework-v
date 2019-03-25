@@ -89,12 +89,14 @@ function addDrag (el, stageWidth, containerWidth, memberWidth, loop) {
     
     var selected = null, // Object of the element to be moved
        x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
-       x_elem = 0, y_elem = 0, initial; // Stores top, left values (edge) of the element
+       x_elem = 0, y_elem = 0, initial, initialLeft; // Stores top, left values (edge) of the element
     
     // Will be called when user starts dragging an element
     function _drag_init(elem) {
         // Store the object of the element which needs to be moved
         selected = elem;
+        initialLeft = parseFloat(el.style.left);
+        console.log(initialLeft);
         x_elem = x_pos - selected.offsetLeft;
     }
     
@@ -104,17 +106,24 @@ function addDrag (el, stageWidth, containerWidth, memberWidth, loop) {
         if (selected !== null) {
             if (loop) {
                 if (x_pos < initial && parseFloat(el.style.left) * -1 < (stageWidth - containerWidth * 2)) {
-                    el.style.left = "-" + ((x_pos - x_elem) * -1) + 'px';
+                    el.style.left = "-" + ((x_pos - x_elem) * -1) + "px";
                 }
                 else if (x_pos > initial && parseFloat(el.style.left) * -1 > containerWidth) {
-                    el.style.left = "-" + ((x_pos - x_elem) * -1) + 'px';
+                    el.style.left = "-" + ((x_pos - x_elem) * -1) + "px";
                 }
             }
-            else if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
-                el.style.left = "-" + ((x_pos - x_elem) * -1) + 'px';
-            }
+            // else if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
+            //     el.style.left = "-" + (initialLeft - (x_pos - x_elem) * -1) + "px";
+            // }
+            // else if (x_pos > initial) {
+            //     el.style.left = "-" + (initialLeft + (x_pos - x_elem) * -1) + "px";
+            // }
             else if (x_pos > initial) {
-                el.style.left = "-" + ((x_pos - x_elem) * -1) + 'px';
+                console.log("left");
+                console.log(initialLeft);
+            }
+            else {
+                console.log("right");
             }
         }
     }
