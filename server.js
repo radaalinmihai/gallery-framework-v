@@ -112,9 +112,28 @@ app.post('/return_album', function (req, res) {
     });
 });
 
-app.get('/album', function (req, res) {
-    var token = req.query.token;
-    console.log(token);
+app.post('/check_token', function(req, res) {
+    var token = req.body.token;
+    models.albums.find({ token: token }, function(err, response) {
+        if(err) {
+            return res.send({
+                success: false,
+                message: err.message
+            });
+        }
+
+        if(response == null) {
+            return res.send({
+                success: false,
+                message: 'No token found!'
+            });
+        }
+
+        res.send({
+            success: true,
+            message: 'Token found!'
+        });
+    });
 });
 
 app.listen(3000, function () {
