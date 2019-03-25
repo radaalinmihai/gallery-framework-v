@@ -87,7 +87,7 @@ function portofolio (containerID, settings) {
 			}
 
 			// Clone items for loop
-			if (params.transition.loop) {
+			if (params.transition.loop && members[0].classList.contains("clone") == false) {
 				var k = 0;
 				for (i = 0; i < itemsPerSlide; i++) {
 					var frontClone = members[k].cloneNode([true]);
@@ -95,7 +95,7 @@ function portofolio (containerID, settings) {
 					frontClone.classList.add("clone");
 					backClone.classList.add("clone");
 					k += 2;
-					
+
 					stage.appendChild(frontClone);
 
 					stage.insertBefore(backClone, members[0]);
@@ -180,15 +180,9 @@ function portofolio (containerID, settings) {
 				members[i].classList.add("vid-grid-member");
 			}
 
-			if (params.hasOwnProperty("fullscreen") && params.fullscreen == true) {
-
-				fullscreenGrid(container, params);
-
-				// dragNDrop(container, params);
-				//
-				// adjustSize(container, params);
-
-			}
+			if (params.hasOwnProperty("fullscreen") && params.fullscreen == true) fullscreenGrid(container, params);
+			if (params.hasOwnProperty("swap") && params.swap == true) dragNDrop(container, params);
+			if (params.hasOwnProperty("resize") && params.resize == true) adjustSize(container, params);
 
 		break;
 

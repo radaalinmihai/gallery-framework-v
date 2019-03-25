@@ -28,9 +28,9 @@
                 </a>
                 <ul class="hide-mobile" id="nav">
                     <li id="exit" class="exit-btn hide-desktop"><i class="fas fa-sign-out-alt"></i></li>
-                    <li><a href="#">home</a></li>
-                    <li><a href="#">documentation</a></li>
-                    <li><a href="#">contact</a></li>
+                    <li><a href="/">home</a></li>
+                    <li><a href="/documentation">documentation</a></li>
+                    <li><a href="/demos">demos</a></li>
                     <li><input type="text" name="token" placeholder="insert token" class="token-input"></li>
                 </ul>
             </nav>
@@ -45,17 +45,23 @@
 
                 <ul>
                     <li>Getting started</li>
-                    <li><a href="javascript:void(0);" class="doc-links selected-link">Welcome</a></li>
-                    <li><a href="javascript:void(0);" class="doc-links">Set up</a></li>
-                    <li><a href="javascript:void(0);" class="doc-links">FAQ</a></li>
+                    <li><a href="#welcome" class="doc-links selected-link" id="welcome-but">Welcome</a></li>
+                    <li><a href="#setup" class="doc-links" id="setup-but">Set up</a></li>
+                    <li><a href="#faq" class="doc-links" id="FAQ-but">FAQ</a></li>
                 </ul>
 
                 <ul>
                     <li>Display types</li>
-                    <li><a href="javascript:void(0);" class="doc-links">Carousel</a></li>
-                    <li><a href="javascript:void(0);" class="doc-links">Grid</a></li>
-                    <li><a href="javascript:void(0);" class="doc-links">Audio player</a></li>
-                    <li><a href="javascript:void(0);" class="doc-links">List</a></li>
+                    <li><a href="#carousel" class="doc-links" id="carousel-but">Carousel</a></li>
+                    <li><a href="#grid" class="doc-links" id="grid-but">Grid</a></li>
+                    <li><a href="#audioplayer" class="doc-links" id="audioplayer-but">Audio player</a></li>
+                    <li><a href="#list" class="doc-links" id="list-but">List</a></li>
+                </ul>
+
+                <ul>
+                    <li>Extensions</li>
+                    <li><a href="#resize" class="doc-links" id="resize-but">Resize <i>(grid)</i></a></li>
+                    <li><a href="#swap" class="doc-links" id="swap-but">Swap <i>(grid)</i></a></li>
                 </ul>
 
             </aside>
@@ -639,6 +645,65 @@
                             <pre>});</pre>
                         </div>
                     </div>
+                </div>
+
+                <div class="doc-sections" id="resize">
+                    <div class="inner-wrapper">
+
+                        <h1>Resize <i>(grid extension)</i></h1>
+
+                        <span class="extension-notice"><p>As an extension, resize is optional and is not natively supported in the Portofolio core files, which is why you'll need to download an extra file.</p></span>
+
+                        <p><b><i>Resize</i></b> is an extension for the grid album option that allows the user to adjust the width of each grid element by dragging its margins as much as they want.</p>
+                        <h3>Prerequisites</h3>
+                        <p>There are two steps towards adding Resize to your album and enabling it.</p>
+                        <p>1. Firstly, download the lightweight file for the extension and link to it inside your code:</p>
+                        <a href="js/resize.js" class="download" download>
+                            <p>resize.js</p>
+                            <i class="material-icons">save_alt</i>
+                        </a>
+                        <div class="markdown">
+                            <pre>&lt;script src="portofolio/resize.js"&gt;</pre>
+                        </div>
+                        <p>2. Now, when you call the <i>portofolio</i> function to initialize your album, add the parameter "resize" and set it to "true".</p>
+                        <div class="markdown">
+                            <pre>portofolio("albumID", {</pre>
+                            <pre>   type : "grid",</pre>
+                            <pre>   resize : true</pre>
+                            <pre>});</pre>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="doc-sections" id="swap">
+
+                    <div class="inner-wrapper">
+                        <h1>Swap <i>(grid extension)</i></h1>
+
+                        <span class="extension-notice"><p>As an extension, swap is optional and is not natively supported in the Portofolio core files, which is why you'll need to download an extra file.</p></span>
+
+                        <p><b><i>Swap</i></b> is an extension for the grid album option that allows the user to swap grid items between them by drag and dropping them onto each other.</p>
+
+                        <h3>Prerequisites</h3>
+                        <p>There are two steps towards adding Swap to your album and enabling it.</p>
+                        <p>1. Firstly, download the lightweight file for the extension and link to it inside your code:</p>
+                        <a href="js/resize.js" class="download" download>
+                            <p>swap.js</p>
+                            <i class="material-icons">save_alt</i>
+                        </a>
+                        <div class="markdown">
+                            <pre>&lt;script src="portofolio/swap.js"&gt;</pre>
+                        </div>
+                        <p>2. Now, when you call the <i>portofolio</i> function to initialize your album, add the parameter "swap" and set it to "true".</p>
+                        <div class="markdown">
+                            <pre>portofolio("albumID", {</pre>
+                            <pre>   type : "grid",</pre>
+                            <pre>   swap : true</pre>
+                            <pre>});</pre>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

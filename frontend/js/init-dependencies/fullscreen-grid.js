@@ -192,9 +192,8 @@ function fullscreenGrid (container, params) {
                 _drag_init(this);
             }
 		});
+        ele.onmousemove = _move_elem;
 	}
-
-    document.onmousemove = _move_elem;
 
 	if (params.hasOwnProperty("format") && params.format == "image") {
 		var carMembers = container.lastChild.children[1].children;

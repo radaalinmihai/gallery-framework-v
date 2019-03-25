@@ -182,6 +182,9 @@ body, html {
     font-size: 2em;
     cursor: pointer;
 }
+#photo-carousel-1 .car-stage {
+    height: 100%;
+}
 .vid-member {
     display: flex;
 }
@@ -209,6 +212,10 @@ body, html {
     right: -4px;
     width: 8px;
     cursor: ew-resize;
+    transition: all 0.3s ease;
+}
+.resize-gutter:hover {
+    background: red;
 }
 .zooming-img {
     cursor: -webkit-zoom-out !important;

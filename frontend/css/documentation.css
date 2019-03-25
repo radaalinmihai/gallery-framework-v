@@ -67,20 +67,35 @@ aside ul {
 	color: white;
 	text-align: left;
 }
+.doc-sections p * {
+	font-family: 'Ubuntu', sans-serif;
+}
 .doc-sections h1 {
 	text-align: left;
 	border-bottom: 1px solid #333131;
 	color: white;
 	padding-bottom: 10px;
 }
+.extension-notice {
+	border-left: 10px solid #333131;
+	background: #585656;
+	padding: 0 20px 0 20px;
+	max-width: 800px;
+	margin-left: 20px;
+	margin-top: 30px;
+	display: block;
+}
+.extension-notice p {
+	margin: 10px 0 10px 0;
+	color: #c7c6c6;
+}
 .selected-doc {
 	display: flex !important;
 	flex-direction: column;
 	overflow-y: auto;
 }
-.selected-doc > *:not(:first-child), .inner-wrapper > *:not(:first-child) {
-	padding-left: 20px;
-	padding-right: 20px;
+.markdown {
+	padding: 20px;
 	font-family: 'Ubuntu', sans-serif;
 }
 p {
@@ -199,4 +214,10 @@ p {
 	display: inline-block;
 	margin-bottom: -23px;
 	background: #454343;
+}
+@media only screen and (max-width: 600px) {
+	.params-container {
+		margin: 0;
+		padding: 10px;
+	}
 }

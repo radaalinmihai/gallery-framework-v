@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio</title>
+    <!--- additions -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="css/desktop.css">
+    <link rel="stylesheet" href="css/documentation.css">
+    <link rel="stylesheet" href="css/demos.css">
+    <link rel="stylesheet" href="css/portofolio.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<link rel="icon" type="image/png" href="/images/favicon.ico" />
+
+<body>
+<!-- header container -->
+<div class="container-top">
+    <header>
+        <img src="/images/logod.svg" alt="portofolio logo" class="logo">
+        <nav>
+            <!-- main nav, not visible on mobile rn -->
+            <a href="javascript:void(0);" class="hide-desktop" id="open-burger">
+                <i class="fas fa-bars"></i>
+            </a>
+            <ul class="hide-mobile" id="nav">
+                <li id="exit" class="exit-btn hide-desktop"><i class="fas fa-sign-out-alt"></i></li>
+                <li><a href="/">home</a></li>
+                <li><a href="/documentation">documentation</a></li>
+                <li><a href="/demos">demos</a></li>
+                <li><input type="text" name="token" placeholder="insert token" class="token-input"></li>
+            </ul>
+        </nav>
+    </header>
+</div>
+
+<!-- body container -->
+<div class="container">
+    <div class="container-body">
+
+        <aside>
+
+            <ul>
+                <li>Demos</li>
+                <li><a href="javascript:void(0);" class="doc-links selected-link" id="carousel-but">Carousel</a></li>
+                <li><a href="javascript:void(0);" class="doc-links" id="grid-but">Grid</a></li>
+                <li><a href="javascript:void(0);" class="doc-links" id="audio-but">Audio</a></li>
+                <li><a href="javascript:void(0);" class="doc-links" id="list-but">List</a></li>
+            </ul>
+
+        </aside>
+        <div class="aside_right">
+
+            <div class="doc-sections selected-doc" id="carousel">
+
+                <div class="inner-wrapper">
+
+                    <h1>Plain carousel demo</h1>
+
+                    <div id="carousel1">
+
+                        <div>
+
+                            <div class="member"><img src="images/1.jpg"/></div>
+                            <div class="member"><img src="images/2.jpg"/></div>
+                            <div class="member"><img src="images/3.jpg"/></div>
+                            <div class="member"><img src="images/4.jpg"/></div>
+                            <div class="member"><img src="images/5.jpg"/></div>
+                            <div class="member"><img src="images/6.jpg"/></div>
+                            <div class="member"><img src="images/1.jpg"/></div>
+                            <div class="member"><img src="images/2.jpg"/></div>
+                            <div class="member"><img src="images/3.jpg"/></div>
+                            <div class="member"><img src="images/4.jpg"/></div>
+                            <div class="member"><img src="images/5.jpg"/></div>
+                            <div class="member"><img src="images/6.jpg"/></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="doc-sections" id="grid">
+
+                <div class="inner-wrapper">
+
+                    <h1>Plain grid demo <i>(with fullscreen)</i></h1>
+
+                    <div id="grid1">
+
+                        <div class="member"><img src="images/1.jpg"/></div>
+                        <div class="member"><img src="images/2.jpg"/></div>
+                        <div class="member"><img src="images/3.jpg"/></div>
+                        <div class="member"><img src="images/4.jpg"/></div>
+                        <div class="member"><img src="images/5.jpg"/></div>
+                        <div class="member"><img src="images/6.jpg"/></div>
+                        <div class="member"><img src="images/1.jpg"/></div>
+                        <div class="member"><img src="images/2.jpg"/></div>
+                        <div class="member"><img src="images/3.jpg"/></div>
+                        <div class="member"><img src="images/4.jpg"/></div>
+                        <div class="member"><img src="images/5.jpg"/></div>
+                        <div class="member"><img src="images/6.jpg"/></div>
+
+                    </div>
+
+                    <h1>Grid with Swap extension</h1>
+
+                    <div id="grid2">
+
+                        <div class="member"><img src="images/1.jpg"/></div>
+                        <div class="member"><img src="images/2.jpg"/></div>
+                        <div class="member"><img src="images/3.jpg"/></div>
+                        <div class="member"><img src="images/4.jpg"/></div>
+                        <div class="member"><img src="images/5.jpg"/></div>
+                        <div class="member"><img src="images/6.jpg"/></div>
+                        <div class="member"><img src="images/1.jpg"/></div>
+                        <div class="member"><img src="images/2.jpg"/></div>
+                        <div class="member"><img src="images/3.jpg"/></div>
+                        <div class="member"><img src="images/4.jpg"/></div>
+                        <div class="member"><img src="images/5.jpg"/></div>
+                        <div class="member"><img src="images/6.jpg"/></div>
+
+                    </div>
+
+                    <h1>Grid with Resize extension</h1>
+
+                    <div id="grid3">
+
+                        <div class="member"><img src="images/1.jpg"/></div>
+                        <div class="member"><img src="images/2.jpg"/></div>
+                        <div class="member"><img src="images/3.jpg"/></div>
+                        <div class="member"><img src="images/4.jpg"/></div>
+                        <div class="member"><img src="images/5.jpg"/></div>
+                        <div class="member"><img src="images/6.jpg"/></div>
+                        <div class="member"><img src="images/1.jpg"/></div>
+                        <div class="member"><img src="images/2.jpg"/></div>
+                        <div class="member"><img src="images/3.jpg"/></div>
+                        <div class="member"><img src="images/4.jpg"/></div>
+                        <div class="member"><img src="images/5.jpg"/></div>
+                        <div class="member"><img src="images/6.jpg"/></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="doc-sections" id="audio">
+
+                <div class="inner-wrapper">
+                    <h1>Audio player demo</h1>
+                    <div id="audio">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="doc-sections" id="list">
+
+                <div class="inner-wrapper">
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<footer>
+    <!---
+    <div class="container"></div>
+    <ul class="footer-items">
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+        <li><a href="#">footer.link</a></li>
+    </ul>
+    </div>
+    --->
+    <p class="footerp">Powered by edociiF 2 for <a href="#">Fiicode 2019</a></p>
+</footer>
+
+
+
+
+
+<script src="js/main.js"></script> <!-- additionals animations, styling, etcetera -->
+<script src="js/init-dependencies/audio.js"></script>
+<script src="js/init-dependencies/responsive.js"></script>
+<script src="js/init-dependencies/speech.js"></script>
+<script src="js/init-dependencies/buttons.js"></script>
+<script src="js/init-dependencies/transitions.js"></script>
+<script src="js/init-dependencies/gestures.js"></script>
+<script src="js/init-dependencies/fullscreen-grid.js"></script>
+<script src="js/extensions/adjust.js"></script>
+<script src="js/init.js"></script>
+<script src="js/documentation.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var secs = document.getElementsByClassName("doc-sections");
+        for (var i = 1; i < secs.length; i++) secs[i].classList.add("selected-doc");
+
+        portofolio("carousel1", {
+            type:"carousel",
+            items:3,
+            nav : {
+                show:true
+            },
+            fullscreen : {
+                show : true
+            }
+        });
+
+        portofolio("grid1", {
+            type:"grid",
+            itemsPerRow: 4,
+            fullscreen:true,
+            format:"image",
+            responsive : {
+                1000 : {
+                    itemsPerRow : 3
+                }
+            }
+        });
+
+        portofolio("grid2", {
+            type:"grid",
+            itemsPerRow: 4,
+            fullscreen:false,
+            format:"image",
+            swap:true,
+            responsive : {
+                1000 : {
+                    itemsPerRow : 3
+                }
+            }
+        });
+
+        portofolio("grid3", {
+            type:"grid",
+            itemsPerRow: 4,
+            fullscreen:false,
+            format:"image",
+            resize:true,
+            responsive : {
+                1000 : {
+                    itemsPerRow : 3
+                }
+            }
+        });
+
+        portofolio("audio", {
+            type:"audio",
+            songs : ['apologize.mp3', 'ceva.mp3']
+        });
+
+       for (var i = 1; i < secs.length; i++) secs[i].classList.remove("selected-doc") == "none";
+    });
+</script>
+</body>
+
+</html>
