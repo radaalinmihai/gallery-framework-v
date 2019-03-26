@@ -6,10 +6,10 @@ function moveUp (type, stage, stageWidth, containerWidth, memberWidth, transitio
 			if (loop && parseFloat(stage.style.left) * -1 >= (stageWidth - containerWidth * 2)) {
 				if (parseFloat(stage.style.left) * -1 >= (stageWidth - containerWidth * 2)) {
 					var newSize = stageWidth - containerWidth;
-					stage.style.left = "-" + newSize.toString() + "px";
+					stage.style.left = "-" + newSize.toString() + "%";
 					setTimeout(function() {
 						stage.style.transition = "none";
-						stage.style.left = "-" + containerWidth + "px";
+						stage.style.left = "-" + containerWidth + "%";
 					}, 210);
 					setTimeout(function() {
 						stage.style.transition = "all 0.2s ease-in-out";
@@ -17,10 +17,10 @@ function moveUp (type, stage, stageWidth, containerWidth, memberWidth, transitio
 				}
 				else {
 					var newSize = parseFloat(stage.style.left) * -1 + containerWidth;
-					stage.style.left = "-" + newSize.toString() + "px";
+					stage.style.left = "-" + newSize.toString() + "%";
 					setTimeout(function() {
 						stage.style.transition = "none";
-						stage.style.left = "-" + containerWidth + "px";
+						stage.style.left = "-" + containerWidth + "%";
 					}, 210);
 					setTimeout(function() {
 						stage.style.transition = "all 0.2s ease-in-out";
@@ -29,11 +29,11 @@ function moveUp (type, stage, stageWidth, containerWidth, memberWidth, transitio
 			}
 			else if (parseFloat(stage.style.left) * -1 > (stageWidth - containerWidth * 2) && parseFloat(stage.style.left) * -1 < (stageWidth - containerWidth)) {
 				var newSize = parseFloat(stage.style.left) * -1 + (stageWidth - containerWidth - parseFloat(stage.style.left) * -1);
-				stage.style.left = "-" + newSize.toString() + "px";
+				stage.style.left = "-" + newSize.toString() + "%";
 			}
 			else if (parseFloat(stage.style.left) * -1 < (stageWidth - containerWidth)) {
 				var newSize = parseFloat(stage.style.left) * -1 + containerWidth;
-				stage.style.left = "-" + newSize.toString() + "px";
+				stage.style.left = "-" + newSize.toString() + "%";
 			}
 
 			// if (!loop) {
@@ -57,10 +57,10 @@ function moveUp (type, stage, stageWidth, containerWidth, memberWidth, transitio
 					var available = stageWidth - containerWidth - parseFloat(stage.style.left) * -1 / memberWidth;
 					if (available < transitionItemsNum) {
 						var newSize = parseFloat(stage.style.left) * -1 + (memberWidth * available);
-						stage.style.left = "-" + newSize.toString() + "px";
+						stage.style.left = "-" + newSize.toString() + "%";
 						setTimeout(function() {
 							stage.style.transition = "none";
-							stage.style.left = "-" + containerWidth + "px";
+							stage.style.left = "-" + containerWidth + "%";
 						}, 200);
 						setTimeout(function() {
 							stage.style.transition = "all 0.2s ease-in-out";
@@ -68,15 +68,15 @@ function moveUp (type, stage, stageWidth, containerWidth, memberWidth, transitio
 					}
 					else {
 						var newSize = parseFloat(stage.style.left) * -1 + (memberWidth * transitionItemsNum);
-						stage.style.left = "-" + newSize.toString() + "px";
+						stage.style.left = "-" + newSize.toString() + "%";
 						setTimeout(function() {
 							stage.style.transition = "none";
 							if (parseFloat(stage.style.left) * -1 == stageWidth - containerWidth) {
-								stage.style.left = "-" + containerWidth + "px";
+								stage.style.left = "-" + containerWidth + "%";
 							}
 							else {
 								var available = stageWidth - containerWidth - parseFloat(stage.style.left) * -1;
-								stage.style.left = "-" + (containerWidth - available) + "px";
+								stage.style.left = "-" + (containerWidth - available) + "%";
 							}
 						}, 200);
 						setTimeout(function() {
@@ -86,10 +86,10 @@ function moveUp (type, stage, stageWidth, containerWidth, memberWidth, transitio
 				}
 				else {
 					var newSize = parseFloat(stage.style.left) * -1 + (memberWidth * transitionItemsNum);
-					stage.style.left = "-" + newSize.toString() + "px";
+					stage.style.left = "-" + newSize.toString() + "%";
 					setTimeout(function() {
 						stage.style.transition = "none";
-						stage.style.left = "-" + (containerWidth - memberWidth * (containerWidth / memberWidth - transitionItemsNum)) + "px";
+						stage.style.left = "-" + (containerWidth - memberWidth * (containerWidth / memberWidth - transitionItemsNum)) + "%";
 					}, 200);
 					setTimeout(function() {
 						stage.style.transition = "all 0.2s ease-in-out";
@@ -99,11 +99,11 @@ function moveUp (type, stage, stageWidth, containerWidth, memberWidth, transitio
 			}
 			else if (parseFloat(stage.style.left) * -1 > (stageWidth - containerWidth * 2) && parseFloat(stage.style.left) * -1 < (stageWidth - containerWidth) && transitionItemsNum > 1) {
 				var newSize = parseFloat(stage.style.left) * -1 + (stageWidth - containerWidth - parseFloat(stage.style.left) * -1);
-				stage.style.left = "-" + newSize.toString() + "px";
+				stage.style.left = "-" + newSize.toString() + "%";
 			}
 			else if (parseFloat(stage.style.left) * -1 < (stageWidth - containerWidth - memberWidth * transitionItemsNum)) {
 				var newSize = parseFloat(stage.style.left) * -1 + (memberWidth * transitionItemsNum);
-				stage.style.left = "-" + newSize.toString() + "px";
+				stage.style.left = "-" + newSize.toString() + "%";
 			}
 
 			// if (!loop) {
@@ -130,7 +130,7 @@ function moveDown (type, stage, stageWidth, containerWidth, memberWidth, transit
 					stage.style.left = "0px";
 					setTimeout(function() {
 						stage.style.transition = "none";
-						stage.style.left = "-" + (stageWidth - containerWidth * 2) + "px";
+						stage.style.left = "-" + (stageWidth - containerWidth * 2) + "%";
 					}, 210);
 					setTimeout(function() {
 						stage.style.transition = "all 0.2s ease-in-out";
@@ -138,10 +138,10 @@ function moveDown (type, stage, stageWidth, containerWidth, memberWidth, transit
 				}
 				else {
 					var newSize = parseFloat(stage.style.left) + containerWidth;
-					stage.style.left = newSize.toString() + "px";
+					stage.style.left = newSize.toString() + "%";
 					setTimeout(function() {
 						stage.style.transition = "none";
-						stage.style.left = "-" + (stageWidth - containerWidth * 2) + "px";
+						stage.style.left = "-" + (stageWidth - containerWidth * 2) + "%";
 					}, 210);
 					setTimeout(function() {
 						stage.style.transition = "all 0.2s ease-in-out";
@@ -153,7 +153,7 @@ function moveDown (type, stage, stageWidth, containerWidth, memberWidth, transit
 			}
 			else if (parseFloat(stage.style.left) != 0) {
 				var newSize = parseFloat(stage.style.left) + containerWidth;
-				stage.style.left = newSize.toString() + "px";
+				stage.style.left = newSize.toString() + "%";
 			}
 
 			// if (!loop) {
@@ -176,10 +176,10 @@ function moveDown (type, stage, stageWidth, containerWidth, memberWidth, transit
 					var available = Math.ceil((parseInt(stage.style.left) * -1) / memberWidth);
 					if (available < transitionItemsNum) {
 						var newSize = parseFloat(stage.style.left) + memberWidth * available;
-						stage.style.left = newSize.toString() + "px";
+						stage.style.left = newSize.toString() + "%";
 						setTimeout(function() {
 							stage.style.transition = "none";
-							stage.style.left = "-" + (stageWidth - containerWidth * 2) + "px";
+							stage.style.left = "-" + (stageWidth - containerWidth * 2) + "%";
 						}, 200);
 						setTimeout(function() {
 							stage.style.transition = "all 0.2s ease-in-out";
@@ -187,10 +187,10 @@ function moveDown (type, stage, stageWidth, containerWidth, memberWidth, transit
 					}
 					else {
 						var newSize = parseFloat(stage.style.left) + memberWidth * transitionItemsNum;
-						stage.style.left = newSize.toString() + "px";
+						stage.style.left = newSize.toString() + "%";
 						setTimeout(function() {
 							stage.style.transition = "none";
-							stage.style.left = "-" + (stageWidth - containerWidth * 2 - parseInt(stage.style.left)) + "px";
+							stage.style.left = "-" + (stageWidth - containerWidth * 2 - parseInt(stage.style.left)) + "%";
 						}, 200);
 						setTimeout(function() {
 							stage.style.transition = "all 0.2s ease-in-out";
@@ -199,10 +199,10 @@ function moveDown (type, stage, stageWidth, containerWidth, memberWidth, transit
 				}
 				else {
 					var newSize = parseFloat(stage.style.left) + memberWidth * transitionItemsNum;
-					stage.style.left = newSize.toString() + "px";
+					stage.style.left = newSize.toString() + "%";
 					setTimeout(function() {
 						stage.style.transition = "none";
-						stage.style.left = "-" + (stageWidth - containerWidth - (memberWidth * transitionItemsNum)) + "px";
+						stage.style.left = "-" + (stageWidth - containerWidth - (memberWidth * transitionItemsNum)) + "%";
 					}, 200);
 					setTimeout(function() {
 						stage.style.transition = "all 0.2s ease-in-out";
@@ -214,7 +214,7 @@ function moveDown (type, stage, stageWidth, containerWidth, memberWidth, transit
 			}
 			else if (parseInt(stage.style.left) != 0) {
 				var newSize = parseFloat(stage.style.left) + memberWidth * transitionItemsNum;
-				stage.style.left = newSize.toString() + "px";
+				stage.style.left = newSize.toString() + "%";
 			}
 
 			// if (!loop) {

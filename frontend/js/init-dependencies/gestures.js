@@ -42,17 +42,17 @@ function addSwipe (type, el, stageWidth, containerWidth, memberWidth, transition
                         if (distX < 0) {
                                 if (parseFloat(el.style.left) * -1 > (stageWidth - containerWidth * 2) && parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
                                     var newSize = parseFloat(el.style.left) * -1 + (stageWidth - containerWidth - parseFloat(el.style.left) * -1);
-                                    el.style.left = "-" + newSize.toString() + "px";
+                                    el.style.left = "-" + newSize.toString() + "%";
                                 }
                                 else if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
                                     var newSize = parseFloat(el.style.left) * -1 + (memberWidth * transitionItemsNum);
-                                    el.style.left = "-" + newSize.toString() + "px";
+                                    el.style.left = "-" + newSize.toString() + "%";
                                 }
                             }
                             else {
                                 if (parseFloat(el.style.left) * -1 != 0) {
                                     var newSize = parseFloat(el.style.left) * -1 - (memberWidth * transitionItemsNum);
-                                    el.style.left = "-" + newSize.toString() + "px";
+                                    el.style.left = "-" + newSize.toString() + "%";
                                 }
                             }
                     break;
@@ -61,17 +61,17 @@ function addSwipe (type, el, stageWidth, containerWidth, memberWidth, transition
                         if (distX < 0) {
                             if (parseFloat(el.style.left) * -1 > (stageWidth - containerWidth * 2) && parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
                                 var newSize = parseFloat(el.style.left) * -1 + (stageWidth - containerWidth - parseFloat(el.style.left) * -1);
-                                el.style.left = "-" + newSize.toString() + "px";
+                                el.style.left = "-" + newSize.toString() + "%";
                             }
                             else if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
                                 var newSize = parseFloat(el.style.left) * -1 + containerWidth;
-                                el.style.left = "-" + newSize.toString() + "px";
+                                el.style.left = "-" + newSize.toString() + "%";
                             }
                         }
                         else {
                             if (parseFloat(el.style.left) * -1 != 0) {
                                 var newSize = parseFloat(el.style.left) * -1 + containerWidth;
-                                el.style.left = "-" + newSize.toString() + "px";
+                                el.style.left = "-" + newSize.toString() + "%";
                             }
                         }
                 }
@@ -86,24 +86,24 @@ function addSwipe (type, el, stageWidth, containerWidth, memberWidth, transition
 }
 
 function addDrag (el, stageWidth, containerWidth, memberWidth, loop) {
-    
+
     var selected = null, // Object of the element to be moved
-       x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
-       x_elem = 0, y_elem = 0, initial, initialLeft; // Stores top, left values (edge) of the element
-    
+        x_pos = 0, y_pos = 0, // Stores x & y coordinates of the mouse pointer
+        x_elem = 0, y_elem = 0, initial, initialLeft, moved = 0; // Stores top, left values (edge) of the element
+
     // Will be called when user starts dragging an element
     function _drag_init(elem) {
         // Store the object of the element which needs to be moved
         selected = elem;
-        initialLeft = parseFloat(el.style.left);
-        console.log(initialLeft);
+        initialLeft = parseFloat(el.style.left) * -1;
         x_elem = x_pos - selected.offsetLeft;
     }
-    
+
     // Will be called when user dragging an element
     function _move_elem(e) {
         x_pos = document.all ? window.event.clientX : e.pageX;
         if (selected !== null) {
+            moved = 1;
             if (loop) {
                 if (x_pos < initial && parseFloat(el.style.left) * -1 < (stageWidth - containerWidth * 2)) {
                     el.style.left = "-" + ((x_pos - x_elem) * -1) + "px";
@@ -112,32 +112,28 @@ function addDrag (el, stageWidth, containerWidth, memberWidth, loop) {
                     el.style.left = "-" + ((x_pos - x_elem) * -1) + "px";
                 }
             }
-            // else if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
-            //     el.style.left = "-" + (initialLeft - (x_pos - x_elem) * -1) + "px";
-            // }
-            // else if (x_pos > initial) {
-            //     el.style.left = "-" + (initialLeft + (x_pos - x_elem) * -1) + "px";
-            // }
-            else if (x_pos > initial) {
-                console.log("left");
-                console.log(initialLeft);
+            else if (x_pos < initial && parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
+                var calc = Math.abs(initial - x_pos) * 100 / el.parentNode.offsetWidth;
+                el.style.left = "-" + ((initialLeft + calc)) + "%";
             }
-            else {
-                console.log("right");
+            else if (x_pos > initial) {
+                var calc = Math.abs(initial - x_pos) * 100 / el.parentNode.offsetWidth;
+                el.style.left = "-" + ((initialLeft - calc)) + "%";
             }
         }
     }
-    
+
     // Destroy the object when we are done
     function slide_destroy() {
         selected = null;
         el.style.transition = "all 0.2s ease-in-out";
         el.style.cursor = "default";
-        if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
-            el.style.left = "-" + roundUp(parseFloat(el.style.left) * -1, memberWidth).toString() + "px";
+        if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth) && moved == 1) {
+            el.style.left = "-" + roundUp(parseFloat(el.style.left) * -1, memberWidth).toString() + "%";
         }
+        moved = 0;
     }
-    
+
     // Bind the functions...
     el.onmousedown = function (e) {
         _drag_init(this);
@@ -146,8 +142,9 @@ function addDrag (el, stageWidth, containerWidth, memberWidth, loop) {
         el.style.cursor = "grab";
         return false;
     }
-    
+
     el.onmousemove = _move_elem;
     el.onmouseup = slide_destroy;
     el.onmouseleave = slide_destroy;
+
 }

@@ -80,9 +80,8 @@ function portofolio (containerID, settings) {
 
                 var stage = container.firstElementChild, // get stage (second container)
                     members = stage.children, // get list of elements
-                    containerWidth = container.offsetWidth, // width of container at time of init (for assigning appropriate responsive widths to elements)
+                    containerWidth = 100, // width of container at time of init (for assigning appropriate responsive widths to elements)
                     i, itemsPerSlide;
-
 
                 if (params.transition == null) {
                     params.transition = {
@@ -105,7 +104,7 @@ function portofolio (containerID, settings) {
 
                 var memberWidth = containerWidth / itemsPerSlide;
                 for (i = 0; i < members.length; i++) {
-                    members[i].style.width = memberWidth.toString() + "px";
+                    members[i].style.width = memberWidth.toString() + "%";
                     if (params.transition.gestures) {
                         members[i].classList.add("no-drag");
                     }
@@ -128,7 +127,7 @@ function portofolio (containerID, settings) {
                 }
 
                 var stageWidth = memberWidth * members.length;
-                stage.style.width = stageWidth.toString() + "px";
+                stage.style.width = stageWidth.toString() + "%";
 
 
                 // Generating navigation buttons
@@ -247,7 +246,7 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 	}
 
 	if (options.loop == true) {
-		stage.style.left = "-" + containerWidth + "px";
+		stage.style.left = "-" + containerWidth + "%";
 	}
 	else {
 		stage.style.left = "0px";
