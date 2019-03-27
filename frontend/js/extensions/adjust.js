@@ -278,7 +278,7 @@ function adjustSize (container, params) {
 			handle.parentNode.style.width = initWidthCont - perco + "%";
 			handle.parentNode.nextElementSibling.style.width = initWidthNext + perco + "%";
 		}
-		else if (parseFloat(handle.parentNode.nextElementSibling.style.width) >= 6) {
+		else if (e.clientX > lastDownX && parseFloat(handle.parentNode.nextElementSibling.style.width) >= 6) {
 			handle.parentNode.style.width = initWidthCont + perco + "%";
 			handle.parentNode.nextElementSibling.style.width = initWidthNext - perco + "%";
 		}

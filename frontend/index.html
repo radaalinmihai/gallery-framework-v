@@ -110,10 +110,6 @@
                                 <i class="material-icons">play_circle_outline</i>
                                 <span>Audio player</span>
                             </div>
-                            <div id="list-opt">
-                                <i class="material-icons">list</i>
-                                <span>List</span>
-                            </div>
                         </div>
                         <input type='hidden' name='type' />
                     </div>
@@ -345,37 +341,6 @@
                         </div>
                     </form>
 
-                    <form action='' method='post' class='album-forms' id="list-creation-form">
-                        <div id="list-creation" class="carousels">
-                            <div>
-
-                                <div id="resources" class="member">
-                                    <label id="contenttype">
-                                        <span>Content type:</span>
-                                        <select id='fullscreen_select'>
-                                            <option value=image/video>Image/Video</option>
-                                            <option value=audio>Audio</option>
-                                        </select>
-                                    </label>
-                                    <span>Links to your files</span>
-                                    <div class="links-container">
-                                        <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
-                                        <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
-                                        <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
-                                        <span class="add-more">Add more</span>
-                                    </div>
-                                </div>
-
-                                <div id="final" class="member">
-                                    <button id='save' type='submit'>Save gallery</button>
-                                    <span></span>
-                                    <button id='generate' type='submit'>Generate JSON</button>
-                                </div>
-
-                            </div>
-                        </div>
-                    </form>
-
                 </div>
 
             </div>
@@ -456,19 +421,6 @@
             });
 
             portofolio("audio-creation", {
-                type: "carousel",
-                items: 1,
-                transition : {
-                    transitionType:"slide"
-                },
-                nav : {
-                    show: true,
-                    prev: "<i class='material-icons'>chevron_left</i>",
-                    next: "<i class='material-icons'>chevron_right</i>"
-                }
-            });
-
-            portofolio("list-creation", {
                 type: "carousel",
                 items: 1,
                 transition : {

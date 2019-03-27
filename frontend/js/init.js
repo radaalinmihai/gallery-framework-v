@@ -210,11 +210,6 @@ function portofolio (containerID, settings) {
 
                 break;
 
-            case "list":
-                container.classList.add("list-container");
-
-                break;
-
             case "audio":
 
                 var audioHTML = "<div class='audio_wrapper'><p class='song_name'></p><div class='player'><button class='play_button'><i class='material-icons'>play_circle_outline</i></button><button class='resume_button'><i class='material-icons'>pause_circle_outline</i></button><button class='previous_song'><i class='material-icons'>skip_previous</i></button><button class='next_song'><i class='material-icons'>skip_next</i></button><div class='progress'><div class='current_progress'></div></div><div class='volume_controls'><input class='volume' type='range' min='0' max='1' step='any'><button class='volume_button'><i class='material-icons'>volume_up</i></button></div></div></div>";
@@ -296,6 +291,6 @@ function animateTransition(options, stage, stageWidth, containerWidth, memberWid
 
 	if (gestures) {
 		addDrag(stage, stageWidth, containerWidth, memberWidth, options.loop);
-		addSwipe("item", stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, options.loop);
+		addSwipe("item", stage, stageWidth, containerWidth, memberWidth, transitionItemsNum, options.loop, transitionTypePar);
 	}
 }

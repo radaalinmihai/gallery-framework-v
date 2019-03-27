@@ -75,10 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 inputType.value = typeChosen;
                 document.getElementsByClassName('album-forms')[1].addEventListener('submit', create_album);
                 break;
-
-            case "list-opt" :
-                document.getElementById("list-creation-form").classList.remove("album-forms-hidden");
-                break;
         }
 
 
@@ -93,7 +89,10 @@ document.addEventListener('DOMContentLoaded', function() {
         pick.style.transform = "translateY(-" + height * 2 + "px)";
         carousels.style.transform = "translateY(-" + height * 2 + "px)";
 
-        generateResponsiveInputs();
+        if (typeChosen == "carousel" || typeChosen == "grid") {
+            generateResponsiveInputs();
+        }
+
     }
 
     function selectType (ele) {

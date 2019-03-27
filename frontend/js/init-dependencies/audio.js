@@ -57,7 +57,6 @@ function audioPlayer (songs) {
         if (selected !== null) {
             var x = e.offsetX / selected.offsetWidth;
             audio_source.currentTime = Math.abs(audio_source.duration * x);
-            console.log(Math.abs(audio_source.duration * x));
         }
     }
     
@@ -75,8 +74,10 @@ function audioPlayer (songs) {
         console.log(Math.abs(audio_source.duration * x));
     };
 
-    progress.onmousedown = function() {
+    progress.onmousedown = function(e) {
         _drag_init(this);
+        var x = e.offsetX / selected.offsetWidth;
+        audio_source.currentTime = Math.abs(audio_source.duration * x);
     }
 
     /* END OF DRAGGING */

@@ -2,7 +2,7 @@ function roundUp (numToRound, multiple) {
     return multiple * Math.round(numToRound/multiple);
 }
 
-function addSwipe (type, el, stageWidth, containerWidth, memberWidth, transitionItemsNum) {
+function addSwipe (type, el, stageWidth, containerWidth, memberWidth, transitionItemsNum, loop, transitionTypePar) {
               
     var touchsurface = el,
     swipedir,
@@ -10,9 +10,9 @@ function addSwipe (type, el, stageWidth, containerWidth, memberWidth, transition
     startY,
     distX,
     distY,
-    threshold = 150, //required min distance traveled to be considered swipe
+    threshold = 100, //required min distance traveled to be considered swipe
     restraint = 100, // maximum distance allowed at the same time in perpendicular direction
-    allowedTime = 300, // maximum time allowed to travel that distance
+    allowedTime = 400, // maximum time allowed to travel that distance
     elapsedTime,
     startTime;
   
@@ -35,45 +35,15 @@ function addSwipe (type, el, stageWidth, containerWidth, memberWidth, transition
         distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
         distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
         elapsedTime = new Date().getTime() - startTime // get time elapsed
-        if (elapsedTime <= allowedTime){ // first condition for awipe met
+        if (elapsedTime <= allowedTime){ // first condition for swipe met
             if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe me
-                switch (type) {
-                    case "item" :
-                        if (distX < 0) {
-                                if (parseFloat(el.style.left) * -1 > (stageWidth - containerWidth * 2) && parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
-                                    var newSize = parseFloat(el.style.left) * -1 + (stageWidth - containerWidth - parseFloat(el.style.left) * -1);
-                                    el.style.left = "-" + newSize.toString() + "%";
-                                }
-                                else if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
-                                    var newSize = parseFloat(el.style.left) * -1 + (memberWidth * transitionItemsNum);
-                                    el.style.left = "-" + newSize.toString() + "%";
-                                }
-                            }
-                            else {
-                                if (parseFloat(el.style.left) * -1 != 0) {
-                                    var newSize = parseFloat(el.style.left) * -1 - (memberWidth * transitionItemsNum);
-                                    el.style.left = "-" + newSize.toString() + "%";
-                                }
-                            }
-                    break;
-
-                    case "slide" :
-                        if (distX < 0) {
-                            if (parseFloat(el.style.left) * -1 > (stageWidth - containerWidth * 2) && parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
-                                var newSize = parseFloat(el.style.left) * -1 + (stageWidth - containerWidth - parseFloat(el.style.left) * -1);
-                                el.style.left = "-" + newSize.toString() + "%";
-                            }
-                            else if (parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {
-                                var newSize = parseFloat(el.style.left) * -1 + containerWidth;
-                                el.style.left = "-" + newSize.toString() + "%";
-                            }
-                        }
-                        else {
-                            if (parseFloat(el.style.left) * -1 != 0) {
-                                var newSize = parseFloat(el.style.left) * -1 + containerWidth;
-                                el.style.left = "-" + newSize.toString() + "%";
-                            }
-                        }
+                console.log("SWIPE");
+                console.log(distX < 0);
+                if (distX > 0) {
+                    moveDown(transitionTypePar, el, stageWidth, containerWidth, memberWidth, transitionItemsNum, loop);
+                }
+                else {
+                    moveUp(transitionTypePar, el, stageWidth, containerWidth, memberWidth, transitionItemsNum, loop);
                 }
             }
             else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
@@ -106,10 +76,12 @@ function addDrag (el, stageWidth, containerWidth, memberWidth, loop) {
             moved = 1;
             if (loop) {
                 if (x_pos < initial && parseFloat(el.style.left) * -1 < (stageWidth - containerWidth * 2)) {
-                    el.style.left = "-" + ((x_pos - x_elem) * -1) + "px";
+                    var calc = Math.abs(initial - x_pos) * 100 / el.parentNode.offsetWidth;
+                    el.style.left = "-" + ((initialLeft + calc)) + "%";
                 }
                 else if (x_pos > initial && parseFloat(el.style.left) * -1 > containerWidth) {
-                    el.style.left = "-" + ((x_pos - x_elem) * -1) + "px";
+                    var calc = Math.abs(initial - x_pos) * 100 / el.parentNode.offsetWidth;
+                    el.style.left = "-" + ((initialLeft - calc)) + "%";
                 }
             }
             else if (x_pos < initial && parseFloat(el.style.left) * -1 < (stageWidth - containerWidth)) {

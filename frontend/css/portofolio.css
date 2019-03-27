@@ -162,13 +162,6 @@ body, html {
     cursor: zoom-in;
     transition: all 0.4s ease;
 }
-.list-container {
-	display: flex;
-	flex-direction: column;
-}
-.list-container > * {
-	width: 100%;
-}
 .grid-container > div:last-child {
     cursor: default;
 }
@@ -215,7 +208,7 @@ body, html {
     transition: all 0.3s ease;
 }
 .resize-gutter:hover {
-    background: red;
+    background: #3eabe6;
 }
 .zooming-img {
     cursor: -webkit-zoom-out !important;
