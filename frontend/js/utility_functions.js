@@ -60,8 +60,14 @@ function formToJSON(form) {
                         data.audio = [];
                     data['audio'].push(item.value);
                 }
-            } else
-                data[item.name] = item.value;
+            } else {
+                if(item.name == 'images') {
+                    if(!('images' in data))
+                        data['images'] = [];
+                    data.images.push(item.value);
+                } else
+                    data[item.name] = item.value;
+            }
         }
     }
     return data;

@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById("grid-creation-form").classList.remove("album-forms-hidden");
                 typeChosen = "grid";
                 inputType.value = typeChosen;
-                document.getElementsByClassName('album-forms')[0].addEventListener('submit', create_album);
+                document.getElementsByClassName('album-forms')[1].addEventListener('submit', create_album);
                 break;
 
             case "list-opt" :
