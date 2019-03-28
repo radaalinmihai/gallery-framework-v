@@ -4,8 +4,10 @@ function create_album(e) {
     var error = 0;
     console.log(form);
 
-    if (typeof form.album_name == "undefined")
+    if (typeof form.album_name == "undefined") {
         alert('Give a name to that album!');
+        error = 0;
+    }
     else if (form.images) {
         if (form.images.length < 0) {
             alert('Give us some images!');
