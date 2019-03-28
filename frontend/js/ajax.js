@@ -37,7 +37,3 @@ function ajax(url, properties) {
             majax.send();
     });
 }
-
-module.exports = {
-    ajax: ajax
-};

@@ -8,25 +8,30 @@
     <!--- additions -->
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
     <link rel="stylesheet" href="css/desktop.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/portofolio.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 
-
+<link rel="icon" type="image/png" href="/images/favicon.ico" />
 
 <body>
     <!-- header container -->
     <div class="container-top">
         <header>
-            <img src="images/logod.svg" alt="portofolio logo" class="logo">
+            <img src="/images/logod.svg" alt="portofolio logo" class="logo">
             <nav>
                 <!-- main nav, not visible on mobile rn -->
-                <a href="#" class="hide-desktop">
-                    <img src="images/menu.svg" alt="toggle menu" class="menu" id="menu">
+                <a href="javascript:void(0);" class="hide-desktop" id="open-burger">
+                    <i class="fas fa-bars"></i>
                 </a>
-                <ul class="show-desktop hide-mobile" id="nav">
-                    <li id="exit" class="exit-btn hide-desktop"><img src="images/exit.svg" alt="menu exit"></li>
-                    <li><a href="#">home</a></li>
-                    <li><a href="#">create</a></li>
-                    <li><a href="#">contact</a></li>
+                <ul class="hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop"><i class="fas fa-sign-out-alt"></i></li>
+                    <li><a href="/">home</a></li>
+                    <li><a href="/documentation">documentation</a></li>
+                    <li><a href="/demos">demos</a></li>
+                    <li><input type="text" name="token" placeholder="insert token" class="token-input"></li>
                 </ul>
             </nav>
         </header>
@@ -43,29 +48,35 @@
                     <li>
 
                         <div class="container-items-list">
-                            <img src="images/r1.png">
+                            <img alt="" src="images/r1.jpg">
                             <h1> Mihai </h1>
                         </div>
-                        <p class="container-p">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
-                            lorem ipsum loratum ciocolatumshaggy
+                        <p class="container-p">
+                            <a href="https://www.instagram.com/mihai_alin796/" class="instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/mihai.alin.796" class="facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="https://gitlab.com/DontStealMyCodePls" class="gitlab"><i class="fab fa-gitlab"></i></a>
                         </p>
                     </li>
                     <li>
                         <div class="container-items-list">
-                            <img src="images/a1.jpg">
+                            <img alt="" src="images/a1.jpg">
                             <h1> Flavius </h1>
                         </div>
-                        <p class="container-p">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
-                            lorem ipsum loratum ciocolatumshaggy
+                        <p class="container-p">
+                            <a href="https://www.instagram.com/aflandrei/" class="instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/aflaviusandrei" class="facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="https://gitlab.com/aflandrei" class="gitlab"><i class="fab fa-gitlab"></i></a>
                         </p>
                     </li>
                     <li>
                         <div class="container-items-list">
-                            <img src="images/i2.png">
-                            <h1> Ivanoviciki </h1>
+                            <img alt="" src="images/i2.jpg">
+                            <h1> Ionut </h1>
                         </div>
-                        <p class="container-p">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire
-                            lorem ipsum loratum ciocolatumshaggy
+                        <p class="container-p">
+                            <a href="https://www.instagram.com/_istancescu/" class="instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/istancescu" class="facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="https://gitlab.com/reversio" class="gitlab"><i class="fab fa-gitlab"></i></a>
                         </p>
                     </li>
 
@@ -73,8 +84,265 @@
                 </ul>
             </aside>
             <div class="aside-right">
-                <div class="container-ocapacity"> <!-- shading effect on right container -->
+                    
+                <div id="aside-right-welcome">
+
+1                   <h1 class="main-title">Create and inspire others</h1>
+                    <p class="main-subtitle">lorem ipsum loratum ciocolatumshaggy scubby yu empire aspire lorem ipsum loratum ciocolatumshaggy van dame van wane</p>
+                    <button class="main-button">Get started</button>
+
                 </div>
+
+                <div id="pick-type-container">
+
+                    <div id="pick" class="member actives">
+                        <span>Pick an album type</span>
+                        <div id="album-options">
+                            <div id="carousel-opt">
+                                <i class="material-icons">view_carousel</i>
+                                <span>Carousel</span>
+                            </div>
+                            <div id="grid-opt">
+                                <i class="material-icons">grid_on</i>
+                                <span>Grid</span>
+                            </div>
+                            <div id="audio-opt">
+                                <i class="material-icons">play_circle_outline</i>
+                                <span>Audio player</span>
+                            </div>
+                        </div>
+                        <input type='hidden' name='type' />
+                    </div>
+
+                </div>
+
+                <div id="creation-carousels">
+
+                    <form action='' method='post' class='album-forms' id="carousel-creation-form">
+                        <div id="carousel-creation" class="carousels">
+                            <div>
+
+                                <div id="general" class="member car-member">
+                                    <label>
+                                        <span>Album name:</span>
+                                        <input type='text' name='album_name' placeholder='Album name' />
+                                    </label>
+                                    <label id="itemsper">
+                                        <span>Items per slide:</span>
+                                        <input type='number' name='items' placeholder='0' />
+                                    </label>
+                                </div>
+                                <div id="transition" class="member car-member">
+                                    <span>Transition settings</span>
+                                    <div class="fields">
+                                        <label>
+                                            <span>Type:</span>
+                                            <select class='transition' name='transition_type'>
+                                                <option value='slide'>Slide</option>
+                                            </select>
+                                        </label>
+                                        <label id="itemspertrans">
+                                            <span>Items per transition:</span>
+                                            <input class='transition' type='number' name='transition_items' placeholder='1' />
+                                        </label>
+                                        <label id="autoselect">
+                                            <span>Auto:</span>
+                                            <select class='transition' name='auto' id='auto_select'>
+                                                <option value=false>False</option>
+                                                <option value=true>True</option>
+                                            </select>
+                                        </label>
+                                        <label id="gestures">
+                                            <span>Gestures:</span>
+                                            <select class='transition' name='gestures' id='gestures_selct'>
+                                                <option value=false>False</option>
+                                                <option value=true>True</option>
+                                            </select>
+                                        </label>
+                                        <label id="auto-interval">
+                                            <span>Auto interval:</span>
+                                            <input class='transition' type='number' name='auto_interval' />
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="navigation" class="member car-member">
+                                    <span>Navigation settings</span>
+                                    <div class="fields">
+                                        <label id="navselect">
+                                            <span>Show nav:</span>
+                                            <select class='nav' id='nav_select' name='show'>
+                                                <option value=false>False</option>
+                                                <option value=true>True</option>
+                                            </select>
+                                        </label>
+                                        <label id="nav-prev">
+                                            <span>Prev button:</span>
+                                            <input class='nav' type='text' name='prev_button' placeholder='Previous button (DOM element)' />
+                                        </label>
+                                        <label id="nav-next">
+                                            <span>Next button:</span>
+                                            <input class='nav' type='text' name='next_button' placeholder='Next button (DOM element)' />
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="fullscreen" class="member car-member">
+                                    <span>Fullscreen settings</span>
+                                    <div class="fields">
+                                        <label id="fullscreenselect">
+                                            <span>Activate fullscreen:</span>
+                                            <select class='fullscreen' id='fullscreen_select' name='show'>
+                                                <option value=false>False</option>
+                                                <option value=true>True</option>
+                                            </select>
+                                        </label>
+                                        <label id="full-open">
+                                            <span>Open button:</span>
+                                            <input class='fullscreen' type='text' name='open_button' placeholder='Open button (DOM element)' />
+                                        </label>
+                                        <label id="full-close">
+                                            <span>Close button:</span>
+                                            <input class='fullscreen' type='text' name='close_button' placeholder='Close button (DOM element)' />
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div id="resources" class="member">
+                                    <label id="contenttype">
+                                        <span>Content type:</span>
+                                        <select id='fullscreen_select'>
+                                            <option value=image/video>Image/Video</option>
+                                            <option value=audio>Audio</option>
+                                        </select>
+                                    </label>
+                                    <span>Links to your files</span>
+                                    <div class="links-container">
+                                        <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                        <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                        <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                        <span class="add-more">Add more</span>
+                                    </div>
+                                </div>
+                                <div id="responsive-settings" class="member">
+                                    <span>Responsive settings</span>
+                                    <div class="new-breakpoint" id='breakpoint'>
+                                        <div class="insert-breakpoint">
+                                            <input type='text' name='new_breakpoint' placeholder='Width in pixels' />
+                                            <i class="material-icons">keyboard_arrow_down</i>
+                                        </div>
+                                    </div>
+                                    <span class="add-more-breaks">Add more</span>
+                                </div>
+                                <div id="final" class="member">
+                                    <button id='save' type='submit'>Save gallery</button>
+                                    <span></span>
+                                    <button id='generate' type='submit'>Generate JSON</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <form action='' method='post' class='album-forms' id="grid-creation-form">
+                        <div id="grid-creation" class="carousels">
+                            <div>
+
+                                <div id="general" class="member grid-member">
+                                    <label>
+                                        <span>Album name:</span>
+                                        <input type='text' name='album_name' placeholder='Album name' />
+                                    </label>
+                                    <label id="itemsperrow">
+                                        <span>Items per row:</span>
+                                        <input type='number' name='items' placeholder='0' />
+                                    </label>
+                                    <label id="fullscreen_grid">
+                                        <span>Fullscreen:</span>
+                                        <select name='fullscreen_grid' id='fullscreen_grid_select'>
+                                            <option value=false>False</option>
+                                            <option value=true>True</option>
+                                        </select>
+                                    </label>
+                                    <label id="format_grid">
+                                        <span>Format:</span>
+                                        <select  name='format_grid' id='format_grid_select'>
+                                            <option value=false>Image</option>
+                                            <option value=true>Video</option>
+                                        </select>
+                                    </label>
+                                </div>
+
+                                <div id="responsive-settings" class="member">
+                                    <span>Responsive settings</span>
+                                    <div class="breakpoints-container">
+                                        <div class="new-breakpoint" id='breakpoint'>
+                                            <div class="insert-breakpoint">
+                                                <input type='text' name='new_breakpoint' placeholder='Width in pixels' />
+                                                <i class="material-icons">keyboard_arrow_down</i>
+                                            </div>
+                                        </div>
+                                        <span class="add-more-breaks">Add more</span>
+                                    </div>
+                                </div>
+
+                                <div id="resources" class="member">
+                                    <label id="contenttype">
+                                        <span>Content type:</span>
+                                        <select id='fullscreen_select'>
+                                            <option value=image/video>Image/Video</option>
+                                            <option value=audio>Audio</option>
+                                        </select>
+                                    </label>
+                                    <span>Links to your files</span>
+                                    <div class="links-container">
+                                        <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                        <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                        <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                        <span class="add-more">Add more</span>
+                                    </div>
+                                </div>
+
+                                <div id="final" class="member">
+                                    <button id='save' type='submit'>Save gallery</button>
+                                    <span></span>
+                                    <button id='generate' type='submit'>Generate JSON</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <form action='' method='post' class='album-forms' id="audio-creation-form">
+                        <div id="audio-creation" class="carousels">
+                            <div>
+                                <div id="resources" class="member">
+                                    <label id="contenttype">
+                                        <span>Content type:</span>
+                                        <select id='fullscreen_select'>
+                                            <option value=image/video>Image/Video</option>
+                                            <option value=audio>Audio</option>
+                                        </select>
+                                    </label>
+                                    <span>Links to your files</span>
+                                    <div class="links-container">
+                                        <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                        <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                        <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
+                                        <span class="add-more">Add more</span>
+                                    </div>
+                                </div>
+
+                                <div id="final" class="member">
+                                    <button id='save' type='submit'>Save gallery</button>
+                                    <span></span>
+                                    <button id='generate' type='submit'>Generate JSON</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
             </div>
         </div>
     </div>
@@ -102,14 +370,77 @@
         </ul>
         </div>
         --->
-        <p class="footerp">Powered by edociiF2 for <a href="#">Fiicode 2019</a></p>
+        <p class="footerp">Powered by edociiF 2 for <a href="#">Fiicode 2019</a></p>
     </footer>
 
 
 
 
-       
-    <script src="js/main.js"></script>  <!-- additionals animations, styling, etcetera -->
+
+    <script src="js/main.js"></script> <!-- additionals animations, styling, etcetera -->
+    <script src="js/init-dependencies/audio.js"></script> 
+    <script src="js/init-dependencies/responsive.js"></script> 
+    <script src="js/init-dependencies/speech.js"></script> 
+    <script src="js/init-dependencies/buttons.js"></script> 
+    <script src="js/init-dependencies/transitions.js"></script> 
+    <script src="js/init-dependencies/gestures.js"></script> 
+    <script src="js/init-dependencies/fullscreen-grid.js"></script> 
+    <script src="js/extensions/adjust.js"></script> 
+
+    <script src='./js/ajax.js'></script>
+    <script src="js/init.js"></script>
+    
+    <script src="./js/utility_functions.js"></script>
+    <script src="./js/create_album.js"></script>
+    <script>
+
+            portofolio("grid-creation", {
+                type: "carousel",
+                items: 1,
+                transition : {
+                    transitionType:"slide"
+                },
+                nav : {
+                    show: true,
+                    prev: "<i class='material-icons'>chevron_left</i>",
+                    next: "<i class='material-icons'>chevron_right</i>"
+                }
+            });
+
+            portofolio("carousel-creation", {
+                type: "carousel",
+                items: 1,
+                transition : {
+                    transitionType:"slide"
+                },
+                nav : {
+                    show: true,
+                    prev: "<i class='material-icons'>chevron_left</i>",
+                    next: "<i class='material-icons'>chevron_right</i>"
+                }
+            });
+
+            portofolio("audio-creation", {
+                type: "carousel",
+                items: 1,
+                transition : {
+                    transitionType:"slide"
+                },
+                nav : {
+                    show: true,
+                    prev: "<i class='material-icons'>chevron_left</i>",
+                    next: "<i class='material-icons'>chevron_right</i>"
+                }
+            });
+
+            var forms = document.getElementsByClassName("album-forms");
+
+            for (var i = 0; i < forms.length; i++) {
+                forms[i].classList.add("album-forms-hidden");
+            }
+
+    </script>
+    <script src="js/form.js"></script> <!-- additionals animations, styling, etcetera -->
 </body>
 
 </html>

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio</title>
+    <!--- additions -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="css/desktop.css">
+    <link rel="stylesheet" href="css/documentation.css">
+    <link rel="stylesheet" href="css/portofolio.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<link rel="icon" type="image/png" href="/images/favicon.ico" />
+
+<body>
+    <!-- header container -->
+    <div class="container-top">
+        <header>
+            <img src="/images/logod.svg" alt="portofolio logo" class="logo">
+            <nav>
+                <!-- main nav, not visible on mobile rn -->
+                <a href="javascript:void(0);" class="hide-desktop" id="open-burger">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <ul class="hide-mobile" id="nav">
+                    <li id="exit" class="exit-btn hide-desktop"><i class="fas fa-sign-out-alt"></i></li>
+                    <li><a href="/">home</a></li>
+                    <li><a href="/documentation">documentation</a></li>
+                    <li><a href="/demos">demos</a></li>
+                    <li><input type="text" name="token" placeholder="insert token" class="token-input"></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <!-- body container -->
+    <div class="container">
+        <div class="container-body">
+
+            <aside>
+
+                <ul>
+                    <li>Getting started</li>
+                    <li><a href="#welcome" class="doc-links selected-link" id="welcome-but">Welcome</a></li>
+                    <li><a href="#setup" class="doc-links" id="setup-but">Set up</a></li>
+                    <li><a href="#faq" class="doc-links" id="FAQ-but">FAQ</a></li>
+                </ul>
+
+                <ul>
+                    <li>Display types</li>
+                    <li><a href="#carousel" class="doc-links" id="carousel-but">Carousel</a></li>
+                    <li><a href="#grid" class="doc-links" id="grid-but">Grid</a></li>
+                    <li><a href="#audioplayer" class="doc-links" id="audioplayer-but">Audio player</a></li>
+                </ul>
+
+                <ul>
+                    <li>Extensions</li>
+                    <li><a href="#resize" class="doc-links" id="resize-but">Resize <i>(grid)</i></a></li>
+                    <li><a href="#swap" class="doc-links" id="swap-but">Swap <i>(grid)</i></a></li>
+                </ul>
+
+            </aside>
+            <div class="aside_right">
+
+                <div class="doc-sections selected-doc" id="welcome">
+                    <h1>Welcome</h1>
+                    <p>Portofolio is a lightweight, responsive, highly-customizable content display framework and tool that makes it easier for you to get your content out there in a way that's accessible and beautiful.</p>
+                    <h3>Prerequisites</h3>
+                    <p>In order for Portofolio to work on your project, you'll need to include the following two CSS and JS files in your project:</p>
+                    <a href="/css/portofolio.css" class="download" download>
+                        <p>portofolio.css</p>
+                        <i class="material-icons">save_alt</i>
+                    </a>
+
+                    <a href="js/init.js" class="download" download>
+                        <p>init.js</p>
+                        <i class="material-icons">save_alt</i>
+                    </a>
+
+                    <div class="markdown">
+                        <pre>&lt;link rel="stylesheet" href="portofolio/portofolio.js"&gt;</pre>
+                        <pre>&lt;script src="portofolio/init.js"&gt;</pre>
+                    </div>
+                </div>
+
+                <div class="doc-sections" id="setup">
+                    <h1>Set up</h1>
+                    <p>There are two main ways of creating an album and displaying it on your project. While both involve writing code, both are very straightforward and easy to follow.</p>
+
+                    <h3 class="method-title">Create album through the form</h3>
+                    <div class="method-container">
+                        <p>You can use the intuitive album creation form on our <a href="/">front page</a>. After naming your album, customizing it and linking to your materials in the order that you want (pictures, gifs, videos, audio files) you have two options:</p>
+                        <ul class="options-list">
+                            <li>Save the album to our database</li>
+                            <p>You can choose to save the album to our database and keep it for later use. The album configuration (transition, navigation, fullscreen settings, etc.) will be saved, as well as its name and the media materials in the appropriate order.</p>
+                            <p>You'll be given a token that will allow you to call the album on any page you want via JavaScript with little hassle.</p>
+                            <br>
+                            <li>Generate the JSON and include it in your project as you see fit</li>
+                            <p>You can choose to be given a ready-to-go JSON code that you can use to create a carousel on your own page.</p>
+                        </ul>
+                    </div>
+                    <h3 class="method-title">Customize your JSON from scratch</h3>
+                    <div class="method-container">
+                        <p>You can use the guides and options in the "Display types" section to customize your album the way you want it, include the mark-up and initialize the function in your project yourself.</p>
+                    </div>
+                </div>
+
+                <div class="doc-sections" id="faq">
+                    <h1>FAQ</h1>
+                </div>
+
+                <div class="doc-sections" id="carousel">
+                    <div class="inner-wrapper">
+                        <h1>Carousel</h1>
+
+                        <h2>Mark-up</h2>
+
+                        <div class="markdown">
+                            <pre>&lt;div id="album"&gt;</pre>
+                            <pre>   &lt;div&gt;</pre>
+                            <pre>       &lt;div&gt;&lt;img src="1.jpg"/&gt;&lt;/div&gt;</pre>
+                            <pre>       &lt;div&gt;&lt;img src="2.jpg"/&gt;&lt;/div&gt;</pre>
+                            <pre>       &lt;div&gt;&lt;img src="3.jpg"/&gt;&lt;/div&gt;</pre>
+                            <pre>   &lt;/div&gt;</pre>
+                            <pre>&lt;/div&gt;</pre>
+                        </div>
+
+                        <h2>Initializing</h2>
+
+                        <div class="markdown">
+                            <pre>portofolio("album", {</pre>
+                            <pre>   type : "carousel"</pre>
+                            <pre>});</pre>
+                        </div>
+
+                        <h2>Configuration options</h2>
+
+                        <p>The carousel can be configured and customized in a number of different ways, all of which have defaults and are optional.</p>
+
+
+                        <h3 class="set-title">General settings</h3>
+
+                        <div class="params-container">
+                            <div class="params">
+                                <span>items</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Number</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">3</span>
+                                </div>
+
+                                <p class="param-desc"><i>The number of items per each slide.</i></p>
+                            </div>
+                            <div class="params">
+                                <span>speech</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Bool</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">false</span>
+                                </div>
+
+                                <p class="param-desc"><i>Turns speech commands off or on (currently only works on Chrome and requires microphone permissions).</i></p>
+                            </div>
+                        </div>
+
+                        <h3 class="set-title">Transition settings</h3>
+
+                        <div class="params-container">
+                            <div class="params">
+                                <span>transitionType</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">string</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">"slide"</span>
+                                </div>
+
+                                <p class="param-desc"><i>Choose whether you want the entire slide to shift ("slide") or only a specific amount of items ("item").</i></p>
+                            </div>
+                            <div class="params">
+                                <span>transitionItems</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Number</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">1</span>
+                                </div>
+
+                                <p class="param-desc"><i>The amount of items to me moved, in case you choose the "item" transition type.</i></p>
+                            </div>
+                            <div class="params">
+                                <span>auto</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Bool</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">false</span>
+                                </div>
+
+                                <p class="param-desc"><i>Choose whether you want the carousel to move automatically in intervals.</i></p>
+                            </div>
+                            <div class="params">
+                                <span>autoInterval</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Number</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">1500</span>
+                                </div>
+
+                                <p class="param-desc"><i>The interval in milliseconds at which the carousel should move.</i></p>
+                            </div>
+                            <div class="params">
+                                <span>gestures</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Bool</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">true</span>
+                                </div>
+
+                                <p class="param-desc"><i>Turns swipe (mobile) and drag (desktop) off or on.</i></p>
+                            </div>
+                            <div class="params">
+                                <span>loop</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Bool</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">true</span>
+                                </div>
+
+                                <p class="param-desc"><i>Turns loop mode on or off.</i></p>
+                            </div>
+                        </div>
+
+                        <h3 class="set-title">Navigation settings</h3>
+                        <div class="params-container">
+                            <div class="params">
+                                <span>show</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Bool</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">false</span>
+                                </div>
+
+                                <p class="param-desc"><i>Turns navigation buttons on or off.</i></p>
+                            </div>
+                            <div class="params">
+                                <span>prev</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">String</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown"><pre>"&lt;i&gt;‹&lt;/i&gt;"</pre></span>
+                                </div>
+
+                                <p class="param-desc"><i>String with a DOM element that you want to use as the "previous" button.</i></p>
+                            </div>
+                            <div class="params">
+                                <span>next</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">String</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown"><pre>"&lt;i&gt;›&lt;/i&gt;"</pre></span>
+                                </div>
+
+                                <p class="param-desc"><i>String with a DOM element that you want to use as the "next" button.</i></p>
+                            </div>
+                        </div>
+
+                        <h3 class="set-title">Fullscreen settings</h3>
+                        <div class="params-container">
+                            <div class="params">
+                                <span>show</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Bool</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">false</span>
+                                </div>
+
+                                <p class="param-desc"><i>Turns fullscreen functionality on or off.</i></p>
+                            </div>
+                            <div class="params">
+                                <span>open</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">String</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown"><pre>"&lt;i&gt;⛶&lt;/i&gt;"</pre></span>
+                                </div>
+
+                                <p class="param-desc"><i>String with a DOM element that you want to use as the "fullscreen" button.</i></p>
+                            </div>
+                            <div class="params">
+                                <span>close</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">String</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown"><pre>"&lt;i&gt;✖&lt;/i&gt;"</pre></span>
+                                </div>
+
+                                <p class="param-desc"><i>String with a DOM element that you want to use as the "close" button.</i></p>
+                            </div>
+                        </div>
+
+                        <h3 class="set-title">Language settings <i>(lang:)</i></h3>
+                        <div class="params-container">
+                            <div class="params">
+                                <span>next</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">String</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">"next"</span>
+                                </div>
+
+                                <p class="param-desc"><i>The speech command that you want to use to move the carousel forward.</i></p>
+                            </div>
+                            <div class="params">
+                                <span>previous</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">String</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">"back"</span>
+                                </div>
+
+                                <p class="param-desc"><i>The speech command that you want to use to move the carousel backwards.</i></p>
+                            </div>
+                            <div class="params">
+                                <span>code</span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">String</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">"en-US"</span>
+                                </div>
+
+                                <p class="param-desc"><i>The language code for the language you want to use. <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">Here is a list of all available codes.</a></i></p>
+                            </div>
+                        </div>
+
+                        <h3 class="set-title">Responsive settings <i>(responsive:)</i></h3>
+                        <div class="params-container">
+                            <div class="params">
+                                <span><i>breakpoint</i></span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Number</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">None</span>
+                                </div>
+
+                                <p class="param-desc"><i>Specify a breakpoint of the screen width in pixels under which you want to use different settings for the carousel. You can change any of the aforementioned parameters under the new breakpoint.</i></p>
+
+                                <p>Example:</p>
+                                <div class="markdown">
+                                    <pre>responsive : {</pre>
+                                    <pre>   1200 : { // The following settings will be applied under 1200px</pre>
+                                    <pre>       items : 3,</pre>
+                                    <pre>       nav : {</pre>
+                                    <pre>           show : false</pre>
+                                    <pre>       },</pre>
+                                    <pre>       fullscreen : {</pre>
+                                    <pre>           show : false</pre>
+                                    <pre>       }</pre>
+                                    <pre>   }</pre>
+                                    <pre>}</pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3>Example of full carousel initialization using almost all parameters</h3>
+
+                        <div class="markdown">
+                            <pre>&lt;div id="album"&gt;</pre>
+                            <pre>   &lt;div&gt;</pre>
+                            <pre>       &lt;div&gt;&lt;img src="1.jpg"/&gt;&lt;/div&gt;</pre>
+                            <pre>       &lt;div&gt;&lt;img src="2.jpg"/&gt;&lt;/div&gt;</pre>
+                            <pre>       &lt;div&gt;&lt;img src="3.jpg"/&gt;&lt;/div&gt;</pre>
+                            <pre>   &lt;/div&gt;</pre>
+                            <pre>&lt;/div&gt;</pre>
+                            <br>
+                            <br>
+                            <pre>&lt;script&gt;</pre>
+                            <pre>init("album", {</pre>
+                            <pre>   type : "carousel",</pre>
+                            <pre>   items : 4</pre>
+                            <pre>   transition : {</pre>
+                            <pre>       transitionType : "slide",</pre>
+                            <pre>       transitionItems : 3,</pre>
+                            <pre>       auto : true</pre>
+                            <pre>       autoInterval : 1500</pre>
+                            <pre>   },</pre>
+                            <pre>   nav : {</pre>
+                            <pre>       show : true,</pre>
+                            <pre>       prev : "<i class='material-icons' id='nav-prev'>chevron_left</i>",</pre>
+                            <pre>       next : "<i class='material-icons' id='nav-next'>chevron_right</i>"</pre>
+                            <pre>   },</pre>
+                            <pre>   fullscreen : {</pre>
+                            <pre>       show : true,</pre>
+                            <pre>       open : "<i class='material-icons'>fullscreen</i>",</pre>
+                            <pre>       close : "<i class='material-icons'>close</i>"</pre>
+                            <pre>   },</pre>
+                            <pre>   lang : {</pre>
+                            <pre>       next : "следующий",</pre>
+                            <pre>       prev : "предыдущий",</pre>
+                            <pre>       lang : "ru"</pre>
+                            <pre>   },</pre>
+                            <pre>   responsive : {</pre>
+                            <pre>       2000 : {</pre>
+                            <pre>           transition : {</pre>
+                            <pre>               auto : false</pre>
+                            <pre>           },</pre>
+                            <pre>           nav : {</pre>
+                            <pre>               show : false</pre>
+                            <pre>           }</pre>
+                            <pre>       },</pre>
+                            <pre>       800 : {</pre>
+                            <pre>           items : 2,</pre>
+                            <pre>           transition : {</pre>
+                            <pre>               transitionType : "item",</pre>
+                            <pre>               transitionItems : 2</pre>
+                            <pre>           },</pre>
+                            <pre>           fullscreen : {</pre>
+                            <pre>               show : false</pre>
+                            <pre>           }</pre>
+                            <pre>       }</pre>
+                            <pre>   }</pre>
+                            <pre>});</pre>
+                            <pre>&lt;/script&gt;</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-sections" id="grid">
+                    <div class="inner-wrapper">
+                        <h1>Grid</h1>
+
+                        <h2>Mark-up</h2>
+
+                        <div class="markdown">
+                            <pre>&lt;div id="album"&gt;</pre>
+                            <pre>   &lt;div&gt;&lt;img src="1.jpg"/&gt;&lt;/div&gt; // Your elements need to be wrapped in a div</pre>
+                            <pre>   &lt;div&gt;&lt;img src="2.jpg"/&gt;&lt;/div&gt;</pre>
+                            <pre>   &lt;div&gt;&lt;img src="3.jpg"/&gt;&lt;/div&gt;</pre>
+                            <pre>&lt;/div&gt;</pre>
+                        </div>
+
+                        <h2>Initializing</h2>
+
+                        <div class="markdown">
+                            <pre>portofolio("album", {</pre>
+                            <pre>   type : "grid"</pre>
+                            <pre>});</pre>
+                        </div>
+
+                        <h2>Configuration options</h2>
+
+                        <p>The carousel can be configured and customized in a number of different ways, all of which have defaults and are optional.</p>
+
+                        <h3 class="set-title">General settings</h3>
+                        <div class="params-container">
+                            <div class="params">
+                                <span><i>itemsPerRow</i></span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Number</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">4</span>
+                                </div>
+
+                                <p class="param-desc"><i>Number of items on each grid row.</i></p>
+                            </div>
+
+                            <div class="params">
+                                <span><i>fullscreen</i></span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">Bool</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">false</span>
+                                </div>
+
+                                <p class="param-desc"><i>Turn fullscreen mode on or off. Fullscreen mode allows your materials to be viewed in a gallery format similar to the fullscreen carousel.</i></p>
+                            </div>
+                            <div class="params">
+                                <span><i>format</i></span>
+
+                                <div class="value-type">
+                                    <p>Type: </p>
+                                    <span class="mini-markdown">String</span>
+                                </div>
+
+                                <div class="value-default">
+                                    <p>Default: </p>
+                                    <span class="mini-markdown">None</span>
+                                </div>
+
+                                <p class="param-desc"><i>This should be included and set to "video" if your gallery is composed of video elements in order to ensure player functionality.</i></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="doc-sections" id="audioplayer">
+                    <div class="inner-wrapper">
+                        <h1>Audio player</h1>
+
+                        <h2>Mark-up</h2>
+
+                        <div class="markdown">
+                            <pre>&lt;div id="album"&gt;</pre>
+                            <br>
+                            <pre>&lt;/div&gt;</pre>
+                        </div>
+
+                        <p class="param-desc"><i>There is no need for special mark-up, save for an empty div with an ID.</i></p>
+
+                        <h2>Initializing</h2>
+
+                        <div class="markdown">
+                            <pre>portofolio("album", {</pre>
+                            <pre>   type : "audio",</pre>
+                            <pre>   songs : ["song1.mp3", "song2.mp3", "song3.mp3"]</pre>
+                            <pre>});</pre>
+                        </div>
+
+                        <p class="param-desc"><i>The only other special parameter that the audio player needs is the list of songs in the form of an array of links.</i></p>
+
+                    </div>
+                </div>
+
+                <div class="doc-sections" id="resize">
+                    <div class="inner-wrapper">
+
+                        <h1>Resize <i>(grid extension)</i></h1>
+
+                        <span class="extension-notice"><p>As an extension, resize is optional and is not natively supported in the Portofolio core files, which is why you'll need to download an extra file.</p></span>
+
+                        <p><b><i>Resize</i></b> is an extension for the grid album option that allows the user to adjust the width of each grid element by dragging its margins as much as they want.</p>
+                        <h3>Prerequisites</h3>
+                        <p>There are two steps towards adding Resize to your album and enabling it.</p>
+                        <p>1. Firstly, download the lightweight file for the extension and link to it inside your code:</p>
+                        <a href="js/resize.js" class="download" download>
+                            <p>resize.js</p>
+                            <i class="material-icons">save_alt</i>
+                        </a>
+                        <div class="markdown">
+                            <pre>&lt;script src="portofolio/resize.js"&gt;</pre>
+                        </div>
+                        <p>2. Now, when you call the <i>portofolio</i> function to initialize your album, add the parameter "resize" and set it to "true".</p>
+                        <div class="markdown">
+                            <pre>portofolio("albumID", {</pre>
+                            <pre>   type : "grid",</pre>
+                            <pre>   resize : true</pre>
+                            <pre>});</pre>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="doc-sections" id="swap">
+
+                    <div class="inner-wrapper">
+                        <h1>Swap <i>(grid extension)</i></h1>
+
+                        <span class="extension-notice"><p>As an extension, swap is optional and is not natively supported in the Portofolio core files, which is why you'll need to download an extra file.</p></span>
+
+                        <p><b><i>Swap</i></b> is an extension for the grid album option that allows the user to swap grid items between them by drag and dropping them onto each other.</p>
+
+                        <h3>Prerequisites</h3>
+                        <p>There are two steps towards adding Swap to your album and enabling it.</p>
+                        <p>1. Firstly, download the lightweight file for the extension and link to it inside your code:</p>
+                        <a href="js/resize.js" class="download" download>
+                            <p>swap.js</p>
+                            <i class="material-icons">save_alt</i>
+                        </a>
+                        <div class="markdown">
+                            <pre>&lt;script src="portofolio/swap.js"&gt;</pre>
+                        </div>
+                        <p>2. Now, when you call the <i>portofolio</i> function to initialize your album, add the parameter "swap" and set it to "true".</p>
+                        <div class="markdown">
+                            <pre>portofolio("albumID", {</pre>
+                            <pre>   type : "grid",</pre>
+                            <pre>   swap : true</pre>
+                            <pre>});</pre>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <!--- 
+        <div class="container"></div>
+        <ul class="footer-items">
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+            <li><a href="#">footer.link</a></li>
+        </ul>
+        </div>
+        --->
+        <p class="footerp">Powered by edociiF 2 for <a href="#">Fiicode 2019</a></p>
+    </footer>
+
+
+
+
+
+    <script src="js/main.js"></script> <!-- additionals animations, styling, etcetera -->
+    <script src="js/init-dependencies/audio.js"></script> 
+    <script src="js/init-dependencies/responsive.js"></script> 
+    <script src="js/init-dependencies/speech.js"></script> 
+    <script src="js/init-dependencies/buttons.js"></script> 
+    <script src="js/init-dependencies/transitions.js"></script> 
+    <script src="js/init-dependencies/gestures.js"></script> 
+    <script src="js/init-dependencies/fullscreen-grid.js"></script> 
+    <script src="js/extensions/adjust.js"></script> 
+    <script src="js/init.js"></script> 
+    <script src="js/documentation.js"></script> 
+</body>
+
+</html>

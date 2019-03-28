@@ -2,7 +2,7 @@
 <html>
 <head>
     <link rel='stylesheet' href='css/form.css' type='text/css' />
-    <link rel='stylesheet' href='css/init-content-style.css' type='text/css' />
+    <link rel='stylesheet' href='css/portofolio.css' type='text/css' />
     <title>Album creation</title>
 
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono|Ubuntu" rel="stylesheet">
@@ -34,6 +34,7 @@
                                 <span>List</span>
                             </div>
                         </div>
+                        <input type='hidden' name='type' />
                     </div>
 
                     <!-- Grid slides -->
@@ -135,6 +136,13 @@
 
                     <!-- General slides -->
                     <div id="resources" class="member">
+                        <label id="contenttype">
+                            <span>Content type:</span>
+                            <select id='fullscreen_select'>
+                                <option value=image/video>Image/Video</option>
+                                <option value=audio>Audio</option>
+                            </select>
+                        </label>
                         <span>Links to your files</span>
                         <div><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
                         <div><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
@@ -145,15 +153,15 @@
                         <span>Responsive settings</span>
                         <div class="new-breakpoint">
                             <div class="insert-breakpoint">
-                                <input type='text' name='new-breakpoint' placeholder='Width in pixels' />
+                                <input type='text' name='new_breakpoint' placeholder='Width in pixels' />
                                 <i class="material-icons">add</i>
                             </div>
                         </div>
                     </div>
                     <div id="final" class="member">
-                        <button type='submit'>Save gallery</button>
+                        <button id='save' type='submit'>Save gallery</button>
                         <span></span>
-                        <button type='submit'>Generate JSON</button>
+                        <button id='generate' type='submit'>Generate JSON</button>
                     </div>
                 </div>
             </div>
@@ -161,10 +169,10 @@
     </div>
     <script src='js/form.js'></script>
 
-    <script src="js/carousel-dependencies/buttons.js"></script>
-    <script src="js/carousel-dependencies/responsive.js"></script>
-    <script src="js/carousel-dependencies/transitions.js"></script>
-    <script src="js/carousel-dependencies/gestures.js"></script>
+    <script src="js/init-dependencies/buttons.js"></script>
+    <script src="js/init-dependencies/responsive.js"></script>
+    <script src="js/init-dependencies/transitions.js"></script>
+    <script src="js/init-dependencies/gestures.js"></script>
     <script src="js/init.js"></script>
 
     <script src='bundle_create.js'></script>

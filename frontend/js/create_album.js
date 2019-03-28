@@ -1,24 +1,35 @@
-var m = require('./ajax.js');
-var utility = require('./utility_functions.js');
+function create_album(e) {
+    e.preventDefault();
+    var form = formToJSON(this);
+    var error = 0;
+    console.log(form);
 
-document.addEventListener('DOMContentLoaded', function() {
-    var form = document.getElementsByClassName('form-styling')[0];
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var data = utility.formToJSON(this.elements);
-        console.log(data);
-        m.ajax('http://localhost:3000/create_album', {
+    if (typeof form.album_name == "undefined")
+        alert('Give a name to that album!');
+    else if (form.images) {
+        if (form.images.length < 0) {
+            alert('Give us some images!');
+            error = 1;
+        }
+    } else if (form.audio) {
+        if (form.audio.length < 0) {
+            alert('Give us some songs!');
+            error = 1;
+        }
+    }
+
+    if(error == 0)
+        ajax('http://localhost:3000/create_album', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: JSON.stringify(data)
+            data: JSON.stringify(form)
         })
             .then(function (res) {
                 console.log(res);
             })
             .catch(function (err) {
-                if (err) console.warn(err);
+                console.warn(err);
             });
-    });
-});
+}

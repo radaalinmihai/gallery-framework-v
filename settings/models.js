@@ -13,24 +13,39 @@ var albums = new Schema({
     },
     items: {
         type: Number,
-        required: true
+        required: function() {
+            return this.type == 'carousel' || this.type == 'grid';
+        }
     },
     transition: {
-        transitionType: {
+        transition_type: {
             type: String,
-            required: true
+            required: function () {
+                return this.type == 'carousel';
+            }
         },
         auto: {
             type: Boolean,
-            required: true
+            required: function () {
+                return this.type == 'carousel';
+            }
         },
-        autoInterval: {
+        auto_interval: {
             type: Number
         },
+        gestures: {
+            type: Boolean,
+            required: function () {
+                return this.type == 'carousel'
+            }
+        }
     },
     nav: {
         show: {
-            type: Boolean
+            type: Boolean,
+            required: function () {
+                return this.type == 'carousel'
+            }
         },
         prev: {
             type: String
@@ -61,10 +76,25 @@ var albums = new Schema({
             type: String
         }
     },
-    responsive: { type: Array },
+    responsive: {
+        new_breakpoint: { type: String },
+        items_per_row: { type: Number },
+        items_per_trans: { type: Number },
+        auto_responsive: { type: Boolean },
+        nav_select: { type: Boolean },
+        fullscreen_responsive: { type: Boolean }
+    },
     images: {
         type: Array,
-        required: true
+        required: function () {
+            return this.type == 'carousel' || this.type == 'grid';
+        }
+    },
+    audio: {
+        type: Array,
+        required: function () {
+            return this.type == 'audio';
+        }
     },
     token: {
         type: String,

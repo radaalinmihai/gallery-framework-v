@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Album
+    </title>
+    <link rel="stylesheet" type="text/css" href="css/portofolio.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div id="carousel-container">
+        <div id='carousel'></div>
+    </div>
+</body>
+<script src='./js/utility_functions.js'></script>
+<script src='./js/ajax.js'></script>
+<script src="js/init-dependencies/audio.js"></script>
+<script src="js/init-dependencies/responsive.js"></script>
+<script src="js/init-dependencies/speech.js"></script>
+<script src="js/init-dependencies/buttons.js"></script>
+<script src="js/init-dependencies/transitions.js"></script>
+<script src="js/init-dependencies/gestures.js"></script>
+<script src="js/init-dependencies/fullscreen-grid.js"></script>
+<script src="js/extensions/adjust.js"></script>
+<script src="js/init.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var url = window.location.href;
+        var token = urlParamsParser(url);
+        console.log(token.token);
+
+        ajax('http://localhost:3000/check_token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify(token)
+        })
+            .then(function (res) {
+                if (res.success) {
+                    portofolio("carousel", {
+                        token: token.token
+                    });
+                }
+            })
+            .catch(function (err) {
+                console.warn(err);
+            });
+    });
+</script>
+<style>
+    body {
+        display: flex;
+    }
+
+    #carousel-container {
+        width: 90%;
+        margin: auto;
+        height: 50%;
+    }
+
+    .member img {
+        padding: 10px;
+    }
+</style>
+
+</html>

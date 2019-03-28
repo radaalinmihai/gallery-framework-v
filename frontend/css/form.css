@@ -1,42 +1,9 @@
 /*--------------------------------------------------------------
-# Normalize
---------------------------------------------------------------*/
-body, html {
-	margin: 0;
-	padding: 0;
-	background: #e8e8e8;
-	 background: linear-gradient(to right top, #42b7f5, #00caf9, #00dbf0, #00e9da, #42f5bd);
-	background-repeat: no-repeat;
-	overflow: auto;
-}
-body {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-* {
-	box-sizing: border-box;
-	font-family: 'Ubuntu', sans-serif;
-}
-
-/*--------------------------------------------------------------
 # Form
 --------------------------------------------------------------*/
 
-.container {
-	background: white;
-	border-radius: 4px;
-	padding: 50px;
-	margin: 40px auto 40px auto;
-	width: 50%;
-	min-width: 600px;
-	box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
-	overflow: hidden;
-	height: 500px;
-}
 #carousel {
 	justify-content: space-between;
-	padding-bottom: 70px;
 }
 .container > h2 {
 	margin: 0;
@@ -44,31 +11,71 @@ body {
 	border-bottom: 1px solid #ebebeb;
 	font-weight: 400;
 }
-.form-styling {
-	display: flex;
+.member > * {
+	width: 100%;
+}
+#pick-type-container {
 	height: 100%;
+	transition: transform 0.3s ease;
+	background: rgba(0,0,0,0.7);
+}
+#pick {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+#pick > span {
+	margin-bottom: 40px;
+	color: white;
+}
+#pick > * {
+	margin: 0 auto 0 auto;
+}
+.album-forms {
+	height: 100%;
+}
+.album-forms > * {
+	height: 100%;
+}
+.album-forms-hidden {
+	display: none;
+}
+#creation-carousels {
+	height: 100%;
+	transition: transform 0.3 ease;
+	background: rgba(0,0,0,0.7);
+}
+.chosen-form {
+	display: block !important;
 }
 .nav-container {
 	display: none;
 	justify-content: space-between;
-	margin-top: 40px;
+	margin-bottom: 50px;
 }
 .nav-container > div {
 	position: relative;
 	visibility: visible;
 }
 .nav-container > div > i {
-	color: black;
+	color: white;
 	font-size: 2.5em;
 }
-.car-stage input, .car-stage select {
+input, select {
 	border: none;
 	border-bottom: 4px solid #eee;
 	padding: 15px 20px;
 	width: 100%;
 	transition: border-color 0.3s ease;
 }
-.car-stage input:focus {
+.prev {
+	padding-left: 15px !important;
+}
+.next {
+	padding-right: 15px !important;
+}
+input:focus {
 	border-color: black;
 }
 .car-stage > #general {
@@ -80,16 +87,19 @@ body {
 .car-stage > div {
 	display: flex;
 	flex-direction: column;
+	padding: 60px;
 }
 .car-stage > div > .fields {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	height: 90%;
 }
 .car-stage > div > span {
 	color: grey;
 	margin-bottom: 10px;
 	font-family: 'Ubuntu Mono', sans-serif;
+	height: 10%;
 }
 .car-stage > div label {
 	display: flex;
@@ -99,6 +109,8 @@ body {
 .car-stage > div label span {
 	text-transform: uppercase;
 	font-size: 0.85em;
+	color: white;
+	text-align: left;
 }
 #general label:first-child {
 	width: 100%;
@@ -139,6 +151,7 @@ select {
 }
 .select-container > span:hover {
 	background: #fff radial-gradient(circle, transparent 1%, #fff 1%) center/15000%;
+	color: black;
 }
 .select-container > span:active {
 	background-color: #d9d9d9;
@@ -190,17 +203,26 @@ select {
 	border: none;
 }
 .insert-breakpoint {
-	border-bottom: 4px solid #eee;
 	display: flex;
 }
 .insert-breakpoint i {
 	margin: auto;
 	cursor: pointer;
+	margin-left: -40px;
+}
+.open-breakpoint {
+	display: block !important;
+}
+.breakpoints-container {
+	height: 80% !important;
+	overflow: auto;
 }
 #responsive-settings {
 	overflow-y: auto;
 	max-height: 100%;
-	height: 300px;
+}
+.car-stage {
+	height: 100%;
 }
 .new-breakpoint #transition, .new-breakpoint #navigation, .new-breakpoint #fullscreen {
 	display: flex;
@@ -208,8 +230,8 @@ select {
 	margin-top: 40px;
 }
 .new-breakpoint {
-	width: 95% !important;
-	margin: 0 auto 0 auto;
+	width: 90% !important;
+	margin: 10px auto 10px auto;
 }
 .new-breakpoint #transition > span , .new-breakpoint #navigation > span , .new-breakpoint #fullscreen > span {
 	display: none;
@@ -217,8 +239,11 @@ select {
 .new-breakpoint > div:not(:first-child) {
 	flex-wrap: wrap;
 	justify-content: space-between;
+	padding: 40px;
 	border: 1px solid #eee;
 	display: none;
+	overflow-y: auto;
+	max-height: 80%;
 }
 .new-breakpoint .select-container {
 	width: 100%;
@@ -226,6 +251,7 @@ select {
 }
 #transition .fields #autoselect {
 	height: 90px;
+	overflow: visible;
 }
 .new-breakpoint #autoselect {
 	z-index: 4;
@@ -238,13 +264,11 @@ select {
 }
 .new-breakpoint > div label {
 	height: 64.8px;
-	width: 100%;
+	width: 45%;
 	margin-top: 20px;
+	overflow: visible;
 }
-.new-breakpoint > div {
-	padding: 10px;
-}
-#add-more {
+.add-more, .add-more-breaks {
 	width: 30%;
 	margin: auto;
     margin-top: auto;
@@ -258,31 +282,32 @@ select {
 	background-position: center;
   	transition: background 0.4s;
 }
-#add-more:hover {
+.add-more:hover, .add-more-breaks:hover {
 	background: #eee radial-gradient(circle, transparent 1%, #eee 1%) center/15000%;
 }
-#add-more:active {
+.add-more:active, .add-more-breaks:active {
 	background-color: #d9d9d9;
   	background-size: 100%;
   	transition: background 0s;
 }
-#resources {
-	height: 280px;
-	overflow-y: scroll;
-	overflow-x: hidden;
+.links-container {
+	overflow: auto;
+	height: 80%;
 }
-#resources > div {
+.links-container > div {
 	display: flex;
 	justify-content: space-between;
+	margin: 0 auto 20px auto;
+	width: 90%;
 }
-#resources > div > * {
+.links-container > div > * {
 	margin: auto;
 }
-#resources > div i {
+.links-container > div i {
 	margin-left: -60px;
 	cursor: pointer;
 }
-#resources > div input {
+.links-container > div input {
 	margin-left: 0;
 }
 #final {
@@ -294,7 +319,8 @@ select {
 	width: 200px;
 	background: transparent;
 	border-radius: 50px;
-	border: 1px solid black;
+	border: 1px solid white;
+	color: white;
 	padding: 15px 10px;
 	cursor: pointer;
 }
@@ -304,13 +330,12 @@ select {
 #final span {
 	height: 0.8px;
 	width: 150px;
-	background: black;
+	background: white;
 }
 #album-options {
 	display: flex;
 	flex-wrap: wrap;
 	width: 75%;
-	margin: auto;
 	justify-content: space-around;
 }
 #album-options > div {
@@ -341,19 +366,22 @@ select {
 #resource-select .select-container {
 	width: 40%;
 }
+#token_album_form {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	height: 100%;
+	align-items: center;
+	flex-direction: column;
+}
+#token_album_form div {
+	text-align: center;
+}
+#fullscreen_grid, #format_grid {
+	overflow: visible;
+}
 
 @media screen and (max-width: 900px) {
-	.container {
-		width: 90%;
-		min-width: 95%;
-		height: auto;
-		padding: 30px 20px;
-		overflow: initial;
-		margin-top: 150px;
-	}
-	.container > h2 {
-		font-size: 1.2em;
-	}
 	label {
 		width: 100% !important;
 		min-height: 84.88px;

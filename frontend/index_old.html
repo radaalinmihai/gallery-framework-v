@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Playground</title>
+
+	<link rel="stylesheet" type="text/css" href="css/portofolio.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+		<h2>Carousel:</h2>
+	
+		<div id="carousel1">
+			
+		</div>
+
+		<h2>Grid:</h2>
+	
+		<div id="grid">
+
+			<div class="member">
+				<img src="images/1.jpg"/>
+			</div>
+			<div class="member">
+				<img src="images/2.jpg"/>
+			</div>
+			<div class="member">
+				<img src="images/3.jpg"/>
+			</div>
+			<div class="member">
+				<img src="images/4.jpg"/>
+			</div>
+			<div class="member">
+				<img src="images/5.jpg"/>
+			</div>
+			<div class="member">
+				<img src="images/6.jpg"/>
+			</div>
+			<div class="member">
+				<img src="images/1.jpg"/>
+			</div>
+			<div class="member">
+				<img src="images/2.jpg"/>
+			</div>
+			<div class="member">
+				<img src="images/3.jpg"/>
+			</div>
+			<div class="member">
+				<img src="images/4.jpg"/>
+			</div>
+			<div class="member">
+				<img src="images/5.jpg"/>
+			</div>
+			<div class="member">
+				<img src="images/6.jpg"/>
+			</div>
+
+		</div>
+
+		<h2>Lista:</h2>
+
+		<div id="audio">
+			
+		</div>
+		
+</body>
+<script src="js/init-dependencies/audio.js"></script> 
+<script src="js/init-dependencies/responsive.js"></script> 
+<script src="js/init-dependencies/speech.js"></script> 
+<script src="js/init-dependencies/buttons.js"></script> 
+<script src="js/init-dependencies/transitions.js"></script> 
+<script src="js/init-dependencies/gestures.js"></script> 
+<script src="js/init-dependencies/fullscreen-grid.js"></script> 
+<script src="js/extensions/adjust.js"></script> 
+<script src="js/init.js"></script>
+<script src='./js/ajax.js'></script>
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+
+		portofolio("grid", {
+			type:"grid",
+			itemsPerRow: 3,
+			fullscreen:true,
+			format:"image",
+            responsive : {
+			    1000 : {
+			        itemsPerRow : 4
+                }
+            }
+		});
+
+		portofolio("audio", {
+			type:"audio",
+			songs : ['apologize.mp3', 'ceva.mp3']
+		});
+
+		portofolio("carousel1", {
+			token:"0XJMkCr7Sf5x"
+		});
+	});
+	
+</script>
+</html>

@@ -25,6 +25,8 @@ body, html {
 	overflow: hidden;
 	justify-content: center;
 	position: relative;
+    z-index: 10000000000;
+    transition: all 0.3s ease;
 }
 .car-stage {
 	display: -webkit-box;
@@ -35,9 +37,12 @@ body, html {
   	position: relative;
   	transition: all 0.2s ease;
 }
+.car-stage > div {
+    display: flex;
+}
 .member > * {
-	width: 100%;
 	height: auto;
+    margin: auto;
 }
 .no-drag {
 	width: 100%;
@@ -58,14 +63,19 @@ body, html {
 	transition: all 0.2s ease-in-out;
 }
 .next i, .prev i {
-	font-size: 3em;
+	font-size: 2em;
 	color: white;
+    font-style: normal;
+    background: rgba(0,0,0,0.4);
+    border-radius: 3px;
 }
 .prev {
 	left: 0;
+    padding-left: 10px;
 }
 .next {
 	right: 0;
+    padding-right: 10px;
 }
 .active {
 	cursor: grabbing;
@@ -73,7 +83,7 @@ body, html {
 }
 .full-car {
 	position: fixed;
-	background: rgba(0, 0, 0, 0.9);
+	background: rgba(0, 0, 0, 0.95);
 	top: 0;
 	left: 0;
 	width: 100vw;
@@ -100,6 +110,11 @@ body, html {
 }
 .car-full-buttons > i {
 	font-size: 3em;
+    font-style: normal;
+    background: rgba(0,0,0,0.4);
+    border-radius: 3px;
+    padding: 0;
+    font-size: 2.5em;
 }
 
 /*--------------------------------------------------------------
@@ -114,14 +129,16 @@ body, html {
     position: relative;
 }
 .grid-container > * {
-    cursor: pointer;
     z-index: 3;
 }
 .grid-container > .member {
-    position: initial;
+    position: relative;
 }
 .grid-container img {
     padding: 10px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 .grid-container > .transitioning {
     z-index: 4;
@@ -141,13 +158,9 @@ body, html {
     width: auto;
     height: auto;
     margin: auto;
-}
-.list-container {
-	display: flex;
-	flex-direction: column;
-}
-.list-container > * {
-	width: 100%;
+    cursor: -webkit-zoom-in;
+    cursor: zoom-in;
+    transition: all 0.4s ease;
 }
 .grid-container > div:last-child {
     cursor: default;
@@ -161,6 +174,9 @@ body, html {
     margin: 15px;
     font-size: 2em;
     cursor: pointer;
+}
+#photo-carousel-1 .car-stage {
+    height: 100%;
 }
 .vid-member {
     display: flex;
@@ -182,7 +198,22 @@ body, html {
     color: white;
     font-size: 3em;
 }
-
+.resize-gutter {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: -4px;
+    width: 8px;
+    cursor: ew-resize;
+    transition: all 0.3s ease;
+}
+.resize-gutter:hover {
+    background: #3eabe6;
+}
+.zooming-img {
+    cursor: -webkit-zoom-out !important;
+    cursor: zoom-out !important;
+}
 /*--------------------------------------------------------------
 # Audio
 --------------------------------------------------------------*/
