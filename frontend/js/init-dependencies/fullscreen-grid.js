@@ -115,7 +115,7 @@ function fullscreenGrid (container, params) {
 		ele.onclick = function () {
 
 			this.parentNode.lastChild.childNodes[1].style.transition = "none";
-			this.parentNode.lastChild.childNodes[1].style.left = "-" + stageWidth * getIndex(ele) + "px";
+			this.parentNode.lastChild.childNodes[1].style.left = "-" + 100 * getIndex(ele) + "%";
 
 			slideIndex = getIndex(ele) - 1;
 			this.parentNode.lastChild.style.visibility = "visible";
