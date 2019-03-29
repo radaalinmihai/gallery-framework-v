@@ -422,5 +422,16 @@ footer {
   * {
     scroll-behavior: smooth;
   }
+
+  .main-page-container {
+    flex-direction: column-reverse !important;
+  }
+
+  #album-options > div {
+    padding: 15px 5px;
+  }
+  #album-options {
+    width: 95%;
+  }
 }
 /*# sourceMappingURL=desktop.css.map */

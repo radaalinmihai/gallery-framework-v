@@ -192,13 +192,11 @@
 </footer>
 
 
-
-
-
 <script src="js/main.js"></script> <!-- additionals animations, styling, etcetera -->
-<script src="js/extensions/adjust.js"></script>
 <script src="js/init.js"></script>
 <script src="js/documentation.js"></script>
+<script src="js/extensions/resize.js"></script>
+<script src="js/extensions/swap.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var secs = document.getElementsByClassName("doc-sections");
@@ -230,8 +228,11 @@
             fullscreen:true,
             format:"image",
             responsive : {
-                1000 : {
+                1200 : {
                     itemsPerRow : 3
+                },
+                800 : {
+                    itemsPerRow : 2
                 }
             }
         });
@@ -243,8 +244,11 @@
             format:"image",
             swap:true,
             responsive : {
-                1000 : {
+                1200 : {
                     itemsPerRow : 3
+                },
+                800 : {
+                    itemsPerRow : 2
                 }
             }
         });
@@ -255,10 +259,12 @@
             fullscreen:false,
             format:"image",
             resize:true,
-            swap:true,
             responsive : {
-                1000 : {
+                1200 : {
                     itemsPerRow : 3
+                },
+                800 : {
+                    itemsPerRow : 2
                 }
             }
         });

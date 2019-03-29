@@ -8,3 +8,11 @@
     width: 100vw !important;
     min-width: 100vw !important;
 }
+@media only screen and (max-width: 600px) {
+    .inner-wrapper h1 {
+        font-size: 1em;
+    }
+    .grid-container img {
+        padding: 5px !important;
+    }
+}

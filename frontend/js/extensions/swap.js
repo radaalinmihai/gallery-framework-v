@@ -26,6 +26,7 @@ function howMany (a, b) {
 	return k;
 }
 
+
 function dragNDrop (container, params) {
 
 	var members = container.children,
@@ -37,34 +38,38 @@ function dragNDrop (container, params) {
 	// Find the element that's being hovered and that's going to be moved 
 	function findCorrectOne() {
 
-		pastOne = -1;
+		if (selected != null) {
 
-		for (i = 0; i < members.length; i++) {
+            pastOne = -1;
 
-			if (members[i] != selected) {
+            for (i = 0; i < members.length; i++) {
 
-				x_dest = members[i].offsetLeft;
-	    		y_dest = members[i].offsetTop;
-	    		x_pos = selected.offsetLeft;
-	    		y_pos = selected.offsetTop;
+                if (members[i] != selected) {
 
-	    		// Loop through elements and compare x-axis and y-axis to find the one that's closest in position
-	    		if (pastOne == -1) {
-	    			pastOne = Math.abs(x_pos - x_dest) + Math.abs(y_pos - y_dest);
-	    			if (correctOne != null) correctOne.style.border = "none";
-	    			correctOne = members[i];
-	    			correctOne.style.border = "2px solid black";
-	    			destNext = members[i].nextElementSibling;
-	    		}
-	    		else if (Math.abs(x_pos - x_dest) + Math.abs(y_pos - y_dest) < pastOne) {
-	    			pastOne = Math.abs(x_pos - x_dest) + Math.abs(y_pos - y_dest);
-	    			correctOne.style.border = "none";
-	    			correctOne = members[i];
-	    			correctOne.style.border = "2px solid black";
-	    			destNext = members[i].nextElementSibling;
-	    		}
+                    x_dest = members[i].offsetLeft;
+                    y_dest = members[i].offsetTop;
+                    x_pos = selected.offsetLeft;
+                    y_pos = selected.offsetTop;
 
-			}
+                    // Loop through elements and compare x-axis and y-axis to find the one that's closest in position
+                    if (pastOne == -1) {
+                        pastOne = Math.abs(x_pos - x_dest) + Math.abs(y_pos - y_dest);
+                        if (correctOne != null) correctOne.style.border = "none";
+                        correctOne = members[i];
+                        correctOne.style.border = "2px solid black";
+                        destNext = members[i].nextElementSibling;
+                    }
+                    else if (Math.abs(x_pos - x_dest) + Math.abs(y_pos - y_dest) < pastOne) {
+                        pastOne = Math.abs(x_pos - x_dest) + Math.abs(y_pos - y_dest);
+                        correctOne.style.border = "none";
+                        correctOne = members[i];
+                        correctOne.style.border = "2px solid black";
+                        destNext = members[i].nextElementSibling;
+                    }
+
+                }
+
+            }
 
 		}
 		
@@ -88,6 +93,7 @@ function dragNDrop (container, params) {
 
 	        // Look for the correct element while selected one is being moved around
 	        findCorrectOne();
+	        console.log("called from 92");
 	    }
 	}
 	
@@ -96,6 +102,7 @@ function dragNDrop (container, params) {
 
 		// Call function one last time to check for correct element
 		findCorrectOne();
+		console.log("called from 101");
 
 		// Check if selected element is dropped at same position 
 		if (correctOne != placeholder) {
@@ -240,72 +247,4 @@ function dragNDrop (container, params) {
 	document.onmousemove = _move_elem;
 	document.onmouseup = _destroy;
 
-}
-
-function adjustSize (container, params) {
-
-	var members = container.children;
-
-	// Generate and add the resize gutter (element that's dragged when resizing) to each grid member
-	for (i = 0; i < members.length - 1; i++) {
-
-		if ((i + 1) % params.itemsPerRow != 0 || (i + 1) == 1) {
-
-			var gut = document.createElement("div");
-			gut.classList.add("resize-gutter");
-			members[i].appendChild(gut);
-
-		}
-
-	}
-
-
-	var isResizing = false, lastDownX = 0,
-		gutters = document.getElementsByClassName("resize-gutter"),
-		handle, initWidthCont, initWidthNext;
-
-
-	// Add event listeners to each gutter to change isResizing value to true
-	for (i = 0; i < gutters.length; i++) {
-
-		gutters[i].addEventListener("mousedown", function(e) {
-
-			isResizing = true;
-			lastDownX = e.clientX;
-			handle = this;
-			initWidthCont = parseFloat(this.parentNode.style.width);
-			initWidthNext = parseFloat(this.parentNode.nextElementSibling.style.width);
-
-		});
-
-	}
-
-	// Listen to mouse moving for when resizing an element
-	document.addEventListener("mousemove", function(e) {
-
-		// If it isn't resizing, don't do anything
-		if (!isResizing) return;
-
-		// Distance traveled
-		var distance = e.clientX - lastDownX;
-
-		// Convert distance to percentage of row width
-		var perco = Math.abs(distance * 100 / handle.parentNode.parentNode.offsetWidth);
-
-		// Figure out the direction and resize accordingly
-		if (e.clientX < lastDownX && parseFloat(handle.parentNode.style.width) >= 6) {
-			handle.parentNode.style.width = initWidthCont - perco + "%";
-			handle.parentNode.nextElementSibling.style.width = initWidthNext + perco + "%";
-		}
-		else if (e.clientX > lastDownX && parseFloat(handle.parentNode.nextElementSibling.style.width) >= 6) {
-			handle.parentNode.style.width = initWidthCont + perco + "%";
-			handle.parentNode.nextElementSibling.style.width = initWidthNext - perco + "%";
-		}
-
-	});
-
-	// Change value to false on mouse up to stop resizing
-	document.addEventListener("mouseup", function() {
-		isResizing = false;
-	});
 }
