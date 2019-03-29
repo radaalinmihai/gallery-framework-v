@@ -59,6 +59,8 @@ function formToJSON(form) {
                     if(!('audio' in data))
                         data.audio = [];
                     data['audio'].push(item.value);
+                } else {
+                    data[item.name] = item.value;
                 }
             } else {
                 if(item.name == 'images') {

@@ -314,14 +314,13 @@
                     <form action='' method='post' class='album-forms' id="audio-creation-form">
                         <div id="audio-creation" class="carousels">
                             <div>
-                                <div id="resources" class="member">
-                                    <label id="contenttype">
-                                        <span>Content type:</span>
-                                        <select id='fullscreen_select'>
-                                            <option value=image/video>Image/Video</option>
-                                            <option value=audio>Audio</option>
-                                        </select>
+                                <div id="general" class="member grid-member">
+                                    <label>
+                                        <span>Album name:</span>
+                                        <input type='text' name='album_name' placeholder='Album name' />
                                     </label>
+                                </div>
+                                <div id="resources" class="member">
                                     <span>Links to your files</span>
                                     <div class="links-container">
                                         <div class="url-input"><input type='text' name='images' placeholder='URL to your file' /><i class='material-icons remove-resource'>close</i></div>
@@ -378,13 +377,6 @@
 
 
     <script src="js/main.js"></script> <!-- additionals animations, styling, etcetera -->
-    <script src="js/init-dependencies/audio.js"></script> 
-    <script src="js/init-dependencies/responsive.js"></script> 
-    <script src="js/init-dependencies/speech.js"></script> 
-    <script src="js/init-dependencies/buttons.js"></script> 
-    <script src="js/init-dependencies/transitions.js"></script> 
-    <script src="js/init-dependencies/gestures.js"></script> 
-    <script src="js/init-dependencies/fullscreen-grid.js"></script> 
     <script src="js/extensions/adjust.js"></script> 
 
     <script src='./js/ajax.js'></script>

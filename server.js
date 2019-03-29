@@ -2,7 +2,7 @@ var express = require('express'),
     cors = require('cors'),
     http = require('http'),
     https = require('https'),
-    imageType = require('image-type'),
+    fileType = require('file-type'),
     bodyParser = require('body-parser'),
     random12chars = require('./random12chars.js'),
     config = require('./settings/config.js'),
@@ -26,67 +26,73 @@ app.post('/create_album', function (req, res) {
     var data = req.body;
     data.token = random12chars();
     var counted_req = 0;
-    var maximum_req = data.images.length;
+    var ext_error = 0;
 
-    if (data.images) {
-        for (var i = 0; i < data.images.length; i++) {
-            var client = http;
+    if(('images' in data))
+        var type = 'images';
+    else if(('audio' in data))
+        var type = 'audio';
+    else return res.send({
+        success: false,
+        message: 'No images/audio files sent!'
+    });
 
-            var url = new URL(data.images[i]);
-            if (url.toString().indexOf('https') == 0)
-                client = https;
+    var maximum_req = data[type].length;
+    for (var i = 0; i < data[type].length; i++) {
+        var client = http;
 
-            client.get(data.images[i], function (response) {
-                response.on('data', function (chunk) {
-                    var imgType = imageType(chunk).mime;
-                    switch (imgType) {
-                        case 'image/jpeg':
-                            break;
-                        case 'image/png':
-                            break;
-                        case 'image/gif':
-                            break;
-                        default:
+        var url = new URL(data[type][i]);
+        if (url.toString().indexOf('https') == 0)
+            client = https;
+
+        client.get(data[type][i], function (response) {
+            response.on('data', function (chunk) {
+                var imgType = fileType(chunk).mime;
+                switch (imgType) {
+                    case 'image/jpeg':
+                        break;
+                    case 'image/png':
+                        break;
+                    case 'image/gif':
+                        break;
+                    case 'audio/mpeg':
+                        break;
+                    default:
+                        ext_error = 1;
+                        break;
+                }
+
+                counted_req++;
+                response.destroy();
+
+                if (counted_req == maximum_req) {
+                    if(ext_error == 1)
+                        return res.send({
+                            success: false,
+                            message: 'Formats supported are JPG, PNG, GIF and MP3'
+                        });
+                    var data_model = new models.albums(data);
+
+                    data_model.save(function (err) {
+                        if (err && err.name == 'ValidationError') {
                             return res.send({
                                 success: false,
-                                message: "Only JPG/JPEG, PNG and GIF formats are supported!"
+                                message: 'All fields with an *(asterisk) must be completed/filled!'
                             });
-                    }
-
-                    counted_req++;
-                    response.destroy();
-
-                    if (counted_req == maximum_req) {
-
-                        var data_model = new models.albums(data);
-
-                        data_model.save(function (err) {
-                            if (err && err.name == 'ValidationError') {
-                                return res.send({
-                                    success: false,
-                                    message: 'All fields with an *(asterisk) must be completed/filled!'
-                                });
-                            }
-                            res.send({
-                                success: true,
-                                message: 'Album created succesfuly! Here is the token ' + data.token,
-                                token: data.token
-                            });
+                        }
+                        res.send({
+                            success: true,
+                            message: 'Album created succesfuly! Here is the token ' + data.token,
+                            token: data.token
                         });
-                    }
-                });
-            }).on('error', function (error) {
-                return res.send({
-                    success: false,
-                    message: error.message
-                });
+                    });
+                }
             });
-        }
-
-    } else {
-        res.send({
-            success: false,
-            message: 'No images were sent'
+        }).on('error', function (error) {
+            return res.send({
+                success: false,
+                message: error.message
+            });
         });
     }
 });
@@ -112,17 +118,17 @@ app.post('/return_album', function (req, res) {
     });
 });
 
-app.post('/check_token', function(req, res) {
+app.post('/check_token', function (req, res) {
     var token = req.body.token;
-    models.albums.find({ token: token }, function(err, response) {
-        if(err) {
+    models.albums.find({ token: token }, function (err, response) {
+        if (err) {
             return res.send({
                 success: false,
                 message: err.message
             });
         }
 
-        if(response == null) {
+        if (response == null) {
             return res.send({
                 success: false,
                 message: 'No token found!'

@@ -9,6 +9,23 @@ function getIndex(ele) {
 
 }
 
+// How many items are between two elements
+function howMany (a, b) {
+	if (getIndex(a) > getIndex(b)) {
+		var x = a;
+		a = b;
+		b = x;
+	}
+	var k = 0;
+
+	while (b.previousElementSibling != a) {
+		b = b.previousElementSibling;
+		k++;
+	}
+
+	return k;
+}
+
 function dragNDrop (container, params) {
 
 	var members = container.children,
@@ -94,8 +111,14 @@ function dragNDrop (container, params) {
 			var origPerc = parseFloat(selected.style.width);
 			var diff = Math.abs(origPerc - destPerc);
 
-			// Check which elements to adjust based on difference in size between elements
-			if (destPerc < origPerc) {
+			console.log(howMany(correctOne, selected));
+
+			if (howMany(correctOne, selected) <= params.itemsPerRow - 2) {
+				var x = correctOne.style.width;
+				correctOne.style.width = selected.style.width;
+				selected.style.width = x;
+			}
+			else if (destPerc < origPerc) {
 				if (correctOne.previousElementSibling == null || (getIndex(correctOne.previousElementSibling) + 1) % params.itemsPerRow == 0) {
 					correctOne.nextElementSibling.style.width = (parseFloat(correctOne.nextElementSibling.style.width) + diff) + "%";
 				}
@@ -118,7 +141,6 @@ function dragNDrop (container, params) {
 				}
 			}
 			else {
-				console.log("line 121");
 				if (correctOne.previousElementSibling == null || (getIndex(correctOne.previousElementSibling) + 1) % params.itemsPerRow == 0) {
 					correctOne.nextElementSibling.style.width = (parseFloat(correctOne.nextElementSibling.style.width) - diff) + "%";
 				}
@@ -129,7 +151,6 @@ function dragNDrop (container, params) {
 					correctOne.nextElementSibling.style.width = (parseFloat(correctOne.nextElementSibling.style.width) - diff / 2) + "%";
 					correctOne.previousElementSibling.style.width = (parseFloat(correctOne.previousElementSibling.style.width) - diff / 2) + "%";
 				}
-				console.log("line 131");
 				if (selected.nextElementSibling == null || getIndex(selected.nextElementSibling) % params.itemsPerRow == 0) {
 					selected.previousElementSibling.style.width = (parseFloat(selected.previousElementSibling.style.width) + diff) + "%";
 				}
@@ -188,33 +209,31 @@ function dragNDrop (container, params) {
 	for (i = 0; i < members.length; i++) {
 
 		// Bind the functions...
-		members[i].onmousedown = function (e) {
+		members[i].addEventListener("mousedown", function(e) {
+            // Check if element clicked is not resize gutter
+            e = e || window.event;
+            var target = e.target || e.srcElement;
 
-			// Check if element clicked is not resize gutter
-			e = e || window.event;
-   			var target = e.target || e.srcElement;
+            if (target.classList.contains("resize-gutter") == false) {
 
-			if (target.classList.contains("resize-gutter") == false) {
+                // Call dragging function
+                _drag_init(this);
 
-				// Call dragging function
-				_drag_init(this);
+                this.classList.add("transitioning");
 
-		    	this.classList.add("transitioning");
+                placeholder = document.createElement("div");
+                placeholder.style.width = this.style.width;
 
-		    	placeholder = document.createElement("div");
-		    	placeholder.style.width = this.style.width;
+                container.insertBefore(placeholder, this.nextElementSibling);
 
-		    	container.insertBefore(placeholder, this.nextElementSibling);
+                selected.style.left = (x_pos - x_elem) + 'px';
+                selected.style.top = (y_pos - y_elem) + 'px';
 
-		    	selected.style.left = (x_pos - x_elem) + 'px';
-	        	selected.style.top = (y_pos - y_elem) + 'px';
+                initNext = placeholder.nextElementSibling;
 
-	        	initNext = placeholder.nextElementSibling;
-
-		    	return false;
-			}
-
-		}
+                return false;
+            }
+		});
 
 	}
 	
