@@ -149,6 +149,9 @@ body, html {
     transition: transform 0.3s ease;
     position: absolute;
 }
+.transitioning > img {
+    pointer-events: none;
+}
 .adjusting {
     cursor: e-resize;
 }

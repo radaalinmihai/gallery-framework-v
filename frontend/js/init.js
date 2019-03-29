@@ -17,7 +17,8 @@ function portofolio (containerID, settings) {
                 .then(function(response) {
                     tokenGenerated = 1;
                     params = response.data;
-                    materials = response.data.images;
+                    if (response.data.images.length == 0) materials = reponse.data.audio;
+                    else materials = response.data.images;
                     executeSwitch();
                 })
                 .catch(function(error) {
@@ -187,6 +188,19 @@ function portofolio (containerID, settings) {
             case "grid":
 
                 container.classList.add("grid-container");
+
+                if (tokenGenerated) {
+                    for (var i = 0; i < materials.length; i++) {
+                        var div = document.createElement("div");
+                        var img = document.createElement("img");
+
+                        div.setAttribute("class", "member");
+                        img.setAttribute("src", materials[i]);
+
+                        div.appendChild(img);
+                        container.appendChild(div);
+                    }
+                }
                 var members = container.children, genHeight;
 
                 if (params.hasOwnProperty("itemsPerRow")) {
@@ -215,7 +229,10 @@ function portofolio (containerID, settings) {
                 var audioHTML = "<div class='audio_wrapper'><p class='song_name'></p><div class='player'><button class='play_button'><i class='material-icons'>play_circle_outline</i></button><button class='resume_button'><i class='material-icons'>pause_circle_outline</i></button><button class='previous_song'><i class='material-icons'>skip_previous</i></button><button class='next_song'><i class='material-icons'>skip_next</i></button><div class='progress'><div class='current_progress'></div></div><div class='volume_controls'><input class='volume' type='range' min='0' max='1' step='any'><button class='volume_button'><i class='material-icons'>volume_up</i></button></div></div></div>";
                 let doc = new DOMParser().parseFromString(audioHTML, 'text/html');
                 container.appendChild(doc.body.firstChild);
-                audioPlayer(params.songs);
+                if (tokenGenerated) {
+                    audioPlayer(materials);
+                }
+                else audioPlayer(params.songs);
 
         }
 

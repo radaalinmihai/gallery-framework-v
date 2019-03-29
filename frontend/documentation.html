@@ -47,7 +47,6 @@
                     <li>Getting started</li>
                     <li><a href="#welcome" class="doc-links selected-link" id="welcome-but">Welcome</a></li>
                     <li><a href="#setup" class="doc-links" id="setup-but">Set up</a></li>
-                    <li><a href="#faq" class="doc-links" id="FAQ-but">FAQ</a></li>
                 </ul>
 
                 <ul>
@@ -88,6 +87,7 @@
                 </div>
 
                 <div class="doc-sections" id="setup">
+                    <div class="inner-wrapper">
                     <h1>Set up</h1>
                     <p>There are two main ways of creating an album and displaying it on your project. While both involve writing code, both are very straightforward and easy to follow.</p>
 
@@ -98,6 +98,16 @@
                             <li>Save the album to our database</li>
                             <p>You can choose to save the album to our database and keep it for later use. The album configuration (transition, navigation, fullscreen settings, etc.) will be saved, as well as its name and the media materials in the appropriate order.</p>
                             <p>You'll be given a token that will allow you to call the album on any page you want via JavaScript with little hassle.</p>
+                            <h4>Example:</h4>
+
+                            <div class="markdown">
+                                <pre>&lt;div id="album"&gt;</pre>
+                                <pre>&lt;/div&gt;</pre>
+                                <br>
+                                <pre>portofolio("album", {</pre>
+                                <pre>   token : "0XJMkCr7Sf5x"</pre>
+                                <pre>});</pre>
+                            </div>
                             <br>
                             <li>Generate the JSON and include it in your project as you see fit</li>
                             <p>You can choose to be given a ready-to-go JSON code that you can use to create a carousel on your own page.</p>
@@ -107,10 +117,7 @@
                     <div class="method-container">
                         <p>You can use the guides and options in the "Display types" section to customize your album the way you want it, include the mark-up and initialize the function in your project yourself.</p>
                     </div>
-                </div>
-
-                <div class="doc-sections" id="faq">
-                    <h1>FAQ</h1>
+                    </div>
                 </div>
 
                 <div class="doc-sections" id="carousel">
@@ -633,7 +640,7 @@
                         <h3>Prerequisites</h3>
                         <p>There are two steps towards adding Resize to your album and enabling it.</p>
                         <p>1. Firstly, download the lightweight file for the extension and link to it inside your code:</p>
-                        <a href="js/resize.js" class="download" download>
+                        <a href="js/extensions/resize.js" class="download" download>
                             <p>resize.js</p>
                             <i class="material-icons">save_alt</i>
                         </a>
@@ -663,7 +670,7 @@
                         <h3>Prerequisites</h3>
                         <p>There are two steps towards adding Swap to your album and enabling it.</p>
                         <p>1. Firstly, download the lightweight file for the extension and link to it inside your code:</p>
-                        <a href="js/resize.js" class="download" download>
+                        <a href="js/extensions/resize.js" class="download" download>
                             <p>swap.js</p>
                             <i class="material-icons">save_alt</i>
                         </a>
