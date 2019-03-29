@@ -2,7 +2,6 @@ function create_album(e) {
     e.preventDefault();
     var form = formToJSON(this);
     var error = 0;
-    console.log(form);
 
     if (typeof form.album_name == "undefined") {
         alert('Give a name to that album!');
@@ -29,7 +28,7 @@ function create_album(e) {
             data: JSON.stringify(form)
         })
             .then(function (res) {
-                console.log(res);
+                alert("Album created successfully! Your token is: " + res.token);
             })
             .catch(function (err) {
                 console.warn(err);
