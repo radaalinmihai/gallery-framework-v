@@ -20,7 +20,7 @@ function create_album(e) {
     }
 
     if(error == 0)
-        ajax('https://edociif.netlify.com:3000/create_album', {
+        ajax('https://edociif.netlify.com/create_album', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
