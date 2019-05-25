@@ -1,3 +1,3 @@
 module.exports = {
-    database: 'mongodb+srv://reversio:elcomandante123@gitnephew-5wsli.gcp.mongodb.net/test'
+    database: 'mongodb+srv://reversio:Elcomandante123@gitnephew-5wsli.gcp.mongodb.net/test'
 }
