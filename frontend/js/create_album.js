@@ -28,7 +28,7 @@ function create_album(e) {
             data: JSON.stringify(form)
         })
             .then(function (res) {
-                alert("Album created successfully! Your token is: " + res.token);
+                alert(res.message);
             })
             .catch(function (err) {
                 console.warn(err);
